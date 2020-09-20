@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form addfieldprefix="Joomla\Component\MinitekWall\Administrator\Field">
+
+	<fields name="masonry_params">
+
+		<fieldset name="masonry_layout">
+
+			<field
+				name="mas_layout"
+				type="componentlayout"
+				extension="com_minitekwall"
+				view="masonry"
+				useglobal="false"
+				label="COM_MINITEKWALL_FIELD_TEMPLATE_OVERRIDE_LABEL"
+				description="COM_MINITEKWALL_FIELD_TEMPLATE_OVERRIDE_DESC"
+			/>
+
+			<field
+				name="mas_suffix"
+				type="text"
+				class="inputbox"
+				size="40"
+				label="COM_MINITEKWALL_FIELD_CLASS_SUFFIX_LABEL"
+				description="COM_MINITEKWALL_FIELD_CLASS_SUFFIX_DESC"
+			/>
+
+			<field
+				name="mas_page_title"
+				type="radio"
+	      layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_SHOW_PAGE_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_SHOW_PAGE_TITLE_DESC"
+				default="0"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_empty_message"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_EMPTY_MESSAGE_LABEL"
+				description="COM_MINITEKWALL_FIELD_EMPTY_MESSAGE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_grid"
+				type="gridlist"
+				label="COM_MINITEKWALL_FIELD_GRID_LABEL"
+				description="COM_MINITEKWALL_FIELD_GRID_DESC"
+				size="1"
+				default="7"
+			/>
+
+			<field
+				name="mas_custom_grid"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_CUSTOM_GRID_LABEL"
+				description="COM_MINITEKWALL_FIELD_CUSTOM_GRID_DESC"
+			>
+				<option value="">COM_MINITEKWALL_FIELD_OPTION_SELECT_GRID</option>
+			</field>
+
+			<field
+				name="mas_cols"
+				type="integer"
+				default="4"
+				label="COM_MINITEKWALL_FIELD_COLUMNS_LABEL"
+				description="COM_MINITEKWALL_FIELD_COLUMNS_DESC"
+				first="1"
+				last="10"
+				step="1"
+			/>
+
+			<field
+				name="mas_layout_mode"
+				type="list"
+				default="packery"
+				label="COM_MINITEKWALL_FIELD_LAYOUT_MODE_LABEL"
+				description="COM_MINITEKWALL_FIELD_LAYOUT_MODE_DESC"
+			>
+				<option value="packery">COM_MINITEKWALL_FIELD_OPTION_MASONRY</option>
+				<option value="fitRows">COM_MINITEKWALL_FIELD_OPTION_FITROWS</option>
+			</field>
+
+			<field
+				name="mas_force_equal_height"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_FORCE_EQUAL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_FORCE_EQUAL_HEIGHT_DESC"
+				default="0"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_gutter"
+				type="number"
+				class="inputbox"
+				size="40"
+				label="COM_MINITEKWALL_FIELD_GUTTER_LABEL"
+				description="COM_MINITEKWALL_FIELD_GUTTER_DESC"
+				default="5"
+			/>
+
+			<field
+				name="mas_border_radius"
+				type="number"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_ITEMS_BORDER_RADIUS_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_BORDER_RADIUS_DESC"
+			/>
+
+			<field
+				name="mas_border"
+				type="number"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_ITEMS_BORDER_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_BORDER_DESC"
+			/>
+
+			<field
+				name="mas_border_color"
+				type="color"
+				default="#eeeeee"
+				label="COM_MINITEKWALL_FIELD_ITEMS_BORDER_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_BORDER_COLOR_DESC"
+			/>
+
+		</fieldset>
+
+		<fieldset name="masonry_image_settings">
+
+			<field
+				name="mas_images"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_SHOW_IMAGES_LABEL"
+				description="COM_MINITEKWALL_FIELD_SHOW_IMAGES_DESC"
+				default="1"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_image_link"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_IMAGE_LINK_LABEL"
+				description="COM_MINITEKWALL_FIELD_IMAGE_LINK_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_crop_images"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_CROP_IMAGES_LABEL"
+				description="COM_MINITEKWALL_FIELD_CROP_IMAGES_DESC"
+				default="0"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_image_width"
+				type="number"
+				default="400"
+				label="COM_MINITEKWALL_FIELD_CROP_WIDTH_LABEL"
+				description="COM_MINITEKWALL_FIELD_CROP_WIDTH_DESC"
+			/>
+
+			<field
+				name="mas_image_height"
+				type="number"
+				default="300"
+				label="COM_MINITEKWALL_FIELD_CROP_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CROP_HEIGHT_DESC"
+			/>
+
+			<field
+				name="mas_preserve_aspect_ratio"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_PRESERVE_ASPECT_RATIO_LABEL"
+				description="COM_MINITEKWALL_FIELD_PRESERVE_ASPECT_RATIO_DESC"
+				default="0"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_full_width_image"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_FULL_WIDTH_IMAGE_LABEL"
+				description="COM_MINITEKWALL_FIELD_FULL_WIDTH_IMAGE_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_fallback_image"
+				type="text"
+				class="inputbox"
+				label="COM_MINITEKWALL_FIELD_FALLBACK_IMAGE_LABEL"
+				description="COM_MINITEKWALL_FIELD_FALLBACK_IMAGE_DESC"
+				default=""
+			/>
+
+		</fieldset>
+
+		<fieldset name="masonry_detailbox_general">
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_GENERAL_SETTINGS_ALL_GRIDS_SEPARATOR" />
+
+			<field
+				name="mas_db_title_limit"
+				type="number"
+				default="15"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LIMIT_DESC"
+				class="inputbox"
+				size="5"
+			/>
+
+			<field
+				name="mas_db_title_link"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LINK_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LINK_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_introtext_limit"
+				type="number"
+				default="15"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LIMIT_DESC"
+				class="inputbox"
+				size="5"
+			/>
+
+			<field
+				name="mas_db_strip_tags"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_STRIP_TAGS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_STRIP_TAGS_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_date_format"
+				type="text"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_FORMAT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_FORMAT_DESC"
+				class="inputbox"
+				size="5"
+				default="F d, Y"
+			/>
+
+		</fieldset>
+
+		<fieldset name="masonry_detailbox_big">
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_BIG_ITEM_SEPARATOR" />
+
+			<field
+				name="mas_db_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_position_big"
+				type="list"
+				default="left"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+			>
+				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
+				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
+				<option value="bottom">COM_MINITEKWALL_FIELD_BOTTOM</option>
+				<option value="left">COM_MINITEKWALL_FIELD_LEFT</option>
+				<option value="cover">COM_MINITEKWALL_FIELD_COVER</option>
+			</field>
+
+			<field
+				name="mas_db_bg_big"
+				type="color"
+				default="#de921a"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+			/>
+
+			<field
+				name="mas_db_bg_opacity_big"
+				type="text"
+				default="0.75"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+			/>
+
+			<field
+				name="mas_db_color_big"
+				type="list"
+				default="light-text"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+			>
+				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
+				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
+			</field>
+
+			<field
+				name="mas_db_title_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_introtext_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_date_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_category_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_content_type_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_author_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_hits_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_count_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_readmore_big"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_detailbox_landscape">
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_LANDSCAPE_ITEM_SEPARATOR" />
+
+			<field
+				name="mas_db_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_position_lscape"
+				type="list"
+				class="btn-group btn-group-yesno"
+				default="left"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+			>
+				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
+				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
+				<option value="bottom">COM_MINITEKWALL_FIELD_BOTTOM</option>
+				<option value="left">COM_MINITEKWALL_FIELD_LEFT</option>
+				<option value="cover">COM_MINITEKWALL_FIELD_COVER</option>
+			</field>
+
+			<field
+				name="mas_db_bg_lscape"
+				type="color"
+				default="#1b98e0"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+			/>
+
+			<field
+				name="mas_db_bg_opacity_lscape"
+				type="text"
+				default="0.75"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+			/>
+
+			<field
+				name="mas_db_color_lscape"
+				type="list"
+				default="light-text"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+			>
+				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
+				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
+			</field>
+
+			<field
+				name="mas_db_title_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_introtext_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_date_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_category_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_content_type_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_author_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_hits_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_count_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_readmore_lscape"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_detailbox_portrait">
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_PORTRAIT_ITEM_SEPARATOR" />
+
+			<field
+				name="mas_db_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_position_portrait"
+				type="list"
+				class="btn-group btn-group-yesno"
+				default="bottom"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+			>
+				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
+				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
+				<option value="bottom">COM_MINITEKWALL_FIELD_BOTTOM</option>
+				<option value="left">COM_MINITEKWALL_FIELD_LEFT</option>
+				<option value="cover">COM_MINITEKWALL_FIELD_COVER</option>
+			</field>
+
+			<field
+				name="mas_db_bg_portrait"
+				type="color"
+				default="#de921a"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+			/>
+
+			<field
+				name="mas_db_bg_opacity_portrait"
+				type="text"
+				default="0.75"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+			/>
+
+			<field
+				name="mas_db_color_portrait"
+				type="list"
+				default="light-text"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+			>
+				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
+				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
+			</field>
+
+			<field
+				name="mas_db_title_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_introtext_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_date_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_category_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_content_type_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_author_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_hits_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_count_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_readmore_portrait"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_detailbox_small">
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_SMALL_ITEM_SEPARATOR" />
+
+			<field
+				name="mas_db_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_position_small"
+				type="list"
+				class="btn-group btn-group-yesno"
+				default="cover"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+			>
+				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
+				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
+				<option value="bottom">COM_MINITEKWALL_FIELD_BOTTOM</option>
+				<option value="left">COM_MINITEKWALL_FIELD_LEFT</option>
+				<option value="cover">COM_MINITEKWALL_FIELD_COVER</option>
+			</field>
+
+			<field
+				name="mas_db_bg_small"
+				type="color"
+				default="#de921a"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+			/>
+
+			<field
+				name="mas_db_bg_opacity_small"
+				type="text"
+				default="0.75"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+			/>
+
+			<field
+				name="mas_db_color_small"
+				type="list"
+				default="light-text"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+			>
+				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
+				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
+			</field>
+
+			<field
+				name="mas_db_title_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_introtext_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_date_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_category_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_content_type_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_author_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_hits_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_count_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_readmore_small"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_detailbox_column">
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_COLUMN_ITEM_SEPARATOR" />
+
+			<field
+				name="mas_db_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DESC"
+				>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_position_columns"
+				type="list"
+				class="btn-group btn-group-yesno"
+				default="below"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_COLUMNS_DESC"
+			>
+				<option value="below">COM_MINITEKWALL_FIELD_OUTSIDE_BELOW</option>
+				<option value="bottom">COM_MINITEKWALL_FIELD_INSIDE_BOTTOM</option>
+				<option value="cover">COM_MINITEKWALL_FIELD_COVER</option>
+			</field>
+
+			<field
+				name="mas_db_bg_columns"
+				type="color"
+				default="#de921a"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+			/>
+
+			<field
+				name="mas_db_bg_opacity_columns"
+				type="text"
+				default="0.75"
+    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+			/>
+
+			<field
+				name="mas_db_color_columns"
+				type="list"
+				default="light-text"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+			>
+				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
+				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
+			</field>
+
+			<field
+				name="mas_db_title_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_introtext_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_date_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_category_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_content_type_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TYPE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_author_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_hits_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_count_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_db_readmore_columns"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_hoverbox">
+
+			<field
+				name="mas_hb"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_hb_bg"
+				type="color"
+				default="#de921a"
+    		label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_DESC"
+			/>
+
+			<field
+				name="mas_hb_bg_opacity"
+				type="text"
+				default="0.75"
+    		label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_LABEL"
+    		description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_DESC"
+			/>
+
+			<field
+				name="mas_hb_text_color"
+				type="list"
+				default="2"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_DESC"
+			>
+				<option value="1">COM_MINITEKWALL_FIELD_DARK</option>
+				<option value="2">COM_MINITEKWALL_FIELD_LIGHT</option>
+			</field>
+
+			<field
+				name="mas_hb_effect"
+				type="list"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_DESC"
+				size="1"
+				default="1"
+			>
+				<option value="no">COM_MINITEKWALL_SIMPLE_NO_EFFECTS</option>
+				<option value="1">COM_MINITEKWALL_SIMPLE_FADE</option>
+				<option value="2">COM_MINITEKWALL_FLIP_Y</option>
+				<option value="3">COM_MINITEKWALL_FLIP_X</option>
+				<option value="5">COM_MINITEKWALL_SLIDE_IN_LEFT</option>
+				<option value="4">COM_MINITEKWALL_SLIDE_IN_RIGHT</option>
+				<option value="6">COM_MINITEKWALL_SLIDE_IN_TOP</option>
+				<option value="7">COM_MINITEKWALL_SLIDE_IN_BOTTOM</option>
+				<option value="8">COM_MINITEKWALL_ZOOM_IN</option>
+			</field>
+
+			<field
+				name="mas_hb_effect_speed"
+				type="text"
+				default="0.4"
+    		label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_LABEL"
+    		description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_DESC"
+			/>
+
+			<field
+				name="mas_hb_effect_easing"
+				type="list"
+				default="smooth"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_EASING_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_EASING_DESC"
+			>
+				<option value="cubic-bezier(0.47, 0, 0.745, 0.715)">easeInSine</option>
+				<option value="cubic-bezier(0.39, 0.575, 0.565, 1)">easeOutSine</option>
+				<option value="cubic-bezier(0.445, 0.05, 0.55, 0.95)">easeInOutSine</option>
+				<option value="cubic-bezier(0.55, 0.085, 0.68, 0.53)">easeInQuad</option>
+				<option value="cubic-bezier(0.25, 0.46, 0.45, 0.94)">easeOutQuad</option>
+				<option value="cubic-bezier(0.455, 0.03, 0.515, 0.955)">easeInOutQuad</option>
+				<option value="cubic-bezier(0.55, 0.055, 0.675, 0.19)">easeInCubic</option>
+				<option value="cubic-bezier(0.215, 0.61, 0.355, 1)">easeOutCubic</option>
+				<option value="cubic-bezier(0.645, 0.045, 0.355, 1)">easeInOutCubic</option>
+				<option value="cubic-bezier(0.895, 0.03, 0.685, 0.22)">easeInQuart</option>
+				<option value="cubic-bezier(0.165, 0.84, 0.44, 1)">easeOutQuart</option>
+				<option value="cubic-bezier(0.77, 0, 0.175, 1)">easeInOutQuart</option>
+				<option value="cubic-bezier(0.755, 0.05, 0.855, 0.06)">easeInQuint</option>
+				<option value="cubic-bezier(0.23, 1, 0.32, 1)">easeOutQuint</option>
+				<option value="cubic-bezier(0.86, 0, 0.07, 1)">easeInOutQuint</option>
+				<option value="cubic-bezier(0.95, 0.05, 0.795, 0.035)">easeInExpo</option>
+				<option value="cubic-bezier(0.19, 1, 0.22, 1)">easeOutExpo</option>
+				<option value="cubic-bezier(1, 0, 0, 1)">easeInOutExpo</option>
+				<option value="cubic-bezier(0.6, 0.04, 0.98, 0.335)">easeInCirc</option>
+				<option value="cubic-bezier(0.075, 0.82, 0.165, 1)">easeOutCirc</option>
+				<option value="cubic-bezier(0.785, 0.135, 0.15, 0.86)">easeInOutCirc</option>
+				<option value="cubic-bezier(0.6, -0.28, 0.735, 0.045)">easeInBack</option>
+				<option value="cubic-bezier(0.175, 0.885, 0.32, 1.275)">easeOutBack</option>
+				<option value="cubic-bezier(0.68, -0.55, 0.265, 1.55)">easeInOutBack</option>
+			</field>
+
+			<field
+				name="mas_hb_title"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_title_limit"
+				type="number"
+				default="15"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LIMIT_DESC"
+				class="inputbox"
+				size="5"
+			/>
+
+			<field
+				name="mas_hb_introtext"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_introtext_limit"
+				type="number"
+				default="15"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LIMIT_DESC"
+				class="inputbox"
+				size="5"
+			/>
+
+			<field
+				name="mas_hb_strip_tags"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_STRIP_TAGS_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_STRIP_TAGS_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_hb_date"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+
+			<field
+				name="mas_hb_date_format"
+				type="text"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_FORMAT_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_FORMAT_DESC"
+				class="inputbox"
+				size="5"
+				default="F d, Y"
+			/>
+
+			<field
+				name="mas_hb_category"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_CATEGORY_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_CATEGORY_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_type"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TYPE_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_author"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_AUTHOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_AUTHOR_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_hits"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_HITS_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_HITS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_link"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_LINK_BUTTON_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_LINK_BUTTON_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hb_lightbox"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_LIGHTBOX_BUTTON_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_LIGHTBOX_BUTTON_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_pagination">
+
+			<field
+				name="mas_pagination"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_DESC"
+				title="COM_MINITEKWALL_FIELD_PAGINATION_TITLE"
+				size="1"
+				default="1"
+			/>
+
+			<field
+				name="mas_starting_limit"
+				type="number"
+				class="inputbox"
+				size="40"
+				label="COM_MINITEKWALL_FIELD_STARTING_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_STARTING_LIMIT_DESC"
+				default="7"
+			/>
+
+			<field
+				name="mas_page_limit"
+				type="profeature"
+				class="info"
+				size="40"
+				label="COM_MINITEKWALL_FIELD_PAGE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGE_LIMIT_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_global_limit"
+				type="profeature"
+				class="info"
+				size="40"
+				label="COM_MINITEKWALL_FIELD_GLOBAL_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_GLOBAL_LIMIT_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_pag_remaining"
+				type="profeature"
+				class="info"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_REMAINING_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_REMAINING_DESC"
+			/>
+
+			<field
+				name="mas_pag_keep_active"
+				type="profeature"
+				class="info"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_KEEP_FILTERS_ACTIVE_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_KEEP_FILTERS_ACTIVE_DESC"
+			/>
+
+			<field
+				name="mas_pag_reset_filters"
+				type="profeature"
+				class="info"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_RESET_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_RESET_FILTERS_DESC"
+			/>
+
+			<field
+				name="mas_arrows"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_ARROWS_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_ARROWS_DESC"
+				size="1"
+				default="0"
+			/>
+
+			<field
+				name="mas_pagination_bg"
+				type="profeature"
+				class="info"
+				default="0"
+    		label="COM_MINITEKWALL_FIELD_PAGINATION_BG_LABEL"
+    		description="COM_MINITEKWALL_FIELD_PAGINATION_BG_DESC"
+			/>
+
+			<field
+				name="mas_pagination_color"
+				type="profeature"
+				class="info"
+				default="0"
+    		label="COM_MINITEKWALL_FIELD_PAGINATION_COLOR_LABEL"
+    		description="COM_MINITEKWALL_FIELD_PAGINATION_COLOR_DESC"
+			/>
+
+			<field
+				name="mas_pagination_border_radius"
+				type="profeature"
+				class="info"
+				default="0"
+    		label="COM_MINITEKWALL_FIELD_PAGINATION_BORDER_RADIUS_LABEL"
+    		description="COM_MINITEKWALL_FIELD_PAGINATION_BORDER_RADIUS_DESC"
+			/>
+
+		</fieldset>
+
+		<fieldset name="masonry_filters">
+
+			<field
+				name="mas_filters_bg"
+				type="color"
+				default="#e96d51"
+    		label="COM_MINITEKWALL_FIELD_FILTERS_THEME_LABEL"
+    		description="COM_MINITEKWALL_FIELD_FILTERS_THEME_DESC"
+			/>
+
+			<field
+				name="mas_filters_border_radius"
+				type="number"
+				default="3"
+    		label="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_LABEL"
+    		description="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_DESC"
+			/>
+
+			<field
+				name="mas_reset_filters"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_RESET_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_RESET_FILTERS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_close_filters"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_CLOSE_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_CLOSE_FILTERS_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_FILTERS_SEPARATOR" />
+
+			<field
+				name="mas_filter_type"
+				type="list"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_FILTER_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_FILTER_TYPE_DESC"
+			>
+				<option value="1">COM_MINITEKWALL_FIELD_INLINE_BUTTONS</option>
+				<option value="2">COM_MINITEKWALL_FIELD_DROPDOWN_LIST</option>
+			</field>
+
+			<field
+				name="mas_category_filters"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_category_filters_type"
+				type="list"
+				default="dynamic"
+				label="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_TYPE_DESC"
+			>
+				<option value="dynamic">COM_MINITEKWALL_FIELD_OPTION_CURRENT</option>
+				<option value="static">COM_MINITEKWALL_FIELD_OPTION_ALL</option>
+			</field>
+
+			<field
+				name="mas_category_filters_label"
+				type="text"
+				default="FILTER_BY_CATEGORY"
+    		label="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL_LABEL"
+    		description="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL_DESC"
+			/>
+
+			<field
+				name="mas_tag_filters"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_TAG_FILTERS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_tag_filters_type"
+				type="list"
+				default="dynamic"
+				label="COM_MINITEKWALL_FIELD_TAG_FILTERS_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_TAG_FILTERS_TYPE_DESC"
+			>
+				<option value="dynamic">COM_MINITEKWALL_FIELD_OPTION_CURRENT</option>
+				<option value="static">COM_MINITEKWALL_FIELD_OPTION_ALL</option>
+			</field>
+
+			<field
+				name="mas_tag_filters_label"
+				type="text"
+				default="FILTER_BY_TAG"
+    		label="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL_LABEL"
+    		description="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL_DESC"
+			/>
+
+			<field
+				name="mas_date_filters"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_DATE_FILTERS_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_date_filters_label"
+				type="text"
+				default="FILTER_BY_DATE"
+    		label="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL_LABEL"
+    		description="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL_DESC"
+			/>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_SORTINGS_SEPARATOR" />
+
+			<field
+				name="mas_sorting_type"
+				type="list"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_SORTING_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_SORTING_TYPE_DESC"
+			>
+				<option value="1">COM_MINITEKWALL_FIELD_INLINE_BUTTONS</option>
+				<option value="2">COM_MINITEKWALL_FIELD_DROPDOWN_LIST</option>
+			</field>
+
+			<field
+				name="mas_title_sorting"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_TITLE_SORTING_LABEL"
+				description="COM_MINITEKWALL_FIELD_TITLE_SORTING_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_category_sorting"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_CATEGORY_SORTING_LABEL"
+				description="COM_MINITEKWALL_FIELD_CATEGORY_SORTING_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_author_sorting"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_AUTHOR_SORTING_LABEL"
+				description="COM_MINITEKWALL_FIELD_AUTHOR_SORTING_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_date_sorting"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_DATE_SORTING_LABEL"
+				description="COM_MINITEKWALL_FIELD_DATE_SORTING_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_hits_sorting"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HITS_SORTING_LABEL"
+				description="COM_MINITEKWALL_FIELD_HITS_SORTING_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+			<field
+				name="mas_sorting_direction"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_SORTING_DIRECTION_LABEL"
+				description="COM_MINITEKWALL_FIELD_SORTING_DIRECTION_DESC"
+			>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
+
+		</fieldset>
+
+		<fieldset name="masonry_effects">
+
+			<field
+				name="mas_effects"
+				type="checkboxes"
+				default="fade"
+				label="COM_MINITEKWALL_FIELD_EFFECTS_LABEL"
+				description="COM_MINITEKWALL_FIELD_EFFECTS_DESC"
+			>
+				<option value="fade">fade</option>
+				<option value="scale">scale</option>
+			</field>
+
+			<field
+				name="mas_transition_duration"
+				type="number"
+				default="400"
+				label="COM_MINITEKWALL_FIELD_TRANSITION_DURATION_LABEL"
+				description="COM_MINITEKWALL_FIELD_TRANSITION_DURATION_DESC"
+			/>
+
+			<field
+				name="mas_transition_stagger"
+				type="number"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_TRANSITION_STAGGER_LABEL"
+				description="COM_MINITEKWALL_FIELD_TRANSITION_STAGGER_DESC"
+			/>
+
+		</fieldset>
+
+		<fieldset name="masonry_responsive_settings">
+
+			<field
+				name="mas_enable_responsive"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_ENABLE_RESPONSIVE_LABEL"
+				description="COM_MINITEKWALL_FIELD_ENABLE_RESPONSIVE_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_L_SETTINGS" />
+
+			<field
+				name="mas_responsive_lg"
+				type="number"
+				default="1139"
+				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_L_DESC"
+			/>
+
+			<field
+				name="mas_lg_cell_height"
+				type="number"
+				default="240"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+			/>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_M_SETTINGS" />
+
+			<field
+				name="mas_responsive_md"
+				type="number"
+				default="939"
+				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_M_DESC"
+			/>
+
+			<field
+				name="mas_md_type"
+				type="list"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+			>
+				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
+				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
+			</field>
+
+			<field
+				name="mas_responsive_md_num"
+				type="integer"
+				default="3"
+				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
+				first="1"
+				last="10"
+				step="1"
+			/>
+
+			<field
+				name="mas_md_cell_height"
+				type="number"
+				default="240"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+			/>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_S_SETTINGS" />
+
+			<field
+				name="mas_responsive_sm"
+				type="number"
+				default="719"
+				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_S_DESC"
+			/>
+
+			<field
+				name="mas_sm_type"
+				type="list"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+			>
+				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
+				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
+			</field>
+
+			<field
+				name="mas_responsive_sm_num"
+				type="integer"
+				default="2"
+				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
+				first="1"
+				last="10"
+				step="1"
+			/>
+
+			<field
+				name="mas_sm_cell_height"
+				type="number"
+				default="240"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+			/>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_XS_SETTINGS" />
+
+			<field
+				name="mas_responsive_xs"
+				type="number"
+				default="479"
+				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_XS_DESC"
+			/>
+
+			<field
+				name="mas_xs_type"
+				type="list"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+			>
+				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
+				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
+			</field>
+
+			<field
+				name="mas_responsive_xs_num"
+				type="integer"
+				default="2"
+				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
+				first="1"
+				last="10"
+				step="1"
+			/>
+
+			<field
+				name="mas_xs_cell_height"
+				type="number"
+				default="240"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+			/>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_XXS_SETTINGS" />
+
+			<field
+				name="mas_xxs_type"
+				type="list"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
+				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+			>
+				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
+				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
+			</field>
+
+			<field
+				name="mas_responsive_xxs_num"
+				type="integer"
+				default="1"
+				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
+				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
+				first="1"
+				last="10"
+				step="1"
+			/>
+
+			<field
+				name="mas_xxs_cell_height"
+				type="number"
+				default="240"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+			/>
+
+		</fieldset>
+
+	</fields>
+
+</form>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+  <fieldset
+    name="basic_settings"
+    label="COM_MINITEKWALL_CONFIG_BASIC_SETTINGS_LABEL"
+    description="COM_MINITEKWALL_CONFIG_BASIC_SETTINGS_DESC"
+    >
+
+    <field
+      name="load_jquery"
+      type="radio"
+      layout="joomla.form.field.radio.switcher"
+      label="COM_MINITEKWALL_CONFIG_LOAD_JQUERY_LABEL"
+      description="COM_MINITEKWALL_CONFIG_LOAD_JQUERY_DESC"
+      default="1"
+      >
+      <option value="0">JNO</option>
+      <option value="1">JYES</option>
+    </field>
+
+    <field
+      name="load_lightbox"
+      type="radio"
+      layout="joomla.form.field.radio.switcher"
+      label="COM_MINITEKWALL_CONFIG_LOAD_LIGHTBOX_LABEL"
+      description="COM_MINITEKWALL_CONFIG_LOAD_LIGHTBOX_DESC"
+      default="1"
+      >
+      <option value="0">JNO</option>
+      <option value="1">JYES</option>
+    </field>
+
+    <field
+      name="load_fontawesome"
+      type="radio"
+      layout="joomla.form.field.radio.switcher"
+      label="COM_MINITEKWALL_CONFIG_LOAD_FONT_AWESOME_LABEL"
+      description="COM_MINITEKWALL_CONFIG_LOAD_FONT_AWESOME_DESC"
+      default="1"
+      >
+      <option value="0">JNO</option>
+      <option value="1">JYES</option>
+    </field>
+
+    <field
+      name="version_check"
+      type="radio"
+      layout="joomla.form.field.radio.switcher"
+      label="COM_MINITEKWALL_CONFIG_ENABLE_VERSION_CHECKING_LABEL"
+      description="COM_MINITEKWALL_CONFIG_ENABLE_VERSION_CHECKING_DESC"
+      default="1"
+      >
+      <option value="0">JNO</option>
+      <option value="1">JYES</option>
+    </field>
+
+  </fieldset>
+
+  <fieldset
+    name="permissions"
+    label="JCONFIG_PERMISSIONS_LABEL"
+    description="JCONFIG_PERMISSIONS_DESC"
+    >
+
+    <field
+      name="rules"
+      type="rules"
+      label="JCONFIG_PERMISSIONS_LABEL"
+      class="inputbox"
+      validate="rules"
+      filter="rules"
+      component="com_minitekwall"
+      section="component"
+      />
+
+    </fieldset>
+
+  </config>
