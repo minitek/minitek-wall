@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+
+	<layout title="COM_MINITEKWALL_VIEW_MASONRY_TITLE_LABEL">
+		<message>
+			<![CDATA[COM_MINITEKWALL_VIEW_MASONRY_TITLE_DESC]]>
+		</message>
+	</layout>
+	
+	<state>
+	
+		<name>COM_MINITEKWALL_VIEW_MASONRY_TITLE_LABEL</name>
+		<description>COM_MINITEKWALL_VIEW_MASONRY_TITLE_DESC</description>
+		
+		<fields name="request">
+		
+			<fieldset name="request" addfieldprefix="Joomla\Component\MinitekWall\Administrator\Field">
+				
+				<field 
+					name="widget_id" 
+					type="masonryid" 
+					label="COM_MINITEKWALL_FIELD_MENU_ITEM_MASONRY_WIDGET_LABEL"
+					description="COM_MINITEKWALL_FIELD_MENU_ITEM_MASONRY_WIDGET_DESC" 
+					required="true" 
+				>
+					<option value="">COM_MINITEKWALL_OPTION_SELECT_WIDGET</option>
+				</field>
+				
+			</fieldset>
+			
+		</fields>
+		
+	</state>
+	
+</metadata>

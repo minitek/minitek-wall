@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="4.0" method="upgrade">
+	<name>com_minitekwall</name>
+	<author>Minitek.gr</author>
+	<creationDate>April 2014</creationDate>
+	<copyright>(C) 2011 - 2020 Minitek.gr. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later.</license>
+	<authorUrl>https://www.minitek.gr/</authorUrl>
+	<version>4.0.14</version>
+	<namespace path="src">Joomla\Component\MinitekWall</namespace>
+	<description>
+	<![CDATA[
+		A powerful masonry layout system for displaying content in Joomla.
+	]]>
+	</description>
+
+	<scriptfile>install.minitekwall.php</scriptfile>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+
+	<files folder="site">
+		<folder>assets</folder>
+		<folder>language</folder>
+		<folder>libraries</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+		<filename>index.html</filename>
+	</files>
+
+	<languages folder="site">
+    <language tag="en-GB">language/en-GB/com_minitekwall.ini</language>
+  </languages>
+
+	<administration>
+		<menu>COM_MINITEKWALL_ADMIN_MENU</menu>
+		<submenu>
+			<menu link="option=com_minitekwall&amp;view=dashboard" view="dashboard" alt="COM_MINITEKWALL_ADMIN_MENU_DASHBOARD">
+				COM_MINITEKWALL_ADMIN_MENU_DASHBOARD
+			</menu>
+			<menu link="option=com_minitekwall&amp;view=widgets" view="widgets" alt="COM_MINITEKWALL_ADMIN_MENU_WIDGETS">
+				COM_MINITEKWALL_ADMIN_MENU_WIDGETS
+			</menu>
+			<menu link="option=com_plugins&amp;view=plugins&amp;filter[search]=Minitek%20Source&amp;filter[folder]=content" alt="COM_MINITEKWALL_ADMIN_MENU_PLUGINS">
+				COM_MINITEKWALL_ADMIN_MENU_PLUGINS
+			</menu>
+		</submenu>
+
+		<files folder="admin">
+			<folder>assets</folder>
+			<folder>forms</folder>
+			<folder>services</folder>
+			<folder>sql</folder>
+			<folder>src</folder>
+			<folder>tmpl</folder>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>index.html</filename>
+		</files>
+
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/com_minitekwall.ini</language>
+			<language tag="en-GB">language/en-GB/com_minitekwall.sys.ini</language>
+		</languages>
+
+	</administration>
+
+  <updateservers>
+  	<server type="extension" priority="1" name="Minitek Wall">http://update.minitek.gr/joomla-extensions/minitek_wall.xml</server>
+  </updateservers>
+
+</extension>
