@@ -38,7 +38,11 @@ if ($latest_version && version_compare($latest_version, $local_version, '>')) { 
   <div class="alert alert-success text-center mt-0" id="update-box">
     <div class="update-info">
       <div>
-        <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_THE_LATEST_VERSION'); ?></span>
+        <?php if ($latest_version == $local_version) { ?>
+          <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_THE_LATEST_VERSION'); ?></span>
+        <?php } else { ?>
+          <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_A_DEVELOPMENT_VERSION'); ?></span>
+        <?php } ?>
         <span class="badge badge-success"><?php echo $latest_version; ?></span> <span class="badge badge-success">Free</span>
       </div>
     </div>
