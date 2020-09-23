@@ -4,9 +4,9 @@
 	<author>Minitek.gr</author>
 	<creationDate>April 2014</creationDate>
 	<copyright>(C) 2011 - 2020 Minitek.gr. All rights reserved.</copyright>
-	<license>GNU General Public License version 2 or later.</license>
+	<license>GNU General Public License version 3 or later.</license>
 	<authorUrl>https://www.minitek.gr/</authorUrl>
-	<version>4.0.14</version>
+	<version>4.0.15</version>
 	<namespace path="src">Joomla\Component\MinitekWall</namespace>
 	<description>
 	<![CDATA[
@@ -38,8 +38,8 @@
 	</files>
 
 	<languages folder="site">
-    <language tag="en-GB">language/en-GB/com_minitekwall.ini</language>
-  </languages>
+    	<language tag="en-GB">language/en-GB/com_minitekwall.ini</language>
+	</languages>
 
 	<administration>
 		<menu>COM_MINITEKWALL_ADMIN_MENU</menu>
@@ -74,8 +74,8 @@
 
 	</administration>
 
-  <updateservers>
-  	<server type="extension" priority="1" name="Minitek Wall">http://update.minitek.gr/joomla-extensions/minitek_wall.xml</server>
-  </updateservers>
+	<updateservers>
+		<server type="extension" priority="1" name="Minitek Wall">http://update.minitek.gr/joomla-extensions/minitek_wall.xml</server>
+	</updateservers>
 
 </extension>
