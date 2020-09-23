@@ -1,10 +1,10 @@
 <?php
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2019 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
+* @title		Minitek Wall
+* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @license		GNU General Public License version 3 or later.
+* @author url	https://www.minitek.gr/
+* @developers	Minitek.gr
 */
 
 namespace Joomla\Component\MinitekWall\Administrator\View\Widget;
@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Helper\ContentHelper;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 use Joomla\CMS\MVC\View\GenericDataException;
 
@@ -73,7 +74,7 @@ class HtmlView extends BaseHtmlView
 		$this->masonryform = $this->get('MasonryForm');
 		$this->item = $this->get('Item');
 		$this->state = $this->get('State');
-		$this->canDo = MinitekWallHelper::getActions('com_minitekwall', 'widget', $this->item->id);
+		$this->canDo = ContentHelper::getActions('com_minitekwall', 'widget', $this->item->id);
 		$this->app = Factory::getApplication();
 
 		$this->source_id = $this->app->getUserState( 'com_minitekwall.source_id', '' ) ? $this->app->getUserState( 'com_minitekwall.source_id', '' ) : $this->item->source_id;
