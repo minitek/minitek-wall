@@ -1,10 +1,10 @@
 <?php
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2019 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
+* @title		Minitek Wall
+* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @license		GNU General Public License version 3 or later.
+* @author url	https://www.minitek.gr/
+* @developers	Minitek.gr
 */
 
 namespace Joomla\Component\MinitekWall\Administrator\View\Widgets;
@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
-use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 use Joomla\CMS\MVC\View\GenericDataException;
 
 /**
@@ -78,7 +78,7 @@ class HtmlView extends BaseHtmlView
 	public function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
-		$this->pagination	= $this->get('Pagination');
+		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
@@ -103,7 +103,7 @@ class HtmlView extends BaseHtmlView
 	 */
 	protected function addToolbar()
 	{
-		$canDo = MinitekWallHelper::getActions('com_minitekwall');
+		$canDo = ContentHelper::getActions('com_minitekwall');
 		$user  = Factory::getUser();
 
 		// Get the toolbar object instance

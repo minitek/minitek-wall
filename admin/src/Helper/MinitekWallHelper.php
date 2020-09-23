@@ -1,10 +1,10 @@
 <?php
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2019 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
+* @title		Minitek Wall
+* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @license		GNU General Public License version 3 or later.
+* @author url	https://www.minitek.gr/
+* @developers	Minitek.gr
 */
 
 namespace Joomla\Component\MinitekWall\Administrator\Helper;
@@ -134,50 +134,13 @@ class MinitekWallHelper
 	}
 
 	/**
-	* Gets a list of the actions that can be performed.
-	*
-	* @param   string   $component  The component name.
-	* @param   string   $section    The access section name.
-	* @param   integer  $id         The item ID.
-	*
-	* @return  JObject
-	*
-	* @since   4.0.0
-	*/
-	public static function getActions($component = '', $section = '', $id = 0)
-	{
-		$user = Factory::getUser();
-		$result = new \JObject;
-
-		$path = JPATH_ADMINISTRATOR . '/components/' . $component . '/access.xml';
-
-		if ($section && $id)
-		{
-			$assetName = $component . '.' . $section . '.' . (int) $id;
-		}
-		else
-		{
-			$assetName = $component;
-		}
-
-		$actions = \JAccess::getActionsFromFile($path, "/access/section[@name='component']/");
-
-		foreach ($actions as $action)
-		{
-			$result->set($action->name, $user->authorise($action->name, $assetName));
-		}
-
-		return $result;
-	}
-
-	/**
 	 * Check if Minitek Wall Module is installed.
 	 *
 	 * @return  bool
 	 *
 	 * @since   4.0.0
 	 */
-	 public static function checkModuleIsInstalled()
+	public static function checkModuleIsInstalled()
  	{
  		$db = Factory::getDBO();
  		$query = $db->getQuery(true);
