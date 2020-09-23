@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
+* @title		Minitek Wall
 * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -28,9 +28,9 @@ $moduleIsInstalled = MinitekWallHelper::checkModuleIsInstalled();
 					<span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_MODULE_NOT_INSTALLED'); ?></span>
 				</div>
 				<div class="mt-2">
-					<a class="button-success btn btn-sm btn-success" href="<?php echo Route::_('index.php?option=com_installer'); ?>">
+					<a class="button-success btn btn-sm btn-success" href="https://www.minitek.gr/downloads/minitek-wall-module" target="_blank">
 						<span class="icon-download" aria-hidden="true"></span>
-						<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_INSTALL_NOW'); ?>
+						<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DOWNLOAD'); ?>
 					</a>
 				</div>
 			</div>
