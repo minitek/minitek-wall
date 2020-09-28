@@ -30,27 +30,21 @@ class MinitekWallHelper
  		$params = \JComponentHelper::getParams('com_minitekwall');
  		$version = 0;
 
- 		if (self::isDomainAvailable('http://update.minitek.gr'))
- 		{
- 			if (self::isXMLAvailable('http://update.minitek.gr/joomla-extensions/minitek_wall.xml'))
- 			{
- 				$xml_file = @file_get_contents('http://update.minitek.gr/joomla-extensions/minitek_wall.xml');
+		$xml_file = @file_get_contents('http://update.minitek.gr/joomla-extensions/minitek_wall.xml');
 
- 				if ($xml_file)
- 				{
- 					$updates = new \SimpleXMLElement($xml_file);
-					foreach ($updates as $key => $update)
-					{
-						$platform = (array)$update->targetplatform->attributes()->version;
-						if ($platform[0] == '4.*')
-						{
-							$version = (string)$update->version;
-							break;
-						}
-					}
- 				}
- 			}
- 		}
+		if ($xml_file)
+		{
+			$updates = new \SimpleXMLElement($xml_file);
+			foreach ($updates as $key => $update)
+			{
+				$platform = (array)$update->targetplatform->attributes()->version;
+				if ($platform[0] == '4.*')
+				{
+					$version = (string)$update->version;
+					break;
+				}
+			}
+		}
 
  		return $version;
  	}
@@ -69,69 +63,6 @@ class MinitekWallHelper
 
 		return $version;
  	}
-
-	/**
-	 * Check if a valid url is provided.
-	 *
-	 * @return  bool
-	 *
-	 * @since   4.0.0
-	 */
-	public static function isDomainAvailable($domain)
-	{
-		// Check if a valid url is provided
-		if (!filter_var($domain, FILTER_VALIDATE_URL))
-		{
-			return false;
-		}
-
-		// Initialize curl
-		$curlInit = curl_init($domain);
-		curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
-		curl_setopt($curlInit,CURLOPT_HEADER,true);
-		curl_setopt($curlInit,CURLOPT_NOBODY,true);
-		curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
-
-		// Get answer
-		$response = curl_exec($curlInit);
-		curl_close($curlInit);
-
-		if ($response)
-			return true;
-
-		return false;
-	}
-
-	/**
-	 * Check if a valid xml is provided.
-	 *
-	 * @return  bool
-	 *
-	 * @since   4.0.0
-	 */
-	public static function isXMLAvailable($file)
-	{
-		$ch = curl_init($file);
-
-		curl_setopt($ch, CURLOPT_NOBODY, true);
-		curl_exec($ch);
-		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-		curl_close($ch);
-
-		if ($response >= 400)
-		{
-			return false;
-		}
-		else if ($response = 200)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 
 	/**
 	 * Check if Minitek Wall Module is installed.
