@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
+* @title		Minitek Wall
 * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
 
 $isNew = ($this->item->id == 0);
-$moduleIsInstalled = $this->moduleIsInstalled;
+$moduleInstalled = $this->moduleInstalled;
 ?>
 
 <div class="modal fade" id="createModule" role="dialog" aria-labelledby="createModuleLabel" aria-hidden="true">
@@ -33,7 +33,7 @@ $moduleIsInstalled = $this->moduleIsInstalled;
 
 					<div class="row">
 
-						<?php if (!$moduleIsInstalled) { ?>
+						<?php if (!$moduleInstalled) { ?>
 
 							<div class="col-12 text-center">
 								<h3 class="m-3"><?php echo Text::_('COM_MINITEKWALL_MODAL_MODULE_NOT_FOUND'); ?></h3>
@@ -44,7 +44,7 @@ $moduleIsInstalled = $this->moduleIsInstalled;
 								</a>
 							</div>
 
-						<?php } else if ($moduleIsInstalled && !$isNew) { ?>
+						<?php } else if ($moduleInstalled && !$isNew) { ?>
 
 							<div class="col-12 col-md-6">
 								<div class="text-center">

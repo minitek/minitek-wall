@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
+* @title		Minitek Wall
 * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -87,11 +87,11 @@ if ($canCreate && !$isNew)
 					<?php if ($this->source_id == $source['type']) { ?>
 						<div class="row">
 							<div class="col-12">
-								<?php foreach ($this->form->getFieldset('content_source') as $field) : ?>
+								<?php foreach ($this->form->getFieldset($source['type'].'_source') as $field) : ?>
 									<?php if ($field->name == 'jform[source_params][source_type]') { continue; } ?>
 									<?php echo $field->renderField(); ?>
 								<?php endforeach; ?>
-								<input type="hidden" name="jform[source_params][source_type]" value="content">
+								<input type="hidden" name="jform[source_params][source_type]" value="<?php echo $source['type']; ?>">
 							</div>
 						</div>
 					<?php } ?>

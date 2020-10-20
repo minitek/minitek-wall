@@ -101,19 +101,19 @@ class HtmlView extends BaseHtmlView
 				'type' => 'folder',
 				'title' => Text::_('PLG_CONTENT_MSOURCEFOLDER_SOURCE_TITLE'),
 				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/folder.png',
-				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-folder'
+				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			],
 			[
 				'type' => 'rss',
 				'title' => Text::_('PLG_CONTENT_MSOURCERSS_SOURCE_TITLE'),
 				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/rss.png',
-				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-rss'
+				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			],
 			[
 				'type' => 'custom',
 				'title' => Text::_('PLG_CONTENT_MSOURCECUSTOM_SOURCE_TITLE'),
 				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/custom.png',
-				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-custom-items'
+				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			]
 		];
 
