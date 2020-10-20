@@ -30,14 +30,16 @@ class MinitekWallHelper
  		$params = \JComponentHelper::getParams('com_minitekwall');
  		$version = 0;
 
-		$xml_file = @file_get_contents('http://update.minitek.gr/joomla-extensions/minitek_wall.xml');
+		$xml_file = @file_get_contents('https://update.minitek.gr/joomla-extensions/minitek_wall.xml');
 
 		if ($xml_file)
 		{
 			$updates = new \SimpleXMLElement($xml_file);
+
 			foreach ($updates as $key => $update)
 			{
 				$platform = (array)$update->targetplatform->attributes()->version;
+
 				if ($platform[0] == '4.*')
 				{
 					$version = (string)$update->version;
@@ -47,7 +49,7 @@ class MinitekWallHelper
 		}
 
  		return $version;
- 	}
+	}
 
 	/**
 	 * Get local version.
@@ -62,36 +64,8 @@ class MinitekWallHelper
 		$version = (string)$xml->version;
 
 		return $version;
- 	}
-
-	/**
-	 * Check if Minitek Wall Module is installed.
-	 *
-	 * @return  bool
-	 *
-	 * @since   4.0.0
-	 */
-	public static function checkModuleIsInstalled()
- 	{
- 		$db = Factory::getDBO();
- 		$query = $db->getQuery(true);
-
- 		// Construct the query
- 		$query->select('*')
- 			->from('#__extensions AS e');
- 		$query->where('e.element = ' . $db->quote('mod_minitekwall'));
-
- 		// Setup the query
- 		$db->setQuery($query);
-
- 		$moduleExists = $db->loadObject();
-
- 		if ($moduleExists)
- 			return true;
-
- 		return false;
- 	}
-
+	}
+	 
 	/**
 	 * Method to clear user state variables.
 	 *
@@ -102,5 +76,50 @@ class MinitekWallHelper
 		$app = Factory::getApplication();
 
 		$app->setUserState('com_minitekwall.source_id', '');
+	}
+
+	/**
+	 * Check if Minitek Wall Module is installed.
+	 *
+	 * @return  bool
+	 *
+	 * @since   4.0.0
+	 */
+	public static function getModule()
+ 	{
+ 		$db = Factory::getDBO();
+ 		$query = $db->getQuery(true)
+ 			->select('*')
+ 			->from($db->quoteName('#__extensions'))
+ 			->where($db->quoteName('element') . ' = ' . $db->quote('mod_minitekwall'));
+ 		$db->setQuery($query);
+
+ 		if ($module_exists = $db->loadObject())
+ 			return true;
+
+ 		return false;
+	}
+	
+	/**
+	 * Check if source plugin is installed.
+	 *
+	 * @return  bool
+	 *
+	 * @since   4.0.15
+	 */
+	public static function getSourcePlugin($type)
+	{
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true)
+			->select('*')
+			->from($db->quoteName('#__extensions'))
+			->where($db->quoteName('folder') . ' = ' . $db->quote('content'))
+			->where($db->quoteName('element') . ' = ' . $db->quote('msource'.$type));
+		$db->setQuery($query);
+
+		if (!$result = $db->loadObject())
+			return false;
+
+		return $result;
 	}
 }
