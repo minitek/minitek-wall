@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
+* @title		Minitek Wall
 * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -18,9 +18,9 @@ use Joomla\CMS\Button\PublishedButton;
 
 HTMLHelper::_('behavior.multiselect');
 
-$user       = Factory::getUser();
-$listOrder	= $this->escape($this->state->get('list.ordering'));
-$listDirn		= $this->escape($this->state->get('list.direction'));
+$user = Factory::getUser();
+$listOrder = $this->escape($this->state->get('list.ordering'));
+$listDirn = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo Route::_('index.php?option=com_minitekwall&view=widgets'); ?>" method="post" name="adminForm" id="adminForm">
