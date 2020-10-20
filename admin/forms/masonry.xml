@@ -28,7 +28,7 @@
 			<field
 				name="mas_page_title"
 				type="radio"
-	      layout="joomla.form.field.radio.switcher"
+				layout="joomla.form.field.radio.switcher"
 				label="COM_MINITEKWALL_FIELD_SHOW_PAGE_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_SHOW_PAGE_TITLE_DESC"
 				default="0"
@@ -321,16 +321,16 @@
 				name="mas_db_bg_big"
 				type="color"
 				default="#de921a"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
 
 			<field
 				name="mas_db_bg_opacity_big"
 				type="text"
 				default="0.75"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
 			/>
 
 			<field
@@ -489,16 +489,16 @@
 				name="mas_db_bg_lscape"
 				type="color"
 				default="#1b98e0"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
 
 			<field
 				name="mas_db_bg_opacity_lscape"
 				type="text"
 				default="0.75"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
 			/>
 
 			<field
@@ -657,16 +657,16 @@
 				name="mas_db_bg_portrait"
 				type="color"
 				default="#de921a"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
 
 			<field
 				name="mas_db_bg_opacity_portrait"
 				type="text"
 				default="0.75"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
 			/>
 
 			<field
@@ -825,16 +825,16 @@
 				name="mas_db_bg_small"
 				type="color"
 				default="#de921a"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
 
 			<field
 				name="mas_db_bg_opacity_small"
 				type="text"
 				default="0.75"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
 			/>
 
 			<field
@@ -969,7 +969,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DESC"
-				>
+			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
@@ -991,16 +991,16 @@
 				name="mas_db_bg_columns"
 				type="color"
 				default="#de921a"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
 
 			<field
 				name="mas_db_bg_opacity_columns"
 				type="text"
 				default="0.75"
-    		label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
 			/>
 
 			<field
@@ -1142,16 +1142,16 @@
 				name="mas_hb_bg"
 				type="color"
 				default="#de921a"
-    		label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_DESC"
 			/>
 
 			<field
 				name="mas_hb_bg_opacity"
 				type="text"
 				default="0.75"
-    		label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_LABEL"
-    		description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_DESC"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_DESC"
 			/>
 
 			<field
@@ -1188,8 +1188,8 @@
 				name="mas_hb_effect_speed"
 				type="text"
 				default="0.4"
-    		label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_LABEL"
-    		description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_DESC"
+				label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_LABEL"
+				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_DESC"
 			/>
 
 			<field
@@ -1463,8 +1463,8 @@
 				type="profeature"
 				class="info"
 				default="0"
-    		label="COM_MINITEKWALL_FIELD_PAGINATION_BG_LABEL"
-    		description="COM_MINITEKWALL_FIELD_PAGINATION_BG_DESC"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_BG_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_BG_DESC"
 			/>
 
 			<field
@@ -1472,8 +1472,8 @@
 				type="profeature"
 				class="info"
 				default="0"
-    		label="COM_MINITEKWALL_FIELD_PAGINATION_COLOR_LABEL"
-    		description="COM_MINITEKWALL_FIELD_PAGINATION_COLOR_DESC"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_COLOR_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_COLOR_DESC"
 			/>
 
 			<field
@@ -1481,8 +1481,8 @@
 				type="profeature"
 				class="info"
 				default="0"
-    		label="COM_MINITEKWALL_FIELD_PAGINATION_BORDER_RADIUS_LABEL"
-    		description="COM_MINITEKWALL_FIELD_PAGINATION_BORDER_RADIUS_DESC"
+				label="COM_MINITEKWALL_FIELD_PAGINATION_BORDER_RADIUS_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGINATION_BORDER_RADIUS_DESC"
 			/>
 
 		</fieldset>
@@ -1493,16 +1493,16 @@
 				name="mas_filters_bg"
 				type="color"
 				default="#e96d51"
-    		label="COM_MINITEKWALL_FIELD_FILTERS_THEME_LABEL"
-    		description="COM_MINITEKWALL_FIELD_FILTERS_THEME_DESC"
+				label="COM_MINITEKWALL_FIELD_FILTERS_THEME_LABEL"
+				description="COM_MINITEKWALL_FIELD_FILTERS_THEME_DESC"
 			/>
 
 			<field
 				name="mas_filters_border_radius"
 				type="number"
 				default="3"
-    		label="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_LABEL"
-    		description="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_DESC"
+				label="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_LABEL"
+				description="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_DESC"
 			/>
 
 			<field
@@ -1569,8 +1569,8 @@
 				name="mas_category_filters_label"
 				type="text"
 				default="FILTER_BY_CATEGORY"
-    		label="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL_LABEL"
-    		description="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL_DESC"
+				label="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL_LABEL"
+				description="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_LABEL_DESC"
 			/>
 
 			<field
@@ -1600,8 +1600,8 @@
 				name="mas_tag_filters_label"
 				type="text"
 				default="FILTER_BY_TAG"
-    		label="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL_LABEL"
-    		description="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL_DESC"
+				label="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL_LABEL"
+				description="COM_MINITEKWALL_FIELD_TAG_FILTERS_LABEL_DESC"
 			/>
 
 			<field
@@ -1620,8 +1620,8 @@
 				name="mas_date_filters_label"
 				type="text"
 				default="FILTER_BY_DATE"
-    		label="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL_LABEL"
-    		description="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL_DESC"
+				label="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL_LABEL"
+				description="COM_MINITEKWALL_FIELD_DATE_FILTERS_LABEL_DESC"
 			/>
 
 			<field type="separator" text="COM_MINITEKWALL_FIELD_SORTINGS_SEPARATOR" />
