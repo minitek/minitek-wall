@@ -1,10 +1,10 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
+* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
+* @author url   https://www.minitek.gr/
+* @developers   Minitek.gr
 */
 
 namespace Joomla\Component\MinitekWall\Administrator\View\Widget;
@@ -12,6 +12,8 @@ namespace Joomla\Component\MinitekWall\Administrator\View\Widget;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\URI\URI;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Helper\ContentHelper;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
@@ -78,10 +80,47 @@ class HtmlView extends BaseHtmlView
 		$this->app = Factory::getApplication();
 
 		$this->source_id = $this->app->getUserState( 'com_minitekwall.source_id', '' ) ? $this->app->getUserState( 'com_minitekwall.source_id', '' ) : $this->item->source_id;
+		
+		// Core source types 
+		$this->coreTypes = [
+			'content',
+			'folder',
+			'rss',
+			'custom'
+		];
+
+		// Core plugins 
+		$this->corePlugins = [
+			[
+				'type' => 'content',
+				'title' => Text::_('PLG_CONTENT_MSOURCECONTENT_SOURCE_TITLE'),
+				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/content.png',
+				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-content'
+			],
+			[
+				'type' => 'folder',
+				'title' => Text::_('PLG_CONTENT_MSOURCEFOLDER_SOURCE_TITLE'),
+				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/folder.png',
+				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-folder'
+			],
+			[
+				'type' => 'rss',
+				'title' => Text::_('PLG_CONTENT_MSOURCERSS_SOURCE_TITLE'),
+				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/rss.png',
+				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-rss'
+			],
+			[
+				'type' => 'custom',
+				'title' => Text::_('PLG_CONTENT_MSOURCECUSTOM_SOURCE_TITLE'),
+				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/custom.png',
+				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-custom-items'
+			]
+		];
 
 		// Get all sources from content plugins
 		$this->sources = (array)$this->app->triggerEvent('onWidgetPrepareSource', array());
-		foreach ($this->sources as $source)
+		
+		foreach ($this->sources as $key => $source)
 		{
 			if ($this->source_id == $source['type'])
 			{
@@ -90,7 +129,7 @@ class HtmlView extends BaseHtmlView
 			}
 		}
 
-		$this->moduleIsInstalled = MinitekWallHelper::checkModuleIsInstalled();
+		$this->moduleInstalled = MinitekWallHelper::getModule();
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

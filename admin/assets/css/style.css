@@ -2,7 +2,7 @@
 
 .com_minitekwall.view-dashboard a[target="_blank"]::before,
 .com_minitekwall.view-widget a.btn[target="_blank"]::before {
-  content: none;
+	content: none;
 }
 
 /* Dashboard */
@@ -10,6 +10,11 @@
 body.com_minitekwall.view- #subhead,
 body.com_minitekwall.view-dashboard #subhead {
 	display: none;
+}
+
+body.com_minitekwall.view- #system-message-container,
+body.com_minitekwall.view-dashboard #system-message-container {
+	margin-top: 1rem;
 }
 
 /* Dashboard alert */
@@ -67,7 +72,7 @@ body.com_minitekwall.view-dashboard #subhead {
 	text-align: center;
 	background: #fff;
 	margin: 0 5px 10px;
-  min-width: inherit;
+	min-width: inherit;
 }
 
 .dashboard-thumbnails .thumbnail a {
@@ -83,7 +88,7 @@ body.com_minitekwall.view-dashboard #subhead {
 }
 
 .dashboard-thumbnails .thumbnail:last-child .small {
-  font-size: 11px;
+	font-size: 11px;
 }
 
 .dashboard-thumbnails .thumbnail .icon {
@@ -108,18 +113,18 @@ body.com_minitekwall.view-dashboard #subhead {
 
 label[id^="jform_source_params_separator_"],
 label[id^="jform_masonry_params_separator_"] {
-  display: none !important;
+	display: none !important;
 }
 
 .mmSeparator {
-  box-sizing: border-box;
-  background: none repeat scroll 0 0 #e8f3f9;
-  color: #555;
-  margin: 10px 0 0;
-  padding: 5px;
-  float: left;
-  width: 100%;
-  font-size: 12px;
+	box-sizing: border-box;
+	background: none repeat scroll 0 0 #e8f3f9;
+	color: #555;
+	margin: 10px 0 0;
+	padding: 5px;
+	float: left;
+	width: 100%;
+	font-size: 12px;
 }
 
 .mmSeparator h3,
@@ -136,7 +141,7 @@ label[id^="jform_masonry_params_separator_"] {
 /* Widget */
 
 .com_minitekwall.view-widget .alert {
-  margin: 0;
+	margin: 0;
 }
 
 /* Masonry Layout Params */
@@ -149,13 +154,13 @@ label[id^="jform_masonry_params_separator_"] {
 /* Masonry Grid Radio */
 
 #jform_masonry_params_mas_grid {
-  margin: 0 -10px;
+	margin: 0 -10px;
 }
 
 .grid-radio {
 	display: inline-block;
 	vertical-align: top;
-  width: 300px;
+	width: 300px;
 	text-align: center;
 	margin: 0 10px 30px;
 }
@@ -164,7 +169,7 @@ label[id^="jform_masonry_params_separator_"] {
 	width: 100%;
 	background: #e8f4f9;
 	border: 5px solid rgba(0,0,0,0);
-  box-sizing: content-box;
+	box-sizing: content-box;
 }
 
 .grid-radio.active label {

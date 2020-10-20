@@ -1,10 +1,10 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
+* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
+* @author url   https://www.minitek.gr/
+* @developers   Minitek.gr
 */
 
 namespace Joomla\Component\MinitekWall\Administrator\View\Widgets;
@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
-use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\MVC\View\GenericDataException;
 
 /**

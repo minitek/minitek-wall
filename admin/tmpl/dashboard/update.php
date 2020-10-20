@@ -14,16 +14,16 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 
-$local_version = MinitekWallHelper::localVersion();
-$latest_version = MinitekWallHelper::latestVersion();
+$localVersion = MinitekWallHelper::localVersion();
+$latestVersion = MinitekWallHelper::latestVersion();
 $type = Factory::getApplication()->input->get('type', 'auto');
 
-if ($latest_version && version_compare($latest_version, $local_version, '>')) { ?>
+if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
 <div class="alert alert-success text-center mt-0" id="update-box">
   <div class="update-info">
     <div>
       <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_A_NEW_VERSION_IS_AVAILABLE'); ?></span>
-      <span class="badge badge-success"><?php echo $latest_version; ?></span> <span class="badge badge-success">Free</span>
+      <span class="badge badge-success"><?php echo $latestVersion; ?></span> <span class="badge badge-success">Free</span>
     </div>
     <div class="mt-2">
       <a class="button-success btn btn-sm btn-success" href="<?php echo Route::_('index.php?option=com_installer&view=update'); ?>">
@@ -34,16 +34,16 @@ if ($latest_version && version_compare($latest_version, $local_version, '>')) { 
   </div>
 </div>
 <?php } else if ($type == 'check') { ?>
-  <?php if ($latest_version) { ?>
+  <?php if ($latestVersion) { ?>
   <div class="alert alert-success text-center mt-0" id="update-box">
     <div class="update-info">
       <div>
-        <?php if ($latest_version == $local_version) { ?>
+        <?php if ($latestVersion == $localVersion) { ?>
           <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_THE_LATEST_VERSION'); ?></span>
         <?php } else { ?>
           <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_A_DEVELOPMENT_VERSION'); ?></span>
         <?php } ?>
-        <span class="badge badge-success"><?php echo $latest_version; ?></span> <span class="badge badge-success">Free</span>
+        <span class="badge badge-success"><?php echo $latestVersion; ?></span> <span class="badge badge-success">Free</span>
       </div>
     </div>
   </div>
