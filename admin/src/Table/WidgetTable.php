@@ -41,6 +41,18 @@ class WidgetTable extends Table
 		$this->setColumnAlias('published', 'state');
 	}
 
+	protected function _getAssetName()
+	{
+		$k = $this->_tbl_key;
+
+		return 'com_minitekwall.widget.' . (int) $this->$k;
+	}
+
+	protected function _getAssetTitle()
+	{
+		return $this->name;
+	}
+
 	/**
 	 * Method to perform sanity checks on the JTable instance properties to ensure
 	 * they are safe to store in the database.  Child classes should override this
