@@ -6,7 +6,7 @@
 	<copyright>(C) 2011 - 2020 Minitek.gr. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later.</license>
 	<authorUrl>https://www.minitek.gr/</authorUrl>
-	<version>4.0.15</version>
+	<version>4.0.16</version>
 	<namespace path="src">Joomla\Component\MinitekWall</namespace>
 	<description>
 	<![CDATA[
@@ -75,7 +75,7 @@
 	</administration>
 
 	<updateservers>
-		<server type="extension" priority="1" name="Minitek Wall">http://update.minitek.gr/joomla-extensions/minitek_wall.xml</server>
+		<server type="extension" priority="1" name="Minitek Wall">https://update.minitek.gr/joomla-extensions/minitek_wall.xml</server>
 	</updateservers>
 
 </extension>
