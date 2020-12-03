@@ -38,9 +38,9 @@ $moduleInstalled = $this->moduleInstalled;
 							<div class="col-12 text-center">
 								<h3 class="m-3"><?php echo Text::_('COM_MINITEKWALL_MODAL_MODULE_NOT_FOUND'); ?></h3>
 								<p><?php echo Text::_('COM_MINITEKWALL_MODAL_MODULE_NOT_FOUND_DESC'); ?></p>
-								<a class="button-success btn btn-sm btn-success m-3" href="<?php echo JRoute::_('index.php?option=com_installer'); ?>">
+								<a class="button-success btn btn-sm btn-success m-3" href="https://www.minitek.gr/downloads/minitek-wall-module" target="_blank">
 									<span class="icon-download" aria-hidden="true"></span>
-									<?php echo JText::_('COM_MINITEKWALL_MODAL_MODULE_INSTALL'); ?>
+									<?php echo JText::_('COM_MINITEKWALL_DASHBOARD_DOWNLOAD'); ?>
 								</a>
 							</div>
 
