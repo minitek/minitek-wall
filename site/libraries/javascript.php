@@ -67,23 +67,12 @@ class MinitekWallLibJavascript
 			$layoutMode = $masonry_params['mas_layout_mode'];
 		}
 
-		$filtersActive = 'yes';
-
-		if (array_key_exists('mas_pag_keep_active', $masonry_params)) 
-		{
-			if (!$masonry_params['mas_pag_keep_active'])
-			{
-				$filtersActive = 'no';
-			}
-		}
-
 		$closeFilters = isset($masonry_params['mas_close_filters']) ? $masonry_params['mas_close_filters'] : 0;
 		$equalHeight = isset($masonry_params['mas_force_equal_height']) ? $masonry_params['mas_force_equal_height'] : 0;
 
 		$javascript = "
 			// Global variables
 			var site_path = '".$site_path."';
-			var filtersActive = '".$filtersActive."';
 			var closeFilters = ".$closeFilters.";
 			var _container = $('#mnwall_container_".$widgetID."');
 			var gridType = parseInt('".$gridType."', 10);

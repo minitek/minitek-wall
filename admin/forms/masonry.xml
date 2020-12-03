@@ -1532,6 +1532,17 @@
 			<field type="separator" text="COM_MINITEKWALL_FIELD_FILTERS_SEPARATOR" />
 
 			<field
+				name="mas_filters_mode"
+				type="list"
+				default="dynamic"
+				label="COM_MINITEKWALL_FIELD_FILTERS_MODE_LABEL"
+				description="COM_MINITEKWALL_FIELD_FILTERS_MODE_DESC"
+			>
+				<option value="dynamic">COM_MINITEKWALL_FIELD_OPTION_CURRENT</option>
+				<option value="static">COM_MINITEKWALL_FIELD_OPTION_ALL</option>
+			</field>
+
+			<field
 				name="mas_filter_type"
 				type="list"
 				default="1"
@@ -1555,17 +1566,6 @@
 			</field>
 
 			<field
-				name="mas_category_filters_type"
-				type="list"
-				default="dynamic"
-				label="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_TYPE_LABEL"
-				description="COM_MINITEKWALL_FIELD_CATEGORY_FILTERS_TYPE_DESC"
-			>
-				<option value="dynamic">COM_MINITEKWALL_FIELD_OPTION_CURRENT</option>
-				<option value="static">COM_MINITEKWALL_FIELD_OPTION_ALL</option>
-			</field>
-
-			<field
 				name="mas_category_filters_label"
 				type="text"
 				default="FILTER_BY_CATEGORY"
@@ -1583,17 +1583,6 @@
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
-			</field>
-
-			<field
-				name="mas_tag_filters_type"
-				type="list"
-				default="dynamic"
-				label="COM_MINITEKWALL_FIELD_TAG_FILTERS_TYPE_LABEL"
-				description="COM_MINITEKWALL_FIELD_TAG_FILTERS_TYPE_DESC"
-			>
-				<option value="dynamic">COM_MINITEKWALL_FIELD_OPTION_CURRENT</option>
-				<option value="static">COM_MINITEKWALL_FIELD_OPTION_ALL</option>
 			</field>
 
 			<field
