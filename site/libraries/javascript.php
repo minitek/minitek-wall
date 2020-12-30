@@ -728,21 +728,13 @@ class MinitekWallLibJavascript
 					// Reset filters
 					var filterGroup = \$buttonGroup.attr('data-filter-group');
 					filters[ filterGroup ] = '';
-					var filterValue = '';
+				});
 
-					// set filter for Isotope
-					_wall.isotope({
-						filter: filterValue,
-						sortBy: sortBy,
-						sortAscending: sortAscending
-					});
-
-					// Reset dropdown filters text
-					_container.find('.mnwall_iso_dropdown').each(function(i, dropdownGroup) 
-					{
-						var filter_text = $(dropdownGroup).find('.dropdown-label span').attr('data-label');
-						$(dropdownGroup).find('.dropdown-label span span').text(filter_text);
-					});
+				// Reset dropdown filters text
+				_container.find('.mnwall_iso_dropdown').each(function(i, dropdownGroup) 
+				{
+					var filter_text = $(dropdownGroup).find('.dropdown-label span').attr('data-label');
+					$(dropdownGroup).find('.dropdown-label span span').text(filter_text);
 				});
 
 				// Get first item in sortBy array
@@ -758,6 +750,13 @@ class MinitekWallLibJavascript
 					var \$sortingGroupDirection = $(sortingGroupDirection);
 					\$sortingGroupDirection.find('.mnw_filter_active').removeClass('mnw_filter_active');
 					\$sortingGroupDirection.find('li a[data-sort-value=\"'+sortDirection+'\"]').addClass('mnw_filter_active');
+				});
+
+				// set filter for Isotope
+				_wall.isotope({
+					filter: '',
+					sortBy: sortBy,
+					sortAscending: sortAscending
 				});
 			}
 
