@@ -188,6 +188,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 								<span class="icon-support" aria-hidden="true"></span>&nbsp;
 								<span>
 									<a href="https://www.minitek.gr/support/forum/joomla/minitek-wall" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_TECHNICAL_SUPPORT'); ?></a>
+									<span class="badge badge-danger">Pro</span>
 								</span>
 							</li>
 							<li class="list-group-item">
