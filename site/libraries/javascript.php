@@ -82,19 +82,19 @@ class MinitekWallLibJavascript
 			var db_position_columns = '".$masonry_params['mas_db_position_columns']."';
 			var equalHeight = '".$equalHeight."';
 			var sortBy = _container.attr('data-order');
+			var sortDirection = _container.attr('data-direction');
+			sortDirection = (sortDirection == null) ? '' : sortDirection = sortDirection.toLowerCase();
+			var sortAscending = sortDirection == 'asc' ? true : false;
 
 			if (sortBy == 'RAND()' || sortBy == 'rand' || sortBy == 'random')
 			{
 				sortBy = ['index'];
+				sortAscending = true;
 			}
 			else
 			{
 				sortBy = [sortBy, 'id', 'title'];
-			}
-
-			var sortDirection = _container.attr('data-direction');
-			sortDirection = (sortDirection == null) ? '' : sortDirection = sortDirection.toLowerCase();
-			var sortAscending = sortDirection == 'asc' ? true : false;
+			}	
 		";
 
 		return $javascript;
