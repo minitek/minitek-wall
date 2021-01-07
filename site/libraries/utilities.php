@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @title        Minitek Wall
+* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\String\StringHelper;
 use Joomla\Image\Image;
 
-if(!defined('DS')){
+if (!defined('DS')) {
 	define('DS',DIRECTORY_SEPARATOR);
 }
 
@@ -26,18 +26,18 @@ class MinitekWallLibUtilities
 
 		if ($app->isClient('site'))
 		{
-		  $params = $app->getParams($option);
+			$params = $app->getParams($option);
 		}
 		else
 		{
-		  $params = \JComponentHelper::getParams($option);
+			$params = \JComponentHelper::getParams($option);
 		}
 
 		return $params;
 	}
 
 	// Get source id
-  public static function getSourceID($widgetID)
+	public static function getSourceID($widgetID)
 	{
 		$db = \JFactory::getDBO();
 		$query = ' SELECT * '
@@ -47,10 +47,10 @@ class MinitekWallLibUtilities
 		$source_id = $db->loadObject()->source_id;
 
 		return $source_id;
-  }
+	}
 
 	// Get source
-  public static function getSourceParams($widgetID)
+	public static function getSourceParams($widgetID)
 	{
 		$db = \JFactory::getDBO();
 		$query = ' SELECT * '
@@ -60,18 +60,18 @@ class MinitekWallLibUtilities
 		$source_params = $db->loadObject()->source_params;
 
 		return self::decodeJSONParams($source_params);
-  }
+	}
 
 	// Decode json params
-  public static function decodeJSONParams($json)
+	public static function decodeJSONParams($json)
 	{
 		$params = json_decode($json, true);
 
 		return $params;
-  }
+	}
 
 	// Get masonry_params
-  public static function getMasonryParams($widgetID)
+	public static function getMasonryParams($widgetID)
 	{
 		$db = \JFactory::getDBO();
 		$query = ' SELECT * '
@@ -84,7 +84,7 @@ class MinitekWallLibUtilities
 		$masonry_params = $result->masonry_params;
 
 		return self::decodeJSONParams($masonry_params);
-  }
+	}
 
 	public static function cleanName($name)
 	{
@@ -198,8 +198,12 @@ class MinitekWallLibUtilities
 
 				$image = new \JImage();
 				$image->loadFile($imgSource);
-				$image->resize($width, $height, true, \JImage::SCALE_INSIDE)
-				->toFile($cropPath);
+				$thumbs = $image->generateThumbs($width.'x'.$height, 5);
+
+				foreach ($thumbs as $thumb)
+				{
+					$thumb->toFile($cropPath);
+				}
 			}
 
 			$path = \JURI::base().'images/mwall/'.$path;
