@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2019 Minitek, All rights reserved.
+* @copyright	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license		GNU General Public License version 3 or later.
 * @author url	https://www.minitek.gr/
 * @developers	Minitek.gr
@@ -11,6 +11,9 @@ namespace Joomla\Component\MinitekWall\Administrator\Extension;
 
 defined('_JEXEC') or die;
 
+if (!defined('DS'))
+	define('DS',DIRECTORY_SEPARATOR);
+	
 use Joomla\CMS\Extension\BootableExtensionInterface;
 use Joomla\CMS\Extension\MVCComponent;
 use Joomla\CMS\HTML\HTMLRegistryAwareTrait;
