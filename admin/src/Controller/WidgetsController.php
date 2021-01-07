@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license		GNU General Public License version 3 or later.
 * @author url	https://www.minitek.gr/
 * @developers	Minitek.gr
@@ -63,7 +63,7 @@ class WidgetsController extends AdminController
 		\JSession::checkToken('request') or jexit('Invalid token');
 		$app = \JFactory::getApplication();
 
- 		$tmppath = JPATH_SITE.DS.'images'.DS.'mnwallimages'.DS;
+ 		$tmppath = JPATH_SITE.DS.'images'.DS.'mwall'.DS;
 
 		if (file_exists($tmppath))
 		{
