@@ -44,6 +44,7 @@ body.com_minitekwall.view-dashboard #system-message-container {
 .minitek-dashboard .media-body {
 	padding: 20px;
 	color: #4780aa;
+	overflow: hidden;
 }
 
 .minitek-dashboard .media-heading {
@@ -66,13 +67,14 @@ body.com_minitekwall.view-dashboard #system-message-container {
 .dashboard-thumbnails .thumbnail {
 	flex-grow: 1;
 	flex-basis: 23%;
-	border: 0;
+	border: 1px solid #ddd;
 	border-radius: 0;
 	padding: 0;
 	text-align: center;
 	background: #fff;
 	margin: 0 5px 10px;
 	min-width: inherit;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.055);
 }
 
 .dashboard-thumbnails .thumbnail a {
@@ -107,6 +109,18 @@ body.com_minitekwall.view-dashboard #system-message-container {
 	font-weight: 400;
 	display: inline-block;
 	width: 100%;
+}
+
+/* Dashboard modules */
+
+.dashboard-module .card {
+	box-shadow: 0 1px 3px rgba(0,0,0,0.055);
+	border: 1px solid #ddd;
+	border-radius: 0;
+}
+
+.dashboard-module a {
+	text-decoration: none;
 }
 
 /* Separators */

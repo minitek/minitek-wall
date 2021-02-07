@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -35,7 +35,7 @@ Factory::getDocument()->addScriptDeclaration("
 		<div class="d-flex justify-content-between">
 			<h3 class="mb-0" style="line-height: 1.4;"><?php echo Text::_('COM_MINITEKWALL_WIDGET_SELECT_DATA_SOURCE'); ?></h3>
 			<a href="https://www.minitek.gr/joomla/source-plugins" class="btn btn-info btn-sm" target="_blank">
-				<span class="fa fa-search" aria-hidden="true"></span>&nbsp;
+				<span class="fas fa-search" aria-hidden="true"></span>&nbsp;
 				<?php echo Text::_('COM_MINITEKWALL_WIDGET_BROWSE_SOURCE_PLUGINS'); ?>
 			</a>
 		</div>
@@ -67,7 +67,7 @@ Factory::getDocument()->addScriptDeclaration("
 											<h4><?php echo $corePlugin['title']; ?></h4>
 										</div>
 										<button class="btn btn-success btn-source mt-3" data-source="<?php echo $corePlugin['type']; ?>">
-											<span class="fa fa-check" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_WIDGET_SELECT'); ?>
+											<span class="fas fa-check" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_WIDGET_SELECT'); ?>
 										</button>
 									</div>
 								</div><?php
@@ -83,7 +83,7 @@ Factory::getDocument()->addScriptDeclaration("
 											<h4><?php echo $corePlugin['title']; ?></h4>
 										</div>
 										<a href="<?php echo $corePlugin['downloadurl']; ?>" class="btn btn-info mt-3" target="_blank">
-											<span class="fa fa-lock" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPGRADE_TO_PRO'); ?>
+											<span class="fas fa-lock" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPGRADE_TO_PRO'); ?>
 										</a>
 									</div>
 								</div><?php
@@ -131,7 +131,7 @@ Factory::getDocument()->addScriptDeclaration("
 										<h4><?php echo $corePlugin['title']; ?></h4>
 									</div>
 									<a href="<?php echo $url; ?>" class="btn btn-info mt-3" target="_blank">
-										<span class="fa fa-<?php echo $icon; ?>" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo $title; ?>
+										<span class="fas fa-<?php echo $icon; ?>" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo $title; ?>
 									</a>
 								</div>
 							</div><?php
@@ -147,7 +147,7 @@ Factory::getDocument()->addScriptDeclaration("
 										<h4><?php echo $corePlugin['title']; ?></h4>
 									</div>
 									<a href="<?php echo $corePlugin['downloadurl']; ?>" class="btn btn-info mt-3" target="_blank">
-										<span class="fa fa-lock" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPGRADE_TO_PRO'); ?>
+										<span class="fas fa-lock" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPGRADE_TO_PRO'); ?>
 									</a>
 								</div>
 							</div><?php

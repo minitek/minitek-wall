@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -33,7 +33,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 				?>
 				<?php if (empty($this->items)) : ?>
 					<div class="alert alert-info">
-						<span class="fa fa-info-circle" aria-hidden="true"></span><span class="sr-only"><?php echo Text::_('INFO'); ?></span>
+						<span class="fas fa-info-circle" aria-hidden="true"></span><span class="sr-only"><?php echo Text::_('INFO'); ?></span>
 						<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 					</div>
 				<?php else : ?>
@@ -107,7 +107,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 								</th>
 
 								<td class="small d-none d-md-table-cell">
-									<span class="badge badge-info" style="text-transform: uppercase;">
+									<span class="badge bg-info" style="text-transform: uppercase;">
 										<?php echo $this->escape($item->source_id); ?>
 									</span>
 								</td>
