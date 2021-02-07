@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -18,6 +18,8 @@ use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Helper\ContentHelper;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 use Joomla\CMS\MVC\View\GenericDataException;
+use Joomla\CMS\Toolbar\Toolbar;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * Widget view class for Minitek Wall.
@@ -160,8 +162,11 @@ class HtmlView extends BaseHtmlView
 		// Built the actions for new and existing records.
 		$canDo = $this->canDo;
 
-		\JToolbarHelper::title(
-			\JText::_('COM_MINITEKWALL_WIDGET_TITLE_' . ($checkedOut ? 'VIEW_WIDGET' : ($isNew ? 'NEW_WIDGET' : 'EDIT_WIDGET'))),
+		// Get the toolbar object instance
+		$toolbar = Toolbar::getInstance('toolbar');
+
+		ToolbarHelper::title(
+			Text::_('COM_MINITEKWALL_WIDGET_TITLE_' . ($checkedOut ? 'VIEW_WIDGET' : ($isNew ? 'NEW_WIDGET' : 'EDIT_WIDGET'))),
 			'pencil-2 article-add'
 		);
 
@@ -170,64 +175,75 @@ class HtmlView extends BaseHtmlView
 		{
 			if ($this->source_id && $this->app->input->get('page') != 'source')
 			{
-				\JToolbarHelper::saveGroup(
-					[
-						['apply', 'widget.apply'],
-						['save', 'widget.save'],
-						['save2new', 'widget.save2new']
-					],
-					'btn-success'
+				$toolbar->apply('widget.apply');
+
+				$saveGroup = $toolbar->dropdownButton('save-group');
+
+				$saveGroup->configure(
+					function (Toolbar $childBar) use ($user)
+					{
+						$childBar->save('widget.save');
+						$childBar->save2new('widget.save2new');
+					}
 				);
 			}
 
-			\JToolbarHelper::cancel('widget.cancel');
+			$toolbar->cancel('widget.cancel', 'JTOOLBAR_CLOSE');
 		}
 		else
 		{
-			// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
-			$itemEditable = $canDo->get('core.edit');
-
-			$toolbarButtons = [];
-
-			// Can't save the record if it's checked out and editable
-			if (!$checkedOut && $itemEditable)
-			{
-				$toolbarButtons[] = ['apply', 'widget.apply'];
-				$toolbarButtons[] = ['save', 'widget.save'];
-
-				// We can save this record, but check the create permission to see if we can return to make a new one.
-				if ($canDo->get('core.create'))
-				{
-					$toolbarButtons[] = ['save2new', 'widget.save2new'];
-				}
-			}
-
-			// If checked out, we can still save
-			if ($canDo->get('core.create'))
-			{
-				$toolbarButtons[] = ['save2copy', 'widget.save2copy'];
-			}
-
 			// Don't show if page=source
 			if ($this->app->input->get('page') != 'source')
 			{
-				\JToolbarHelper::saveGroup(
-					$toolbarButtons,
-					'btn-success'
+				// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
+				$itemEditable = $canDo->get('core.edit');
+
+				// Can't save the record if it's checked out and editable
+				if (!$checkedOut && $itemEditable)
+				{
+					$toolbar->apply('widget.apply');
+				}
+
+				$saveGroup = $toolbar->dropdownButton('save-group');
+
+				$saveGroup->configure(
+					function (Toolbar $childBar) use ($checkedOut, $itemEditable, $canDo, $user)
+					{
+						// Can't save the record if it's checked out and editable
+						if (!$checkedOut && $itemEditable)
+						{
+							$childBar->save('widget.save');
+
+							// We can save this record, but check the create permission to see if we can return to make a new one.
+							if ($canDo->get('core.create'))
+							{
+								$childBar->save2new('widget.save2new');
+							}
+						}
+
+						// If checked out, we can still save
+						if ($canDo->get('core.create'))
+						{
+							$childBar->save2copy('widget.save2copy');
+						}
+					}
 				);
 
-				\JToolbarHelper::cancel('widget.cancel', 'JTOOLBAR_CLOSE');
+				$toolbar->cancel('widget.cancel', 'JTOOLBAR_CLOSE');
 			}
 			else
 			{
-				\JToolbarHelper::custom('widget.cancelSource', 'cancel.png', 'cancel_f2.png', 'JTOOLBAR_CANCEL', false);
+				ToolbarHelper::custom('widget.cancelSource', 'cancel.png', 'cancel_f2.png', 'JTOOLBAR_CANCEL', false);
 			}
 		}
 
 		// Publish in Module
 		if ($canDo->get('core.create') && !$isNew && $this->app->input->get('page') != 'source')
 		{
-			\JToolbarHelper::modal('createModule', 'icon-ok', \JText::_('COM_MINITEKWALL_WIDGET_TOOLBAR_PUBLISH_IN_MODULE'));
+			$toolbar->popupButton('createModule')
+				->text('COM_MINITEKWALL_WIDGET_TOOLBAR_PUBLISH_IN_MODULE')
+				->icon('icon-ok')
+				->selector('createModule');
 		}
 	}
 }

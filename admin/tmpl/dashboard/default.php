@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -40,11 +40,11 @@ $moduleInstalled = MinitekWallHelper::getModule();
 
 		<div class="col-sm-12 col-md-8">
 			<div class="media mt-0">
-				<div class="pull-left">
+				<div class="float-start">
 					<img class="media-object" src="<?php echo URI::root(true).'/administrator/components/com_minitekwall/assets/images/logo.png'; ?>">
 				</div>
 				<div class="media-body">
-			    <h2 class="media-heading"><?php echo Text::_('COM_MINITEKWALL'); ?> <span class="badge badge-success">Free</span></h2>
+			    <h2 class="media-heading"><?php echo Text::_('COM_MINITEKWALL'); ?> <span class="badge bg-success">Free</span></h2>
 			    <?php echo Text::_('COM_MINITEKWALL_DESC'); ?>
 			  </div>
 			</div>
@@ -73,7 +73,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 						<i class="icon icon-folder"></i>
 						<span class="thumbnail-title">
 							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_GROUPS'); ?>
-							<span class="badge badge-danger">Pro</span>
+							<span class="badge bg-danger">Pro</span>
 						</span>
 					</a>
 				</div>
@@ -83,7 +83,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 						<i class="icon icon-pencil"></i>
 						<span class="thumbnail-title">
 							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_ITEMS'); ?>
-							<span class="badge badge-danger">Pro</span>
+							<span class="badge bg-danger">Pro</span>
 						</span>
 					</a>
 				</div>
@@ -93,7 +93,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 						<i class="icon icon-grid-2" style="color: #db8ddb;"></i>
 						<span class="thumbnail-title">
 							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_GRIDS'); ?>
-							<span class="badge badge-danger">Pro</span>
+							<span class="badge bg-danger">Pro</span>
 						</span>
 					</a>
 				</div>
@@ -146,8 +146,8 @@ $moduleInstalled = MinitekWallHelper::getModule();
 							<li class="list-group-item">
 								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_VERSION'); ?></div>
 								<div>
-									<span class="badge badge-success"><?php echo $localVersion; ?></span> <span class="badge badge-success">Free</span>
-									<a id="check-version" href="#" class="btn btn-info btn-sm float-right">
+									<span class="badge bg-success"><?php echo $localVersion; ?></span> <span class="badge bg-success">Free</span>
+									<a id="check-version" href="#" class="btn btn-info btn-sm float-end">
 										<i class="fas fa-sync"></i>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_CHECK_VERSION'); ?>
 									</a>
 								</div>
@@ -188,7 +188,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 								<span class="icon-support" aria-hidden="true"></span>&nbsp;
 								<span>
 									<a href="https://www.minitek.gr/support/forum/joomla/minitek-wall" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_TECHNICAL_SUPPORT'); ?></a>
-									<span class="badge badge-danger">Pro</span>
+									<span class="badge bg-danger">Pro</span>
 								</span>
 							</li>
 							<li class="list-group-item">

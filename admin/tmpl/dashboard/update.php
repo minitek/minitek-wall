@@ -1,7 +1,7 @@
 <?php
 /**
 * @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license   		GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -23,7 +23,7 @@ if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
   <div class="update-info">
     <div>
       <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_A_NEW_VERSION_IS_AVAILABLE'); ?></span>
-      <span class="badge badge-success"><?php echo $latestVersion; ?></span> <span class="badge badge-success">Free</span>
+      <span class="badge bg-success"><?php echo $latestVersion; ?></span> <span class="badge bg-success">Free</span>
     </div>
     <div class="mt-2">
       <a class="button-success btn btn-sm btn-success" href="<?php echo Route::_('index.php?option=com_installer&view=update'); ?>">
@@ -43,7 +43,7 @@ if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
         <?php } else { ?>
           <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_A_DEVELOPMENT_VERSION'); ?></span>
         <?php } ?>
-        <span class="badge badge-success"><?php echo $latestVersion; ?></span> <span class="badge badge-success">Free</span>
+        <span class="badge bg-success"><?php echo $latestVersion; ?></span> <span class="badge bg-success">Free</span>
       </div>
     </div>
   </div>
