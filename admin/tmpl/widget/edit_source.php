@@ -13,21 +13,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
-
-Factory::getDocument()->addScriptDeclaration("
-(function( $ ) {
-	'use strict';
-
-	$(function() {
-		$('.btn-source').click(function () {
-			var data_source = $(this).attr('data-source');
-			$('input[name=\"source_type\"]').val(data_source);
-			Joomla.submitbutton('widget.selectSource');
-		});
-	});
-
-})( jQuery );
-");
 ?>
 
 <div class="card">
@@ -162,3 +147,29 @@ Factory::getDocument()->addScriptDeclaration("
 		</form>
 	</div>
 </div>
+
+<script>
+	(function (document) {
+		'use strict';
+
+		document.addEventListener('DOMContentLoaded', function () 
+		{
+			var btn_sources = document.querySelectorAll('.btn-source');
+
+			if (btn_sources)
+			{
+				btn_sources.forEach(function(a)
+				{
+					a.addEventListener('click', function (e) 
+					{
+						e.preventDefault();
+
+						var data_source = a.getAttribute('data-source');
+						document.querySelector('input[name=\"source_type\"]').value = data_source;
+						Joomla.submitbutton('widget.selectSource');
+					});
+				});
+			}
+		});
+	})(document);
+</script><?php

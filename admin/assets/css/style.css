@@ -184,6 +184,7 @@ label[id^="jform_masonry_params_separator_"] {
 	background: #e8f4f9;
 	border: 5px solid rgba(0,0,0,0);
 	box-sizing: content-box;
+	cursor: pointer;
 }
 
 .grid-radio.active label {
