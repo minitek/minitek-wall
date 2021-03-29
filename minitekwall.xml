@@ -16,6 +16,14 @@
 
 	<scriptfile>install.minitekwall.php</scriptfile>
 
+	<media destination="com_minitekwall" folder="media">
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>images</folder>
+		<filename>joomla.asset.json</filename>
+		<filename>index.html</filename>
+	</media>
+
 	<install>
 		<sql>
 			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
@@ -29,7 +37,6 @@
 	</uninstall>
 
 	<files folder="site">
-		<folder>assets</folder>
 		<folder>language</folder>
 		<folder>libraries</folder>
 		<folder>src</folder>
@@ -56,7 +63,6 @@
 		</submenu>
 
 		<files folder="admin">
-			<folder>assets</folder>
 			<folder>forms</folder>
 			<folder>services</folder>
 			<folder>sql</folder>
