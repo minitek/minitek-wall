@@ -93,12 +93,6 @@ class GridListField extends \JFormFieldRadio
 	{
 		$elements = Array(
 			Array(
-				'value' => '999c',
-				'image' => '',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_OPTION_CUSTOM_GRID'),
-				'class' => 'grid-radio-input grid-radio-custom'
-			),
-			Array(
 				'value' => '1',
 				'image' => 'grid1.jpg',
 				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_1'),

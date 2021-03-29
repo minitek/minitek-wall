@@ -1,20 +1,38 @@
-(function($) {
-	$(function(){
+(function (document) {
+	'use strict';
 
-		checkGridRadio();
+	function checkGridRadio()
+	{
+		var grid_radio_input_checked = document.querySelector('.grid-radio-input:checked');
 
-		function checkGridRadio()
+		if (grid_radio_input_checked)
 		{
-			$('.grid-radio-input:checked').parents('.grid-radio').addClass('active');
+			grid_radio_input_checked.closest('.grid-radio').classList.add('active');
+		}
+		
+		var grid_radio_inputs = document.querySelectorAll('.grid-radio-input');
 
-			$('.grid-radio-input').change(function() {
-				$(this).parents('.controls').find('.grid-radio').removeClass('active');
-				var checked = $(this).attr('checked', true);
-				if(checked){
-					$(this).parents('.grid-radio').addClass('active');
-				}
+		if (grid_radio_inputs)
+		{
+			grid_radio_inputs.forEach(function(a)
+			{
+				a.addEventListener('change', function ()
+				{
+					document.querySelectorAll('.grid-radio').forEach(function(b)
+					{
+						b.classList.remove('active');
+					});
+
+					this.setAttribute('checked', 'checked');
+					this.closest('.grid-radio').classList.add('active');
+				});
 			});
 		}
+	}
 
-	})
-})(jQuery);
+	document.addEventListener('DOMContentLoaded', function () 
+	{
+		checkGridRadio();
+	});
+
+})(document);
