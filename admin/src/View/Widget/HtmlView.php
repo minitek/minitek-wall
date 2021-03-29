@@ -96,25 +96,25 @@ class HtmlView extends BaseHtmlView
 			[
 				'type' => 'content',
 				'title' => Text::_('PLG_CONTENT_MSOURCECONTENT_SOURCE_TITLE'),
-				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/content.png',
+				'image' => URI::root(true).'/media/com_minitekwall/images/source/content.png',
 				'downloadurl' => 'https://www.minitek.gr/downloads/minitek-source-content'
 			],
 			[
 				'type' => 'folder',
 				'title' => Text::_('PLG_CONTENT_MSOURCEFOLDER_SOURCE_TITLE'),
-				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/folder.png',
+				'image' => URI::root(true).'/media/com_minitekwall/images/source/folder.png',
 				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			],
 			[
 				'type' => 'rss',
 				'title' => Text::_('PLG_CONTENT_MSOURCERSS_SOURCE_TITLE'),
-				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/rss.png',
+				'image' => URI::root(true).'/media/com_minitekwall/images/source/rss.png',
 				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			],
 			[
 				'type' => 'custom',
 				'title' => Text::_('PLG_CONTENT_MSOURCECUSTOM_SOURCE_TITLE'),
-				'image' => URI::root(true).'/administrator/components/com_minitekwall/assets/images/source/custom.png',
+				'image' => URI::root(true).'/media/com_minitekwall/images/source/custom.png',
 				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			]
 		];

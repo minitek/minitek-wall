@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -31,8 +31,8 @@ class HtmlView extends BaseHtmlView
 		// Skip if view == update
 		if (Factory::getApplication()->input->get('view') != 'update')
 		{
-			// Load dashboard.js
-			Factory::getDocument()->addScript(URI::root(true).'/administrator/components/com_minitekwall/assets/js/dashboard.js');
+			$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+			$wa->useScript('com_minitekwall.admin-dashboard');
 
 			$this->addToolbar();
 

@@ -11,6 +11,8 @@ namespace Joomla\Component\MinitekWall\Administrator\Field;
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\URI\URI;
+
 \JFormHelper::loadFieldClass('radio');
 
 class GridListField extends \JFormFieldRadio
@@ -61,7 +63,7 @@ class GridListField extends \JFormFieldRadio
 						$html[] = '<div class="grid-radio-demo">';
 							if ($option->image)
 							{
-								$html[] = '<img src="components/com_minitekwall/assets/images/masonry/'.$option->image.'">';
+								$html[] = '<img src="'.URI::root(true).'/media/com_minitekwall/images/grids/'.$option->image.'">';
 							}
 							else
 							{
