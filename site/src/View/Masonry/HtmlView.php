@@ -110,10 +110,18 @@ class HtmlView extends BaseHtmlView
 			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/isotope.pkgd.min.js" type="text/javascript"></script>');
 			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/packery-mode.pkgd.min.js" type="text/javascript"></script>');
 			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/spin.min.js" type="text/javascript"></script>');
+			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/mwall.js" type="text/javascript"></script>');
 
-			// Add javascript.php
-			$masonry_javascript = $this->model->masonry_javascript;
-			$masonry_javascript->loadMasonryJavascript($masonry_params, $this->widgetID);
+			// Initialize Mwall
+			$document->addCustomTag("<script>
+			document.addEventListener('DOMContentLoaded', function() 
+			{
+				Mwall.initialise(
+					".json_encode($masonry_params).", 
+					".$this->widgetID."
+				);
+			});
+			</script>");
 
 			// Responsive Utilities
 			$responsive_masonry = $this->model->responsive_masonry;
@@ -604,8 +612,7 @@ class HtmlView extends BaseHtmlView
 
 			if ($page === '1')
 			{
-				// Get source
-				$source_id = $this->utilities->getSourceID($this->widgetID);
+				// Get source params
 				$source_params = $this->utilities->getSourceParams($this->widgetID);
 				$this->source_params = $source_params;
 
