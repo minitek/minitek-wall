@@ -92,211 +92,11 @@ website: 	https://www.minitek.gr
 }
 
 /* /////////////////////////////////////// */
-/* Append Results Loader & Button
+/* Loader
 /* /////////////////////////////////////// */
-
-.mnwall_more_results {
-	padding: 0;
-	text-align: center;
-	font-weight: 400;
-	line-height: 30px;
-	vertical-align: baseline;
-	margin: 25px 0 30px;
-}
-
-.mnwall_more_results a {
-	vertical-align: top;
-	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
-	border: 1px solid #d7d7d7;
-	display: inline-block;
-	padding: 8px 14px;
-	text-decoration: none;
-	line-height: 26px;
-	font-size: 14px;
-	min-width: 100px;
-}
-
-.mnwall_more_results a.mnwall-reset-btn {
-	display: none;
-}
-
-.mnwall_more_results a.more-results.mnwall-loading  {
-	background: rgba(247, 247, 247, 0.75) !important;
-	border: 1px solid #d7d7d7 !important;
-}
-
-.mnwall_more_results a.more-results:hover,
-.mnwall_more_results a.mnwall-reset-btn:hover {
-	background: rgba(247, 247, 247, 0.75) !important;
-	border: 1px solid #d7d7d7 !important;
-	text-decoration: none;
-	outline: none;
-	color: #777 !important;
-}
-
-.mnwall_more_results a:hover,
-.mnwall_more_results a:focus {
-	text-decoration: none;
-	outline: none;
-}
-
-.mnwall_more_results a.more-results span.no-results,
-.mnwall_more_results a.more-results-pre span.no-results {
-	display: none;
-}
-
-.mnwall_more_results a.disabled,
-.mnwall_more_results a.disabled:hover,
-.mnwall_more_results a.disabled:focus {
-	opacity: 0.8;
-	cursor: default;
-}
-
-.mnwall_append_loader {
-	display: none;
-	line-height: 26px;
-	height: 26px;
-}
 
 .mas_loader {
 	position: relative;
-}
-
-/* /////////////////////////////////////// */
-/* Pagination arrows */
-/* /////////////////////////////////////// */
-
-.mnwall_arrows {
-	text-align: center;
-	margin: 25px 0 30px;
-}
-
-.mnwall_arrow {
-	display: inline-block;
-}
-
-.mnwall_arrows .mnwall-reset-btn {
-	display: none;
-}
-
-.mnwall_arrow,
-.mnwall_arrows .mnwall-reset-btn {
-	padding: 8px 12px;
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
-	margin: 0 2px;
-	text-decoration: none;
-	outline: none;
-	color: #777;
-	background: #fff;
-	vertical-align: top;
-	line-height: 20px;
-	font-size: 16px;
-}
-
-.mnwall_arrow:hover,
-.mnwall_arrows .mnwall-reset-btn:hover {
-	background: rgba(247, 247, 247, 0.75) !important;
-	border: 1px solid #d7d7d7 !important;
-	text-decoration: none;
-	outline: none;
-	color: #777 !important;
-}
-
-.mnwall_arrow:focus,
-.mnwall_arrows .mnwall-reset-btn:focus {
-	text-decoration: none;
-	outline: none;
-}
-
-.mnwall_arrow.mnwall-loading  {
-	background: rgba(247, 247, 247, 0.75) !important;
-	border: 1px solid #d7d7d7 !important;
-}
-
-.mnwall_arrow .more-results {
-	display: inline-block;
-	min-width: 16px;
-	line-height: 20px;
-	vertical-align: top;
-}
-
-.mnwall_arrow.disabled,
-.mnwall_arrow.disabled:hover,
-.mnwall_arrow.disabled:focus {
-	opacity: 0.75;
-	cursor: default;
-}
-
-.mnwall_arrow_loader {
-	display: none;
-	line-height: 20px;
-	height: 20px;
-	min-width: 16px;
-}
-
-/* /////////////////////////////////////// */
-/* Pagination pages */
-/* /////////////////////////////////////// */
-
-.mnwall_pages {
-	text-align: center;
-	margin: 25px 0 30px;
-}
-
-.mnwall_page {
-	display: inline-block;
-}
-
-.mnwall_pages .mnwall-reset-btn {
-	display: none;
-}
-
-.mnwall_page,
-.mnwall_pages .mnwall-reset-btn {
-	padding: 8px 12px;
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
-	margin: 0 2px;
-	text-decoration: none;
-	outline: none;
-	color: #777;
-	background: #fff;
-	vertical-align: top;
-	line-height: 20px;
-}
-
-.mnwall_page:hover,
-.mnwall_page:focus,
-.mnwall_pages .mnwall-reset-btn:hover,
-.mnwall_pages .mnwall-reset-btn:focus {
-	outline: none;
-	text-decoration: none;
-	color: #333;
-}
-
-.mnwall_pages .mnwall-reset-btn:hover {
-	background: rgba(247, 247, 247, 0.75) !important;
-	border: 1px solid #d7d7d7 !important;
-	text-decoration: none;
-	outline: none;
-	color: #777 !important;
-}
-
-.mnwall_page .page-number {
-	display: inline-block;
-	min-width: 16px;
-	line-height: 16px;
-	vertical-align: middle;
-}
-
-.mnwall_page_loader {
-	display: none;
-	line-height: 20px;
-	height: 20px;
-	min-width: 16px;
 }
 
 /* /////////////////////////////////////// */
@@ -976,7 +776,7 @@ h3.mnwall-title a:focus {
 }
 
 .mnwall-hover-box-content .mnwall-item-link-icon,
-.mnwall-hover-box-content .mnwall-item-lightbox-icon {
+.mnwall-hover-box-content .mnwall-item-zoom-icon {
 	display: inline-block;
 	font-size: 16px;
 	width: 40px;
@@ -997,14 +797,14 @@ h3.mnwall-title a:focus {
 
 .mnwall-hover-box-content .mnwall-item-link-icon:hover,
 .mnwall-hover-box-content .mnwall-item-link-icon:focus,
-.mnwall-hover-box-content .mnwall-item-lightbox-icon:hover,
-.mnwall-hover-box-content .mnwall-item-lightbox-icon:focus {
+.mnwall-hover-box-content .mnwall-item-zoom-icon:hover,
+.mnwall-hover-box-content .mnwall-item-zoom-icon:focus {
 	background: #fff;
 	color: #333;
 }
 
 .mnwall-hover-box-content .mnwall-item-link-icon .fa-link,
-.mnwall-hover-box-content .mnwall-item-lightbox-icon .fa-link {
+.mnwall-hover-box-content .mnwall-item-zoom-icon .fa-link {
 	height: 40px;
 	width: 40px;
 	line-height: 40px;
@@ -1012,6 +812,24 @@ h3.mnwall-title a:focus {
 
 .mnwall-hover-box-content .mnwall-item-icons {
 	padding: 8px 0;
+}
+
+/* Modal images */
+
+.mnwall_container .modal {
+	text-align: center;
+}
+
+.mnwall_container .modal-dialog {
+	display: inline-block;
+	max-width: 80%;
+	max-height: 80%;
+	height: auto;
+}
+
+.mnwall_container .modal img {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 /* /////////////////////////////////////// */

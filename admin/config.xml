@@ -8,18 +8,6 @@
     >
 
     <field
-      name="load_lightbox"
-      type="radio"
-      layout="joomla.form.field.radio.switcher"
-      label="COM_MINITEKWALL_CONFIG_LOAD_LIGHTBOX_LABEL"
-      description="COM_MINITEKWALL_CONFIG_LOAD_LIGHTBOX_DESC"
-      default="1"
-      >
-      <option value="0">JNO</option>
-      <option value="1">JYES</option>
-    </field>
-
-    <field
       name="load_fontawesome"
       type="radio"
       layout="joomla.form.field.radio.switcher"

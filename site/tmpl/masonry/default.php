@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 // Page title
 if ($this->mas_page_title)
 {
@@ -108,93 +110,20 @@ if (isset($this->suffix))
 		echo $this->loadTemplate($this->mnwall_layout); 
 	?></div><?php
 
+	///////////////////////////////////////////////////////////////
+	// Modal images
 	////////////////////////////////////////////////////////////////
-	// Pagination
-	////////////////////////////////////////////////////////////////
-
-	// Append / Infinite pagination
-	if (isset($this->pagination) && ($this->pagination == '1' || $this->pagination == '4'))
+	if ($this->hoverBoxZoomButton && $this->mas_images) 
 	{
-		?><div class="mnwall_more_results">
-			<a href="#" class="more-results mnw-all" data-page="2">
-				<span class="more-results"><?php 
-					echo \JText::_('COM_MINITEKWALL_LOAD_MORE_ITEMS'); ?><?php 
-					if (isset($this->pagination) && $this->pagination == '1' && $this->showRemaining) 
-					{
-						?> (<span class="mnw-total-items"><?php echo $this->remainingCount; ?></span>)<?php 
-					}
-				?></span>
-				<span class="no-results"><?php echo \JText::_('COM_MINITEKWALL_NO_MORE_ITEMS'); ?></span>
-				<div class="mnwall_append_loader mas_loader"> </div>
-			</a><?php 
-
-			if ($this->mas_pag_reset_filters) 
-			{
-				?><a href="#" class="mnwall-reset-btn">
-					<span><?php echo \JText::_('COM_MINITEKWALL_RESET_FILTERS'); ?></span>
-				</a><?php 
-			}
-		?></div><?php 
-	}
-
-	// Arrows pagination
-	else if (isset($this->pagination) && $this->pagination == '2')
-	{
-		?><div class="mnwall_arrows">
-			<a href="#" class="mnwall_arrow mnwall_arrow_prev disabled" data-page="0" title="<?php echo \JText::_('COM_MINITEKWALL_PREVIOUS_PAGE'); ?>">
-				<span class="more-results"><?php echo '<i class="fa fa-'.$this->arrows.'-left"></i>'; ?></span>
-				<div class="mnwall_arrow_loader mas_loader"> </div>
-			</a><?php
-
-			$next_class = '';
-
-			if ($this->totalPages == 1) 
-			{
-				$next_class = 'disabled';
-			}
-
-			?><a href="#" class="mnwall_arrow mnwall_arrow_next <?php echo $next_class; ?>" data-page="2" title="<?php echo \JText::_('COM_MINITEKWALL_NEXT_PAGE'); ?>">
-				<span class="more-results"><?php echo '<i class="fa fa-'.$this->arrows.'-right"></i>'; ?></span>
-				<div class="mnwall_arrow_loader mas_loader"> </div>
-			</a><?php
-
-			if ($this->mas_pag_reset_filters) 
-			{
-				?><a href="#" class="mnwall-reset-btn">
-					<span><?php echo \JText::_('COM_MINITEKWALL_RESET_FILTERS'); ?></span>
-				</a><?php 
-			}
-		?></div><?php 
-	}
-
-	// Pages pagination
-	else if (isset($this->pagination) && $this->pagination == '3')
-	{
-		?><div class="mnwall_pages"><?php 
-
-			for ($i = 1; $i <= (int)$this->totalPages; $i++) 
-			{
-				if ($i == 1) 
-				{
-					$active_page = 'mnw_active';
-				} 
-				else 
-				{
-					$active_page = '';
-				}
-
-    			?><a href="#" class="mnwall_page <?php echo $active_page; ?>" data-page="<?php echo $i; ?>">
-					<span class="page-number"><?php echo $i; ?></span>
-					<div class="mnwall_page_loader mas_loader"> </div>
-				</a><?php 
-			}
-
-			if ($this->mas_pag_reset_filters) 
-			{
-				?><a href="#" class="mnwall-reset-btn">
-					<span><?php echo \JText::_('COM_MINITEKWALL_RESET_FILTERS'); ?></span>
-				</a><?php 
-			}
-		?></div><?php 
+		echo HTMLHelper::_('bootstrap.renderModal',
+			'zoomImage_'.$this->widgetID,
+			[
+				'title'       => '',
+				'closeButton' => true,
+				'height'      => '100%',
+				'width'       => 'auto',
+			],
+			'<img src="">'
+		);
 	}
 ?></div>

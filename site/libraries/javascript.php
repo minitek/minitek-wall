@@ -1,8 +1,8 @@
 <?php
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
+* @title		Minitek Wall
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -16,8 +16,44 @@ class MinitekWallLibJavascript
 		$document = \JFactory::getDocument();
 
 		$javascript = "
-			;(function($) {
-				$(function() {
+		(function(document, Joomla) {
+			'use strict';
+			
+			var createSpinner = function(divIdentifier)
+			{
+				var spinner_options = {
+					lines: 9,
+					length: 4,
+					width: 3,
+					radius: 3,
+					corners: 1,
+					rotate: 0,
+					direction: 1,
+					color: '#000',
+					speed: 1,
+					trail: 52,
+					shadow: false,
+					hwaccel: false,
+					className: 'spinner',
+					zIndex: 2e9,
+					top: '50%',
+					left: '50%'
+				};
+
+				var target = divIdentifier;
+
+				if (target)
+				{
+					var spinner = new Spinner(spinner_options).spin();
+					target.innerHTML = '';
+					target.appendChild(spinner.el);
+				}
+
+				return;
+			}
+
+			document.addEventListener('DOMContentLoaded', function() 
+			{
 		";
 
 			$javascript .= $this->loadJavascriptVars($masonry_params, $widgetID);
@@ -31,9 +67,31 @@ class MinitekWallLibJavascript
 
 			$javascript .= $this->initializeFiltersSortings($widgetID);
 
-		$javascript .= "
+			$javascript .= "
+				// Handle modal images 
+				var zoomImage = document.querySelector('#zoomImage_".$widgetID."');
+
+				if (!zoomImage)
+					return;
+
+				zoomImage.addEventListener('show.bs.modal', function(event)
+				{
+					// Button that triggered the modal
+					var button = event.relatedTarget;
+
+					// Extract info from data-* attributes
+					var title = button.getAttribute('data-title');
+					var image = button.getAttribute('data-src');
+
+					// Update the title 
+					zoomImage.querySelector('.modal-title').textContent = title;
+
+					// Update the image
+					zoomImage.querySelector('img').setAttribute('src', image);
 				})
-			})(jQuery);	
+			});
+
+		})(document, Joomla);
 		";
 
 		$document->addCustomTag('<script type="text/javascript">'.$javascript.'</script>');
@@ -42,6 +100,8 @@ class MinitekWallLibJavascript
 
 	public function loadJavascriptVars($masonry_params, $widgetID)
 	{
+		$utilities = new MinitekWallLibUtilities;
+		$source_id = $utilities->getSourceID($widgetID);
 		$site_path = \JURI::root();
 		$startLimit = $masonry_params['mas_starting_limit'];
 		$gridType = $masonry_params['mas_grid'];
@@ -67,26 +127,43 @@ class MinitekWallLibJavascript
 			$layoutMode = $masonry_params['mas_layout_mode'];
 		}
 
+		$wall_category_filters = $masonry_params['mas_category_filters'];
+		$wall_tag_filters = $masonry_params['mas_tag_filters'];
+		$wall_date_filters = $masonry_params['mas_date_filters'];
+		$wall_sortings = 
+			($masonry_params['mas_title_sorting']
+			|| $masonry_params['mas_category_sorting']
+			|| $masonry_params['mas_author_sorting']
+			|| $masonry_params['mas_date_sorting']
+			|| $masonry_params['mas_hits_sorting']
+			|| $masonry_params['mas_sorting_direction'])
+			? true : false;
+
+		$filters_enabled = ($wall_category_filters || $wall_tag_filters || $wall_date_filters || $wall_sortings) ? 'true' : 'false';
+		$filters_mode = isset($masonry_params['mas_filters_mode']) ? $masonry_params['mas_filters_mode'] : 'dynamic';
 		$closeFilters = isset($masonry_params['mas_close_filters']) ? $masonry_params['mas_close_filters'] : 0;
 		$equalHeight = isset($masonry_params['mas_force_equal_height']) ? $masonry_params['mas_force_equal_height'] : 0;
 
 		$javascript = "
 			// Global variables
 			var site_path = '".$site_path."';
+			var filtersEnabled = '".$filters_enabled."';
+			var filtersMode = '".$filters_mode."';
 			var closeFilters = ".$closeFilters.";
-			var _container = $('#mnwall_container_".$widgetID."');
+			var _container = document.querySelector('#mnwall_container_".$widgetID."');
 			var gridType = parseInt('".$gridType."', 10);
 			var grid_type = '".$grid_type."';
 			var layoutMode = '".$layoutMode."';
 			var hoverBox = '".$hoverBox."';
 			var db_position_columns = '".$masonry_params['mas_db_position_columns']."';
 			var equalHeight = '".$equalHeight."';
-			var sortBy = _container.attr('data-order');
-			var sortDirection = _container.attr('data-direction');
+			var sortBy = _container.getAttribute('data-order');
+			var sortDirection = _container.getAttribute('data-direction');
 			sortDirection = (sortDirection == null) ? '' : sortDirection = sortDirection.toLowerCase();
 			var sortAscending = sortDirection == 'asc' ? true : false;
+			var source_id = '".$source_id."';
 
-			if (sortBy == 'RAND()' || sortBy == 'rand' || sortBy == 'random')
+			if (sortBy == 'RAND()' || sortBy == 'rand' || sortBy == 'random' || source_id == 'rss')
 			{
 				sortBy = ['index'];
 				sortAscending = true;
@@ -94,7 +171,7 @@ class MinitekWallLibJavascript
 			else
 			{
 				sortBy = [sortBy, 'id', 'title'];
-			}	
+			}
 		";
 
 		return $javascript;
@@ -119,8 +196,8 @@ class MinitekWallLibJavascript
 
 				if (in_array('scale', $mas_effects))
 				{
-					$hiddenStyle .= 'transform: \'scale(0.001)\'';
-					$visibleStyle .= 'transform: \'scale(1)\'';
+					$hiddenStyle .= "transform: 'scale(0.001)'";
+					$visibleStyle .= "transform: 'scale(1)'";
 				}
 			}
 			else
@@ -159,101 +236,69 @@ class MinitekWallLibJavascript
 		}
 
 		$javascript = "
-			// Create spinner
-			var loader_opts = {
-				lines: 9,
-				length: 4,
-				width: 3,
-				radius: 3,
-				corners: 1,
-				rotate: 0,
-				direction: 1,
-				color: '#000',
-				speed: 1,
-				trail: 52,
-				shadow: false,
-				hwaccel: false,
-				className: 'spinner',
-				zIndex: 2e9,
-				top: '50%',
-				left: '50%'
-			};
-
-			$('#mnwall_loader_".$widgetID."').append(new Spinner(loader_opts).spin().el).show();
-
 			var transitionDuration = ".$transitionDuration.";
 			var transitionStagger = ".$transitionStagger.";
+			var iso_container = document.querySelector('#mnwall_iso_container_".$widgetID."');
+			var _wall;
 
-			// Initialize wall
-			var _wall = $('#mnwall_iso_container_".$widgetID."').imagesLoaded(function()
+			createSpinner(document.querySelector('#mnwall_loader_".$widgetID."'));
+			document.querySelector('#mnwall_loader_".$widgetID."').style.display = 'block';
+
+			imagesLoaded(iso_container, function()
 			{
-				// Instantiate isotope
-				_wall.isotope({
-					// General
+				_wall = new Isotope(iso_container, 
+				{
 					itemSelector: '.mnwall-item',
 					layoutMode: layoutMode,
-					// Vertical list
 					vertical: {
 						horizontalAlignment: 0
 					},
 					initLayout: false,
 					stagger: transitionStagger,
 					transitionDuration: transitionDuration,
-					".$effect."
+					".$effect.",
+					getSortData: {
+						ordering: '[data-ordering] parseInt',
+						fordering: '[data-fordering] parseInt',
+						hits: '[data-hits] parseInt',
+						title: '[data-title]',
+						id: '[data-id] parseInt',
+						alias: '[data-alias]',
+						date: '[data-date]',
+						modified: '[data-modified]',
+						start: '[data-start]',
+						finish: '[data-finish]',
+						category: '[data-category]',
+						author: '[data-author]',
+						index: '[data-index] parseInt',
+					}
 				});
-			});
 
-			// Initiate layout
-			$('.mnwall_container').show();
+				_container.style.display = 'block';
 
-			_wall.isotope({
-				getSortData: {
-					ordering: '[data-ordering] parseInt',
-					fordering: '[data-fordering] parseInt',
-					hits: '[data-hits] parseInt',
-					title: '[data-title]',
-					id: '[data-id] parseInt',
-					alias: '[data-alias]',
-					date: '[data-date]',
-					modified: '[data-modified]',
-					start: '[data-start]',
-					finish: '[data-finish]',
-					category: '[data-category]',
-					author: '[data-author]',
-					rating: '[data-rating] parseFloat',
-					comments: '[data-comments] parseInt',
-					sales: '[data-sales] parseInt',
-					points: '[data-points] parseInt',
-					friends: '[data-friends] parseInt',
-					members: '[data-members] parseInt',
-					confirmed: '[data-confirmed] parseInt',
-					tickets: '[data-tickets] parseInt',
-					index: '[data-index] parseInt',
-				},
-				sortBy: sortBy,
-				sortAscending: sortAscending
-			});
+				_wall.arrange({
+					sortBy: sortBy,
+					sortAscending: sortAscending
+				});
 
-			_wall.one('arrangeComplete', function() 
-			{
 				fixEqualHeights('all');
-				_container.css('opacity', 1);
-				$('#mnwall_loader_".$widgetID."').hide();
+				_container.style.opacity = 1;
+				document.querySelector('#mnwall_loader_".$widgetID."').style.display = 'none';
 			});
 
 			// Handle resize
-			var _temp;
+			var _resize;
 
-			$(window).resize(function()
+			window.addEventListener('resize', function() 
 			{
-				fixEqualHeights('all');
-				clearTimeout(_temp);
-				_temp = setTimeout(doneBrowserResizing, 500);
+				clearTimeout(_resize);
+				_resize = setTimeout(doneBrowserResizing, 500);
 			});
 
 			function doneBrowserResizing()
 			{
-  				_wall.isotope();
+				fixEqualHeights('all');
+				_wall.arrange();
 			}
 
 			function fixEqualHeights(items)
@@ -264,33 +309,36 @@ class MinitekWallLibJavascript
 
 					if (items == 'all')
 					{
-						_container.find('.mnwall-item-inner').each(function(index, item) 
+						_container.querySelectorAll('.mnwall-item-inner').forEach(function(a)
 						{
-							var _this_item_inner = $(this);
-							_this_item_inner.css('height', 'auto');
+							a.style.height = 'auto';
 
-							if (_this_item_inner.outerHeight() > max_height)
+							if (a.offsetHeight > max_height)
 							{
-								max_height = _this_item_inner.outerHeight();
+								max_height = a.offsetHeight;
 							}
 						});
 					}
 					else
 					{
-						$(items).each(function(index, item) 
+						items.forEach(function(a)
 						{
-							var _this_item_inner = $(this).find('.mnwall-item-inner');
-							_this_item_inner.css('height', 'auto');
+							var _this_item_inner = a.querySelector('.mnwall-item-inner');
+							_this_item_inner.style.height = 'auto';
 
-							if (_this_item_inner.outerHeight() > max_height)
+							if (_this_item_inner.offsetHeight > max_height)
 							{
-								max_height = _this_item_inner.outerHeight();
+								max_height = _this_item_inner.offsetHeight;
 							}
 						});
 					}
 
-					_container.find('.mnwall-item-inner').css('height', max_height + 'px');
-					setTimeout(function(){ _wall.isotope(); }, 1);
+					_container.querySelectorAll('.mnwall-item-inner').forEach(function(a)
+					{
+						a.style.height = max_height + 'px';
+					});
+
+					setTimeout(function(){ _wall.arrange(); }, 1);
 				}
 			}
 		";
@@ -307,175 +355,183 @@ class MinitekWallLibJavascript
 			// Hover box trigger
 			if (hoverBox == '1') 
 			{
-				var triggerHoverBox = function triggerHoverBox() 
+				var triggerHoverBox = function triggerHoverBox()
 				{
 					if (gridType == 99 || gridType == 98) 
 					{
 						// Hover effects
-						_container.find('.mnwall-item-inner-cont')
-						.mouseenter(function(e) 
+						_container.querySelectorAll('.mnwall-item').forEach(function(a)
 						{
-							if (hoverBoxEffect == 'no') 
+							a.addEventListener('mouseenter', function(e)
 							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('hoverShow');
-							}
-							else if (hoverBoxEffect == '1') 
+								if (hoverBoxEffect == 'no')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('hoverShow');
+								}
+								else if (hoverBoxEffect == '1')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('hoverFadeIn');
+								}
+								else if (hoverBoxEffect == '2')
+								{
+									this.querySelector('.mnwall-cover').classList.add('perspective');
+									this.querySelector('.mnwall-img-div').classList.add('flip flipY hoverFlipY');
+								}
+								else if (hoverBoxEffect == '3')
+								{
+									this.querySelector('.mnwall-cover').classList.add('perspective');
+									this.querySelector('.mnwall-img-div').classList.add('flip flipX hoverFlipX');
+								}
+								else if (hoverBoxEffect == '4')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('slideInRight');
+								}
+								else if (hoverBoxEffect == '5')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('slideInLeft');
+								}
+								else if (hoverBoxEffect == '6')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('slideInTop');
+								}
+								else if (hoverBoxEffect == '7')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('slideInBottom');
+								}
+								else if (hoverBoxEffect == '8')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('mnwzoomIn');
+								}
+							});
+							
+							a.addEventListener('mouseleave', function(e)
 							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('hoverFadeIn');
-							}
-							else if (hoverBoxEffect == '2') 
-							{
-								$(this).closest('.mnwall-item').find('.mnwall-cover').stop().addClass('perspective');
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-img-div').stop().addClass('flip flipY hoverFlipY');
-							}
-							else if (hoverBoxEffect == '3') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-cover').stop().addClass('perspective');
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-img-div').stop().addClass('flip flipX hoverFlipX');
-							}
-							else if (hoverBoxEffect == '4') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('slideInRight');
-							}
-							else if (hoverBoxEffect == '5') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('slideInLeft');
-							}
-							else if (hoverBoxEffect == '6') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('slideInTop');
-							}
-							else if (hoverBoxEffect == '7') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('slideInBottom');
-							}
-							else if (hoverBoxEffect == '8') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().addClass('mnwzoomIn');
-							}
-						}).mouseleave(function (e) 
-						{
-							if (hoverBoxEffect == 'no') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('hoverShow');
-							}
-							else if (hoverBoxEffect == '1') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('hoverFadeIn');
-							}
-							else if (hoverBoxEffect == '2') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-img-div').stop().removeClass('hoverFlipY');
-							}
-							else if (hoverBoxEffect == '3') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-img-div').stop().removeClass('hoverFlipX');
-							}
-							else if (hoverBoxEffect == '4') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('slideInRight');
-							}
-							else if (hoverBoxEffect == '5') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('slideInLeft');
-							}
-							else if (hoverBoxEffect == '6') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('slideInTop');
-							}
-							else if (hoverBoxEffect == '7') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('slideInBottom');
-							}
-							else if (hoverBoxEffect == '8') 
-							{
-								$(this).closest('.mnwall-item-outer-cont').find('.mnwall-hover-box').stop().removeClass('mnwzoomIn');
-							}
+								if (hoverBoxEffect == 'no')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('hoverShow');
+								}
+								else if (hoverBoxEffect == '1')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('hoverFadeIn');
+								}
+								else if (hoverBoxEffect == '2')
+								{
+									this.querySelector('.mnwall-img-div').classList.remove('hoverFlipY');
+								}
+								else if (hoverBoxEffect == '3')
+								{
+									this.querySelector('.mnwall-img-div').classList.remove('hoverFlipX');
+								}
+								else if (hoverBoxEffect == '4')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInRight');
+								}
+								else if (hoverBoxEffect == '5')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInLeft');
+								}
+								else if (hoverBoxEffect == '6')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInTop');
+								}
+								else if (hoverBoxEffect == '7')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInBottom');
+								}
+								else if (hoverBoxEffect == '8')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('mnwzoomIn');
+								}
+							});
 						});
 					}
 
-					if (gridType != 98 && gridType != 99) 
+					if (gridType != 98 && gridType != 99)
 					{
 						// Hover effects
-						_container.find('.mnwall-item')
-						.mouseenter(function(e) 
+						_container.querySelectorAll('.mnwall-item').forEach(function(a)
 						{
-							if (hoverBoxEffect == 'no') 
+							a.addEventListener('mouseenter', function(e)
 							{
-								$(this).find('.mnwall-hover-box').stop().addClass('hoverShow');
-							}
-							else if (hoverBoxEffect == '1') 
+								if (hoverBoxEffect == 'no')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('hoverShow');
+								}
+								else if (hoverBoxEffect == '1')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('hoverFadeIn');
+								}
+								else if (hoverBoxEffect == '2')
+								{
+									this.classList.add('perspective');
+									this.querySelector('.mnwall-item-outer-cont').classList.add('flip flipY hoverFlipY');
+								}
+								else if (hoverBoxEffect == '3')
+								{
+									this.classList.add('perspective');
+									this.querySelector('.mnwall-item-outer-cont').classList.add('flip flipX hoverFlipX');
+								}
+								else if (hoverBoxEffect == '4')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('animated slideInRight');
+								}
+								else if (hoverBoxEffect == '5')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('animated slideInLeft');
+								}
+								else if (hoverBoxEffect == '6')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('animated slideInTop');
+								}
+								else if (hoverBoxEffect == '7')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('animated slideInBottom');
+								}
+								else if (hoverBoxEffect == '8')
+								{
+									this.querySelector('.mnwall-hover-box').classList.add('animated mnwzoomIn');
+								}
+							});
+							
+							a.addEventListener('mouseleave', function(e)
 							{
-								$(this).find('.mnwall-hover-box').stop().addClass('hoverFadeIn');
-							}
-							else if (hoverBoxEffect == '2') 
-							{
-								$(this).stop().addClass('perspective');
-								$(this).find('.mnwall-item-outer-cont').stop().addClass('flip flipY hoverFlipY');
-							}
-							else if (hoverBoxEffect == '3') 
-							{
-								$(this).stop().addClass('perspective');
-								$(this).find('.mnwall-item-outer-cont').stop().addClass('flip flipX hoverFlipX');
-							}
-							else if (hoverBoxEffect == '4') 
-							{
-								$(this).find('.mnwall-hover-box').stop().addClass('animated slideInRight');
-							}
-							else if (hoverBoxEffect == '5') 
-							{
-								$(this).find('.mnwall-hover-box').stop().addClass('animated slideInLeft');
-							}
-							else if (hoverBoxEffect == '6') 
-							{
-								$(this).find('.mnwall-hover-box').stop().addClass('animated slideInTop');
-							}
-							else if (hoverBoxEffect == '7') 
-							{
-								$(this).find('.mnwall-hover-box').stop().addClass('animated slideInBottom');
-							}
-							else if (hoverBoxEffect == '8') 
-							{
-								$(this).find('.mnwall-hover-box').stop().addClass('animated mnwzoomIn');
-							}
-						}).mouseleave(function (e) 
-						{
-							if (hoverBoxEffect == 'no') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('hoverShow');
-							}
-							else if (hoverBoxEffect == '1') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('hoverFadeIn');
-							}
-							else if (hoverBoxEffect == '2') 
-							{
-								$(this).find('.mnwall-item-outer-cont').stop().removeClass('hoverFlipY');
-							}
-							else if (hoverBoxEffect == '3') 
-							{
-								$(this).find('.mnwall-item-outer-cont').stop().removeClass('hoverFlipX');
-							}
-							else if (hoverBoxEffect == '4') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('slideInRight');
-							}
-							else if (hoverBoxEffect == '5') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('slideInLeft');
-							}
-							else if (hoverBoxEffect == '6') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('slideInTop');
-							}
-							else if (hoverBoxEffect == '7') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('slideInBottom');
-							}
-							else if (hoverBoxEffect == '8') 
-							{
-								$(this).find('.mnwall-hover-box').stop().removeClass('mnwzoomIn');
-							}
+								if (hoverBoxEffect == 'no')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('hoverShow');
+								}
+								else if (hoverBoxEffect == '1')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('hoverFadeIn');
+								}
+								else if (hoverBoxEffect == '2')
+								{
+									this.querySelector('.mnwall-item-outer-cont').classList.remove('hoverFlipY');
+								}
+								else if (hoverBoxEffect == '3')
+								{
+									this.querySelector('.mnwall-item-outer-cont').classList.remove('hoverFlipX');
+								}
+								else if (hoverBoxEffect == '4')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInRight');
+								}
+								else if (hoverBoxEffect == '5')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInLeft');
+								}
+								else if (hoverBoxEffect == '6')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInTop');
+								}
+								else if (hoverBoxEffect == '7')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('slideInBottom');
+								}
+								else if (hoverBoxEffect == '8')
+								{
+									this.querySelector('.mnwall-hover-box').classList.remove('mnwzoomIn');
+								}
+							});
 						});
 					}
 				}
@@ -493,65 +549,73 @@ class MinitekWallLibJavascript
 			// Filters
 			var filters = {};
 
-			$('#mnwall_iso_filters_".$widgetID."').on('click', '.mnwall-filter', function(event)
+			// Bind filter button click
+			if (_container.querySelector('.mnwall_iso_filters_cont'))
 			{
-				event.preventDefault();
-
-				// Show filter name in dropdown
-				if ($(this).parents('.mnwall_iso_dropdown').length)
+				_container.querySelector('.mnwall_iso_filters_cont').addEventListener('click', function(e)
 				{
-					var data_filter_attr = $(this).attr('data-filter');
+					e.preventDefault();
 
-					if (typeof data_filter_attr !== typeof undefined && data_filter_attr !== false) 
+					if (e.target && e.target.classList.contains('mnwall-filter'))
 					{
-    					if (data_filter_attr.length)
+						var _this = e.target;
+						
+						// Show filter name in dropdown
+						if (_this.closest('.mnwall_iso_dropdown'))
 						{
-							var filter_text = $(this).text();
-						}
-						else
-						{
-							var filter_text = $(this).closest('.mnwall_iso_dropdown').find('.dropdown-label span').attr('data-label');
+							var data_filter_attr = _this.getAttribute('data-filter');
+
+							if (typeof data_filter_attr !== typeof undefined && data_filter_attr !== false)
+							{
+								if (data_filter_attr.length)
+								{
+									var filter_text = _this.textContent;
+								}
+								else
+								{
+									var filter_text = _this.closest('.mnwall_iso_dropdown').querySelector('.dropdown-label span').getAttribute('data-label');
+								}
+
+								_this.closest('.mnwall_iso_dropdown').querySelector('.dropdown-label span span').textContent = filter_text;
+							}
 						}
 
-						$(this).closest('.mnwall_iso_dropdown').find('.dropdown-label span span').text(filter_text);
+						// Get group key
+						var filterGroup = _this.closest('.button-group').getAttribute('data-filter-group');
+
+						// Set filter for group
+						filters[ filterGroup ] = _this.getAttribute('data-filter');
+
+						// Combine filters
+						var filterValue = '';
+
+						for (var prop in filters)
+						{
+							filterValue += filters[ prop ];
+						}
+
+						// Set filter for Isotope
+						_wall.arrange({
+							filter: filterValue
+						});
 					}
-				}
-
-				var \$this = $(this);
-
-				// get group key
-				var \$buttonGroup = \$this.parents('.button-group');
-				var filterGroup = \$buttonGroup.attr('data-filter-group');
-
-				// set filter for group
-				filters[ filterGroup ] = \$this.attr('data-filter');
-
-				// combine filters
-				var filterValue = '';
-
-				for (var prop in filters) 
-				{
-					filterValue += filters[ prop ];
-				}
-
-				// set filter for Isotope
-				_wall.isotope({
-					filter: filterValue
 				});
-			});
+			}
 
 			// Change active class on filter buttons
-			var active_Filters = function active_Filters() 
+			var active_Filters = function active_Filters()
 			{
-				var \$activeFilters = _container.find('.button-group').each(function(i, buttonGroup) 
+				_container.querySelectorAll('.button-group').forEach(function(buttonGroup)
 				{
-					var \$buttonGroup = $(buttonGroup);
-
-					\$buttonGroup.on('click', 'a', function(event) 
+					buttonGroup.querySelectorAll('.mnwall-filter').forEach(function(a)
 					{
-						event.preventDefault();
-						\$buttonGroup.find('.mnw_filter_active').removeClass('mnw_filter_active');
-						$(this).addClass('mnw_filter_active');
+						a.addEventListener('click', function(e)
+						{
+							e.preventDefault();
+					
+							buttonGroup.querySelector('.mnw_filter_active').classList.remove('mnw_filter_active');
+							a.classList.add('mnw_filter_active');
+						});
 					});
 				});
 			};
@@ -559,17 +623,15 @@ class MinitekWallLibJavascript
 			active_Filters();
 
 			// Dropdown filter list
-			var dropdown_Filters = function dropdown_Filters() 
+			var dropdown_Filters = function dropdown_Filters()
 			{
-				var \$dropdownFilters = _container.find('.mnwall_iso_filters .mnwall_iso_dropdown').each(function(i, dropdownGroup) 
+				_container.querySelector('.mnwall_iso_filters_cont').querySelectorAll('.mnwall_iso_dropdown').forEach(function(dropdownGroup)
 				{
-					var \$dropdownGroup = $(dropdownGroup);
-
-					\$dropdownGroup.on('click', '.dropdown-label', function(event) 
+					dropdownGroup.querySelector('.dropdown-label').addEventListener('click', function(e)
 					{
-						event.preventDefault();
+						e.preventDefault();
 
-						if ($(this).closest('.mnwall_iso_dropdown').hasClass('expanded'))
+						if (this.closest('.mnwall_iso_dropdown').classList.contains('expanded'))
 						{
 							var filter_open = true;
 						}
@@ -578,45 +640,47 @@ class MinitekWallLibJavascript
 							var filter_open = false;
 						}
 
-						$('.mnwall_iso_dropdown').removeClass('expanded');
+						_container.querySelectorAll('.mnwall_iso_dropdown').forEach(function(a)
+						{
+							a.classList.remove('expanded');
+						});
 
 						if (!filter_open)
 						{
-							$(this).closest('.mnwall_iso_dropdown').addClass('expanded');
+							this.closest('.mnwall_iso_dropdown').classList.add('expanded');
 						}
 					});
 				});
 
-				$(document).mouseup(function (e)
+				// Close dropdowns
+				document.addEventListener('mouseup', function(e)
 				{
-					_target = e.target;
-					var \$dropdowncontainer = _container.find('.mnwall_iso_dropdown');
-					var \$filtercontainer = _container.find('.button-group');
-					var \$sortingcontainer = _container.find('.sorting-group');
+					var _target = e.target;
+					var dropdowncontainers = _container.querySelectorAll('.mnwall_iso_dropdown');
+
+					if (!dropdowncontainers)
+						return;
 
 					if (closeFilters === 0)
 					{
-						// Close dropdown when click outside
-						if (\$filtercontainer.has(e.target).length === 0
-							&& \$sortingcontainer.has(e.target).length === 0
-							&& _target.closest('div')
-							&& !_target.closest('div').classList.contains('dropdown-label')
-							&& \$dropdowncontainer.has(e.target).length === 0)
+						// Close when click outside
+						if (!_target.closest('.mnwall_iso_dropdown'))
 						{
-							\$dropdowncontainer.removeClass('expanded');
+							dropdowncontainers.forEach(function(a)
+							{
+								a.classList.remove('expanded');
+							});
 						}
 					}
 					else
 					{
-						// Close dropdown when click inside
-						if ((\$filtercontainer.has(e.target).length === 0
-							&& \$sortingcontainer.has(e.target).length === 0
-							&& _target.closest('div')
-							&& !_target.closest('div').classList.contains('dropdown-label')
-							&& \$dropdowncontainer.has(e.target).length === 0)
-							|| _target.classList.contains('mnwall-filter'))
+						// Close when click inside
+						if (_target.closest('.mnwall_iso_dropdown') && !_target.closest('.dropdown-label'))
 						{
-							\$dropdowncontainer.removeClass('expanded');
+							dropdowncontainers.forEach(function(a)
+							{
+								a.classList.remove('expanded');
+							});
 						}
 					}
 				});
@@ -625,77 +689,73 @@ class MinitekWallLibJavascript
 			dropdown_Filters();
 
 			// Bind sort button click
-			_container.find('.sorting-group-filters').on('click', '.mnwall-filter', function(event) 
+			if (_container.querySelector('.sorting-group-filters'))
 			{
-				event.preventDefault();
-				var sortValue = $(this).attr('data-sort-value');
-
-				// Add second ordering: id
-				sortValue = [sortValue, 'id'];
-
-				// set filter for Isotope
-				_wall.isotope({
-					sortBy: sortValue
-				});
-			});
-
-			// Change active class on sorting filters
-			_container.find('.sorting-group-filters').each(function(i, sortingGroup) 
-			{
-				var \$sortingGroup = $(sortingGroup);
-
-				\$sortingGroup.on('click', '.mnwall-filter', function() 
+				_container.querySelector('.sorting-group-filters').querySelectorAll('.mnwall-filter').forEach(function(a) 
 				{
-					\$sortingGroup.find('.mnw_filter_active').removeClass('mnw_filter_active');
-					$(this).addClass('mnw_filter_active');
+					a.addEventListener('click', function(e)
+					{
+						e.preventDefault();
+						var sortValue = this.getAttribute('data-sort-value');
+
+						// Add second ordering: id
+						sortValue = [sortValue, 'id'];
+
+						// set filter for Isotope
+						_wall.arrange({
+							sortBy: sortValue
+						});
+
+						// Change active class on sorting filters
+						_container.querySelector('.sorting-group-filters').querySelector('.mnw_filter_active').classList.remove('mnw_filter_active');
+						this.classList.add('mnw_filter_active');
+					});
 				});
-			});
+			}
 
 			// Bind sorting direction button click
-			_container.find('.sorting-group-direction').on('click', '.mnwall-filter', function(event) 
+			if (_container.querySelector('.sorting-group-direction'))
 			{
-				event.preventDefault();
-				var sortDirection = $(this).attr('data-sort-value');
-
-				if (sortDirection == 'asc') 
+				_container.querySelector('.sorting-group-direction').querySelectorAll('.mnwall-filter').forEach(function(a)
 				{
-					sort_Direction = true;
-				} 
-				else 
-				{
-					sort_Direction = false;
-				}
+					a.addEventListener('click', function(e)
+					{
+						e.preventDefault();
 
-				// set direction
-				_wall.isotope({
-					sortAscending: sort_Direction
+						var sortDirection = this.getAttribute('data-sort-value');
+						var sort_Direction;
+
+						if (sortDirection == 'asc')
+						{
+							sort_Direction = true;
+						} 
+						else
+						{
+							sort_Direction = false;
+						}
+
+						// set direction
+						_wall.arrange({
+							sortAscending: sort_Direction
+						});
+
+						// Change active class on sorting direction
+						_container.querySelector('.sorting-group-direction').querySelector('.mnw_filter_active').classList.remove('mnw_filter_active');
+						this.classList.add('mnw_filter_active');
+					});
 				});
-			});
-
-			// Change active class on sorting direction
-			_container.find('.sorting-group-direction').each(function(i, sortingDirection) 
-			{
-				var \$sortingDirection = $(sortingDirection);
-
-				\$sortingDirection.on('click', '.mnwall-filter', function() 
-				{
-					\$sortingDirection.find('.mnw_filter_active').removeClass('mnw_filter_active');
-					$(this).addClass('mnw_filter_active');
-				});
-			});
+			}
 
 			// Dropdown sorting list
-			var dropdown_Sortings = function dropdown_Sortings() 
+			var dropdown_Sortings = function dropdown_Sortings()
 			{
-				var \$dropdownSortings = _container.find('.mnwall_iso_sortings .mnwall_iso_dropdown').each(function(i, dropdownSorting) 
+				_container.querySelector('.mnwall_iso_sortings').querySelectorAll('.mnwall_iso_dropdown').forEach(function(dropdownSorting)
 				{
-					var \$dropdownSorting = $(dropdownSorting);
-
-					\$dropdownSorting.on('click', '.dropdown-label', function(event) 
+					dropdownSorting.querySelector('.dropdown-label').addEventListener('click', function(e)
 					{
-						event.preventDefault();
+						e.preventDefault();
 
-						if ($(this).closest('.mnwall_iso_dropdown').hasClass('expanded'))
+						if (this.closest('.mnwall_iso_dropdown').classList.contains('expanded'))
 						{
 							var sorting_open = true;
 						}
@@ -704,11 +764,14 @@ class MinitekWallLibJavascript
 							var sorting_open = false;
 						}
 
-						$('.mnwall_iso_dropdown').removeClass('expanded');
+						_container.querySelectorAll('.mnwall_iso_dropdown').forEach(function(a)
+						{
+							a.classList.remove('expanded');
+						});
 
 						if (!sorting_open)
 						{
-							$(this).closest('.mnwall_iso_dropdown').addClass('expanded');
+							this.closest('.mnwall_iso_dropdown').classList.add('expanded');
 						}
 					});
 				});
@@ -719,52 +782,52 @@ class MinitekWallLibJavascript
 			// Reset Filters and sortings
 			function reset_filters()
 			{
-				var \$resetFilters = _container.find('.button-group').each(function(i, buttonGroup) 
+				_container.querySelectorAll('.button-group').forEach(function(buttonGroup)
 				{
-					var \$buttonGroup = $(buttonGroup);
-					\$buttonGroup.find('.mnw_filter_active').removeClass('mnw_filter_active');
-					\$buttonGroup.find('li:first-child a').addClass('mnw_filter_active');
+					buttonGroup.querySelector('.mnw_filter_active').classList.remove('mnw_filter_active');
+					buttonGroup.querySelector('li:first-child a').classList.add('mnw_filter_active');
 
 					// Reset filters
-					var filterGroup = \$buttonGroup.attr('data-filter-group');
+					var filterGroup = buttonGroup.getAttribute('data-filter-group');
 					filters[ filterGroup ] = '';
 				});
 
 				// Reset dropdown filters text
-				_container.find('.mnwall_iso_dropdown').each(function(i, dropdownGroup) 
+				_container.querySelectorAll('.mnwall_iso_dropdown').forEach(function(dropdownGroup)
 				{
-					var filter_text = $(dropdownGroup).find('.dropdown-label span').attr('data-label');
-					$(dropdownGroup).find('.dropdown-label span span').text(filter_text);
+					var filter_text = dropdownGroup.querySelector('.dropdown-label span').getAttribute('data-label');
+					dropdownGroup.querySelector('.dropdown-label span span').textContent = filter_text;
 				});
 
 				// Get first item in sortBy array
-				var \$resetSortings = _container.find('.sorting-group-filters').each(function(i, sortingGroup) 
+				_container.querySelectorAll('.sorting-group-filters').forEach(function(sortingGroup)
 				{
-					var \$sortingGroup = $(sortingGroup);
-					\$sortingGroup.find('.mnw_filter_active').removeClass('mnw_filter_active');
-					\$sortingGroup.find('li a[data-sort-value=\"'+sortBy[0]+'\"]').addClass('mnw_filter_active');
+					sortingGroup.querySelector('.mnw_filter_active').classList.remove('mnw_filter_active');
+					sortingGroup.querySelector('li a[data-sort-value=\"'+sortBy[0]+'\"]').classList.add('mnw_filter_active');
 				});
 
-				var \$resetSortingDirection = _container.find('.sorting-group-direction').each(function(i, sortingGroupDirection) 
+				_container.querySelectorAll('.sorting-group-direction').forEach(function(sortingGroupDirection)
 				{
-					var \$sortingGroupDirection = $(sortingGroupDirection);
-					\$sortingGroupDirection.find('.mnw_filter_active').removeClass('mnw_filter_active');
-					\$sortingGroupDirection.find('li a[data-sort-value=\"'+sortDirection+'\"]').addClass('mnw_filter_active');
+					sortingGroupDirection.querySelector('.mnw_filter_active').classList.remove('mnw_filter_active');
+					sortingGroupDirection.querySelector('li a[data-sort-value=\"'+sortDirection+'\"]').classList.add('mnw_filter_active');
 				});
 
 				// set filter for Isotope
-				_wall.isotope({
+				_wall.arrange({
 					filter: '',
 					sortBy: sortBy,
 					sortAscending: sortAscending
 				});
 			}
 
-			$('#mnwall_reset_".$widgetID.", #mnwall_container_".$widgetID." .mnwall-reset-btn').on('click', '', function(event)
+			document.querySelectorAll('#mnwall_reset_".$widgetID.", #mnwall_container_".$widgetID." .mnwall-reset-btn').forEach(function(a)
 			{
-				event.preventDefault();
-				
-				reset_filters();
+				a.addEventListener('click', function(e)
+				{
+					e.preventDefault();
+
+					reset_filters();
+				});
 			});
 		";
 
