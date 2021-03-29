@@ -111,16 +111,6 @@ class HtmlView extends BaseHtmlView
 			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/packery-mode.pkgd.min.js" type="text/javascript"></script>');
 			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/spin.min.js" type="text/javascript"></script>');
 
-			// Get lightbox
-			$lightbox = false;
-
-			if ($masonry_params['mas_hb'] && isset($masonry_params['mas_hb_lightbox']) && $masonry_params['mas_hb_lightbox'] && $this->params->get('load_lightbox', true))
-			{
-				$lightbox = true;
-				$document->addStyleSheet(\JURI::base(true).'/components/com_minitekwall/assets/lightbox/lightbox.min.css');
-				$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/lightbox/lightbox.min.js" type="text/javascript"></script>');
-			}
-
 			// Add javascript.php
 			$masonry_javascript = $this->model->masonry_javascript;
 			$masonry_javascript->loadMasonryJavascript($masonry_params, $this->widgetID);
@@ -411,11 +401,11 @@ class HtmlView extends BaseHtmlView
 		$this->hoverBoxAuthor = $masonry_params['mas_hb_author'];
 		$this->hoverBoxHits = $masonry_params['mas_hb_hits'];
 		$this->hoverBoxLinkButton = $masonry_params['mas_hb_link'];
-		$this->hoverBoxLightboxButton = false;
+		$this->hoverBoxZoomButton = false;
 
-		if (isset($masonry_params['mas_hb_lightbox']))
+		if (isset($masonry_params['mas_hb_zoom']))
 		{
-			$this->hoverBoxLightboxButton = $masonry_params['mas_hb_lightbox'];
+			$this->hoverBoxZoomButton = $masonry_params['mas_hb_zoom'];
 		}
 
 		// Hover effects

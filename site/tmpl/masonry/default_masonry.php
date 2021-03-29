@@ -345,7 +345,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								</div><?php 
 							}
 
-							if ($this->hoverBoxLinkButton || $this->hoverBoxLightboxButton) 
+							if ($this->hoverBoxLinkButton || $this->hoverBoxZoomButton) 
 							{
 								?><div class="mnwall-item-icons"><?php 
 									if ($this->hoverBoxLinkButton) 
@@ -358,9 +358,9 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										}
 									}
 
-									if ($this->hoverBoxLightboxButton && (isset($item->itemImage) && $item->itemImage && $this->mas_images)) 
+									if ($this->hoverBoxZoomButton && (isset($item->itemImage) && $item->itemImage && $this->mas_images)) 
 									{
-										?><a href="<?php echo $item->itemImage; ?>" class="mnwall-lightbox mnwall-item-lightbox-icon" data-lightbox="lb-<?php echo $this->widgetID; ?>" data-title="<?php echo htmlspecialchars($item->itemTitleRaw); ?>">
+										?><a data-bs-toggle="modal" data-bs-target="#zoomImage_<?php echo $this->widgetID; ?>" class="mnwall-zoom mnwall-item-zoom-icon" data-src="<?php echo $item->itemImage; ?>" data-title="<?php echo htmlspecialchars($item->itemTitleRaw); ?>">
 											<i class="fa fa-search"></i>
 										</a><?php 
 									}
