@@ -64,7 +64,6 @@ class MinitekWallComponent extends MVCComponent implements BootableExtensionInte
 		$document->addStyleSheet(\JURI::root(true).'/administrator/components/com_minitekwall/assets/css/style.css');
 
 		// Add js
-		\JHtml::_('jquery.framework');
 		$document->addScript(\JURI::root(true).'/administrator/components/com_minitekwall/assets/js/script.js');
 	}
 
