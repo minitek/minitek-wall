@@ -6,7 +6,7 @@
 	<copyright>(C) 2011 - 2021 Minitek.gr. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later.</license>
 	<authorUrl>https://www.minitek.gr/</authorUrl>
-	<version>4.0.19</version>
+	<version>4.0.20</version>
 	<namespace path="src">Joomla\Component\MinitekWall</namespace>
 	<description>
 	<![CDATA[
