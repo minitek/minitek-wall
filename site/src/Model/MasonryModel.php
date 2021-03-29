@@ -27,7 +27,6 @@ class MasonryModel extends BaseDatabaseModel
 	var $masonry_options = null;
 	var $masonry_filters = null;
 	var $responsive_masonry = null;
-	var $masonry_javascript = null;
 
 	function __construct()
 	{
@@ -38,7 +37,6 @@ class MasonryModel extends BaseDatabaseModel
 		$this->masonry_options = $this->getMasonryOptionsLib();
 		$this->masonry_filters = $this->getMasonryFiltersLib();
 		$this->responsive_masonry = $this->getResponsiveMasonryLib();
-		$this->masonry_javascript = $this->getMasonryJavascriptLib();
 
 		parent::__construct();
 	}
@@ -76,34 +74,6 @@ class MasonryModel extends BaseDatabaseModel
 		$options = new \MinitekWallLibResponsive;
 
 		return $options;
-	}
-
-	public function getMasonryJavascriptLib()
-	{
-		$options = new \MinitekWallLibJavascript;
-
-		return $options;
-	}
-
-	public function getItemsCount($widgetID)
-	{
-		// Get source params
-		$source_id = $this->utilities->getSourceID($widgetID);
-		$source_params = $this->utilities->getSourceParams($widgetID);
-
-		// Limits
-		$masonry_params = $this->utilities->getMasonryParams($widgetID);
-		$globalLimit = (int)$masonry_params['mas_global_limit'];
-
-		// Count items
-		$result = $this->source->getItems(true, $source_params, $globalLimit, false, false);
-
-		if (isset($result))
-		{
-			return $result;
-		}
-
-		return false;
 	}
 
 	public function getItems($widgetID)
