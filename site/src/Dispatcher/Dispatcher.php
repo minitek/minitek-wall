@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @title        Minitek Wall
+* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -11,8 +11,8 @@ namespace Joomla\Component\MinitekWall\Site\Dispatcher;
 
 defined('JPATH_PLATFORM') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Dispatcher\ComponentDispatcher;
-use Joomla\CMS\Language\Text;
 
 /**
  * ComponentDispatcher class for com_minitekwall
@@ -33,13 +33,12 @@ class Dispatcher extends ComponentDispatcher
 		// Get component params
 		jimport( 'joomla.application.component.helper' );
 		$params = \JComponentHelper::getParams('com_minitekwall');
-
+		
 		// Load Font Awesome
-		if ($params->get('load_fontawesome'))
-		{
-			$document = \JFactory::getDocument();
-			$document->addStyleSheet('https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css');
-		}
+		$wa = Factory::getDocument()->getWebAssetManager();
+
+		if ($params->get('load_fontawesome', 1))
+			$wa->useScript('com_minitekwall.fontawesome');
 
 		parent::dispatch();
 	}

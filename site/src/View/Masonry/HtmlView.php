@@ -1,7 +1,7 @@
 <?php
 /**
 * @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
 * @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -102,18 +102,17 @@ class HtmlView extends BaseHtmlView
 
 		if ($page === '1')
 		{
-			// Load masonry css
-			$document->addStyleSheet(\JURI::base(true).'/components/com_minitekwall/assets/css/masonry.css');
-
-			// Add scripts
-			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/imagesloaded.pkgd.min.js" type="text/javascript"></script>');
-			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/isotope.pkgd.min.js" type="text/javascript"></script>');
-			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/packery-mode.pkgd.min.js" type="text/javascript"></script>');
-			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/spin.min.js" type="text/javascript"></script>');
-			$document->addCustomTag('<script src="'.\JURI::base(true).'/components/com_minitekwall/assets/js/mwall.js" type="text/javascript"></script>');
-
+			// Add assets
+			$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+			$wa->useStyle('com_minitekwall.minitekwall')
+				->useScript('com_minitekwall.imagesloaded')
+				->useScript('com_minitekwall.isotope')
+				->useScript('com_minitekwall.packery-mode')
+				->useScript('com_minitekwall.spin')
+				->useScript('com_minitekwall.minitekwall');
+				
 			// Initialize Mwall
-			$document->addCustomTag("<script>
+			$document->addScriptDeclaration("
 			document.addEventListener('DOMContentLoaded', function() 
 			{
 				Mwall.initialise(
@@ -121,7 +120,7 @@ class HtmlView extends BaseHtmlView
 					".$this->widgetID."
 				);
 			});
-			</script>");
+			");
 
 			// Responsive Utilities
 			$responsive_masonry = $this->model->responsive_masonry;

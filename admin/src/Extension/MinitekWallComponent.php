@@ -13,7 +13,9 @@ defined('_JEXEC') or die;
 
 if (!defined('DS'))
 	define('DS',DIRECTORY_SEPARATOR);
-	
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Extension\BootableExtensionInterface;
 use Joomla\CMS\Extension\MVCComponent;
 use Joomla\CMS\HTML\HTMLRegistryAwareTrait;
@@ -46,7 +48,10 @@ class MinitekWallComponent extends MVCComponent implements BootableExtensionInte
 	 */
 	public function boot(ContainerInterface $container)
 	{
-		$this->loadAssets();
+		if (Factory::getApplication()->isClient('administrator'))
+		{
+			$this->loadAssets();
+		}
 	}
 
 	/**
@@ -58,13 +63,9 @@ class MinitekWallComponent extends MVCComponent implements BootableExtensionInte
 	 */
 	protected function loadAssets()
 	{
-		$document = \JFactory::getDocument();
-
-		// Add stylesheets
-		$document->addStyleSheet(\JURI::root(true).'/administrator/components/com_minitekwall/assets/css/style.css');
-
-		// Add js
-		$document->addScript(\JURI::root(true).'/administrator/components/com_minitekwall/assets/js/script.js');
+		$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+		$wa->useStyle('com_minitekwall.admin-minitekwall')
+			->useScript('com_minitekwall.admin-minitekwall');
 	}
 
 	/**
@@ -77,9 +78,9 @@ class MinitekWallComponent extends MVCComponent implements BootableExtensionInte
 	protected function checkAccess()
 	{
 		// Access check
-		if (!\JFactory::getUser()->authorise('core.manage', 'com_minitekwall'))
+		if (!Factory::getUser()->authorise('core.manage', 'com_minitekwall'))
 		{
-			throw new \Joomla\CMS\Access\Exception\Notallowed(\JText::_('JERROR_ALERTNOAUTHOR'), 403);
+			throw new \Joomla\CMS\Access\Exception\Notallowed(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 		}
 	}
 }
