@@ -34,10 +34,6 @@ class Dispatcher extends ComponentDispatcher
 		jimport( 'joomla.application.component.helper' );
 		$params = \JComponentHelper::getParams('com_minitekwall');
 
-		// Load jQuery
-		if ($params->get('load_jquery'))
-			\JHtml::_('jquery.framework');
-
 		// Load Font Awesome
 		if ($params->get('load_fontawesome'))
 		{
