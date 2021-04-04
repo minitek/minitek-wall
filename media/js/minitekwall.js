@@ -689,12 +689,12 @@
 
         initModalMessages()
         {
-            var zoomImage = document.querySelector('#zoomImage_' + this.widgetId);
+            var zoomWall = document.querySelector('#zoomWall_' + this.widgetId);
 
-            if (!zoomImage)
+            if (!zoomWall)
                 return;
 
-            zoomImage.addEventListener('show.bs.modal', function(e)
+            zoomWall.addEventListener('show.bs.modal', function(e)
             {
                 // Button that triggered the modal
                 var button = e.relatedTarget;
@@ -704,10 +704,10 @@
                 var image = button.getAttribute('data-src');
 
                 // Update the title 
-                zoomImage.querySelector('.modal-title').textContent = title;
+                zoomWall.querySelector('.modal-title').textContent = title;
 
                 // Update the image
-                zoomImage.querySelector('img').setAttribute('src', image);
+                zoomWall.querySelector('img').setAttribute('src', image);
             });
         }
     }

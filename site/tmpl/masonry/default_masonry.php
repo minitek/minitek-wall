@@ -360,7 +360,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 									if ($this->hoverBoxZoomButton && (isset($item->itemImage) && $item->itemImage && $this->mas_images)) 
 									{
-										?><a data-bs-toggle="modal" data-bs-target="#zoomImage_<?php echo $this->widgetID; ?>" class="mnwall-zoom mnwall-item-zoom-icon" data-src="<?php echo $item->itemImage; ?>" data-title="<?php echo htmlspecialchars($item->itemTitleRaw); ?>">
+										?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->widgetID; ?>" class="mnwall-zoom mnwall-item-zoom-icon" data-src="<?php echo $item->itemImage; ?>" data-title="<?php echo htmlspecialchars($item->itemTitleRaw); ?>">
 											<i class="fa fa-search"></i>
 										</a><?php 
 									}
