@@ -12,13 +12,48 @@
             this.options = options;
             this.widgetId = parseInt(id, 10);
 
-            this.startLimit = parseInt(this.options.mas_starting_limit, 10);
             var wallSortings = 
                 (this.options.mas_title_sorting != 0 || this.options.mas_category_sorting != 0 || this.options.mas_author_sorting != 0 || this.options.mas_date_sorting != 0 || this.options.mas_hits_sorting != 0 || this.options.mas_sorting_direction != 0)
                 ? true : false;
-			this.filtersEnabled =
+            this.filtersEnabled =
                 (this.options.mas_category_filters != 0 || this.options.mas_tag_filters != 0 || this.options.mas_date_filters != 0 || wallSortings) 
                 ? true : false;
+            this.hoverBox = this.options.mas_hb != 0 ? true : false;
+
+            // Handle resize
+			var _resize;
+            
+			window.addEventListener('resize', function() 
+			{
+				clearTimeout(_resize);
+
+				_resize = setTimeout(function() {
+                    self.doneBrowserResizing(self);
+                }, 500);
+			});
+            
+            // Initialize wall
+            this.initializeWall();
+
+            // Filters
+            if (this.filtersEnabled)
+                this.filtersSortings();
+
+            // Hover box
+            if (this.hoverBox)
+            {
+                this.triggerHoverBox();
+
+                // Modal images
+                if (parseInt(this.options.mas_hb_zoom, 10))
+                    this.initModalMessages();
+            }
+        }
+
+        initializeWall()
+        {
+            const self = this;
+            this.startLimit = parseInt(this.options.mas_starting_limit, 10);
             this.filtersMode = this.options.mas_filters_mode;
             this.closeFilters = this.options.mas_close_filters != 0 ? true : false;
             this.container = document.querySelector('#mnwall_container_' + this.widgetId);
@@ -38,7 +73,6 @@
             }
             
             this.layoutMode = this.options.mas_layout_mode;
-            this.hoverBox = this.options.mas_hb != 0 ? true : false;
             this.dbPosition = this.options.mas_db_position_columns;
             this.equalHeight = this.options.mas_force_equal_height != 0 ? true : false;
             this.sortBy = this.container.getAttribute('data-order');
@@ -55,12 +89,10 @@
 
             this.createSpinner(document.querySelector('#mnwall_loader_' + this.widgetId));
             document.querySelector('#mnwall_loader_' + this.widgetId).style.display = 'block';
-
             this.transitionDuration = parseInt(this.options.mas_transition_duration, 10);
             this.transitionStagger = parseInt(this.options.mas_transition_stagger, 10);
             this.iso_container = document.querySelector('#mnwall_iso_container_' + this.widgetId);
             this.wall;
-
             var effects = this.options.mas_effects ? this.options.mas_effects : ['fade'];
             var hiddenOpacity = 1;
             var hiddenTransform = 'scale(1)';
@@ -72,7 +104,7 @@
                 hiddenTransform = 'scale(0.001)';
             
             // Initialize wall
-            imagesLoaded(this.iso_container, function()
+            imagesLoaded(self.iso_container, function()
 			{
 				self.wall = new Isotope(self.iso_container, 
 				{
@@ -120,26 +152,6 @@
 				self.container.style.opacity = 1;
 				document.querySelector('#mnwall_loader_' + self.widgetId).style.display = 'none';
 			});
-
-            // Handle resize
-			var _resize;
-            
-			window.addEventListener('resize', function() 
-			{
-				clearTimeout(_resize);
-
-				_resize = setTimeout(function() {
-                    self.doneBrowserResizing(self);
-                }, 500);
-			});
-            
-            if (this.hoverBox)	
-                this.triggerHoverBox();
-
-            if (this.filtersEnabled)
-                this.filtersSortings();
-
-            this.initModalMessages();
         }
 
         filtersSortings()
@@ -441,7 +453,6 @@
 
             if (self.gridType == 99 || self.gridType == 98) 
             {
-                // Hover effects
                 self.container.querySelectorAll('.mnwall-item').forEach(function(a)
                 {
                     a.addEventListener('mouseenter', function(e)
@@ -451,30 +462,30 @@
                             case 'no':
                                 this.querySelector('.mnwall-hover-box').classList.add('hoverShow');
                                 break;
-                            case 1:
+                            case '1':
                                 this.querySelector('.mnwall-hover-box').classList.add('hoverFadeIn');
                                 break;
-                            case 2:
+                            case '2':
                                 this.querySelector('.mnwall-cover').classList.add('perspective');
-                                this.querySelector('.mnwall-img-div').classList.add('flip flipY hoverFlipY');
+                                this.querySelector('.mnwall-img-div').classList.add('flip', 'flipY', 'hoverFlipY');
                                 break;
-                            case 3:
+                            case '3':
                                 this.querySelector('.mnwall-cover').classList.add('perspective');
-                                this.querySelector('.mnwall-img-div').classList.add('flip flipX hoverFlipX');
+                                this.querySelector('.mnwall-img-div').classList.add('flip', 'flipX', 'hoverFlipX');
                                 break;
-                            case 4:
+                            case '4':
                                 this.querySelector('.mnwall-hover-box').classList.add('slideInRight');
                                 break;
-                            case 5:
+                            case '5':
                                 this.querySelector('.mnwall-hover-box').classList.add('slideInLeft');
                                 break;
-                            case 6:
+                            case '6':
                                 this.querySelector('.mnwall-hover-box').classList.add('slideInTop');
                                 break;
-                            case 7:
+                            case '7':
                                 this.querySelector('.mnwall-hover-box').classList.add('slideInBottom');
                                 break;
-                            case 8:
+                            case '8':
                                 this.querySelector('.mnwall-hover-box').classList.add('mnwzoomIn');
                                 break;
                             default:
@@ -490,28 +501,28 @@
                             case 'no':
                                 this.querySelector('.mnwall-hover-box').classList.remove('hoverShow');
                                 break;
-                            case 1:
+                            case '1':
                                 this.querySelector('.mnwall-hover-box').classList.remove('hoverFadeIn');
                                 break;
-                            case 2:
+                            case '2':
                                 this.querySelector('.mnwall-img-div').classList.remove('hoverFlipY');
                                 break;
-                            case 3:
+                            case '3':
                                 this.querySelector('.mnwall-img-div').classList.remove('hoverFlipX');
                                 break;
-                            case 4:
+                            case '4':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInRight');
                                 break;
-                            case 5:
+                            case '5':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInLeft');
                                 break;
-                            case 6:
+                            case '6':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInTop');
                                 break;
-                            case 7:
+                            case '7':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInBottom');
                                 break;
-                            case 8:
+                            case '8':
                                 this.querySelector('.mnwall-hover-box').classList.remove('mnwzoomIn');
                                 break;
                             default:
@@ -524,7 +535,6 @@
 
             if (self.gridType != 98 && self.gridType != 99)
             {
-                // Hover effects
                 self.container.querySelectorAll('.mnwall-item').forEach(function(a)
                 {
                     a.addEventListener('mouseenter', function(e)
@@ -534,31 +544,31 @@
                             case 'no':
                                 this.querySelector('.mnwall-hover-box').classList.add('hoverShow');
                                 break;
-                            case 1:
+                            case '1':
                                 this.querySelector('.mnwall-hover-box').classList.add('hoverFadeIn');
                                 break;
-                            case 2:
+                            case '2':
                                 this.classList.add('perspective');
-                                this.querySelector('.mnwall-item-outer-cont').classList.add('flip flipY hoverFlipY');
+                                this.querySelector('.mnwall-item-outer-cont').classList.add('flip', 'flipY', 'hoverFlipY');
                                 break;
-                            case 3:
+                            case '3':
                                 this.classList.add('perspective');
-                                this.querySelector('.mnwall-item-outer-cont').classList.add('flip flipX hoverFlipX');
+                                this.querySelector('.mnwall-item-outer-cont').classList.add('flip', 'flipX', 'hoverFlipX');
                                 break;
-                            case 4:
-                                this.querySelector('.mnwall-hover-box').classList.add('animated slideInRight');
+                            case '4':
+                                this.querySelector('.mnwall-hover-box').classList.add('animated', 'slideInRight');
                                 break;
-                            case 5:
-                                this.querySelector('.mnwall-hover-box').classList.add('animated slideInLeft');
+                            case '5':
+                                this.querySelector('.mnwall-hover-box').classList.add('animated', 'slideInLeft');
                                 break;
-                            case 6:
-                                this.querySelector('.mnwall-hover-box').classList.add('animated slideInTop');
+                            case '6':
+                                this.querySelector('.mnwall-hover-box').classList.add('animated', 'slideInTop');
                                 break;
-                            case 7:
-                                this.querySelector('.mnwall-hover-box').classList.add('animated slideInBottom');
+                            case '7':
+                                this.querySelector('.mnwall-hover-box').classList.add('animated', 'slideInBottom');
                                 break;
-                            case 8:
-                                this.querySelector('.mnwall-hover-box').classList.add('animated mnwzoomIn');
+                            case '8':
+                                this.querySelector('.mnwall-hover-box').classList.add('animated', 'mnwzoomIn');
                                 break;
                             default:
                                 this.querySelector('.mnwall-hover-box').classList.add('hoverFadeIn');
@@ -573,28 +583,28 @@
                             case 'no':
                                 this.querySelector('.mnwall-hover-box').classList.remove('hoverShow');
                                 break;
-                            case 1:
+                            case '1':
                                 this.querySelector('.mnwall-hover-box').classList.remove('hoverFadeIn');
                                 break;
-                            case 2:
+                            case '2':
                                 this.querySelector('.mnwall-item-outer-cont').classList.remove('hoverFlipY');
                                 break;
-                            case 3:
+                            case '3':
                                 this.querySelector('.mnwall-item-outer-cont').classList.remove('hoverFlipX');
                                 break;
-                            case 4:
+                            case '4':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInRight');
                                 break;
-                            case 5:
+                            case '5':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInLeft');
                                 break;
-                            case 6:
+                            case '6':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInTop');
                                 break;
-                            case 7:
+                            case '7':
                                 this.querySelector('.mnwall-hover-box').classList.remove('slideInBottom');
                                 break;
-                            case 8:
+                            case '8':
                                 this.querySelector('.mnwall-hover-box').classList.remove('mnwzoomIn');
                                 break;
                             default:
