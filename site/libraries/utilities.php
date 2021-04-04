@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\String\StringHelper;
 use Joomla\Image\Image;
 
@@ -183,32 +184,36 @@ class MinitekWallLibUtilities
 	{
 		$path = str_replace(\JURI::base(), '', $path);
 		$imgSource = JPATH_SITE.DS. str_replace('/', DS, $path);
-
-		if (file_exists($imgSource))
+		$img = HTMLHelper::cleanImageURL($imgSource);
+		
+		if (file_exists($img->url))
 		{
-			$path =  $width."x".$height.'/'.$path;
-			$cropPath = JPATH_SITE.DS.'images'.DS.'mwall'.DS. str_replace('/', DS, $path);
-
-			if (!file_exists($cropPath))
+			$clean_name = str_replace(JPATH_SITE.'/', '', $img->url);
+			$new_path =  $width.'x'.$height.DS.$clean_name;
+			$clean_cropped_path = JPATH_SITE.DS.'images'.DS.'mwall'.DS.$new_path;
+			
+			if (!file_exists($clean_cropped_path))
 			{
-				if (!self::makeDir($path))
-				{
+				if (!self::makeDir($new_path))
 					return '';
-				}
 
 				$image = new \JImage();
-				$image->loadFile($imgSource);
+				$image->loadFile($img->url);
 				$thumbs = $image->generateThumbs($width.'x'.$height, 5);
 
 				foreach ($thumbs as $thumb)
 				{
-					$thumb->toFile($cropPath);
+					$thumb->toFile($clean_cropped_path);
 				}
 			}
 
-			$path = \JURI::base().'images/mwall/'.$path;
-		}
+			$url = \JURI::base().'images'.DS.'mwall'.DS.$new_path;
 
-		return $path;
+			return $url;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
