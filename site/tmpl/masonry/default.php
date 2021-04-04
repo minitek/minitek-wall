@@ -113,7 +113,7 @@ if (isset($this->suffix))
 	///////////////////////////////////////////////////////////////
 	// Modal images
 	////////////////////////////////////////////////////////////////
-	if ($this->hoverBoxZoomButton && $this->mas_images) 
+	if ($this->hoverBox && $this->hoverBoxZoomButton && $this->mas_images) 
 	{
 		echo HTMLHelper::_('bootstrap.renderModal',
 			'zoomWall_'.$this->widgetID,
