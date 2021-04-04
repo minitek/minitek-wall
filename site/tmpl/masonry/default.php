@@ -116,7 +116,7 @@ if (isset($this->suffix))
 	if ($this->hoverBoxZoomButton && $this->mas_images) 
 	{
 		echo HTMLHelper::_('bootstrap.renderModal',
-			'zoomImage_'.$this->widgetID,
+			'zoomWall_'.$this->widgetID,
 			[
 				'title'       => '',
 				'closeButton' => true,
