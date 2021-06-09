@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 defined('_JEXEC') or die;
 
@@ -17,9 +18,9 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 
 <div class="card">
 	<div class="card-header">
-		<div class="d-flex justify-content-between">
-			<h3 class="mb-0" style="line-height: 1.4;"><?php echo Text::_('COM_MINITEKWALL_WIDGET_SELECT_DATA_SOURCE'); ?></h3>
-			<a href="https://www.minitek.gr/joomla/source-plugins" class="btn btn-info btn-sm" target="_blank">
+		<div class="w-100">
+			<h3 class="mb-0 float-start"><?php echo Text::_('COM_MINITEKWALL_WIDGET_SELECT_DATA_SOURCE'); ?></h3>
+			<a href="https://www.minitek.gr/joomla/source-plugins" class="btn btn-info btn-sm float-end" target="_blank">
 				<span class="fas fa-search" aria-hidden="true"></span>&nbsp;
 				<?php echo Text::_('COM_MINITEKWALL_WIDGET_BROWSE_SOURCE_PLUGINS'); ?>
 			</a>
@@ -27,23 +28,20 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 	</div>
 	<div class="card-body">
 		<form action="<?php echo Route::_('index.php?option=com_minitekwall&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="widget-form" class="form-validate">
-		<?php // Core plugins ?> 
-			<h4 class="header m-3"><?php echo Text::_('COM_MINITEKWALL_WIDGET_CORE_PLUGINS'); ?></h4>
+			<?php // Core plugins 
+			?>
+			<h4 class="header m-3 p-3"><?php echo Text::_('COM_MINITEKWALL_WIDGET_CORE_PLUGINS'); ?></h4>
 			<div class="row">
-				<?php 
+				<?php
 				$otherPlugins = false;
-				foreach ($this->corePlugins as $corePlugin)
-				{
+				foreach ($this->corePlugins as $corePlugin) {
 					$corePluginEnabled = false;
 
-					foreach ($this->sources as $source)
-					{
+					foreach ($this->sources as $source) {
 						// Is is a core plugin ?
-						if ($corePlugin['type'] == $source['type'])
-						{
-							if ($source['type'] == 'content')
-							{
-								?><div class="col-12 col-md-3">
+						if ($corePlugin['type'] == $source['type']) {
+							if ($source['type'] == 'content') {
+				?><div class="col-12 col-md-3">
 									<div class="source-tile p-4 text-center">
 										<div class="source-icon mb-3">
 											<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -56,10 +54,8 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 										</button>
 									</div>
 								</div><?php
-							}
-							else 
-							{
-								?><div class="col-12 col-md-3">
+									} else {
+										?><div class="col-12 col-md-3">
 									<div class="source-tile p-4 text-center">
 										<div class="source-icon mb-3">
 											<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -72,42 +68,36 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 										</a>
 									</div>
 								</div><?php
+									}
+
+									$corePluginEnabled = true;
+
+									break;
+								}
+								// Not a core plugin
+								else {
+									if (!in_array($source['type'], $this->coreTypes)) {
+										$otherPlugins = true;
+									}
+								}
 							}
 
-							$corePluginEnabled = true;
+							if (!$corePluginEnabled) {
+								if ($corePlugin['type'] == 'content') {
+									// Installed and disabled
+									if ($sourcePlugin = MinitekWallHelper::getSourcePlugin($corePlugin['type'])) {
+										$title = Text::_('COM_MINITEKWALL_WIDGET_PUBLISH');
+										$icon = 'check';
+										$url = Route::_('index.php?option=com_plugins&view=plugins&filter[search]=Minitek%20Source%20-%20' . $corePlugin['type'] . '&filter[folder]=content');
+									} else
+									// Not installed
+									{
+										$title = Text::_('COM_MINITEKWALL_WIDGET_INSTALL');
+										$icon = 'download';
+										$url = $corePlugin['downloadurl'];
+									}
 
-							break;
-						}
-						// Not a core plugin
-						else 
-						{
-							if (!in_array($source['type'], $this->coreTypes))
-							{
-								$otherPlugins = true;
-							}
-						} 
-					}
-
-					if (!$corePluginEnabled)
-					{
-						if ($corePlugin['type'] == 'content')
-						{
-							// Installed and disabled
-							if ($sourcePlugin = MinitekWallHelper::getSourcePlugin($corePlugin['type']))
-							{
-								$title = Text::_('COM_MINITEKWALL_WIDGET_PUBLISH');
-								$icon = 'check';
-								$url = Route::_('index.php?option=com_plugins&view=plugins&filter[search]=Minitek%20Source%20-%20'.$corePlugin['type'].'&filter[folder]=content');
-							}
-							else 
-							// Not installed
-							{
-								$title = Text::_('COM_MINITEKWALL_WIDGET_INSTALL');
-								$icon = 'download';
-								$url = $corePlugin['downloadurl'];
-							}
-
-							?><div class="col-12 col-md-3">
+										?><div class="col-12 col-md-3">
 								<div class="source-tile p-4 text-center">
 									<div class="source-icon mb-3">
 										<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -120,10 +110,8 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 									</a>
 								</div>
 							</div><?php
-						}
-						else
-						{
-							?><div class="col-12 col-md-3">
+								} else {
+									?><div class="col-12 col-md-3">
 								<div class="source-tile p-4 text-center">
 									<div class="source-icon mb-3">
 										<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -136,10 +124,10 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 									</a>
 								</div>
 							</div><?php
+								}
+							}
 						}
-					}
-				}
-			?></div>
+									?></div>
 
 			<input type="hidden" name="source_type" value="" />
 			<input type="hidden" name="task" value="" />
@@ -149,19 +137,15 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 </div>
 
 <script>
-	(function (document) {
+	(function(document) {
 		'use strict';
 
-		document.addEventListener('DOMContentLoaded', function () 
-		{
+		document.addEventListener('DOMContentLoaded', function() {
 			var btn_sources = document.querySelectorAll('.btn-source');
 
-			if (btn_sources)
-			{
-				btn_sources.forEach(function(a)
-				{
-					a.addEventListener('click', function (e) 
-					{
+			if (btn_sources) {
+				btn_sources.forEach(function(a) {
+					a.addEventListener('click', function(e) {
 						e.preventDefault();
 
 						var data_source = a.getAttribute('data-source');
