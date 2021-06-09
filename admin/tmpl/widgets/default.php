@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 defined('_JEXEC') or die('Restricted access');
 
@@ -37,8 +38,8 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 						<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 					</div>
 				<?php else : ?>
-					<table class="table itemList" id="articleList">
-						<caption id="captionTable" class="sr-only">
+					<table class="table" id="articleList">
+						<caption class="visually-hidden">
 							<?php echo Text::_('COM_MINITEKWALL_WIDGETS_TABLE_CAPTION'); ?>, <?php echo Text::_('JGLOBAL_SORTED_BY'); ?>
 						</caption>
 						<thead>
@@ -61,62 +62,53 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($this->items as $i => $item) :
-							$canEdit    = $user->authorise('core.edit',       'com_minitekwall');
-							$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
-							$canChange  = $user->authorise('core.edit.state', 'com_minitekwall.widget.'.$item->id) && $canCheckin;
+							<?php foreach ($this->items as $i => $item) :
+								$canEdit    = $user->authorise('core.edit',       'com_minitekwall');
+								$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
+								$canChange  = $user->authorise('core.edit.state', 'com_minitekwall.widget.' . $item->id) && $canCheckin;
 							?>
-							<tr class="row<?php echo $i % 2; ?>">
-								<td class="text-center">
-									<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
-								</td>
+								<tr class="row<?php echo $i % 2; ?>">
+									<td class="text-center">
+										<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
+									</td>
 
-								<td class="article-status text-center">
-									<div class="btn-group">
-										<?php
-										$options = [
-											'task_prefix' => 'widgets.',
-											'disabled' => !$canChange
-										];
+									<td class="text-center">
+										<?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'widgets.', $canChange, 'cb'); ?>
+									</td>
 
-										echo (new PublishedButton)->render((int) $item->state, $i, $options);
-										?>
-									</div>
-								</td>
+									<th scope="row" class="has-context">
+										<div class="break-word">
+											<?php if ($item->checked_out) : ?>
+												<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'widgets.', $canCheckin); ?>
+											<?php endif; ?>
+											<?php if ($canEdit) : ?>
+												<a class="hasTooltip" href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.edit&id=' . (int) $item->id); ?>" title="<?php echo Text::_('JACTION_EDIT'); ?> <?php echo $this->escape(addslashes($item->name)); ?>">
+													<?php echo $this->escape($item->name); ?></a>
+												</a>
+											<?php else : ?>
+												<span><?php echo $this->escape($item->name); ?></span>
+											<?php endif; ?>
+											<?php if ($item->description) { ?>
+												<div>
+													<span class="small break-word">
+														<?php echo $this->escape($item->description); ?>
+													</span>
+												</div>
+											<?php } ?>
+										</div>
+									</th>
 
-								<th scope="row" class="has-context">
-									<div class="break-word">
-										<?php if ($item->checked_out) : ?>
-											<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'widgets.', $canCheckin); ?>
-										<?php endif; ?>
-										<?php if ($canEdit) : ?>
-											<a class="hasTooltip" href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.edit&id=' . (int) $item->id); ?>" title="<?php echo Text::_('JACTION_EDIT'); ?> <?php echo $this->escape(addslashes($item->name)); ?>">
-												<?php echo $this->escape($item->name); ?></a>
-											</a>
-										<?php else : ?>
-											<span><?php echo $this->escape($item->name); ?></span>
-										<?php endif; ?>
-										<?php if ($item->description) { ?>
-											<div>
-												<span class="small break-word">
-													<?php echo $this->escape($item->description); ?>
-												</span>
-											</div>
-										<?php } ?>
-									</div>
-								</th>
+									<td class="small d-none d-md-table-cell">
+										<span class="badge bg-info" style="text-transform: uppercase;">
+											<?php echo $this->escape($item->source_id); ?>
+										</span>
+									</td>
 
-								<td class="small d-none d-md-table-cell">
-									<span class="badge bg-info" style="text-transform: uppercase;">
-										<?php echo $this->escape($item->source_id); ?>
-									</span>
-								</td>
-
-								<td class="d-none d-lg-table-cell">
-									<?php echo (int) $item->id; ?>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+									<td class="d-none d-lg-table-cell">
+										<?php echo (int) $item->id; ?>
+									</td>
+								</tr>
+							<?php endforeach; ?>
 						</tbody>
 					</table>
 
