@@ -27,8 +27,8 @@ if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
         <span class="badge bg-success"><?php echo $latestVersion; ?></span> <span class="badge bg-success">Free</span>
       </div>
       <div class="mt-2">
-        <a class="button-success btn btn-sm btn-success" href="<?php echo Route::_('index.php?option=com_installer&view=update'); ?>">
-          <span class="icon-refresh" aria-hidden="true"></span>
+        <a class="button-info btn btn-sm btn-info" href="<?php echo Route::_('index.php?option=com_installer&view=update'); ?>">
+          <span class="icon-refresh" aria-hidden="true"></span>&nbsp;
           <?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPDATE_NOW'); ?>
         </a>
       </div>

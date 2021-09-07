@@ -176,7 +176,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 							<li class="list-group-item">
 								<span class="me-2 icon-book icon-fw" aria-hidden="true"></span>&nbsp;
 								<span>
-									<a href="https://www.minitek.gr/support/documentation/joomla/minitek-wall-j4" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_DOCUMENTATION'); ?></a>
+									<a href="https://www.minitek.gr/support/documentation/joomla/minitek-wall" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_DOCUMENTATION'); ?></a>
 								</span>
 							</li>
 							<li class="list-group-item">
@@ -195,13 +195,13 @@ $moduleInstalled = MinitekWallHelper::getModule();
 							<li class="list-group-item">
 								<span class="me-2 icon-help icon-fw" aria-hidden="true"></span>&nbsp;
 								<span>
-									<a href="https://www.minitek.gr/support/documentation/joomla/minitek-wall-j4/faq" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_FAQ'); ?></a>
+									<a href="https://www.minitek.gr/support/documentation/joomla/minitek-wall/faq" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_FAQ'); ?></a>
 								</span>
 							</li>
 							<li class="list-group-item">
 								<span class="me-2 icon-question icon-fw" aria-hidden="true"></span>&nbsp;
 								<span>
-									<a href="https://www.minitek.gr/support/documentation/joomla/minitek-wall-j4/free-vs-pro" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_FREE_VS_PRO'); ?></a>
+									<a href="https://www.minitek.gr/support/documentation/joomla/minitek-wall/free-vs-pro" target="_blank"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_FREE_VS_PRO'); ?></a>
 								</span>
 							</li>
 							<li class="list-group-item">
