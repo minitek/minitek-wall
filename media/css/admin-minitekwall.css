@@ -7,8 +7,8 @@
 
 /* Dashboard */
 
-body.com_minitekwall.view- #subhead,
-body.com_minitekwall.view-dashboard #subhead {
+body.com_minitekwall.view- #subhead-container,
+body.com_minitekwall.view-dashboard #subhead-container {
   display: none;
 }
 
