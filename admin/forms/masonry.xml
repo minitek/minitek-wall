@@ -12,6 +12,7 @@
 				extension="com_minitekwall"
 				view="masonry"
 				useglobal="false"
+				class="form-select"
 				label="COM_MINITEKWALL_FIELD_TEMPLATE_OVERRIDE_LABEL"
 				description="COM_MINITEKWALL_FIELD_TEMPLATE_OVERRIDE_DESC"
 			/>
@@ -81,7 +82,7 @@
 
 			<field
 				name="mas_layout_mode"
-				type="list"
+				type="radio"
 				default="packery"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_MODE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_MODE_DESC"
@@ -335,7 +336,7 @@
 
 			<field
 				name="mas_db_color_big"
-				type="list"
+				type="radio"
 				default="light-text"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
@@ -503,7 +504,7 @@
 
 			<field
 				name="mas_db_color_lscape"
-				type="list"
+				type="radio"
 				default="light-text"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
@@ -671,7 +672,7 @@
 
 			<field
 				name="mas_db_color_portrait"
-				type="list"
+				type="radio"
 				default="light-text"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
@@ -839,7 +840,7 @@
 
 			<field
 				name="mas_db_color_small"
-				type="list"
+				type="radio"
 				default="light-text"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
@@ -1005,7 +1006,7 @@
 
 			<field
 				name="mas_db_color_columns"
-				type="list"
+				type="radio"
 				default="light-text"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
@@ -1156,7 +1157,7 @@
 
 			<field
 				name="mas_hb_text_color"
-				type="list"
+				type="radio"
 				default="2"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_DESC"
@@ -1533,7 +1534,7 @@
 
 			<field
 				name="mas_filters_mode"
-				type="list"
+				type="radio"
 				default="dynamic"
 				label="COM_MINITEKWALL_FIELD_FILTERS_MODE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTERS_MODE_DESC"
@@ -1544,7 +1545,7 @@
 
 			<field
 				name="mas_filter_type"
-				type="list"
+				type="radio"
 				default="1"
 				label="COM_MINITEKWALL_FIELD_FILTER_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTER_TYPE_DESC"
@@ -1617,7 +1618,7 @@
 
 			<field
 				name="mas_sorting_type"
-				type="list"
+				type="radio"
 				default="1"
 				label="COM_MINITEKWALL_FIELD_SORTING_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_SORTING_TYPE_DESC"
@@ -1775,7 +1776,7 @@
 
 			<field
 				name="mas_md_type"
-				type="list"
+				type="radio"
 				default="0"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
@@ -1815,7 +1816,7 @@
 
 			<field
 				name="mas_sm_type"
-				type="list"
+				type="radio"
 				default="1"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
@@ -1855,7 +1856,7 @@
 
 			<field
 				name="mas_xs_type"
-				type="list"
+				type="radio"
 				default="1"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
@@ -1887,7 +1888,7 @@
 
 			<field
 				name="mas_xxs_type"
-				type="list"
+				type="radio"
 				default="1"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
