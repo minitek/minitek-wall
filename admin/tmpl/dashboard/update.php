@@ -20,25 +20,25 @@ $latestVersion = MinitekWallHelper::latestVersion();
 $type = Factory::getApplication()->input->get('type', 'auto');
 
 if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
-  <div class="alert alert-success text-center mt-0" class="update-box">
-    <div class="update-info">
-      <div>
+  <joomla-alert type="success" dismiss="true" class="p-3 text-center" style="animation-name: joomla-alert-fade-in;" role="alert">
+    <div class="alert-heading"><span class="success"></span><span class="visually-hidden">success</span></div>
+    <div class="alert-wrapper">
+      <div class="alert-message">
         <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_A_NEW_VERSION_IS_AVAILABLE'); ?></span>
         <span class="badge bg-success"><?php echo $latestVersion; ?></span> <span class="badge bg-success">Free</span>
-      </div>
-      <div class="mt-2">
         <a class="button-info btn btn-sm btn-info" href="<?php echo Route::_('index.php?option=com_installer&view=update'); ?>">
           <span class="icon-refresh" aria-hidden="true"></span>&nbsp;
           <?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPDATE_NOW'); ?>
         </a>
       </div>
     </div>
-  </div>
+  </joomla-alert>
 <?php } else if ($type == 'check') { ?>
   <?php if ($latestVersion) { ?>
-    <div class="alert alert-success text-center mt-0" class="update-box">
-      <div class="update-info">
-        <div>
+    <joomla-alert type="success" dismiss="true" class="p-3 text-center" style="animation-name: joomla-alert-fade-in;" role="alert">
+      <div class="alert-heading"><span class="success"></span><span class="visually-hidden">success</span></div>
+      <div class="alert-wrapper">
+        <div class="alert-message">
           <?php if ($latestVersion == $localVersion) { ?>
             <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_YOU_HAVE_THE_LATEST_VERSION'); ?></span>
           <?php } else { ?>
@@ -47,14 +47,15 @@ if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
           <span class="badge bg-success"><?php echo $latestVersion; ?></span> <span class="badge bg-success">Free</span>
         </div>
       </div>
-    </div>
+    </joomla-alert>
   <?php } else { ?>
-    <div class="alert alert-danger text-center mt-0" class="update-box">
-      <div class="update-info">
-        <div>
+    <joomla-alert type="danger" dismiss="true" class="p-3 text-center" style="animation-name: joomla-alert-fade-in;" role="alert">
+      <div class="alert-heading"><span class="danger"></span><span class="visually-hidden">error</span></div>
+      <div class="alert-wrapper">
+        <div class="alert-message">
           <span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_COULD_NOT_FETCH_UPDATE_INFO'); ?></span>
         </div>
       </div>
-    </div>
+    </joomla-alert>
   <?php } ?>
 <?php }

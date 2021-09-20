@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @title		Minitek Wall
- * @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
- * @license   	GNU General Public License version 3 or later.
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
  * @author url   https://www.minitek.gr/
  * @developers   Minitek.gr
  */
@@ -22,19 +22,20 @@ $moduleInstalled = MinitekWallHelper::getModule();
 
 <div class="minitek-dashboard mt-3">
 	<?php if (!$moduleInstalled) { ?>
-		<div class="alert alert-danger text-center mt-0">
-			<div class="update-info">
-				<div>
-					<span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_MODULE_NOT_INSTALLED'); ?></span>
-				</div>
-				<div class="mt-2">
-					<a class="button-success btn btn-sm btn-success" href="https://www.minitek.gr/downloads/minitek-wall-module" target="_blank">
-						<span class="icon-download" aria-hidden="true"></span>
-						<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DOWNLOAD'); ?>
-					</a>
+		<joomla-alert type="danger" dismiss="true" class="p-3 text-center" style="animation-name: joomla-alert-fade-in;" role="alert">
+			<div class="alert-heading"><span class="danger"></span><span class="visually-hidden">error</span></div>
+			<div class="alert-wrapper">
+				<div class="alert-message">
+					<div><span><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_MODULE_NOT_INSTALLED'); ?></span></div>
+					<div class="mt-2">
+						<a class="button-success btn btn-sm btn-success" href="https://www.minitek.gr/downloads/minitek-wall-module" target="_blank">
+							<span class="icon-download" aria-hidden="true"></span>
+							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DOWNLOAD'); ?>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
+		</joomla-alert>
 	<?php } ?>
 
 	<div class="row">
