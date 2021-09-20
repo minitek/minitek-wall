@@ -23,7 +23,7 @@ body.com_minitekwall.view-dashboard #system-message-container {
   border-radius: 0;
 }
 
-.minitek-dashboard .alert .badge {
+.minitek-dashboard .alert-message .badge {
   font-size: 15px;
 }
 
