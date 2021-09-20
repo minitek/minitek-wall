@@ -6,7 +6,7 @@ A powerful masonry layout system for displaying content in Joomla.
 
 ## Documentation
 
-[https://www.minitek.gr/support/documentation/joomla/minitek-wall-j4](https://www.minitek.gr/support/documentation/joomla/minitek-wall-j4)
+[https://www.minitek.gr/support/documentation/joomla/minitek-wall](https://www.minitek.gr/support/documentation/joomla/minitek-wall)
 
 ## License
 
