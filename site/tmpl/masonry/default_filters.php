@@ -19,11 +19,11 @@ if ($this->masonry_params['mas_category_filters'])
 		// Dynamic filters
 		foreach($this->wall as $key=>$wall_item)
 		{
-			if (isset($wall_item->itemCategoryRaw))
+			if (isset($wall_item->itemCategoryRaw) && $wall_item->itemCategoryRaw)
 			{
 				array_push($cat_array, $wall_item->itemCategoryRaw);
 			}
-			else if (isset($wall_item->itemCategoriesRaw))
+			else if (isset($wall_item->itemCategoriesRaw) && $wall_item->itemCategoriesRaw)
 			{
 				foreach ($wall_item->itemCategoriesRaw as $key=>$itemCategory)
 				{
@@ -49,11 +49,15 @@ if ($this->masonry_params['mas_category_filters'])
 		\JLoader::register($class, JPATH_SITE .DS. 'plugins' .DS. 'content' .DS. $plugin .DS. 'helpers' .DS. 'source.php');
 
 		$source = new $class;
-		$cat_ids = $source->getStaticCategories($this->source_params);
 
-		if (!empty($cat_ids))
+		if (method_exists($source, 'getStaticCategories'))
 		{
-			$cat_array = $source->getCategoriesNames($cat_ids);
+			$cat_ids = $source->getStaticCategories($this->source_params);
+
+			if (!empty($cat_ids))
+			{
+				$cat_array = $source->getCategoriesNames($cat_ids);
+			}
 		}
 	}
 	else
@@ -61,11 +65,11 @@ if ($this->masonry_params['mas_category_filters'])
 		// Fallback to dynamic filters if categories type is not set
 		foreach($this->wall as $key=>$wall_item)
 		{
-			if (isset($wall_item->itemCategoryRaw))
+			if (isset($wall_item->itemCategoryRaw) && $wall_item->itemCategoryRaw)
 			{
 				array_push($cat_array, $wall_item->itemCategoryRaw);
 			}
-			else if (isset($wall_item->itemCategoriesRaw))
+			else if (isset($wall_item->itemCategoriesRaw) && $wall_item->itemCategoriesRaw)
 			{
 				foreach ($wall_item->itemCategoriesRaw as $key=>$itemCategory)
 				{
@@ -161,7 +165,7 @@ if ($this->masonry_params['mas_tag_filters'])
 		// Dynamic filters
 		foreach($this->wall as $key=>$wall_item)
 		{
-			if (isset($wall_item->itemTags))
+			if (isset($wall_item->itemTags) && $wall_item->itemTags)
 			{
 				foreach($wall_item->itemTags as $key=>$itemTag)
 				{
@@ -184,11 +188,15 @@ if ($this->masonry_params['mas_tag_filters'])
 		\JLoader::register($class, JPATH_SITE .DS. 'plugins' .DS. 'content' .DS. $plugin .DS. 'helpers' .DS. 'source.php');
 
 		$source = new $class;
-		$tag_ids = $source->getStaticTags($this->source_params);
 
-		if (!empty($tag_ids))
+		if (method_exists($source, 'getStaticTags'))
 		{
-			$tag_array = $source->getTagsNames($tag_ids);
+			$tag_ids = $source->getStaticTags($this->source_params);
+
+			if (!empty($tag_ids))
+			{
+				$tag_array = $source->getTagsNames($tag_ids);
+			}
 		}
 	}
 	else
@@ -196,7 +204,7 @@ if ($this->masonry_params['mas_tag_filters'])
 		// Fallback to dynamic filters if tags type is not set
 		foreach($this->wall as $key=>$wall_item)
 		{
-			if (isset($wall_item->itemTags))
+			if (isset($wall_item->itemTags) && $wall_item->itemTags)
 			{
 				foreach($wall_item->itemTags as $key=>$itemTag)
 				{
@@ -287,7 +295,7 @@ if ($this->masonry_params['mas_date_filters'])
 
 	foreach($this->wall as $key=>$wall_item)
 	{
-		if (isset($wall_item->itemDateRaw))
+		if (isset($wall_item->itemDateRaw) && $wall_item->itemDateRaw)
 		{
 			array_push($date_array, \JHTML::_('date', $wall_item->itemDateRaw, 'Y-m'));
 		}
