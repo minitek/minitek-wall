@@ -1,8 +1,8 @@
 <?php
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
+* @title        Minitek Wall
+* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -53,55 +53,79 @@ use Joomla\CMS\Language\Text;
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-12">
-			<fieldset id="fieldset-masonry_detailbox_big" class="options-grid-form options-grid-form-full">
-				<div>
-				<?php echo $this->masonryform->renderFieldset('masonry_detailbox_big'); ?>
-				</div>
-			</fieldset>
-		</div>
-	</div>
+	<?php echo HTMLHelper::_('uitab.startTabSet', 'detailBoxTabs', array('active' => 'big')); ?>
 
-	<div class="row">
-		<div class="col-12">
-			<fieldset id="fieldset-masonry_detailbox_landscape" class="options-grid-form options-grid-form-full">
-				<div>
-				<?php echo $this->masonryform->renderFieldset('masonry_detailbox_landscape'); ?>
-				</div>
-			</fieldset>
-		</div>
-	</div>
+		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'big', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_BIG')); ?>
 
-	<div class="row">
-		<div class="col-12">
-			<fieldset id="fieldset-masonry_detailbox_portrait" class="options-grid-form options-grid-form-full">
-				<div>
-				<?php echo $this->masonryform->renderFieldset('masonry_detailbox_portrait'); ?>
-				</div>
-			</fieldset>
+		<div class="row">
+			<div class="col-12">
+				<fieldset id="fieldset-masonry_detailbox_big" class="options-grid-form options-grid-form-full">
+					<div>
+					<?php echo $this->masonryform->renderFieldset('masonry_detailbox_big'); ?>
+					</div>
+				</fieldset>
+			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-12">
-			<fieldset id="fieldset-masonry_detailbox_small" class="options-grid-form options-grid-form-full">
-				<div>
-				<?php echo $this->masonryform->renderFieldset('masonry_detailbox_small'); ?>
-				</div>
-			</fieldset>
-		</div>
-	</div>
+		<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-	<div class="row">
-		<div class="col-12">
-			<fieldset id="fieldset-masonry_detailbox_column" class="options-grid-form options-grid-form-full">
-				<div>
-				<?php echo $this->masonryform->renderFieldset('masonry_detailbox_column'); ?>
-				</div>
-			</fieldset>
+		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'landscape', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_LANDSCAPE')); ?>
+
+		<div class="row">
+			<div class="col-12">
+				<fieldset id="fieldset-masonry_detailbox_landscape" class="options-grid-form options-grid-form-full">
+					<div>
+					<?php echo $this->masonryform->renderFieldset('masonry_detailbox_landscape'); ?>
+					</div>
+				</fieldset>
+			</div>
 		</div>
-	</div>
+
+		<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
+		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'portrait', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_PORTRAIT')); ?>
+
+		<div class="row">
+			<div class="col-12">
+				<fieldset id="fieldset-masonry_detailbox_portrait" class="options-grid-form options-grid-form-full">
+					<div>
+					<?php echo $this->masonryform->renderFieldset('masonry_detailbox_portrait'); ?>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
+		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'small', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_SMALL')); ?>
+
+		<div class="row">
+			<div class="col-12">
+				<fieldset id="fieldset-masonry_detailbox_small" class="options-grid-form options-grid-form-full">
+					<div>
+					<?php echo $this->masonryform->renderFieldset('masonry_detailbox_small'); ?>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
+		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'column', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_COLUMN')); ?>
+
+		<div class="row">
+			<div class="col-12">
+				<fieldset id="fieldset-masonry_detailbox_column" class="options-grid-form options-grid-form-full">
+					<div>
+					<?php echo $this->masonryform->renderFieldset('masonry_detailbox_column'); ?>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<?php echo HTMLHelper::_('uitab.endTab'); ?>
+	
+	<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
 
 <?php echo HTMLHelper::_('uitab.endTab'); ?>
 
