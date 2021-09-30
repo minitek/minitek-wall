@@ -161,7 +161,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxIntrotextBig = $masonry_params['mas_db_introtext_big'];
 		$this->detailBoxDateBig = $masonry_params['mas_db_date_big'];
 		$this->detailBoxCategoryBig = $masonry_params['mas_db_category_big'];
-		$this->detailBoxTypeBig = $masonry_params['mas_db_content_type_big'];
 		$this->detailBoxAuthorBig = $masonry_params['mas_db_author_big'];
 		$this->detailBoxHitsBig = $masonry_params['mas_db_hits_big'];
 		$this->detailBoxCountBig = $masonry_params['mas_db_count_big'];
@@ -177,7 +176,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxIntrotextLscape = $masonry_params['mas_db_introtext_lscape'];
 		$this->detailBoxDateLscape = $masonry_params['mas_db_date_lscape'];
 		$this->detailBoxCategoryLscape = $masonry_params['mas_db_category_lscape'];
-		$this->detailBoxTypeLscape = $masonry_params['mas_db_content_type_lscape'];
 		$this->detailBoxAuthorLscape = $masonry_params['mas_db_author_lscape'];
 		$this->detailBoxHitsLscape = $masonry_params['mas_db_hits_lscape'];
 		$this->detailBoxCountLscape = $masonry_params['mas_db_count_lscape'];
@@ -193,7 +191,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxIntrotextPortrait = $masonry_params['mas_db_introtext_portrait'];
 		$this->detailBoxDatePortrait = $masonry_params['mas_db_date_portrait'];
 		$this->detailBoxCategoryPortrait = $masonry_params['mas_db_category_portrait'];
-		$this->detailBoxTypePortrait = $masonry_params['mas_db_content_type_portrait'];
 		$this->detailBoxAuthorPortrait = $masonry_params['mas_db_author_portrait'];
 		$this->detailBoxHitsPortrait = $masonry_params['mas_db_hits_portrait'];
 		$this->detailBoxCountPortrait = $masonry_params['mas_db_count_portrait'];
@@ -209,7 +206,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxIntrotextSmall = $masonry_params['mas_db_introtext_small'];
 		$this->detailBoxDateSmall = $masonry_params['mas_db_date_small'];
 		$this->detailBoxCategorySmall = $masonry_params['mas_db_category_small'];
-		$this->detailBoxTypeSmall = $masonry_params['mas_db_content_type_small'];
 		$this->detailBoxAuthorSmall = $masonry_params['mas_db_author_small'];
 		$this->detailBoxHitsSmall = $masonry_params['mas_db_hits_small'];
 		$this->detailBoxCountSmall = $masonry_params['mas_db_count_small'];
@@ -225,7 +221,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxIntrotextColumns = $masonry_params['mas_db_introtext_columns'];
 		$this->detailBoxDateColumns = $masonry_params['mas_db_date_columns'];
 		$this->detailBoxCategoryColumns = $masonry_params['mas_db_category_columns'];
-		$this->detailBoxTypeColumns = $masonry_params['mas_db_content_type_columns'];
 		$this->detailBoxAuthorColumns = $masonry_params['mas_db_author_columns'];
 		$this->detailBoxHitsColumns = $masonry_params['mas_db_hits_columns'];
 		$this->detailBoxCountColumns = $masonry_params['mas_db_count_columns'];
@@ -237,7 +232,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxIntrotextAll = true;
 		$this->detailBoxDateAll = true;
 		$this->detailBoxCategoryAll = true;
-		$this->detailBoxTypeAll = true;
 		$this->detailBoxAuthorAll = true;
 		$this->detailBoxHitsAll = true;
 		$this->detailBoxCountAll = true;
@@ -288,15 +282,6 @@ class HtmlView extends BaseHtmlView
 				!$this->detailBoxCategoryColumns)
 			{
 				$this->detailBoxCategoryAll = false;
-			}
-
-			if (!$this->detailBoxTypeBig &&
-				!$this->detailBoxTypeLscape &&
-				!$this->detailBoxTypePortrait &&
-				!$this->detailBoxTypeSmall &&
-				!$this->detailBoxTypeColumns)
-			{
-				$this->detailBoxTypeAll = false;
 			}
 
 			if (!$this->detailBoxAuthorBig &&
@@ -362,11 +347,6 @@ class HtmlView extends BaseHtmlView
 				$this->detailBoxCategoryAll = false;
 			}
 
-			if (!$this->detailBoxTypeColumns)
-			{
-				$this->detailBoxTypeAll = false;
-			}
-
 			if (!$this->detailBoxAuthorColumns)
 			{
 				$this->detailBoxAuthorAll = false;
@@ -404,7 +384,6 @@ class HtmlView extends BaseHtmlView
 		$this->hoverBoxDate = $masonry_params['mas_hb_date'];
 		$hoverBoxDateFormat = $masonry_params['mas_hb_date_format'];
 		$this->hoverBoxCategory = $masonry_params['mas_hb_category'];
-		$this->hoverBoxType = $masonry_params['mas_hb_type'];
 		$this->hoverBoxAuthor = $masonry_params['mas_hb_author'];
 		$this->hoverBoxHits = $masonry_params['mas_hb_hits'];
 		$this->hoverBoxLinkButton = $masonry_params['mas_hb_link'];
@@ -796,11 +775,6 @@ class HtmlView extends BaseHtmlView
 			$options['category_class'] = 'category-hidden';
 		}
 
-		if (!$this->detailBoxTypeColumns)
-		{
-			$options['type_class'] = 'type-hidden';
-		}
-
 		if (!$this->detailBoxAuthorColumns)
 		{
 			$options['author_class'] = 'author-hidden';
@@ -878,11 +852,6 @@ class HtmlView extends BaseHtmlView
 					$options['category_class'] = 'category-hidden';
 				}
 
-				if (!$this->detailBoxTypeBig)
-				{
-					$options['type_class'] = 'type-hidden';
-				}
-
 				if (!$this->detailBoxAuthorBig)
 				{
 					$options['author_class'] = 'author-hidden';
@@ -935,11 +904,6 @@ class HtmlView extends BaseHtmlView
 				if (!$this->detailBoxCategoryLscape)
 				{
 					$options['category_class'] = 'category-hidden';
-				}
-
-				if (!$this->detailBoxTypeLscape)
-				{
-					$options['type_class'] = 'type-hidden';
 				}
 
 				if (!$this->detailBoxAuthorLscape)
@@ -996,11 +960,6 @@ class HtmlView extends BaseHtmlView
 					$options['category_class'] = 'category-hidden';
 				}
 
-				if (!$this->detailBoxTypePortrait)
-				{
-					$options['type_class'] = 'type-hidden';
-				}
-
 				if (!$this->detailBoxAuthorPortrait)
 				{
 					$options['author_class'] = 'author-hidden';
@@ -1053,11 +1012,6 @@ class HtmlView extends BaseHtmlView
 				if (!$this->detailBoxCategorySmall)
 				{
 					$options['category_class'] = 'category-hidden';
-				}
-
-				if (!$this->detailBoxTypeSmall)
-				{
-					$options['type_class'] = 'type-hidden';
 				}
 
 				if (!$this->detailBoxAuthorSmall)

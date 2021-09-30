@@ -166,7 +166,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							echo $options['introtext_class']; ?> <?php 
 							echo $options['date_class']; ?> <?php 
 							echo $options['category_class']; ?> <?php 
-							echo $options['type_class']; ?> <?php 
 							echo $options['author_class']; ?> <?php 
 							echo $options['hits_class']; ?> <?php 
 							echo $options['count_class']; ?> <?php 
@@ -201,7 +200,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								?></h3><?php 
 							}
 
-							if (($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) || ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) || $this->detailBoxTypeAll) 
+							if (($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) || ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)))) 
 							{
 								?><div class="mnwall-item-info"><?php 
 								
@@ -210,13 +209,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										?><p class="mnwall-item-category">
 											<span><?php echo \JText::_('COM_MINITEKWALL_IN'); ?> </span><?php 
 											echo $item->itemCategory; 
-										?></p><?php 
-									}
-
-									if ($this->detailBoxTypeAll) 
-									{
-										?><p class="mnwall-item-type"><?php 
-											echo $item->itemType; 
 										?></p><?php 
 									}
 
@@ -298,7 +290,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								?></h3><?php 
 							}
 
-							if ($this->hoverBoxCategory || $this->hoverBoxType || $this->hoverBoxAuthor) 
+							if ($this->hoverBoxCategory || $this->hoverBoxAuthor) 
 							{
 								?><div class="mnwall-item-info"><?php 
 								
@@ -307,13 +299,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										?><p class="mnwall-item-category">
 											<span><?php echo \JText::_('COM_MINITEKWALL_IN'); ?> </span><?php 
 											echo $item->itemCategory; 
-										?></p><?php 
-									}
-
-									if ($this->hoverBoxType) 
-									{
-										?><p class="mnwall-item-category"><?php 
-											echo $item->itemType; 
 										?></p><?php 
 									}
 
