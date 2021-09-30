@@ -161,6 +161,7 @@ website: 	https://www.minitek.gr
 
 .mnwall_iso_buttons ul li {
   display: inline-block;
+  vertical-align: top;
 }
 
 .mnwall_iso_buttons a {
@@ -188,6 +189,7 @@ website: 	https://www.minitek.gr
   padding: 0 7px;
   color: #777;
   display: inline-block;
+  vertical-align: top;
   line-height: 33px;
 }
 
@@ -265,6 +267,7 @@ website: 	https://www.minitek.gr
   display: block;
   padding: 8px 10px;
   color: #666;
+  text-decoration: none;
 }
 
 .mnwall_iso_dropdown ul li a:hover {
