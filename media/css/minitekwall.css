@@ -414,15 +414,7 @@ website: 	https://www.minitek.gr
   display: none;
 }
 
-.mnwall-item .type-hidden .mnwall-item-type {
-  display: none;
-}
-
 .mnwall-item .author-hidden .mnwall-item-author {
-  display: none;
-}
-
-.mnwall-item .price-hidden .mnwall-price {
   display: none;
 }
 
@@ -519,7 +511,6 @@ h3.mnwall-title a:focus {
 }
 
 .mnwall-item-category,
-.mnwall-item-type,
 .mnwall-item-author {
   margin: 0 0 2px;
   padding: 0 15px;
@@ -530,16 +521,10 @@ h3.mnwall-title a:focus {
   text-decoration: none;
 }
 
-.mnwall-price,
 .mnwall-hits,
 .mnwall-count {
   font-size: 12px;
   padding: 0 15px;
-}
-
-.mnwall-price {
-  margin: 0 0 10px;
-  font-size: 18px;
 }
 
 .mnwall-hits p,
@@ -594,7 +579,6 @@ h3.mnwall-title a:focus {
 
 .dark-text .mnwall-s-desc,
 .dark-text .mnwall-desc,
-.dark-text .mnwall-price,
 .dark-text .mnwall-hits,
 .dark-text .mnwall-count {
   color: #555;
@@ -643,7 +627,6 @@ h3.mnwall-title a:focus {
 
 .light-text .mnwall-s-desc,
 .light-text .mnwall-desc,
-.light-text .mnwall-price,
 .light-text .mnwall-hits,
 .light-text .mnwall-count {
   color: rgba(255, 255, 255, 0.8);
@@ -744,14 +727,6 @@ h3.mnwall-title a:focus {
 .mnwall-hover-box-content h3.mnwall-title a:focus {
   text-decoration: none;
   outline: none;
-}
-
-.mnwall-hover-box-content .mnwall-price {
-  margin: 0 0 10px;
-}
-
-.mnwall-hover-box-content .mnwall-price span {
-  font-size: 18px;
 }
 
 .mnwall-hover-box-content .mnwall-hits p {

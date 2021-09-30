@@ -406,6 +406,15 @@
 			</field>
 
 			<field
+				name="mas_db_tags_big"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
+				size="1"
+				default="1"
+			/>
+
+			<field
 				name="mas_db_hits_big"
 				type="radio"
 				layout="joomla.form.field.radio.switcher"
@@ -560,6 +569,15 @@
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
+
+			<field
+				name="mas_db_tags_lscape"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
+				size="1"
+				default="1"
+			/>
 
 			<field
 				name="mas_db_hits_lscape"
@@ -718,6 +736,15 @@
 			</field>
 
 			<field
+				name="mas_db_tags_portrait"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
+				size="1"
+				default="1"
+			/>
+
+			<field
 				name="mas_db_hits_portrait"
 				type="radio"
 				layout="joomla.form.field.radio.switcher"
@@ -874,6 +901,15 @@
 			</field>
 
 			<field
+				name="mas_db_tags_small"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
+				size="1"
+				default="1"
+			/>
+
+			<field
 				name="mas_db_hits_small"
 				type="radio"
 				layout="joomla.form.field.radio.switcher"
@@ -1026,6 +1062,15 @@
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
+
+			<field
+				name="mas_db_tags_columns"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
+				size="1"
+				default="1"
+			/>
 
 			<field
 				name="mas_db_hits_columns"
