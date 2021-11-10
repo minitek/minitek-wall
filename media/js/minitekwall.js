@@ -869,14 +869,14 @@
         // Button that triggered the modal
         var button = e.relatedTarget;
 
-        // Extract info from data-* attributes
-        var title = button.getAttribute("data-title");
-        var image = button.getAttribute("data-src");
-
         // Update the title
-        zoomWall.querySelector(".modal-title").textContent = title;
+        if (zoomWall.querySelector(".modal-title")) {
+          var title = button.getAttribute("data-title");
+          zoomWall.querySelector(".modal-title").textContent = title;
+        }
 
         // Update the image
+        var image = button.getAttribute("data-src");
         zoomWall.querySelector("img").setAttribute("src", image);
       });
     }
