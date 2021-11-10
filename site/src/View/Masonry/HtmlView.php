@@ -388,6 +388,7 @@ class HtmlView extends BaseHtmlView
 		$this->hoverBoxHits = $masonry_params['mas_hb_hits'];
 		$this->hoverBoxLinkButton = $masonry_params['mas_hb_link'];
 		$this->hoverBoxZoomButton = false;
+		$this->modalTitle = isset($masonry_params['mas_modal_title']) ? $masonry_params['mas_modal_title'] : true;
 
 		if (isset($masonry_params['mas_hb_zoom']))
 		{

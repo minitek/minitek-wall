@@ -109,7 +109,7 @@ if ($this->mas_page_title) {
 			'bootstrap.renderModal',
 			'zoomWall_' . $this->widgetID,
 			[
-				'title'       => '',
+				'title'       => $this->modalTitle ? '' : null,
 				'closeButton' => true,
 				'height'      => '100%',
 				'width'       => 'auto',
