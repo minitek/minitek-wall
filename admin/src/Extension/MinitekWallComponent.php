@@ -48,7 +48,9 @@ class MinitekWallComponent extends MVCComponent implements BootableExtensionInte
 	 */
 	public function boot(ContainerInterface $container)
 	{
-		if (Factory::getApplication()->isClient('administrator'))
+		$app = Factory::getApplication();
+
+		if ($app->isClient('administrator') && $app->input->get('option') == 'com_minitekwall')
 		{
 			$this->loadAssets();
 		}
