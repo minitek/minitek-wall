@@ -38,104 +38,126 @@ $moduleInstalled = MinitekWallHelper::getModule();
 		</joomla-alert>
 	<?php } ?>
 
-	<div class="row">
-
-		<div class="col-sm-12 col-md-8">
-			<div class="media mt-0">
-				<div class="float-start">
-					<img class="media-object" src="<?php echo URI::root(true) . '/media/com_minitekwall/images/logo.png'; ?>">
-				</div>
-				<div class="media-body">
-					<h2 class="media-heading"><?php echo Text::_('COM_MINITEKWALL'); ?> <span class="badge bg-success">Free</span></h2>
-					<?php echo Text::_('COM_MINITEKWALL_DESC'); ?>
+	<div class="row g-3">
+		<div class="col-12 col-lg-8">
+			<div class="brand card mb-3 p-3">
+				<div class="d-flex">
+					<div class="me-4">
+						<img src="<?php echo URI::root(true) . '/media/com_minitekwall/images/logo.png'; ?>">
+					</div>
+					<div class="py-3">
+						<h2 class="mb-3"><?php echo Text::_('COM_MINITEKWALL'); ?> <span class="badge bg-success">Free</span></h2>
+						<p class="m-0"><?php echo Text::_('COM_MINITEKWALL_DESC'); ?></p>
+					</div>
 				</div>
 			</div>
 
-			<div class="dashboard-thumbnails">
-				<div class="thumbnail card">
-					<a href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.add'); ?>">
-						<i class="icon icon-new" style="color: #74b974;"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_NEW_WIDGET'); ?>
-						</span>
-					</a>
+			<div class="dashboard-cards row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3 mb-3 text-center">
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.add'); ?>">
+								<div class="mt-1 mb-3"><i class="icon icon-new"></i></div>
+								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_NEW_WIDGET'); ?></div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="<?php echo Route::_('index.php?option=com_minitekwall&view=widgets'); ?>">
-						<i class="icon icon-grid"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_WIDGETS'); ?>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="<?php echo Route::_('index.php?option=com_minitekwall&view=widgets'); ?>">
+								<div class="mt-1 mb-3"><i class="icon icon-grid"></i></div>
+								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_WIDGETS'); ?></div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="#" class="disabled" onclick="return: false;">
-						<i class="icon icon-folder"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_GROUPS'); ?>
-							<span class="badge bg-danger">Pro</span>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="#" class="disabled" onclick="return: false;">
+								<div class="mt-1 mb-3"><i class="icon icon-folder"></i></div>
+								<div>
+									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_GROUPS'); ?>
+									<span class="badge bg-danger">Pro</span>
+								</div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="#" class="disabled" onclick="return: false;">
-						<i class="icon icon-pencil"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_ITEMS'); ?>
-							<span class="badge bg-danger">Pro</span>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="#" class="disabled" onclick="return: false;">
+								<div class="mt-1 mb-3"><i class="icon icon-pencil"></i></div>
+								<div>
+									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_ITEMS'); ?>
+									<span class="badge bg-danger">Pro</span>
+								</div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="#" class="disabled" onclick="return: false;">
-						<i class="icon icon-grid-2" style="color: #db8ddb;"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_GRIDS'); ?>
-							<span class="badge bg-danger">Pro</span>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="#" class="disabled" onclick="return: false;">
+								<div class="mt-1 mb-3"><i class="icon icon-grid-2"></i></div>
+								<div>
+									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_GRIDS'); ?>
+									<span class="badge bg-danger">Pro</span>
+								</div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="<?php echo Route::_('index.php?option=com_config&view=component&component=com_minitekwall&path=&return=' . base64_encode(URI::getInstance()->toString())); ?>">
-						<i class="icon icon-cog"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CONFIGURATION'); ?>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="<?php echo Route::_('index.php?option=com_config&view=component&component=com_minitekwall&path=&return=' . base64_encode(URI::getInstance()->toString())); ?>">
+								<div class="mt-1 mb-3"><i class="icon icon-cog"></i></div>
+								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CONFIGURATION'); ?></div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="<?php echo Route::_('index.php?option=com_minitekwall&task=widgets.deleteCroppedImages&' . Session::getFormToken() . '=1'); ?>">
-						<i class="icon icon-trash" style="color: #ea7a7a;"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DELETE_CROPPED_IMAGES'); ?>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="<?php echo Route::_('index.php?option=com_minitekwall&task=widgets.deleteCroppedImages&' . Session::getFormToken() . '=1'); ?>">
+								<div class="mt-1 mb-3"><i class="icon icon-trash"></i></div>
+								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DELETE_CROPPED_IMAGES'); ?></div>
+							</a>
+						</div>
+					</div>
 				</div>
 
-				<div class="thumbnail card">
-					<a href="https://extensions.joomla.org/extension/news-display/articles-display/minitek-wall-pro/" target="_blank">
-						<i class="icon icon-star" style="color: #ffcb52;"></i>
-						<span class="thumbnail-title">
-							<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_LIKE_THIS_EXTENSION'); ?><br>
-							<span class="small">
-								<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_LEAVE_A_REVIEW_ON_JED'); ?>
-							</span>
-						</span>
-					</a>
+				<div class="col">
+					<div class="card border h-100 py-2">
+						<div class="card-body">
+							<a href="https://extensions.joomla.org/extension/news-display/articles-display/minitek-wall-pro/" target="_blank">
+								<div class="mt-1 mb-3"><i class="icon icon-star" style="color: #ffcb52;"></i></div>
+								<div>
+									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_LIKE_THIS_EXTENSION'); ?><br>
+									<div class="small"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_LEAVE_A_REVIEW_ON_JED'); ?></div>
+								</div>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-12 col-md-4">
-
+		<div class="col-12 col-lg-4">
 			<div class="dashboard-module">
-				<div class="card mb-3">
+				<div class="card border mb-3 overflow-hidden">
 					<div class="card-header">
 						<h4 class="m-0"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_ABOUT'); ?></h4>
 					</div>
@@ -168,7 +190,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 			</div>
 
 			<div class="dashboard-module">
-				<div class="card mb-3">
+				<div class="card border mb-3 overflow-hidden">
 					<div class="card-header">
 						<h4 class="m-0"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_SIDEBAR_QUICK_LINKS'); ?></h4>
 					</div>
@@ -215,8 +237,6 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					</div>
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 </div>
