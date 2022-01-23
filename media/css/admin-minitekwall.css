@@ -17,115 +17,25 @@ body.com_minitekwall.view-dashboard #system-message-container {
   margin-top: 1rem;
 }
 
-/* Dashboard alert */
+/* Dashboard brand */
 
-.minitek-dashboard .alert {
-  border-radius: 0;
-}
-
-.minitek-dashboard .alert-message .badge {
-  font-size: 15px;
-}
-
-.minitek-dashboard .alert h3 {
-  color: inherit;
-}
-
-/* Dashboard media box */
-
-.minitek-dashboard .media {
+.minitek-dashboard .brand {
   border: 1px solid #b4e1ea;
-  margin: 5px 0 10px;
-  padding: 15px;
   background: #d9edf7;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
 }
 
-.minitek-dashboard .media-object {
-  opacity: 0.8;
-}
-
-.minitek-dashboard .media-body {
-  padding: 20px;
+.minitek-dashboard .brand h2,
+.minitek-dashboard .brand p {
   color: #4780aa;
-  overflow: hidden;
 }
 
-.minitek-dashboard .media-heading {
-  margin: 0 0 15px;
-  color: inherit;
-}
+/* Dashboard cards */
 
-.minitek-dashboard .media-heading .label {
-  vertical-align: middle;
-}
-
-/* Dashboard thumbnails */
-
-.dashboard-thumbnails {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0 -5px;
-}
-
-.dashboard-thumbnails .thumbnail {
-  flex-grow: 1;
-  flex-basis: 23%;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  padding: 0;
-  text-align: center;
-  background: #fff;
-  margin: 0 5px 10px;
-  min-width: inherit;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
-}
-
-.dashboard-thumbnails .thumbnail a {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px 15px 10px;
-}
-
-.dashboard-thumbnails .thumbnail:last-child a {
-  padding: 20px 15px 0;
-}
-
-.dashboard-thumbnails .thumbnail:last-child .small {
-  font-size: 11px;
-}
-
-.dashboard-thumbnails .thumbnail .icon {
+.dashboard-cards .icon {
   font-size: 38px;
   width: 38px;
   height: 38px;
-  display: inline-block;
-  margin: 0;
-  line-height: 1;
   color: #71a0c0;
-}
-
-.dashboard-thumbnails .thumbnail-title {
-  margin: 20px 0 15px;
-  font-size: 15px;
-  font-weight: 400;
-  display: inline-block;
-  width: 100%;
-}
-
-/* Dashboard modules */
-
-.dashboard-module .card {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
-  border: 1px solid #ddd;
-  border-radius: 0;
-}
-
-.dashboard-module a {
-  text-decoration: none;
 }
 
 /* Separators */
