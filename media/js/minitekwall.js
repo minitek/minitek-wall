@@ -62,6 +62,9 @@
       this.container = document.querySelector(
         "#mnwall_container_" + this.widgetId
       );
+
+      if (this.container == null) return;
+
       this.gridType = parseInt(this.options.mas_grid, 10);
 
       switch (this.gridType) {
