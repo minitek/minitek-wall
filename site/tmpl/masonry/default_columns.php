@@ -1,7 +1,7 @@
 <?php
 /**
 * @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -216,16 +216,14 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 												if ($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) 
 												{
 													?><p class="mnwall-item-category">
-														<span><?php echo \JText::_('COM_MINITEKWALL_IN'); ?> </span><?php 
-														echo $item->itemCategory; 
+														<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
 													?></p><?php 
 												}
 
 												if ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) 
 												{
 													?><p class="mnwall-item-author">
-														<span><?php echo \JText::_('COM_MINITEKWALL_BY'); ?> </span><?php 
-														echo $item->itemAuthor; 
+														<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
 													?></p><?php 
 												}
 
@@ -306,16 +304,14 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 													if (((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw)) && $this->hoverBoxCategory) 
 													{
 														?><p class="mnwall-item-category">
-															<span><?php echo \JText::_('COM_MINITEKWALL_IN'); ?> </span><?php 
-															echo $item->itemCategory; 
+															<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
 														?></p><?php 
 													}
 
 													if (((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)) && $this->hoverBoxAuthor) 
 													{
 														?><p class="mnwall-item-author">
-															<span><?php echo \JText::_('COM_MINITEKWALL_BY'); ?> </span><?php 
-															echo $item->itemAuthor; 
+															<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
 														?></p><?php 
 													}
 
@@ -420,16 +416,14 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 									if ($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) 
 									{
 										?><p class="mnwall-item-category">
-											<span><?php echo \JText::_('COM_MINITEKWALL_IN'); ?> </span><?php 
-											echo $item->itemCategory; 
+											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
 										?></p><?php 
 									}
 
 									if ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) 
 									{
 										?><p class="mnwall-item-author">
-											<span><?php echo \JText::_('COM_MINITEKWALL_BY'); ?> </span><?php 
-											echo $item->itemAuthor; 
+											<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
 										?></p><?php 
 									}
 
@@ -511,16 +505,14 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 											if (((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw)) && $this->hoverBoxCategory) 
 											{
 												?><p class="mnwall-item-category">
-													<span><?php echo \JText::_('COM_MINITEKWALL_IN'); ?> </span><?php 
-													echo $item->itemCategory; 
+													<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
 												?></p><?php 
 											}
 
 											if (((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)) && $this->hoverBoxAuthor) 
 											{
 												?><p class="mnwall-item-author">
-													<span><?php echo \JText::_('COM_MINITEKWALL_BY'); ?> </span><?php 
-													echo $item->itemAuthor; 
+													<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
 												?></p><?php 
 											}
 
