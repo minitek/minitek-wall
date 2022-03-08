@@ -153,7 +153,7 @@ website: 	https://www.minitek.gr
 }
 
 .mnwall_iso_buttons ul {
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
   list-style: none;
   display: inline-block;
@@ -235,7 +235,7 @@ website: 	https://www.minitek.gr
   border: 1px solid #d7d7d7;
   border-top: 0;
   border-radius: 0 0 3px 3px;
-  margin: 0;
+  margin: 0 !important;
   max-height: 0;
   opacity: 0;
   overflow-x: hidden;
