@@ -286,6 +286,30 @@
 				default="F d, Y"
 			/>
 
+			<field
+				name="mas_db_category_link"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LINK_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LINK_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="mas_db_author_link"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LINK_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LINK_DESC"
+				default="1"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
 		</fieldset>
 
 		<fieldset name="masonry_detailbox_big">
