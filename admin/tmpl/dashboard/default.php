@@ -2,7 +2,7 @@
 
 /**
  * @title        Minitek Wall
- * @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+ * @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
  * @license      GNU General Public License version 3 or later.
  * @author url   https://www.minitek.gr/
  * @developers   Minitek.gr
@@ -57,7 +57,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.add'); ?>">
-								<div class="mt-1 mb-3"><i class="icon icon-new"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-new"></i></div>
 								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_NEW_WIDGET'); ?></div>
 							</a>
 						</div>
@@ -68,7 +68,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="<?php echo Route::_('index.php?option=com_minitekwall&view=widgets'); ?>">
-								<div class="mt-1 mb-3"><i class="icon icon-grid"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-grid"></i></div>
 								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_WIDGETS'); ?></div>
 							</a>
 						</div>
@@ -79,7 +79,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="#" class="disabled" onclick="return: false;">
-								<div class="mt-1 mb-3"><i class="icon icon-folder"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-folder"></i></div>
 								<div>
 									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_GROUPS'); ?>
 									<span class="badge bg-danger">Pro</span>
@@ -93,7 +93,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="#" class="disabled" onclick="return: false;">
-								<div class="mt-1 mb-3"><i class="icon icon-pencil"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-pencil"></i></div>
 								<div>
 									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_ITEMS'); ?>
 									<span class="badge bg-danger">Pro</span>
@@ -107,7 +107,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="#" class="disabled" onclick="return: false;">
-								<div class="mt-1 mb-3"><i class="icon icon-grid-2"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-grid-2"></i></div>
 								<div>
 									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CUSTOM_GRIDS'); ?>
 									<span class="badge bg-danger">Pro</span>
@@ -121,7 +121,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="<?php echo Route::_('index.php?option=com_config&view=component&component=com_minitekwall&path=&return=' . base64_encode(URI::getInstance()->toString())); ?>">
-								<div class="mt-1 mb-3"><i class="icon icon-cog"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-cog"></i></div>
 								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_CONFIGURATION'); ?></div>
 							</a>
 						</div>
@@ -132,7 +132,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="<?php echo Route::_('index.php?option=com_minitekwall&task=widgets.deleteCroppedImages&' . Session::getFormToken() . '=1'); ?>">
-								<div class="mt-1 mb-3"><i class="icon icon-trash"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-trash"></i></div>
 								<div><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DELETE_CROPPED_IMAGES'); ?></div>
 							</a>
 						</div>
@@ -143,7 +143,7 @@ $moduleInstalled = MinitekWallHelper::getModule();
 					<div class="card border h-100 py-2">
 						<div class="card-body">
 							<a href="https://extensions.joomla.org/extension/news-display/articles-display/minitek-wall-pro/" target="_blank">
-								<div class="mt-1 mb-3"><i class="icon icon-star" style="color: #ffcb52;"></i></div>
+								<div class="pt-1 pb-3"><i class="icon icon-thumbs-up"></i></div>
 								<div>
 									<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_LIKE_THIS_EXTENSION'); ?><br>
 									<div class="small"><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_LEAVE_A_REVIEW_ON_JED'); ?></div>

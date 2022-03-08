@@ -26,7 +26,7 @@ body.com_minitekwall.view-dashboard #system-message-container {
 
 .minitek-dashboard .brand h2,
 .minitek-dashboard .brand p {
-  color: #4780aa;
+  color: #2b7fbd;
 }
 
 /* Dashboard cards */
@@ -35,7 +35,13 @@ body.com_minitekwall.view-dashboard #system-message-container {
   font-size: 38px;
   width: 38px;
   height: 38px;
-  color: #71a0c0;
+  color: #2b7fbd;
+}
+
+/* Dashboard modules */
+
+.dashboard-module .list-group-item [class*=" icon-"] {
+  color: #2b7fbd;
 }
 
 /* Separators */
