@@ -1,8 +1,8 @@
 <?php
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
+* @title        Minitek Wall
+* @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
+* @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -12,6 +12,7 @@ namespace Joomla\Component\MinitekWall\Administrator\View\Widgets;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
@@ -109,7 +110,7 @@ class HtmlView extends BaseHtmlView
 		// Get the toolbar object instance
 		$toolbar = Toolbar::getInstance('toolbar');
 
-		ToolbarHelper::title(\JText::_('COM_MINITEKWALL_WIDGETS_TITLE'), 'grid');
+		ToolbarHelper::title(Text::_('COM_MINITEKWALL_WIDGETS_TITLE'), 'grid');
 
 		if ($canDo->get('core.create'))
 		{
@@ -150,11 +151,14 @@ class HtmlView extends BaseHtmlView
 			ToolbarHelper::custom('widgets.deleteCroppedImages', 'trash.png', 'trash_f2.png', 'COM_MINITEKWALL_DELETE_CROPPED_IMAGES', false);
 		}
 
+		$toolbar->back()
+			->text('COM_MINITEKWALL_DASHBOARD')
+			->icon('fa fa-' . (Factory::getApplication()->getLanguage()->isRtl() ? 'arrow-right' : 'arrow-left'))
+			->url('index.php?option=com_minitekwall');
+
 		if ($user->authorise('core.admin', 'com_minitekwall') || $user->authorise('core.options', 'com_minitekwall'))
 		{
 			$toolbar->preferences('com_minitekwall');
 		}
-
-		\JHtmlSidebar::setAction('index.php?option=com_minitekwall&view=widgets');
 	}
 }
