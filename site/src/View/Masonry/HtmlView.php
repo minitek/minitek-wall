@@ -140,13 +140,7 @@ class HtmlView extends BaseHtmlView
 
 		// Detail box
 		$detailBoxTitleLimit = $masonry_params['mas_db_title_limit'];
-		$this->detailBoxTitleLink = true;
-
-		if (array_key_exists('mas_db_title_link', $masonry_params))
-		{
-			$this->detailBoxTitleLink = $masonry_params['mas_db_title_link'];
-		}
-
+		$this->detailBoxTitleLink = isset($masonry_params['mas_db_title_link']) ? $masonry_params['mas_db_title_link'] : true;
 		$detailBoxIntrotextLimit = $masonry_params['mas_db_introtext_limit'];
 		$detailBoxStripTags = $masonry_params['mas_db_strip_tags'];
 		$detailBoxDateFormat = $masonry_params['mas_db_date_format'];
@@ -489,6 +483,8 @@ class HtmlView extends BaseHtmlView
 		$detailBoxParams['detailBoxIntrotextLimit'] = $detailBoxIntrotextLimit;
 		$detailBoxParams['detailBoxStripTags'] = $detailBoxStripTags;
 		$detailBoxParams['detailBoxDateFormat'] = $detailBoxDateFormat;
+		$detailBoxParams['detailBoxCategoryLink'] = isset($masonry_params['mas_db_category_link']) ? $masonry_params['mas_db_category_link'] : true;
+		$detailBoxParams['detailBoxAuthorLink'] = isset($masonry_params['mas_db_author_link']) ? $masonry_params['mas_db_author_link'] : true;
 
 		$hoverBoxParams = array();
 		$hoverBoxParams['hoverBox'] = $this->hoverBox;
