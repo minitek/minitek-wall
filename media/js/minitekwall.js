@@ -60,7 +60,7 @@
       this.filtersMode = this.options.mas_filters_mode;
       this.closeFilters = this.options.mas_close_filters != 0 ? true : false;
       this.container = document.querySelector(
-        "#mnwall_container_" + this.widgetId
+        "#mwall_container_" + this.widgetId
       );
 
       if (this.container == null) return;
@@ -100,9 +100,9 @@
       } else this.sortBy = [this.sortBy, "id", "title"];
 
       this.createSpinner(
-        document.querySelector("#mnwall_loader_" + this.widgetId)
+        document.querySelector("#mwall_loader_" + this.widgetId)
       );
-      document.querySelector("#mnwall_loader_" + this.widgetId).style.display =
+      document.querySelector("#mwall_loader_" + this.widgetId).style.display =
         "block";
       this.transitionDuration = parseInt(
         this.options.mas_transition_duration,
@@ -113,7 +113,7 @@
         10
       );
       this.iso_container = document.querySelector(
-        "#mnwall_iso_container_" + this.widgetId
+        "#mwall_iso_container_" + this.widgetId
       );
       this.wall;
       var effects = this.options.mas_effects
@@ -129,7 +129,7 @@
       // Initialize wall
       imagesLoaded(self.iso_container, function () {
         self.wall = new Isotope(self.iso_container, {
-          itemSelector: ".mnwall-item",
+          itemSelector: ".mwall-item",
           layoutMode: self.layoutMode,
           vertical: {
             horizontalAlignment: 0,
@@ -171,9 +171,8 @@
 
         self.fixEqualHeights("all");
         self.container.style.opacity = 1;
-        document.querySelector(
-          "#mnwall_loader_" + self.widgetId
-        ).style.display = "none";
+        document.querySelector("#mwall_loader_" + self.widgetId).style.display =
+          "none";
       });
     }
 
@@ -182,17 +181,17 @@
       var filters = {};
 
       // Bind filter button click
-      if (self.container.querySelector(".mnwall_iso_filters_cont")) {
+      if (self.container.querySelector(".mwall_iso_filters_cont")) {
         self.container
-          .querySelector(".mnwall_iso_filters_cont")
+          .querySelector(".mwall_iso_filters_cont")
           .addEventListener("click", function (e) {
             e.preventDefault();
 
-            if (e.target && e.target.classList.contains("mnwall-filter")) {
+            if (e.target && e.target.classList.contains("mwall-filter")) {
               var _this = e.target;
 
               // Show filter name in dropdown
-              if (_this.closest(".mnwall_iso_dropdown")) {
+              if (_this.closest(".mwall_iso_dropdown")) {
                 var data_filter_attr = _this.getAttribute("data-filter");
 
                 if (
@@ -204,12 +203,12 @@
                   if (data_filter_attr.length) filter_text = _this.textContent;
                   else
                     filter_text = _this
-                      .closest(".mnwall_iso_dropdown")
+                      .closest(".mwall_iso_dropdown")
                       .querySelector(".dropdown-label span")
                       .getAttribute("data-label");
 
                   _this
-                    .closest(".mnwall_iso_dropdown")
+                    .closest(".mwall_iso_dropdown")
                     .querySelector(".dropdown-label span span").textContent =
                     filter_text;
                 }
@@ -243,20 +242,18 @@
         self.container
           .querySelectorAll(".button-group")
           .forEach(function (buttonGroup) {
-            buttonGroup
-              .querySelectorAll(".mnwall-filter")
-              .forEach(function (a) {
-                a.addEventListener("click", function (e) {
-                  e.preventDefault();
+            buttonGroup.querySelectorAll(".mwall-filter").forEach(function (a) {
+              a.addEventListener("click", function (e) {
+                e.preventDefault();
 
-                  if (buttonGroup.querySelector(".mnw_filter_active"))
-                    buttonGroup
-                      .querySelector(".mnw_filter_active")
-                      .classList.remove("mnw_filter_active");
+                if (buttonGroup.querySelector(".mnw_filter_active"))
+                  buttonGroup
+                    .querySelector(".mnw_filter_active")
+                    .classList.remove("mnw_filter_active");
 
-                  a.classList.add("mnw_filter_active");
-                });
+                a.classList.add("mnw_filter_active");
               });
+            });
           });
       };
 
@@ -265,8 +262,8 @@
       // Dropdown filter list
       this.dropdownFilters = function dropdownFilters() {
         self.container
-          .querySelector(".mnwall_iso_filters_cont")
-          .querySelectorAll(".mnwall_iso_dropdown")
+          .querySelector(".mwall_iso_filters_cont")
+          .querySelectorAll(".mwall_iso_dropdown")
           .forEach(function (dropdownGroup) {
             dropdownGroup
               .querySelector(".dropdown-label")
@@ -275,7 +272,7 @@
                 var filter_open;
 
                 if (
-                  this.closest(".mnwall_iso_dropdown").classList.contains(
+                  this.closest(".mwall_iso_dropdown").classList.contains(
                     "expanded"
                   )
                 )
@@ -283,15 +280,13 @@
                 else filter_open = false;
 
                 self.container
-                  .querySelectorAll(".mnwall_iso_dropdown")
+                  .querySelectorAll(".mwall_iso_dropdown")
                   .forEach(function (a) {
                     a.classList.remove("expanded");
                   });
 
                 if (!filter_open)
-                  this.closest(".mnwall_iso_dropdown").classList.add(
-                    "expanded"
-                  );
+                  this.closest(".mwall_iso_dropdown").classList.add("expanded");
               });
           });
 
@@ -299,14 +294,14 @@
         document.addEventListener("mouseup", function (e) {
           var _target = e.target;
           var dropdowncontainers = self.container.querySelectorAll(
-            ".mnwall_iso_dropdown"
+            ".mwall_iso_dropdown"
           );
 
           if (!dropdowncontainers) return;
 
           if (!this.closeFilters) {
             // Close when click outside
-            if (!_target.closest(".mnwall_iso_dropdown")) {
+            if (!_target.closest(".mwall_iso_dropdown")) {
               dropdowncontainers.forEach(function (a) {
                 a.classList.remove("expanded");
               });
@@ -314,7 +309,7 @@
           } else {
             // Close when click inside
             if (
-              _target.closest(".mnwall_iso_dropdown") &&
+              _target.closest(".mwall_iso_dropdown") &&
               !_target.closest(".dropdown-label")
             ) {
               dropdowncontainers.forEach(function (a) {
@@ -331,15 +326,15 @@
       if (self.container.querySelector(".sorting-group-filters")) {
         self.container
           .querySelector(".sorting-group-filters")
-          .querySelectorAll(".mnwall-filter")
+          .querySelectorAll(".mwall-filter")
           .forEach(function (a) {
             a.addEventListener("click", function (e) {
               e.preventDefault();
 
               // Show sorting name in dropdown
-              if (this.closest(".mnwall_iso_dropdown")) {
+              if (this.closest(".mwall_iso_dropdown")) {
                 var sorting_text = this.textContent;
-                this.closest(".mnwall_iso_dropdown").querySelector(
+                this.closest(".mwall_iso_dropdown").querySelector(
                   ".dropdown-label span span"
                 ).textContent = sorting_text;
               }
@@ -357,7 +352,7 @@
               // Change active class on sorting filters
               self.container
                 .querySelector(".sorting-group-filters")
-                .querySelectorAll(".mnwall-filter")
+                .querySelectorAll(".mwall-filter")
                 .forEach(function (a) {
                   a.classList.remove("mnw_filter_active");
                 });
@@ -370,15 +365,15 @@
       if (self.container.querySelector(".sorting-group-direction")) {
         self.container
           .querySelector(".sorting-group-direction")
-          .querySelectorAll(".mnwall-filter")
+          .querySelectorAll(".mwall-filter")
           .forEach(function (a) {
             a.addEventListener("click", function (e) {
               e.preventDefault();
 
               // Show sorting name in dropdown
-              if (this.closest(".mnwall_iso_dropdown")) {
+              if (this.closest(".mwall_iso_dropdown")) {
                 var sorting_text = this.textContent;
-                this.closest(".mnwall_iso_dropdown").querySelector(
+                this.closest(".mwall_iso_dropdown").querySelector(
                   ".dropdown-label span span"
                 ).textContent = sorting_text;
               }
@@ -397,7 +392,7 @@
               // Change active class on sorting direction
               self.container
                 .querySelector(".sorting-group-direction")
-                .querySelectorAll(".mnwall-filter")
+                .querySelectorAll(".mwall-filter")
                 .forEach(function (a) {
                   a.classList.remove("mnw_filter_active");
                 });
@@ -408,10 +403,10 @@
 
       // Dropdown sorting list
       var dropdownSortings = function dropdownSortings() {
-        if (self.container.querySelector(".mnwall_iso_sortings")) {
+        if (self.container.querySelector(".mwall_iso_sortings")) {
           self.container
-            .querySelector(".mnwall_iso_sortings")
-            .querySelectorAll(".mnwall_iso_dropdown")
+            .querySelector(".mwall_iso_sortings")
+            .querySelectorAll(".mwall_iso_dropdown")
             .forEach(function (dropdownSorting) {
               dropdownSorting
                 .querySelector(".dropdown-label")
@@ -420,7 +415,7 @@
                   var sorting_open;
 
                   if (
-                    this.closest(".mnwall_iso_dropdown").classList.contains(
+                    this.closest(".mwall_iso_dropdown").classList.contains(
                       "expanded"
                     )
                   )
@@ -428,13 +423,13 @@
                   else sorting_open = false;
 
                   self.container
-                    .querySelectorAll(".mnwall_iso_dropdown")
+                    .querySelectorAll(".mwall_iso_dropdown")
                     .forEach(function (a) {
                       a.classList.remove("expanded");
                     });
 
                   if (!sorting_open)
-                    this.closest(".mnwall_iso_dropdown").classList.add(
+                    this.closest(".mwall_iso_dropdown").classList.add(
                       "expanded"
                     );
                 });
@@ -465,7 +460,7 @@
 
         // Reset dropdown filters text
         self.container
-          .querySelectorAll(".mnwall_iso_dropdown")
+          .querySelectorAll(".mwall_iso_dropdown")
           .forEach(function (dropdownGroup) {
             var filter_text = dropdownGroup
               .querySelector(".dropdown-label span")
@@ -480,7 +475,7 @@
           .querySelectorAll(".sorting-group-filters")
           .forEach(function (sortingGroup) {
             sortingGroup
-              .querySelectorAll(".mnwall-filter")
+              .querySelectorAll(".mwall-filter")
               .forEach(function (a) {
                 a.classList.remove("mnw_filter_active");
               });
@@ -518,11 +513,11 @@
 
       document
         .querySelectorAll(
-          "#mnwall_reset_" +
+          "#mwall_reset_" +
             this.widgetId +
-            ", #mnwall_container_" +
+            ", #mwall_container_" +
             this.widgetId +
-            " .mnwall-reset-btn"
+            " .mwall-reset-btn"
         )
         .forEach(function (a) {
           a.addEventListener("click", function (e) {
@@ -537,66 +532,62 @@
       const self = this;
 
       if (self.gridType == 99 || self.gridType == 98) {
-        self.container.querySelectorAll(".mnwall-item").forEach(function (a) {
+        self.container.querySelectorAll(".mwall-item").forEach(function (a) {
           a.addEventListener("mouseenter", function (e) {
             switch (self.options.mas_hb_effect) {
               case "no":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "hoverShow"
                 );
                 break;
               case "1":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "hoverFadeIn"
                 );
                 break;
               case "2":
-                this.querySelector(".mnwall-cover").classList.add(
-                  "perspective"
-                );
-                this.querySelector(".mnwall-img-div").classList.add(
+                this.querySelector(".mwall-cover").classList.add("perspective");
+                this.querySelector(".mwall-img-div").classList.add(
                   "flip",
                   "flipY",
                   "hoverFlipY"
                 );
                 break;
               case "3":
-                this.querySelector(".mnwall-cover").classList.add(
-                  "perspective"
-                );
-                this.querySelector(".mnwall-img-div").classList.add(
+                this.querySelector(".mwall-cover").classList.add("perspective");
+                this.querySelector(".mwall-img-div").classList.add(
                   "flip",
                   "flipX",
                   "hoverFlipX"
                 );
                 break;
               case "4":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "slideInRight"
                 );
                 break;
               case "5":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "slideInLeft"
                 );
                 break;
               case "6":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "slideInTop"
                 );
                 break;
               case "7":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "slideInBottom"
                 );
                 break;
               case "8":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "mnwzoomIn"
                 );
                 break;
               default:
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "hoverFadeIn"
                 );
                 break;
@@ -606,52 +597,52 @@
           a.addEventListener("mouseleave", function (e) {
             switch (self.options.mas_hb_effect) {
               case "no":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "hoverShow"
                 );
                 break;
               case "1":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "hoverFadeIn"
                 );
                 break;
               case "2":
-                this.querySelector(".mnwall-img-div").classList.remove(
+                this.querySelector(".mwall-img-div").classList.remove(
                   "hoverFlipY"
                 );
                 break;
               case "3":
-                this.querySelector(".mnwall-img-div").classList.remove(
+                this.querySelector(".mwall-img-div").classList.remove(
                   "hoverFlipX"
                 );
                 break;
               case "4":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInRight"
                 );
                 break;
               case "5":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInLeft"
                 );
                 break;
               case "6":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInTop"
                 );
                 break;
               case "7":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInBottom"
                 );
                 break;
               case "8":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "mnwzoomIn"
                 );
                 break;
               default:
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "hoverFadeIn"
                 );
                 break;
@@ -661,22 +652,22 @@
       }
 
       if (self.gridType != 98 && self.gridType != 99) {
-        self.container.querySelectorAll(".mnwall-item").forEach(function (a) {
+        self.container.querySelectorAll(".mwall-item").forEach(function (a) {
           a.addEventListener("mouseenter", function (e) {
             switch (self.options.mas_hb_effect) {
               case "no":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "hoverShow"
                 );
                 break;
               case "1":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "hoverFadeIn"
                 );
                 break;
               case "2":
                 this.classList.add("perspective");
-                this.querySelector(".mnwall-item-outer-cont").classList.add(
+                this.querySelector(".mwall-item-outer-cont").classList.add(
                   "flip",
                   "flipY",
                   "hoverFlipY"
@@ -684,44 +675,44 @@
                 break;
               case "3":
                 this.classList.add("perspective");
-                this.querySelector(".mnwall-item-outer-cont").classList.add(
+                this.querySelector(".mwall-item-outer-cont").classList.add(
                   "flip",
                   "flipX",
                   "hoverFlipX"
                 );
                 break;
               case "4":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "animated",
                   "slideInRight"
                 );
                 break;
               case "5":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "animated",
                   "slideInLeft"
                 );
                 break;
               case "6":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "animated",
                   "slideInTop"
                 );
                 break;
               case "7":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "animated",
                   "slideInBottom"
                 );
                 break;
               case "8":
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "animated",
                   "mnwzoomIn"
                 );
                 break;
               default:
-                this.querySelector(".mnwall-hover-box").classList.add(
+                this.querySelector(".mwall-hover-box").classList.add(
                   "hoverFadeIn"
                 );
                 break;
@@ -731,52 +722,52 @@
           a.addEventListener("mouseleave", function (e) {
             switch (self.options.mas_hb_effect) {
               case "no":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "hoverShow"
                 );
                 break;
               case "1":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "hoverFadeIn"
                 );
                 break;
               case "2":
-                this.querySelector(".mnwall-item-outer-cont").classList.remove(
+                this.querySelector(".mwall-item-outer-cont").classList.remove(
                   "hoverFlipY"
                 );
                 break;
               case "3":
-                this.querySelector(".mnwall-item-outer-cont").classList.remove(
+                this.querySelector(".mwall-item-outer-cont").classList.remove(
                   "hoverFlipX"
                 );
                 break;
               case "4":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInRight"
                 );
                 break;
               case "5":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInLeft"
                 );
                 break;
               case "6":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInTop"
                 );
                 break;
               case "7":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "slideInBottom"
                 );
                 break;
               case "8":
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "mnwzoomIn"
                 );
                 break;
               default:
-                this.querySelector(".mnwall-hover-box").classList.remove(
+                this.querySelector(".mwall-hover-box").classList.remove(
                   "hoverFadeIn"
                 );
                 break;
@@ -804,7 +795,7 @@
 
         if (items == "all") {
           this.container
-            .querySelectorAll(".mnwall-item-inner")
+            .querySelectorAll(".mwall-item-inner")
             .forEach(function (a) {
               a.style.height = "auto";
 
@@ -812,7 +803,7 @@
             });
         } else {
           items.forEach(function (a) {
-            var _this_item_inner = a.querySelector(".mnwall-item-inner");
+            var _this_item_inner = a.querySelector(".mwall-item-inner");
             _this_item_inner.style.height = "auto";
 
             if (_this_item_inner.offsetHeight > max_height)
@@ -821,7 +812,7 @@
         }
 
         this.container
-          .querySelectorAll(".mnwall-item-inner")
+          .querySelectorAll(".mwall-item-inner")
           .forEach(function (a) {
             a.style.height = max_height + "px";
           });

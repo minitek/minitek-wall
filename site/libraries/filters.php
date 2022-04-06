@@ -14,39 +14,39 @@ class MinitekWallLibFilters
 	public function getFiltersCss($masonry_params, $widgetID)
 	{
 		$document = \JFactory::getDocument();
-		$mnwall = 'mnwall_container_'.$widgetID;
+		$mwall = 'mwall_container_'.$widgetID;
 		$background_color = $masonry_params['mas_filters_bg'];
 		$border_radius = (int)$masonry_params['mas_filters_border_radius'];
 
 		$css = '
-		#'.$mnwall.' .mnwall_iso_buttons a {
+		#'.$mwall.' .mwall_iso_buttons a {
 			border-radius: '.$border_radius.'px;
 		}
-		#'.$mnwall.' .mnwall_iso_buttons a.mnw_filter_active {
+		#'.$mwall.' .mwall_iso_buttons a.mnw_filter_active {
 			background-color: '.$background_color.';
 			border-color: '.$background_color.';
 		}
-		#'.$mnwall.' .mnwall_iso_reset .btn-reset {
+		#'.$mwall.' .mwall_iso_reset .btn-reset {
 			border-radius: '.$border_radius.'px;
 		}
-		#'.$mnwall.' .mnwall_iso_reset .btn-reset:hover,
-		#'.$mnwall.' .mnwall_iso_reset .btn-reset:focus {
+		#'.$mwall.' .mwall_iso_reset .btn-reset:hover,
+		#'.$mwall.' .mwall_iso_reset .btn-reset:focus {
 			background-color: '.$background_color.';
 			border-color: '.$background_color.';
 		}
 
-		#'.$mnwall.' .mnwall_iso_dropdown .dropdown-label {
+		#'.$mwall.' .mwall_iso_dropdown .dropdown-label {
 			border-radius: '.$border_radius.'px;
 		}
-		#'.$mnwall.' .mnwall_iso_dropdown.expanded .dropdown-label {
+		#'.$mwall.' .mwall_iso_dropdown.expanded .dropdown-label {
 			border-radius: '.$border_radius.'px '.$border_radius.'px 0 0;
 			background-color: '.$background_color.';
 			border-color: '.$background_color.';
 		}
-		#'.$mnwall.' .mnwall_iso_dropdown ul li a.mnw_filter_active {
+		#'.$mwall.' .mwall_iso_dropdown ul li a.mnw_filter_active {
 			color: '.$background_color.';
 		}
-		#'.$mnwall.' .mnwall_iso_dropdown:hover .dropdown-label {
+		#'.$mwall.' .mwall_iso_dropdown:hover .dropdown-label {
 			color: '.$background_color.';
 		}
 		';

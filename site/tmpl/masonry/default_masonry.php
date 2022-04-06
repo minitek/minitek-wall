@@ -56,7 +56,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 		$options = $this->getMasonryItemOptions($item_size);
 		$class = 'mnwitem'.$item_index.' '.$item_size;
 		
-		?><div class="mnwall-item <?php 
+		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
 			echo $tagfilter; ?> <?php 
 			echo $datefilter; ?> <?php 
@@ -114,7 +114,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			} 
 			?>><?php 
 
-			?><div class="mnwall-item-outer-cont <?php 
+			?><div class="mwall-item-outer-cont <?php 
 				if ($options['detail_box'] && !$this->full_width_image)
 				{
 					echo 'half-size ';
@@ -139,7 +139,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 				echo $this->animated_flip; 
 				?>"><?php 
 
-				?><div class="mnwall-item-inner-cont"><?php 
+				?><div class="mwall-item-inner-cont"><?php 
 				
 					if (isset($item->itemImage) && $item->itemImage && $this->mas_images) 
 					{
@@ -147,19 +147,19 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 						{
 							?><a href="<?php 
 								echo $item->itemLink; 
-								?>" class="mnwall-photo-link" style="background-image: url('<?php 
+								?>" class="mwall-photo-link" style="background-image: url('<?php 
 								echo $item->itemImage; ?>');">
 							</a><?php 
 						} 
 						else 
 						{
-							?><div class="mnwall-photo-link" style="background-image: url('<?php echo $item->itemImage; ?>');"></div><?php 
+							?><div class="mwall-photo-link" style="background-image: url('<?php echo $item->itemImage; ?>');"></div><?php 
 						}
 					}
 
 					if ($this->detailBoxAll) 
 					{
-						?><div class="mnwall-item-inner mnwall-detail-box <?php 
+						?><div class="mwall-item-inner mwall-detail-box <?php 
 							echo $options['db_color_class']; ?> <?php 
 							echo $options['db_class']; ?> <?php 
 							echo $options['title_class']; ?> <?php 
@@ -177,14 +177,14 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							?>" style="background-color: rgba(<?php echo $options['db_bg_class']; ?>,<?php echo $options['db_bg_opacity_class']; ?>);"><?php 
 							if ($this->detailBoxDateAll && isset($item->itemDate)) 
 							{
-								?><div class="mnwall-date"><?php 
+								?><div class="mwall-date"><?php 
 									echo $item->itemDate; 
 								?></div><?php 
 							}
 
 							if ($this->detailBoxTitleAll) 
 							{
-								?><h3 class="mnwall-title"><?php 
+								?><h3 class="mwall-title"><?php 
 									if (isset($item->itemLink) && $this->detailBoxTitleLink) 
 									{
 										?><a href="<?php echo $item->itemLink; ?>"><?php 
@@ -202,18 +202,18 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 							if (($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) || ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)))) 
 							{
-								?><div class="mnwall-item-info"><?php 
+								?><div class="mwall-item-info"><?php 
 								
 									if ($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) 
 									{
-										?><p class="mnwall-item-category">
+										?><p class="mwall-item-category">
 											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
 										?></p><?php 
 									}
 
 									if ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) 
 									{
-										?><p class="mnwall-item-author">
+										?><p class="mwall-item-author">
 											<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
 										?></p><?php 
 									}
@@ -223,21 +223,21 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 							if ($this->detailBoxIntrotextAll && isset($item->itemIntrotext) && $item->itemIntrotext) 
 							{
-								?><div class="mnwall-desc"><?php 
+								?><div class="mwall-desc"><?php 
 									echo $item->itemIntrotext; 
 								?></div><?php 
 							}
 
 							if ($this->detailBoxHitsAll && isset($item->itemHits)) 
 							{
-								?><div class="mnwall-hits">
+								?><div class="mwall-hits">
 									<p><?php echo $item->itemHits; ?>&nbsp;<?php echo \JText::_('COM_MINITEKWALL_HITS'); ?></p>
 								</div><?php 
 							}
 
 							if ($this->detailBoxCountAll && isset($item->itemCount)) 
 							{
-								?><div class="mnwall-count">
+								?><div class="mwall-count">
 									<p><?php echo $item->itemCount; ?></p>
 								</div><?php 
 							}
@@ -246,7 +246,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							{
 								if (isset($item->itemLink)) 
 								{
-									?><div class="mnwall-readmore">
+									?><div class="mwall-readmore">
 										<a href="<?php echo $item->itemLink; ?>"><?php echo \JText::_('COM_MINITEKWALL_READ_MORE'); ?></a>
 									</div><?php 
 								}
@@ -258,23 +258,23 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 				
 				if ($this->hoverBox) 
 				{
-					?><div class="mnwall-hover-box" style="<?php 
+					?><div class="mwall-hover-box" style="<?php 
 						echo $this->animated; 
 						?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php 
 
-						?><div class="mnwall-hover-box-content <?php 
+						?><div class="mwall-hover-box-content <?php 
 							echo $this->hoverTextColor; ?>"><?php 
 							
 							if ($this->hoverBoxDate && isset($item->itemDate)) 
 							{
-								?><div class="mnwall-date"><?php 
+								?><div class="mwall-date"><?php 
 									echo $item->itemDate; 
 								?></div><?php 
 							}
 
 							if ($this->hoverBoxTitle) 
 							{
-								?><h3 class="mnwall-title"><?php 
+								?><h3 class="mwall-title"><?php 
 									if (isset($item->itemLink) && $this->detailBoxTitleLink) 
 									{
 										?><a href="<?php echo $item->itemLink; ?>"><?php 
@@ -290,18 +290,18 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 							if ($this->hoverBoxCategory || $this->hoverBoxAuthor) 
 							{
-								?><div class="mnwall-item-info"><?php 
+								?><div class="mwall-item-info"><?php 
 								
 									if (((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw)) && $this->hoverBoxCategory) 
 									{
-										?><p class="mnwall-item-category">
+										?><p class="mwall-item-category">
 											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
 										?></p><?php 
 									}
 
 									if (((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)) && $this->hoverBoxAuthor) 
 									{
-										?><p class="mnwall-item-author">
+										?><p class="mwall-item-author">
 											<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
 										?></p><?php 
 									}
@@ -313,7 +313,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							{
 								if (isset($item->hover_itemIntrotext) && $item->hover_itemIntrotext) 
 								{
-									?><div class="mnwall-desc"><?php 
+									?><div class="mwall-desc"><?php 
 										echo $item->hover_itemIntrotext; 
 									?></div><?php 
 								}
@@ -321,19 +321,19 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 							if ($this->hoverBoxHits && isset($item->itemHits)) 
 							{
-								?><div class="mnwall-hits">
+								?><div class="mwall-hits">
 									<p><?php echo $item->itemHits; ?>&nbsp;<?php echo \JText::_('COM_MINITEKWALL_HITS'); ?></p>
 								</div><?php 
 							}
 
 							if ($this->hoverBoxLinkButton || $this->hoverBoxZoomButton) 
 							{
-								?><div class="mnwall-item-icons"><?php 
+								?><div class="mwall-item-icons"><?php 
 									if ($this->hoverBoxLinkButton) 
 									{
 										if (isset($item->itemLink)) 
 										{
-											?><a href="<?php echo $item->itemLink; ?>" class="mnwall-item-link-icon">
+											?><a href="<?php echo $item->itemLink; ?>" class="mwall-item-link-icon">
 												<i class="fa fa-link"></i>
 											</a><?php 
 										}
@@ -341,7 +341,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 									if ($this->hoverBoxZoomButton && (isset($item->itemImage) && $item->itemImage && $this->mas_images)) 
 									{
-										?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->widgetID; ?>" class="mnwall-zoom mnwall-item-zoom-icon" data-src="<?php echo $item->itemImage; ?>" data-title="<?php echo htmlspecialchars($item->itemTitleRaw); ?>">
+										?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->widgetID; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo $item->itemImage; ?>" data-title="<?php echo htmlspecialchars($item->itemTitleRaw); ?>">
 											<i class="fa fa-search"></i>
 										</a><?php 
 									}

@@ -13,7 +13,7 @@ website: 	https://www.minitek.gr
 /* General */
 /* /////////////////////////////////////// */
 
-.mnwall_loader {
+.mwall_loader {
   display: none;
   line-height: 20px;
   height: 20px;
@@ -21,57 +21,57 @@ website: 	https://www.minitek.gr
   margin: 20px 0 0;
 }
 
-.mnwall_container {
+.mwall_container {
   display: none;
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
-.mnwall_container .clearfix:before,
+.mwall_container .clearfix:before,
 .clearfix:after {
   content: "";
   display: table;
   line-height: 0;
 }
 
-.mnwall_container .clearfix:after {
+.mwall_container .clearfix:after {
   clear: both;
 }
 
-.mnwall_container .clearfix:before,
+.mwall_container .clearfix:before,
 .clearfix:after {
   content: "";
   display: table;
   line-height: 0;
 }
 
-.mnwall_container .text-center {
+.mwall_container .text-center {
   text-align: center;
 }
 
-.mnwall_container {
+.mwall_container {
   padding: 0;
 }
 
-.mnwall_iso_container {
+.mwall_iso_container {
   margin-top: 0;
   margin-bottom: 0;
   overflow: hidden;
   transition: height 0.3s ease 0s;
 }
 
-.mnwall-item-clear {
+.mwall-item-clear {
   clear: both;
 }
 
-.mnwall-item-outer-cont {
+.mwall-item-outer-cont {
   box-sizing: border-box;
   height: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.mnwall-item-inner {
+.mwall-item-inner {
   max-height: 100%;
 }
 
@@ -87,12 +87,12 @@ website: 	https://www.minitek.gr
 /* Filters buttons */
 /* /////////////////////////////////////// */
 
-.mnwall_filters_sortings {
+.mwall_filters_sortings {
   margin: 5px 0 15px;
 }
 
-.mnwall_iso_filters_cont,
-.mnwall_iso_reset_cont {
+.mwall_iso_filters_cont,
+.mwall_iso_reset_cont {
   padding: 0;
   position: relative;
   display: inline-block;
@@ -100,7 +100,7 @@ website: 	https://www.minitek.gr
   text-align: left;
 }
 
-.mnwall_filters_loader {
+.mwall_filters_loader {
   display: none;
   position: absolute;
   top: 0;
@@ -114,19 +114,19 @@ website: 	https://www.minitek.gr
   text-align: center;
 }
 
-.mnwall_filters_loader img {
+.mwall_filters_loader img {
   top: 6px;
   position: relative;
 }
 
-.mnwall_iso_filters,
-.mnwall_iso_reset {
+.mwall_iso_filters,
+.mwall_iso_reset {
   position: relative;
   display: inline-block;
   vertical-align: top;
 }
 
-.mnwall_iso_reset .btn-reset {
+.mwall_iso_reset .btn-reset {
   background: #fff;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
   border: 1px solid #d7d7d7;
@@ -137,34 +137,34 @@ website: 	https://www.minitek.gr
   margin-bottom: 10px;
 }
 
-.mnwall_iso_reset .btn-reset:hover,
-.mnwall_iso_reset .btn-reset:focus {
+.mwall_iso_reset .btn-reset:hover,
+.mwall_iso_reset .btn-reset:focus {
   outline: none;
 }
 
-.mnwall_iso_reset .btn-reset:focus {
+.mwall_iso_reset .btn-reset:focus {
   background: #fff;
 }
 
-.mnwall_iso_buttons {
+.mwall_iso_buttons {
   margin-bottom: 8px;
   margin-right: 20px;
   position: relative;
 }
 
-.mnwall_iso_buttons ul {
+.mwall_iso_buttons ul {
   margin: 0 !important;
   padding: 0;
   list-style: none;
   display: inline-block;
 }
 
-.mnwall_iso_buttons ul li {
+.mwall_iso_buttons ul li {
   display: inline-block;
   vertical-align: top;
 }
 
-.mnwall_iso_buttons a {
+.mwall_iso_buttons a {
   padding: 0 12px;
   display: inline-block;
   line-height: 31px;
@@ -178,14 +178,14 @@ website: 	https://www.minitek.gr
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
 }
 
-.mnwall_iso_buttons a:hover,
-.mnwall_iso_buttons a:focus {
+.mwall_iso_buttons a:hover,
+.mwall_iso_buttons a:focus {
   outline: none;
   text-decoration: none;
   color: #444;
 }
 
-.mnwall_iso_buttons > span {
+.mwall_iso_buttons > span {
   padding: 0 7px;
   color: #777;
   display: inline-block;
@@ -193,16 +193,16 @@ website: 	https://www.minitek.gr
   line-height: 33px;
 }
 
-.mnwall_iso_filters .button-group {
+.mwall_iso_filters .button-group {
   display: inline-block;
 }
 
-.mnwall_iso_buttons a.mnw_filter_active {
+.mwall_iso_buttons a.mnw_filter_active {
   color: #fff;
 }
 
-.mnwall_iso_reset .btn-reset:hover,
-.mnwall_iso_reset .btn-reset:focus {
+.mwall_iso_reset .btn-reset:hover,
+.mwall_iso_reset .btn-reset:focus {
   color: #fff;
 }
 
@@ -210,7 +210,7 @@ website: 	https://www.minitek.gr
 /* Filters list */
 /* /////////////////////////////////////// */
 
-.mnwall_iso_dropdown {
+.mwall_iso_dropdown {
   position: relative;
   min-width: 170px;
   max-width: 100%;
@@ -220,7 +220,7 @@ website: 	https://www.minitek.gr
   text-align: left;
 }
 
-.mnwall_iso_dropdown.expanded ul {
+.mwall_iso_dropdown.expanded ul {
   max-height: 180px;
   opacity: 1;
   transition: all 0.3s ease 0s;
@@ -230,7 +230,7 @@ website: 	https://www.minitek.gr
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.mnwall_iso_dropdown ul {
+.mwall_iso_dropdown ul {
   background: none repeat scroll 0 0 #ffffff;
   border: 1px solid #d7d7d7;
   border-top: 0;
@@ -246,22 +246,22 @@ website: 	https://www.minitek.gr
   position: absolute;
 }
 
-.mnwall_iso_dropdown ul.button-group {
+.mwall_iso_dropdown ul.button-group {
   z-index: 999;
 }
 
-.mnwall_iso_dropdown ul.sorting-group {
+.mwall_iso_dropdown ul.sorting-group {
   z-index: 998;
 }
 
-.mnwall_iso_dropdown ul li {
+.mwall_iso_dropdown ul li {
   margin: 0;
   padding: 0;
   list-style: none;
   background: none;
 }
 
-.mnwall_iso_dropdown ul li a {
+.mwall_iso_dropdown ul li a {
   font-size: 14px;
   line-height: 14px;
   display: block;
@@ -270,21 +270,21 @@ website: 	https://www.minitek.gr
   text-decoration: none;
 }
 
-.mnwall_iso_dropdown ul li a:hover {
+.mwall_iso_dropdown ul li a:hover {
   background: #f5f5f5;
   text-decoration: none;
 }
 
-.mnwall_iso_dropdown ul li a:focus {
+.mwall_iso_dropdown ul li a:focus {
   text-decoration: none;
   outline: none;
 }
 
-.mnwall_iso_dropdown ul li a.mnw_filter_active {
+.mwall_iso_dropdown ul li a.mnw_filter_active {
   background: #f5f5f5;
 }
 
-.mnwall_iso_dropdown .dropdown-label {
+.mwall_iso_dropdown .dropdown-label {
   background: #ffffff;
   border: 1px solid #d7d7d7;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
@@ -297,25 +297,25 @@ website: 	https://www.minitek.gr
   color: #777;
 }
 
-.mnwall_iso_dropdown:hover .dropdown-label {
+.mwall_iso_dropdown:hover .dropdown-label {
   background: #fff;
 }
 
-.mnwall_iso_dropdown.expanded .dropdown-label {
+.mwall_iso_dropdown.expanded .dropdown-label {
   color: #fff;
 }
 
-.mnwall_iso_dropdown.expanded:hover .dropdown-label {
+.mwall_iso_dropdown.expanded:hover .dropdown-label {
   color: #fff !important;
 }
 
-.mnwall_iso_dropdown .dropdown-label span {
+.mwall_iso_dropdown .dropdown-label span {
   display: inline-block;
   line-height: 31px;
   font-size: 14px;
 }
 
-.mnwall_iso_dropdown .dropdown-label span i {
+.mwall_iso_dropdown .dropdown-label span i {
   margin: 0 7px;
 }
 
@@ -323,7 +323,7 @@ website: 	https://www.minitek.gr
 /* Sortings buttons */
 /* /////////////////////////////////////// */
 
-.mnwall_iso_sortings_cont {
+.mwall_iso_sortings_cont {
   padding: 0;
   position: relative;
   display: inline-block;
@@ -331,13 +331,13 @@ website: 	https://www.minitek.gr
   text-align: left;
 }
 
-.mnwall_iso_sortings {
+.mwall_iso_sortings {
   display: inline-block;
   position: relative;
   vertical-align: top;
 }
 
-.mnwall_iso_sortings .sorting-group {
+.mwall_iso_sortings .sorting-group {
   display: inline-block;
 }
 
@@ -345,7 +345,7 @@ website: 	https://www.minitek.gr
 /* Wall items
 /* /////////////////////////////////////// */
 
-.mnwall-item {
+.mwall-item {
   overflow: hidden;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -356,13 +356,13 @@ website: 	https://www.minitek.gr
   cursor: default;
 }
 
-.mnwall-item-inner-cont {
+.mwall-item-inner-cont {
   height: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.mnwall-item-inner {
+.mwall-item-inner {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -372,12 +372,12 @@ website: 	https://www.minitek.gr
   position: absolute;
 }
 
-.mnwall-cover {
+.mwall-cover {
   position: relative;
   overflow: hidden;
 }
 
-.mnwall-masonry .mnwall-photo-link {
+.mwall-masonry .mwall-photo-link {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -394,39 +394,39 @@ website: 	https://www.minitek.gr
 /* Items - Hidden Classes                  */
 /* /////////////////////////////////////// */
 
-.mnwall-item .db-hidden {
+.mwall-item .db-hidden {
   display: none;
 }
 
-.mnwall-item .title-hidden .mnwall-title {
+.mwall-item .title-hidden .mwall-title {
   display: none;
 }
 
-.mnwall-item .introtext-hidden .mnwall-desc {
+.mwall-item .introtext-hidden .mwall-desc {
   display: none;
 }
 
-.mnwall-item .date-hidden .mnwall-date {
+.mwall-item .date-hidden .mwall-date {
   display: none;
 }
 
-.mnwall-item .category-hidden .mnwall-item-category {
+.mwall-item .category-hidden .mwall-item-category {
   display: none;
 }
 
-.mnwall-item .author-hidden .mnwall-item-author {
+.mwall-item .author-hidden .mwall-item-author {
   display: none;
 }
 
-.mnwall-item .hits-hidden .mnwall-hits {
+.mwall-item .hits-hidden .mwall-hits {
   display: none;
 }
 
-.mnwall-item .count-hidden .mnwall-count {
+.mwall-item .count-hidden .mwall-count {
   display: none;
 }
 
-.mnwall-item .readmore-hidden .mnwall-readmore {
+.mwall-item .readmore-hidden .mwall-readmore {
   display: none;
 }
 
@@ -436,14 +436,14 @@ website: 	https://www.minitek.gr
 
 /* Typography */
 
-h3.mnwall-title {
+h3.mwall-title {
   line-height: 24px;
   margin: 0;
   padding: 10px 15px;
 }
 
-h3.mnwall-title a,
-h3.mnwall-title span {
+h3.mwall-title a,
+h3.mwall-title span {
   font-size: 18px;
   line-height: 24px;
   transition: all 0.3s ease 0s;
@@ -454,195 +454,195 @@ h3.mnwall-title span {
   text-decoration: none;
 }
 
-h3.mnwall-title a:hover,
-h3.mnwall-title a:focus {
+h3.mwall-title a:hover,
+h3.mwall-title a:focus {
   text-decoration: none;
   outline: none;
 }
 
-.mnwall-big .mnwall-item-inner h3.mnwall-title a,
-.mnwall-big .mnwall-item-inner h3.mnwall-title span {
+.mwall-big .mwall-item-inner h3.mwall-title a,
+.mwall-big .mwall-item-inner h3.mwall-title span {
   font-size: 28px;
   line-height: 32px;
 }
 
-.mnwall-horizontal .mnwall-item-inner h3.mnwall-title a,
-.mnwall-horizontal .mnwall-item-inner h3.mnwall-title span {
+.mwall-horizontal .mwall-item-inner h3.mwall-title a,
+.mwall-horizontal .mwall-item-inner h3.mwall-title span {
   font-size: 20px;
   line-height: 24px;
 }
 
-.mnwall-s-desc,
-.mnwall-desc {
+.mwall-s-desc,
+.mwall-desc {
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
   padding: 8px 15px 15px;
 }
 
-.mnwall-desc img {
+.mwall-desc img {
   max-width: 100%;
 }
 
-.mnwall-date {
+.mwall-date {
   text-transform: uppercase;
   padding: 10px 15px 0;
   font-size: 12px;
 }
 
-.mnwall-item-info {
+.mwall-item-info {
   padding: 0;
   font-size: 12px;
 }
 
-.mnwall-item-info a {
+.mwall-item-info a {
   transition: all 0.3s ease 0s;
   -webkit-transition: all 0.3s ease 0s;
   -ms-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
 }
 
-.mnwall-item-info a:not([class]) {
+.mwall-item-info a:not([class]) {
   text-decoration: none;
 }
 
-.mnwall-item-info p:first-child {
+.mwall-item-info p:first-child {
   padding-top: 8px;
 }
 
-.mnwall-item-category,
-.mnwall-item-author {
+.mwall-item-category,
+.mwall-item-author {
   margin: 0 0 2px;
   padding: 0 15px;
 }
 
-.mnwall-item-info a:hover,
-.mnwall-item-info a:focus {
+.mwall-item-info a:hover,
+.mwall-item-info a:focus {
   text-decoration: none;
 }
 
-.mnwall-hits,
-.mnwall-count {
+.mwall-hits,
+.mwall-count {
   font-size: 12px;
   padding: 0 15px;
 }
 
-.mnwall-hits p,
-.mnwall-count p {
+.mwall-hits p,
+.mwall-count p {
   margin: 0 0 2px;
 }
 
-.mnwall-readmore {
+.mwall-readmore {
   font-size: 12px;
   padding: 0 15px 15px;
   margin: 10px 0 0;
 }
 
-.mnwall-readmore a {
+.mwall-readmore a {
   padding: 8px 15px;
   border-radius: 0;
   background: none;
   display: inline-block;
 }
 
-.mnwall-readmore a:hover,
-.mnwall-readmore a:focus {
+.mwall-readmore a:hover,
+.mwall-readmore a:focus {
   outline: none;
   text-decoration: none;
 }
 
 /* Dark Colors */
 
-.dark-text h3.mnwall-title a,
-.dark-text h3.mnwall-title span {
+.dark-text h3.mwall-title a,
+.dark-text h3.mwall-title span {
   color: #333;
 }
 
-.dark-text h3.mnwall-title a:hover,
-.dark-text h3.mnwall-title a:focus {
+.dark-text h3.mwall-title a:hover,
+.dark-text h3.mwall-title a:focus {
   color: #000;
 }
 
-.dark-text .mnwall-item-info {
+.dark-text .mwall-item-info {
   color: #555;
 }
 
-.dark-text .mnwall-item-info a {
+.dark-text .mwall-item-info a {
   color: #555;
 }
 
-.dark-text .mnwall-item-info a:hover,
-.dark-text .mnwall-item-info a:focus {
+.dark-text .mwall-item-info a:hover,
+.dark-text .mwall-item-info a:focus {
   color: #333;
   border-bottom: 1px dotted #333;
 }
 
-.dark-text .mnwall-s-desc,
-.dark-text .mnwall-desc,
-.dark-text .mnwall-hits,
-.dark-text .mnwall-count {
+.dark-text .mwall-s-desc,
+.dark-text .mwall-desc,
+.dark-text .mwall-hits,
+.dark-text .mwall-count {
   color: #555;
 }
 
-.dark-text .mnwall-date {
+.dark-text .mwall-date {
   color: #666;
 }
 
-.dark-text .mnwall-readmore a {
+.dark-text .mwall-readmore a {
   color: #555;
   border: 1px solid #777;
 }
 
-.dark-text .mnwall-readmore a:hover,
-.dark-text .mnwall-readmore a:focus {
+.dark-text .mwall-readmore a:hover,
+.dark-text .mwall-readmore a:focus {
   color: #000;
   border: 1px solid #111;
 }
 
 /* Light Colors */
 
-.light-text h3.mnwall-title a,
-.light-text h3.mnwall-title span {
+.light-text h3.mwall-title a,
+.light-text h3.mwall-title span {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.light-text h3.mnwall-title a:hover,
-.light-text h3.mnwall-title a:focus {
+.light-text h3.mwall-title a:hover,
+.light-text h3.mwall-title a:focus {
   color: #fff;
 }
 
-.light-text .mnwall-item-info {
+.light-text .mwall-item-info {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.light-text .mnwall-item-info a {
+.light-text .mwall-item-info a {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.light-text .mnwall-item-info a:hover,
-.light-text .mnwall-item-info a:focus {
+.light-text .mwall-item-info a:hover,
+.light-text .mwall-item-info a:focus {
   color: #fff;
   border-bottom: 1px dotted rgba(255, 255, 255, 0.8);
 }
 
-.light-text .mnwall-s-desc,
-.light-text .mnwall-desc,
-.light-text .mnwall-hits,
-.light-text .mnwall-count {
+.light-text .mwall-s-desc,
+.light-text .mwall-desc,
+.light-text .mwall-hits,
+.light-text .mwall-count {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.light-text .mnwall-date {
+.light-text .mwall-date {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.light-text .mnwall-readmore a {
+.light-text .mwall-readmore a {
   color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
-.light-text .mnwall-readmore a:hover,
-.light-text .mnwall-readmore a:focus {
+.light-text .mwall-readmore a:hover,
+.light-text .mwall-readmore a:focus {
   color: #fff;
   border: 1px solid #fff;
 }
@@ -651,7 +651,7 @@ h3.mnwall-title a:focus {
 /* Hover Box
 /* /////////////////////////////////////// */
 
-.mnwall-hover-box {
+.mwall-hover-box {
   cursor: default;
   position: absolute;
   opacity: 0;
@@ -669,7 +669,7 @@ h3.mnwall-title a:focus {
   z-index: 4;
 }
 
-.mnwall-hover-box-content {
+.mwall-hover-box-content {
   z-index: 99;
   position: absolute;
   top: 0;
@@ -687,54 +687,54 @@ h3.mnwall-title a:focus {
 /* Hover Box Typography
 /* /////////////////////////////////////// */
 
-.mnwall-hover-box h3.mnwall-item-title a,
-.mnwall-hover-box h3.mnwall-item-title span {
+.mwall-hover-box h3.mwall-item-title a,
+.mwall-hover-box h3.mwall-item-title span {
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
 }
 
-.mnwall-hover-box h3.mnwall-item-title a:hover,
-.mnwall-hover-box h3.mnwall-item-title a:focus {
+.mwall-hover-box h3.mwall-item-title a:hover,
+.mwall-hover-box h3.mwall-item-title a:focus {
   text-decoration: none;
   outline: none;
 }
 
-.mnwall-hover-box-content,
-.mnwall-hover-box-content span {
+.mwall-hover-box-content,
+.mwall-hover-box-content span {
   font-size: 12px;
   line-height: 18px;
 }
 
-.mnwall-hover-box-content a:hover,
-.mnwall-hover-box-content a:focus {
+.mwall-hover-box-content a:hover,
+.mwall-hover-box-content a:focus {
   text-decoration: none;
   outline: none;
 }
 
-.mnwall-hover-box-content h3.mnwall-title {
+.mwall-hover-box-content h3.mwall-title {
   margin: 0 0 12px;
 }
 
-.mnwall-hover-box-content h3.mnwall-title a,
-.mnwall-hover-box-content h3.mnwall-title span {
+.mwall-hover-box-content h3.mwall-title a,
+.mwall-hover-box-content h3.mwall-title span {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
 }
 
-.mnwall-hover-box-content h3.mnwall-title a:hover,
-.mnwall-hover-box-content h3.mnwall-title a:focus {
+.mwall-hover-box-content h3.mwall-title a:hover,
+.mwall-hover-box-content h3.mwall-title a:focus {
   text-decoration: none;
   outline: none;
 }
 
-.mnwall-hover-box-content .mnwall-hits p {
+.mwall-hover-box-content .mwall-hits p {
   margin: 0;
 }
 
-.mnwall-hover-box-content .mnwall-item-link-icon,
-.mnwall-hover-box-content .mnwall-item-zoom-icon {
+.mwall-hover-box-content .mwall-item-link-icon,
+.mwall-hover-box-content .mwall-item-zoom-icon {
   display: inline-block;
   font-size: 16px;
   width: 40px;
@@ -754,57 +754,57 @@ h3.mnwall-title a:focus {
   cursor: pointer;
 }
 
-.mnwall-hover-box-content .mnwall-item-link-icon:hover,
-.mnwall-hover-box-content .mnwall-item-link-icon:focus,
-.mnwall-hover-box-content .mnwall-item-zoom-icon:hover,
-.mnwall-hover-box-content .mnwall-item-zoom-icon:focus {
+.mwall-hover-box-content .mwall-item-link-icon:hover,
+.mwall-hover-box-content .mwall-item-link-icon:focus,
+.mwall-hover-box-content .mwall-item-zoom-icon:hover,
+.mwall-hover-box-content .mwall-item-zoom-icon:focus {
   background: #fff;
   color: #333;
 }
 
-.mnwall-hover-box-content .mnwall-item-link-icon .fa-link,
-.mnwall-hover-box-content .mnwall-item-zoom-icon .fa-link {
+.mwall-hover-box-content .mwall-item-link-icon .fa-link,
+.mwall-hover-box-content .mwall-item-zoom-icon .fa-link {
   height: 40px;
   width: 40px;
   line-height: 40px;
 }
 
-.mnwall-hover-box-content .mnwall-item-icons {
+.mwall-hover-box-content .mwall-item-icons {
   padding: 8px 0;
 }
 
 /* Modal images */
 
-.mnwall_container .modal {
+.mwall_container .modal {
   text-align: center;
 }
 
-.mnwall_container .modal-dialog {
+.mwall_container .modal-dialog {
   display: inline-block;
   max-width: 80%;
   max-height: 100%;
   height: auto;
 }
 
-.mnwall_container .modal-content {
+.mwall_container .modal-content {
   overflow: hidden;
 }
 
-.mnwall_container .modal-body {
+.mwall_container .modal-body {
   padding: 0;
 }
 
-.mnwall_container .modal-header {
+.mwall_container .modal-header {
   min-height: 49px;
 }
 
-.mnwall_container .modal-header .btn-close {
+.mwall_container .modal-header .btn-close {
   background: transparent
     url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3E%3C/svg%3E")
     50%/1em auto no-repeat;
 }
 
-.mnwall_container .modal img {
+.mwall_container .modal img {
   max-width: 100%;
   max-height: 85vh;
 }
@@ -815,37 +815,37 @@ h3.mnwall-title a:focus {
 
 /* Simple, no effects */
 
-.mnwall-hover-box.hoverShow {
+.mwall-hover-box.hoverShow {
   visibility: visible;
   opacity: 1;
 }
 
 /* Simple fade */
 
-.mnwall-hover-box.hoverFadeIn {
+.mwall-hover-box.hoverFadeIn {
   visibility: visible;
   opacity: 1;
 }
 
 /* Flip Y */
 
-.mnwall-img-div.flip,
-.mnwall-item-outer-cont.flip {
+.mwall-img-div.flip,
+.mwall-item-outer-cont.flip {
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   overflow: visible !important;
 }
-.mnwall-img-div.flip .mnwall-item-img,
-.mnwall-item-outer-cont.flip .mnwall-item-img {
+.mwall-img-div.flip .mwall-item-img,
+.mwall-item-outer-cont.flip .mwall-item-img {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
 }
-.mnwall-img-div.flip .mnwall-hover-box,
-.mnwall-item-outer-cont.flip .mnwall-hover-box {
+.mwall-img-div.flip .mwall-hover-box,
+.mwall-item-outer-cont.flip .mwall-hover-box {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
@@ -854,22 +854,22 @@ h3.mnwall-title a:focus {
   visibility: visible;
   z-index: 98;
 }
-.mnwall-img-div.flipY .mnwall-hover-box,
-.mnwall-item-outer-cont.flipY .mnwall-hover-box {
+.mwall-img-div.flipY .mwall-hover-box,
+.mwall-item-outer-cont.flipY .mwall-hover-box {
   transform: rotateY(-180deg) translateZ(1px);
   -webkit-transform: rotateY(-180deg) translateZ(1px);
   -ms-transform: rotateY(-180deg) translateZ(1px);
   -o-transform: rotateY(-180deg) translateZ(1px);
 }
-.mnwall-img-div.hoverFlipY,
-.mnwall-item-outer-cont.hoverFlipY {
+.mwall-img-div.hoverFlipY,
+.mwall-item-outer-cont.hoverFlipY {
   transform: rotateY(180deg) translateZ(1px);
   -webkit-transform: rotateY(180deg) translateZ(1px);
   -ms-transform: rotateY(180deg) translateZ(1px);
   -o-transform: rotateY(180deg) translateZ(1px);
 }
-.mnwall-cover.perspective,
-.mnwall-item.perspective {
+.mwall-cover.perspective,
+.mwall-item.perspective {
   perspective: 1000px;
   -webkit-perspective: 1000px;
   -ms-perspective: 1000px;
@@ -878,15 +878,15 @@ h3.mnwall-title a:focus {
 
 /* Flip X */
 
-.mnwall-img-div.flipX .mnwall-hover-box,
-.mnwall-item-outer-cont.flipX .mnwall-hover-box {
+.mwall-img-div.flipX .mwall-hover-box,
+.mwall-item-outer-cont.flipX .mwall-hover-box {
   transform: rotateX(-180deg) translateZ(1px);
   -webkit-transform: rotateX(-180deg) translateZ(1px);
   -ms-transform: rotateX(-180deg) translateZ(1px);
   -o-transform: rotateX(-180deg) translateZ(1px);
 }
-.mnwall-img-div.hoverFlipX,
-.mnwall-item-outer-cont.hoverFlipX {
+.mwall-img-div.hoverFlipX,
+.mwall-item-outer-cont.hoverFlipX {
   transform: rotateX(180deg) translateZ(1px);
   -webkit-transform: rotateX(180deg) translateZ(1px);
   -ms-transform: rotateX(180deg) translateZ(1px);
@@ -895,13 +895,13 @@ h3.mnwall-title a:focus {
 
 /* Slide In Right */
 
-.mnwall-cover.slideInRight .mnwall-hover-box.slideInRight,
-.mnwall-item.slideInRight .mnwall-hover-box.slideInRight {
+.mwall-cover.slideInRight .mwall-hover-box.slideInRight,
+.mwall-item.slideInRight .mwall-hover-box.slideInRight {
   right: 0;
 }
 
-.mnwall-cover.slideInRight .mnwall-hover-box,
-.mnwall-item.slideInRight .mnwall-hover-box {
+.mwall-cover.slideInRight .mwall-hover-box,
+.mwall-item.slideInRight .mwall-hover-box {
   right: -100%;
   left: auto;
   visibility: visible;
@@ -910,13 +910,13 @@ h3.mnwall-title a:focus {
 
 /* Slide In Left */
 
-.mnwall-cover.slideInLeft .mnwall-hover-box.slideInLeft,
-.mnwall-item.slideInLeft .mnwall-hover-box.slideInLeft {
+.mwall-cover.slideInLeft .mwall-hover-box.slideInLeft,
+.mwall-item.slideInLeft .mwall-hover-box.slideInLeft {
   left: 0;
 }
 
-.mnwall-cover.slideInLeft .mnwall-hover-box,
-.mnwall-item.slideInLeft .mnwall-hover-box {
+.mwall-cover.slideInLeft .mwall-hover-box,
+.mwall-item.slideInLeft .mwall-hover-box {
   left: -100%;
   right: auto;
   visibility: visible;
@@ -925,13 +925,13 @@ h3.mnwall-title a:focus {
 
 /* Slide In Top */
 
-.mnwall-cover.slideInTop .mnwall-hover-box.slideInTop,
-.mnwall-item.slideInTop .mnwall-hover-box.slideInTop {
+.mwall-cover.slideInTop .mwall-hover-box.slideInTop,
+.mwall-item.slideInTop .mwall-hover-box.slideInTop {
   top: 0;
 }
 
-.mnwall-cover.slideInTop .mnwall-hover-box,
-.mnwall-item.slideInTop .mnwall-hover-box {
+.mwall-cover.slideInTop .mwall-hover-box,
+.mwall-item.slideInTop .mwall-hover-box {
   top: -100%;
   bottom: auto;
   visibility: visible;
@@ -940,13 +940,13 @@ h3.mnwall-title a:focus {
 
 /* Slide In Bottom */
 
-.mnwall-cover.slideInBottom .mnwall-hover-box.slideInBottom,
-.mnwall-item.slideInBottom .mnwall-hover-box.slideInBottom {
+.mwall-cover.slideInBottom .mwall-hover-box.slideInBottom,
+.mwall-item.slideInBottom .mwall-hover-box.slideInBottom {
   bottom: 0;
 }
 
-.mnwall-cover.slideInBottom .mnwall-hover-box,
-.mnwall-item.slideInBottom .mnwall-hover-box {
+.mwall-cover.slideInBottom .mwall-hover-box,
+.mwall-item.slideInBottom .mwall-hover-box {
   bottom: -100%;
   top: auto;
   visibility: visible;
@@ -955,15 +955,15 @@ h3.mnwall-title a:focus {
 
 /* Zoom in */
 
-.mnwall-cover.mnwzoomIn .mnwall-hover-box.mnwzoomIn,
-.mnwall-item.mnwzoomIn .mnwall-hover-box.mnwzoomIn {
+.mwall-cover.mnwzoomIn .mwall-hover-box.mnwzoomIn,
+.mwall-item.mnwzoomIn .mwall-hover-box.mnwzoomIn {
   transform: scale(1, 1);
   visibility: visible;
   opacity: 1;
 }
 
-.mnwall-cover.mnwzoomIn .mnwall-hover-box,
-.mnwall-item.mnwzoomIn .mnwall-hover-box {
+.mwall-cover.mnwzoomIn .mwall-hover-box,
+.mwall-item.mnwzoomIn .mwall-hover-box {
   transform: scale(0, 0);
 }
 
@@ -973,66 +973,66 @@ h3.mnwall-title a:focus {
 
 /* Detail box positions */
 
-.mnwall-masonry .mnwall-item-outer-cont.content-left .mnwall-item-inner {
+.mwall-masonry .mwall-item-outer-cont.content-left .mwall-item-inner {
   bottom: 0;
   left: 0;
   top: 0;
   width: 50%;
 }
-.mnwall-masonry .mnwall-item-outer-cont.content-right .mnwall-item-inner {
+.mwall-masonry .mwall-item-outer-cont.content-right .mwall-item-inner {
   bottom: 0;
   right: 0;
   top: 0;
   width: 50%;
 }
-.mnwall-masonry .mnwall-item-outer-cont.content-top .mnwall-item-inner {
+.mwall-masonry .mwall-item-outer-cont.content-top .mwall-item-inner {
   right: 0;
   left: 0;
   top: 0;
   height: 50%;
 }
-.mnwall-masonry .mnwall-item-outer-cont.content-bottom .mnwall-item-inner {
+.mwall-masonry .mwall-item-outer-cont.content-bottom .mwall-item-inner {
   right: 0;
   left: 0;
   bottom: 0;
   height: 50%;
 }
-.mnwall-masonry .mnwall-item-outer-cont.content-cover .mnwall-item-inner {
+.mwall-masonry .mwall-item-outer-cont.content-cover .mwall-item-inner {
   left: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
 }
 
-.mnwall-masonry .mnwall-item-inner.mnw-no-image {
+.mwall-masonry .mwall-item-inner.mnw-no-image {
   width: 100% !important;
   height: 100% !important;
 }
 
 /* Image positions */
 
-.mnwall-masonry .half-size.content-left .mnwall-photo-link {
+.mwall-masonry .half-size.content-left .mwall-photo-link {
   right: 0;
   left: auto;
   top: 0;
   bottom: 0;
   width: 50%;
 }
-.mnwall-masonry .half-size.content-right .mnwall-photo-link {
+.mwall-masonry .half-size.content-right .mwall-photo-link {
   left: 0;
   right: auto;
   top: 0;
   bottom: 0;
   width: 50%;
 }
-.mnwall-masonry .half-size.content-top .mnwall-photo-link {
+.mwall-masonry .half-size.content-top .mwall-photo-link {
   right: 0;
   left: 0;
   top: auto;
   bottom: 0;
   height: 50%;
 }
-.mnwall-masonry .half-size.content-bottom .mnwall-photo-link {
+.mwall-masonry .half-size.content-bottom .mwall-photo-link {
   right: 0;
   left: 0;
   bottom: auto;
@@ -1040,8 +1040,8 @@ h3.mnwall-title a:focus {
   height: 50%;
 }
 
-.mnwall-masonry .content-cover .mnwall-photo-link,
-.mnwall-masonry .mnw-no-content .mnwall-photo-link {
+.mwall-masonry .content-cover .mwall-photo-link,
+.mwall-masonry .mnw-no-content .mwall-photo-link {
   left: 0;
   top: 0;
   height: 100%;
@@ -1052,7 +1052,7 @@ h3.mnwall-title a:focus {
 /* Wall items - Masonry / General
 /* /////////////////////////////////////// */
 
-.mnwall-masonry .mnwall-item-inner {
+.mwall-masonry .mwall-item-inner {
   position: absolute;
   padding: 10px;
   max-height: 100%;
@@ -1064,19 +1064,19 @@ h3.mnwall-title a:focus {
 /* Masonry - Item default heights
 /* /////////////////////////////////////// */
 
-.mnwall-big {
+.mwall-big {
   height: 480px;
 }
 
-.mnwall-horizontal {
+.mwall-horizontal {
   height: 240px;
 }
 
-.mnwall-vertical {
+.mwall-vertical {
   height: 480px;
 }
 
-.mnwall-small {
+.mwall-small {
   height: 240px;
 }
 
@@ -1084,7 +1084,7 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 1 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid1 .mnwitem1 {
+.mwall-grid1 .mnwitem1 {
   width: 100%;
 }
 
@@ -1092,13 +1092,13 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 3a */
 /* /////////////////////////////////////// */
 
-.mnwall-grid3a .mnwitem1 {
+.mwall-grid3a .mnwitem1 {
   width: 50%;
 }
-.mnwall-grid3a .mnwitem2 {
+.mwall-grid3a .mnwitem2 {
   width: 50%;
 }
-.mnwall-grid3a .mnwitem3 {
+.mwall-grid3a .mnwitem3 {
   width: 50%;
 }
 
@@ -1106,13 +1106,13 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 3b */
 /* /////////////////////////////////////// */
 
-.mnwall-grid3b .mnwitem1 {
+.mwall-grid3b .mnwitem1 {
   width: 50%;
 }
-.mnwall-grid3b .mnwitem2 {
+.mwall-grid3b .mnwitem2 {
   width: 50%;
 }
-.mnwall-grid3b .mnwitem3 {
+.mwall-grid3b .mnwitem3 {
   width: 50%;
 }
 
@@ -1120,13 +1120,13 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 3c */
 /* /////////////////////////////////////// */
 
-.mnwall-grid3c .mnwitem1 {
+.mwall-grid3c .mnwitem1 {
   width: 50%;
 }
-.mnwall-grid3c .mnwitem2 {
+.mwall-grid3c .mnwitem2 {
   width: 25%;
 }
-.mnwall-grid3c .mnwitem3 {
+.mwall-grid3c .mnwitem3 {
   width: 25%;
 }
 
@@ -1134,16 +1134,16 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 4 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid4 .mnwitem1 {
+.mwall-grid4 .mnwitem1 {
   width: 50%;
 }
-.mnwall-grid4 .mnwitem2 {
+.mwall-grid4 .mnwitem2 {
   width: 50%;
 }
-.mnwall-grid4 .mnwitem3 {
+.mwall-grid4 .mnwitem3 {
   width: 25%;
 }
-.mnwall-grid4 .mnwitem4 {
+.mwall-grid4 .mnwitem4 {
   width: 25%;
 }
 
@@ -1151,19 +1151,19 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 5 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid5 .mnwitem1 {
+.mwall-grid5 .mnwitem1 {
   width: 40%;
 }
-.mnwall-grid5 .mnwitem2 {
+.mwall-grid5 .mnwitem2 {
   width: 20%;
 }
-.mnwall-grid5 .mnwitem3 {
+.mwall-grid5 .mnwitem3 {
   width: 40%;
 }
-.mnwall-grid5 .mnwitem4 {
+.mwall-grid5 .mnwitem4 {
   width: 20%;
 }
-.mnwall-grid5 .mnwitem5 {
+.mwall-grid5 .mnwitem5 {
   width: 40%;
 }
 
@@ -1171,19 +1171,19 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 5b */
 /* /////////////////////////////////////// */
 
-.mnwall-grid5b .mnwitem1 {
+.mwall-grid5b .mnwitem1 {
   width: 25%;
 }
-.mnwall-grid5b .mnwitem2 {
+.mwall-grid5b .mnwitem2 {
   width: 25%;
 }
-.mnwall-grid5b .mnwitem3 {
+.mwall-grid5b .mnwitem3 {
   width: 50%;
 }
-.mnwall-grid5b .mnwitem4 {
+.mwall-grid5b .mnwitem4 {
   width: 25%;
 }
-.mnwall-grid5b .mnwitem5 {
+.mwall-grid5b .mnwitem5 {
   width: 25%;
 }
 
@@ -1191,22 +1191,22 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 6 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid6 .mnwitem1 {
+.mwall-grid6 .mnwitem1 {
   width: 40%;
 }
-.mnwall-grid6 .mnwitem2 {
+.mwall-grid6 .mnwitem2 {
   width: 20%;
 }
-.mnwall-grid6 .mnwitem3 {
+.mwall-grid6 .mnwitem3 {
   width: 40%;
 }
-.mnwall-grid6 .mnwitem4 {
+.mwall-grid6 .mnwitem4 {
   width: 20%;
 }
-.mnwall-grid6 .mnwitem5 {
+.mwall-grid6 .mnwitem5 {
   width: 20%;
 }
-.mnwall-grid6 .mnwitem6 {
+.mwall-grid6 .mnwitem6 {
   width: 20%;
 }
 
@@ -1214,25 +1214,25 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 7 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid7 .mnwitem1 {
+.mwall-grid7 .mnwitem1 {
   width: 50%;
 }
-.mnwall-grid7 .mnwitem2 {
+.mwall-grid7 .mnwitem2 {
   width: 50%;
 }
-.mnwall-grid7 .mnwitem3 {
+.mwall-grid7 .mnwitem3 {
   width: 25%;
 }
-.mnwall-grid7 .mnwitem4 {
+.mwall-grid7 .mnwitem4 {
   width: 25%;
 }
-.mnwall-grid7 .mnwitem5 {
+.mwall-grid7 .mnwitem5 {
   width: 25%;
 }
-.mnwall-grid7 .mnwitem6 {
+.mwall-grid7 .mnwitem6 {
   width: 25%;
 }
-.mnwall-grid7 .mnwitem7 {
+.mwall-grid7 .mnwitem7 {
   width: 25%;
 }
 
@@ -1240,28 +1240,28 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 8 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid8 .mnwitem1 {
+.mwall-grid8 .mnwitem1 {
   width: 40%;
 }
-.mnwall-grid8 .mnwitem2 {
+.mwall-grid8 .mnwitem2 {
   width: 40%;
 }
-.mnwall-grid8 .mnwitem3 {
+.mwall-grid8 .mnwitem3 {
   width: 20%;
 }
-.mnwall-grid8 .mnwitem4 {
+.mwall-grid8 .mnwitem4 {
   width: 20%;
 }
-.mnwall-grid8 .mnwitem5 {
+.mwall-grid8 .mnwitem5 {
   width: 20%;
 }
-.mnwall-grid8 .mnwitem6 {
+.mwall-grid8 .mnwitem6 {
   width: 20%;
 }
-.mnwall-grid8 .mnwitem7 {
+.mwall-grid8 .mnwitem7 {
   width: 40%;
 }
-.mnwall-grid8 .mnwitem8 {
+.mwall-grid8 .mnwitem8 {
   width: 40%;
 }
 
@@ -1269,31 +1269,31 @@ h3.mnwall-title a:focus {
 /* Masonry - Grid 9 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid9 .mnwitem1 {
+.mwall-grid9 .mnwitem1 {
   width: 50%;
 }
-.mnwall-grid9 .mnwitem2 {
+.mwall-grid9 .mnwitem2 {
   width: 50%;
 }
-.mnwall-grid9 .mnwitem3 {
+.mwall-grid9 .mnwitem3 {
   width: 25%;
 }
-.mnwall-grid9 .mnwitem4 {
+.mwall-grid9 .mnwitem4 {
   width: 25%;
 }
-.mnwall-grid9 .mnwitem5 {
+.mwall-grid9 .mnwitem5 {
   width: 25%;
 }
-.mnwall-grid9 .mnwitem6 {
+.mwall-grid9 .mnwitem6 {
   width: 25%;
 }
-.mnwall-grid9 .mnwitem7 {
+.mwall-grid9 .mnwitem7 {
   width: 25%;
 }
-.mnwall-grid9 .mnwitem8 {
+.mwall-grid9 .mnwitem8 {
   width: 25%;
 }
-.mnwall-grid9 .mnwitem9 {
+.mwall-grid9 .mnwitem9 {
   width: 25%;
 }
 
@@ -1301,31 +1301,31 @@ h3.mnwall-title a:focus {
 /* Rows - Grid 9 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid9r .mnwitem1 {
+.mwall-grid9r .mnwitem1 {
   width: 33.33%;
 }
-.mnwall-grid9r .mnwitem2 {
+.mwall-grid9r .mnwitem2 {
   width: 33.33%;
 }
-.mnwall-grid9r .mnwitem3 {
+.mwall-grid9r .mnwitem3 {
   width: 33.33%;
 }
-.mnwall-grid9r .mnwitem4 {
+.mwall-grid9r .mnwitem4 {
   width: 50%;
 }
-.mnwall-grid9r .mnwitem5 {
+.mwall-grid9r .mnwitem5 {
   width: 50%;
 }
-.mnwall-grid9r .mnwitem6 {
+.mwall-grid9r .mnwitem6 {
   width: 25%;
 }
-.mnwall-grid9r .mnwitem7 {
+.mwall-grid9r .mnwitem7 {
   width: 25%;
 }
-.mnwall-grid9r .mnwitem8 {
+.mwall-grid9r .mnwitem8 {
   width: 25%;
 }
-.mnwall-grid9r .mnwitem9 {
+.mwall-grid9r .mnwitem9 {
   width: 25%;
 }
 
@@ -1333,40 +1333,40 @@ h3.mnwall-title a:focus {
 /* Rows - Grid 12 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid12r .mnwitem1 {
+.mwall-grid12r .mnwitem1 {
   width: 25%;
 }
-.mnwall-grid12r .mnwitem2 {
+.mwall-grid12r .mnwitem2 {
   width: 25%;
 }
-.mnwall-grid12r .mnwitem3 {
+.mwall-grid12r .mnwitem3 {
   width: 25%;
 }
-.mnwall-grid12r .mnwitem4 {
+.mwall-grid12r .mnwitem4 {
   width: 25%;
 }
-.mnwall-grid12r .mnwitem5 {
+.mwall-grid12r .mnwitem5 {
   width: 20%;
 }
-.mnwall-grid12r .mnwitem6 {
+.mwall-grid12r .mnwitem6 {
   width: 20%;
 }
-.mnwall-grid12r .mnwitem7 {
+.mwall-grid12r .mnwitem7 {
   width: 20%;
 }
-.mnwall-grid12r .mnwitem8 {
+.mwall-grid12r .mnwitem8 {
   width: 20%;
 }
-.mnwall-grid12r .mnwitem9 {
+.mwall-grid12r .mnwitem9 {
   width: 20%;
 }
-.mnwall-grid12r .mnwitem10 {
+.mwall-grid12r .mnwitem10 {
   width: 33.33%;
 }
-.mnwall-grid12r .mnwitem11 {
+.mwall-grid12r .mnwitem11 {
   width: 33.33%;
 }
-.mnwall-grid12r .mnwitem12 {
+.mwall-grid12r .mnwitem12 {
   width: 33.33%;
 }
 
@@ -1374,52 +1374,52 @@ h3.mnwall-title a:focus {
 /* Rows - Grid 16 */
 /* /////////////////////////////////////// */
 
-.mnwall-grid16r .mnwitem1 {
+.mwall-grid16r .mnwitem1 {
   width: 40%;
 }
-.mnwall-grid16r .mnwitem2 {
+.mwall-grid16r .mnwitem2 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem3 {
+.mwall-grid16r .mnwitem3 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem4 {
+.mwall-grid16r .mnwitem4 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem5 {
+.mwall-grid16r .mnwitem5 {
   width: 40%;
 }
-.mnwall-grid16r .mnwitem6 {
+.mwall-grid16r .mnwitem6 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem7 {
+.mwall-grid16r .mnwitem7 {
   width: 40%;
 }
-.mnwall-grid16r .mnwitem8 {
+.mwall-grid16r .mnwitem8 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem9 {
+.mwall-grid16r .mnwitem9 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem10 {
+.mwall-grid16r .mnwitem10 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem11 {
+.mwall-grid16r .mnwitem11 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem12 {
+.mwall-grid16r .mnwitem12 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem13 {
+.mwall-grid16r .mnwitem13 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem14 {
+.mwall-grid16r .mnwitem14 {
   width: 20%;
 }
-.mnwall-grid16r .mnwitem15 {
+.mwall-grid16r .mnwitem15 {
   width: 40%;
 }
-.mnwall-grid16r .mnwitem16 {
+.mwall-grid16r .mnwitem16 {
   width: 20%;
 }
 
@@ -1427,26 +1427,26 @@ h3.mnwall-title a:focus {
 /* Wall items - Masonry Columns
 /* /////////////////////////////////////// */
 
-.mnwall-columns .mnwall-item-inner-cont {
+.mwall-columns .mwall-item-inner-cont {
   padding: 0;
   height: 100%;
 }
 
-.mnwall-columns .mnwall-cover {
+.mwall-columns .mwall-cover {
   height: 100%;
 }
 
-.mnwall-columns .mnwall-img-div {
+.mwall-columns .mwall-img-div {
   position: relative;
   overflow: hidden;
   height: 100%;
 }
 
-.mnwall-columns .mnwall-item-img {
+.mwall-columns .mwall-item-img {
   height: 100%;
 }
 
-.mnwall-columns .mnwall-photo-link {
+.mwall-columns .mwall-photo-link {
   z-index: 1;
   width: 100%;
   position: relative;
@@ -1457,27 +1457,27 @@ h3.mnwall-title a:focus {
   height: 100%;
 }
 
-.mnwall-columns .mnwall-photo-link img {
+.mwall-columns .mwall-photo-link img {
   object-fit: cover;
   min-width: 100%;
   min-height: 100%;
   max-width: 100%;
 }
 
-.mnwall-columns .mnwall-item-inner {
+.mwall-columns .mwall-item-inner {
   padding: 10px 0;
   position: relative;
   z-index: 2;
 }
 
-.mnwall-columns .content-bottom .mnwall-item-inner {
+.mwall-columns .content-bottom .mwall-item-inner {
   position: absolute;
   bottom: 0;
   width: 100%;
   max-height: 100%;
 }
 
-.mnwall-columns .content-cover .mnwall-item-inner {
+.mwall-columns .content-cover .mwall-item-inner {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -1488,26 +1488,26 @@ h3.mnwall-title a:focus {
 /* Wall items - Vertical List
 /* /////////////////////////////////////// */
 
-.mnwall-list .mnwall-item {
+.mwall-list .mwall-item {
   width: 100%;
 }
 
-.mnwall-list .mnwall-item-inner-cont {
+.mwall-list .mwall-item-inner-cont {
   padding: 0;
 }
 
-.mnwall-list .mnwall-item-inner {
+.mwall-list .mwall-item-inner {
   position: relative;
   padding: 0 10px;
 }
 
-.mnwall-list .mnwall-cover {
+.mwall-list .mwall-cover {
   float: left;
   margin: 0;
   max-width: 50%;
 }
 
-.mnwall-list .mnwall-img-div img {
+.mwall-list .mwall-img-div img {
   width: 100%;
   max-width: 100%;
 }

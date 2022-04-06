@@ -64,18 +64,18 @@ class HtmlView extends BaseHtmlView
 		// Layout/Grid class
 		if ($this->gridType == '99v')
 		{
-			$this->mnwall_layout = 'list';
-			$this->mnwall_grid = '';
+			$this->mwall_layout = 'list';
+			$this->mwall_grid = '';
 		}
 		else if ($this->gridType == '98o')
 		{
-			$this->mnwall_layout = 'columns';
-			$this->mnwall_grid = '';
+			$this->mwall_layout = 'columns';
+			$this->mwall_grid = '';
 		}
 		else
 		{
-			$this->mnwall_layout = 'masonry';
-			$this->mnwall_grid = 'mnwall-grid'.$this->gridType;
+			$this->mwall_layout = 'masonry';
+			$this->mwall_grid = 'mwall-grid'.$this->gridType;
 		}
 
 		// Columns
@@ -817,7 +817,7 @@ class HtmlView extends BaseHtmlView
 
 		switch ($item_size)
 		{
-			case 'mnwall-big':
+			case 'mwall-big':
 				$options['detail_box'] = $this->detailBoxBig;
 				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundBig, true);
 				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityBig, 2, '.', '');
@@ -871,7 +871,7 @@ class HtmlView extends BaseHtmlView
 
 				break;
 
-			case 'mnwall-horizontal':
+			case 'mwall-horizontal':
 				$options['detail_box'] = $this->detailBoxLscape;
 				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundLscape, true);
 				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityLscape, 2, '.', '');
@@ -925,7 +925,7 @@ class HtmlView extends BaseHtmlView
 
 				break;
 
-			case 'mnwall-vertical':
+			case 'mwall-vertical':
 				$options['detail_box'] = $this->detailBoxPortrait;
 				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundPortrait, true);
 				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityPortrait, 2, '.', '');
@@ -979,7 +979,7 @@ class HtmlView extends BaseHtmlView
 
 				break;
 
-			case 'mnwall-small':
+			case 'mwall-small':
 				$options['detail_box'] = $this->detailBoxSmall;
 				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundSmall, true);
 				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacitySmall, 2, '.', '');
