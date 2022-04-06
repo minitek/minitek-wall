@@ -1543,14 +1543,11 @@
 
 			<field
 				name="mas_filters_mode"
-				type="list"
-				default="dynamic"
+				type="profeature"
+				class="info"
 				label="COM_MINITEKWALL_FIELD_FILTERS_MODE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTERS_MODE_DESC"
-			>
-				<option value="dynamic">COM_MINITEKWALL_FIELD_OPTION_CURRENT</option>
-				<option value="static">COM_MINITEKWALL_FIELD_OPTION_ALL</option>
-			</field>
+			/>
 
 			<field
 				name="mas_filter_type"
