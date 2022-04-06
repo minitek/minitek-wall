@@ -1,34 +1,28 @@
 <?php
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
+* @title		Minitek Wall
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
-
+ 
 defined('_JEXEC') or die;
 
-if (!empty($this->wall) ||  $this->wall!== 0)
+if (!empty($this->wall) || $this->wall!== 0)
 {
-	foreach ($this->wall as $key=>$item)
+	foreach ($this->wall as $key => $item)
 	{
 		// Cat Filters
 		$catfilter = '';
 
 		if (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw)
 		{
-			foreach($item->itemCategoriesRaw as $category)
+			foreach ($item->itemCategoriesRaw as $category)
 			{
 				if (is_array($category))
-				{
-					$catfilter .= ' cat-'.$this->utilities->cleanName($category['category_name']);
-				}
+					$catfilter .= ' cat-'.$this->utilities->cleanName($category['title']);
 			}
-		}
-		else if (isset($item->itemCategoryRaw))
-		{
-			$catfilter .= ' cat-'.$this->utilities->cleanName($item->itemCategoryRaw);
 		}
 
 		// Tag Filters
@@ -46,15 +40,15 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 		$datefilter = '';
 
 		if (isset($item->itemDateRaw))
-		{
 			$datefilter .= ' date-'.\JHTML::_('date', $item->itemDateRaw, 'Y-m');
-		}
 
 		// Item sizes
 		$item_index = $item->itemIndex;
 		$item_size = $this->masonry_options->getMasonryItemSize($this->gridType, $item_index, $this->custom_grid_id);
-		$options = $this->getMasonryItemOptions($item_size);
-		$class = 'mnwitem'.$item_index.' '.$item_size;
+		$class = 'mwall-item'.$item_index.' '.$item_size;
+
+		// Data visibility css
+		$this->model->responsive_masonry->masonryItemCss($this->masonry_params, $this->widgetID);
 		
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
@@ -68,14 +62,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 				?>data-id="<?php echo (int)$item->itemID; ?>" <?php 
 			}
 			?>data-title="<?php echo strtolower(htmlspecialchars($item->itemTitleRaw)); ?>" <?php 
-			if (isset($item->itemCategoryRaw)) 
-			{
-				?>data-category="<?php echo strtolower($this->utilities->cleanName($item->itemCategoryRaw)); ?>" <?php 
-			}
-			if (isset($item->itemAuthorRaw)) 
-			{
-				?>data-author="<?php echo strtolower($item->itemAuthorRaw); ?>" <?php 
-			}
 			if (isset($item->itemDateRaw)) 
 			{
 				?>data-date="<?php echo $item->itemDateRaw; ?>" <?php 
@@ -111,29 +97,16 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			if (isset($item->rawIndex)) 
 			{
 				?>data-index="<?php echo $item->rawIndex; ?>"<?php 
-			} 
+			}
 			?>><?php 
 
-			?><div class="mwall-item-outer-cont <?php 
-				if ($options['detail_box'] && !$this->full_width_image)
-				{
-					echo 'half-size ';
-				}
-				if (!$options['detail_box'])
-				{
-					echo 'mnw-no-content';
-				} 
-				else 
-				{
-					echo $options['position_class'];
-				} 
-				?>" style="<?php 
+			?><div class="mwall-item-outer-cont" style="<?php 
 				if ($this->mas_border_radius) 
-				{ 
+				{
 					?>border-radius: <?php echo $this->mas_border_radius; ?>px; <?php 
 				}
 				if ($this->mas_border) 
-				{ 
+				{
 					?>border: <?php echo $this->mas_border; ?>px solid <?php echo $this->mas_border_color; ?>; <?php 
 				}
 				echo $this->animated_flip; 
@@ -145,11 +118,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 					{
 						if (isset($item->itemLink) && $this->mas_image_link) 
 						{
-							?><a href="<?php 
-								echo $item->itemLink; 
-								?>" class="mwall-photo-link" style="background-image: url('<?php 
-								echo $item->itemImage; ?>');">
-							</a><?php 
+							?><a href="<?php echo $item->itemLink; ?>" class="mwall-photo-link" style="background-image: url('<?php echo $item->itemImage; ?>');"></a><?php 
 						} 
 						else 
 						{
@@ -159,22 +128,13 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 					if ($this->detailBoxAll) 
 					{
-						?><div class="mwall-item-inner mwall-detail-box <?php 
-							echo $options['db_color_class']; ?> <?php 
-							echo $options['db_class']; ?> <?php 
-							echo $options['title_class']; ?> <?php 
-							echo $options['introtext_class']; ?> <?php 
-							echo $options['date_class']; ?> <?php 
-							echo $options['category_class']; ?> <?php 
-							echo $options['author_class']; ?> <?php 
-							echo $options['hits_class']; ?> <?php 
-							echo $options['count_class']; ?> <?php 
-							echo $options['readmore_class']; ?> <?php 
+						?><div class="mwall-item-inner mwall-detail-box <?php
 							if (!isset($item->itemImage) || !$item->itemImage || !$this->mas_images)
 							{
-								echo 'mnw-no-image';
-							} 
-							?>" style="background-color: rgba(<?php echo $options['db_bg_class']; ?>,<?php echo $options['db_bg_opacity_class']; ?>);"><?php 
+								echo 'mwall-no-image';
+							}
+							?>"><?php 
+							
 							if ($this->detailBoxDateAll && isset($item->itemDate)) 
 							{
 								?><div class="mwall-date"><?php 
@@ -200,14 +160,16 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								?></h3><?php 
 							}
 
-							if (($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) || ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)))) 
+							if (($this->detailBoxCategoryAll && isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw) || 
+								($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) ||
+								($this->detailBoxTagsAll && isset($item->itemTags) && $item->itemTags && isset($item->itemTagsLayout))) 
 							{
 								?><div class="mwall-item-info"><?php 
 								
-									if ($this->detailBoxCategoryAll && ((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw))) 
+									if ($this->detailBoxCategoryAll && isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw) 
 									{
 										?><p class="mwall-item-category">
-											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
+											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?> </span><?php 
 										?></p><?php 
 									}
 
@@ -218,14 +180,21 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										?></p><?php 
 									}
 
+									if ($this->detailBoxTagsAll && isset($item->itemTags) && $item->itemTags && isset($item->itemTagsLayout)) 
+									{
+										?><div class="mwall-item-tags"><?php
+											echo $item->itemTagsLayout;
+										?></div><?php
+									}
+
 								?></div><?php 
 							}
 
 							if ($this->detailBoxIntrotextAll && isset($item->itemIntrotext) && $item->itemIntrotext) 
 							{
 								?><div class="mwall-desc"><?php 
-									echo $item->itemIntrotext; 
-								?></div><?php 
+									echo $item->itemIntrotext; ?>
+								</div><?php 
 							}
 
 							if ($this->detailBoxHitsAll && isset($item->itemHits)) 
@@ -254,17 +223,17 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 						?></div><?php 
 					}
+
 				?></div><?php 
 				
 				if ($this->hoverBox) 
 				{
 					?><div class="mwall-hover-box" style="<?php 
-						echo $this->animated; 
+						echo $this->animated;
 						?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php 
 
-						?><div class="mwall-hover-box-content <?php 
-							echo $this->hoverTextColor; ?>"><?php 
-							
+						?><div class="mwall-hover-box-content <?php echo $this->hoverTextColor; ?>"><?php 
+						
 							if ($this->hoverBoxDate && isset($item->itemDate)) 
 							{
 								?><div class="mwall-date"><?php 
@@ -283,7 +252,9 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 									} 
 									else 
 									{
-										?><span><?php echo $item->hover_itemTitle; ?></span><?php 
+										?><span><?php 
+											echo $item->hover_itemTitle; 
+										?></span><?php 
 									}
 								?></h3><?php 
 							}
@@ -291,11 +262,11 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							if ($this->hoverBoxCategory || $this->hoverBoxAuthor) 
 							{
 								?><div class="mwall-item-info"><?php 
-								
-									if (((isset($item->itemCategoryRaw) && $item->itemCategoryRaw) || (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw)) && $this->hoverBoxCategory) 
+									
+									if (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw && $this->hoverBoxCategory) 
 									{
 										?><p class="mwall-item-category">
-											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?></span><?php 
+											<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?> </span><?php 
 										?></p><?php 
 									}
 
@@ -314,7 +285,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								if (isset($item->hover_itemIntrotext) && $item->hover_itemIntrotext) 
 								{
 									?><div class="mwall-desc"><?php 
-										echo $item->hover_itemIntrotext; 
+										echo $item->hover_itemIntrotext;
 									?></div><?php 
 								}
 							}

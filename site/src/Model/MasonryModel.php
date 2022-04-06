@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
+* @title		Minitek Wall
 * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -76,7 +76,7 @@ class MasonryModel extends BaseDatabaseModel
 		return $options;
 	}
 
-	public function getItems($widgetID)
+	public function getItems($widgetID, $filters)
 	{
 		// Get source params
 		$source_id = $this->utilities->getSourceID($widgetID);
@@ -87,7 +87,7 @@ class MasonryModel extends BaseDatabaseModel
 		$startLimit = (int)$masonry_params['mas_starting_limit'];
 
 		// Get items
-		$result = $this->source->getItems(false, $source_params, $startLimit, false, false);
+		$result = $this->source->getItems(false, $source_params, $startLimit, false, false, $filters);
 
 		if (isset($result))
 		{

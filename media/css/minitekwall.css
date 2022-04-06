@@ -9,11 +9,9 @@ website: 	https://www.minitek.gr
 
 **********************************************************/
 
-/* /////////////////////////////////////// */
 /* General */
-/* /////////////////////////////////////// */
 
-.mwall_loader {
+.mwall-container-loader {
   display: none;
   line-height: 20px;
   height: 20px;
@@ -21,39 +19,36 @@ website: 	https://www.minitek.gr
   margin: 20px 0 0;
 }
 
-.mwall_container {
+.mwall-container {
   display: none;
   opacity: 0;
   transition: opacity 0.4s ease;
-}
-
-.mwall_container .clearfix:before,
-.clearfix:after {
-  content: "";
-  display: table;
-  line-height: 0;
-}
-
-.mwall_container .clearfix:after {
-  clear: both;
-}
-
-.mwall_container .clearfix:before,
-.clearfix:after {
-  content: "";
-  display: table;
-  line-height: 0;
-}
-
-.mwall_container .text-center {
-  text-align: center;
-}
-
-.mwall_container {
   padding: 0;
 }
 
-.mwall_iso_container {
+.mwall-container .clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+  line-height: 0;
+}
+
+.mwall-container .clearfix:after {
+  clear: both;
+}
+
+.mwall-container .clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+  line-height: 0;
+}
+
+.mwall-container .text-center {
+  text-align: center;
+}
+
+.mwall-items {
   margin-top: 0;
   margin-bottom: 0;
   overflow: hidden;
@@ -75,24 +70,35 @@ website: 	https://www.minitek.gr
   max-height: 100%;
 }
 
-/* /////////////////////////////////////// */
-/* Loader
-/* /////////////////////////////////////// */
+/* Loader */
 
-.mas_loader {
+.mwall-loader {
   position: relative;
 }
 
-/* /////////////////////////////////////// */
 /* Filters buttons */
-/* /////////////////////////////////////// */
 
-.mwall_filters_sortings {
+.mwall-filters-loader {
+  display: none;
+  line-height: 33px;
+  height: 33px;
+  width: 33px;
+  position: relative;
+  vertical-align: top;
+}
+
+.mwall-filters-group .mwall-filters-loader,
+.mwall-sortings-group .mwall-filters-loader {
+  position: absolute;
+  right: 0;
+}
+
+.mwall-filters-sortings {
   margin: 5px 0 15px;
 }
 
-.mwall_iso_filters_cont,
-.mwall_iso_reset_cont {
+.mwall-filters-container,
+.mwall-reset-container {
   padding: 0;
   position: relative;
   display: inline-block;
@@ -100,33 +106,14 @@ website: 	https://www.minitek.gr
   text-align: left;
 }
 
-.mwall_filters_loader {
-  display: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-radius: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.7);
-  z-index: 999;
-  text-align: center;
-}
-
-.mwall_filters_loader img {
-  top: 6px;
-  position: relative;
-}
-
-.mwall_iso_filters,
-.mwall_iso_reset {
+.mwall-filters,
+.mwall-reset {
   position: relative;
   display: inline-block;
   vertical-align: top;
 }
 
-.mwall_iso_reset .btn-reset {
+.mwall-reset .btn-reset {
   background: #fff;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
   border: 1px solid #d7d7d7;
@@ -137,34 +124,34 @@ website: 	https://www.minitek.gr
   margin-bottom: 10px;
 }
 
-.mwall_iso_reset .btn-reset:hover,
-.mwall_iso_reset .btn-reset:focus {
+.mwall-reset .btn-reset:hover,
+.mwall-reset .btn-reset:focus {
   outline: none;
 }
 
-.mwall_iso_reset .btn-reset:focus {
+.mwall-reset .btn-reset:focus {
   background: #fff;
 }
 
-.mwall_iso_buttons {
+.mwall-buttons {
   margin-bottom: 8px;
   margin-right: 20px;
   position: relative;
 }
 
-.mwall_iso_buttons ul {
+.mwall-buttons ul {
   margin: 0 !important;
   padding: 0;
   list-style: none;
   display: inline-block;
 }
 
-.mwall_iso_buttons ul li {
+.mwall-buttons ul li {
   display: inline-block;
   vertical-align: top;
 }
 
-.mwall_iso_buttons a {
+.mwall-buttons a {
   padding: 0 12px;
   display: inline-block;
   line-height: 31px;
@@ -178,14 +165,14 @@ website: 	https://www.minitek.gr
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
 }
 
-.mwall_iso_buttons a:hover,
-.mwall_iso_buttons a:focus {
+.mwall-buttons a:hover,
+.mwall-buttons a:focus {
   outline: none;
   text-decoration: none;
   color: #444;
 }
 
-.mwall_iso_buttons > span {
+.mwall-buttons > span {
   padding: 0 7px;
   color: #777;
   display: inline-block;
@@ -193,26 +180,25 @@ website: 	https://www.minitek.gr
   line-height: 33px;
 }
 
-.mwall_iso_filters .button-group {
+.mwall-filters .button-group {
   display: inline-block;
 }
 
-.mwall_iso_buttons a.mnw_filter_active {
+.mwall-buttons a.mwall-filter-active {
   color: #fff;
 }
 
-.mwall_iso_reset .btn-reset:hover,
-.mwall_iso_reset .btn-reset:focus {
+.mwall-reset .btn-reset:hover,
+.mwall-reset .btn-reset:focus {
   color: #fff;
 }
 
-/* /////////////////////////////////////// */
 /* Filters list */
-/* /////////////////////////////////////// */
 
-.mwall_iso_dropdown {
+.mwall-filters-group,
+.mwall-sortings-group {
   position: relative;
-  min-width: 170px;
+  min-width: 180px;
   max-width: 100%;
   display: inline-block;
   vertical-align: top;
@@ -220,7 +206,17 @@ website: 	https://www.minitek.gr
   text-align: left;
 }
 
-.mwall_iso_dropdown.expanded ul {
+.mwall-filters-group.mwall-static-filters,
+.mwall-sortings-group.mwall-static-filters {
+  padding-right: 33px;
+  margin-right: 5px;
+}
+
+.mwall-dropdown .dropdown-label.mwall-static-filters {
+  padding-right: 33px;
+}
+
+.mwall-dropdown.expanded ul {
   max-height: 180px;
   opacity: 1;
   transition: all 0.3s ease 0s;
@@ -230,7 +226,7 @@ website: 	https://www.minitek.gr
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.mwall_iso_dropdown ul {
+.mwall-dropdown ul {
   background: none repeat scroll 0 0 #ffffff;
   border: 1px solid #d7d7d7;
   border-top: 0;
@@ -246,22 +242,22 @@ website: 	https://www.minitek.gr
   position: absolute;
 }
 
-.mwall_iso_dropdown ul.button-group {
+.mwall-dropdown ul.button-group {
   z-index: 999;
 }
 
-.mwall_iso_dropdown ul.sorting-group {
+.mwall-dropdown ul.sorting-group {
   z-index: 998;
 }
 
-.mwall_iso_dropdown ul li {
+.mwall-dropdown ul li {
   margin: 0;
   padding: 0;
   list-style: none;
   background: none;
 }
 
-.mwall_iso_dropdown ul li a {
+.mwall-dropdown ul li a {
   font-size: 14px;
   line-height: 14px;
   display: block;
@@ -270,21 +266,21 @@ website: 	https://www.minitek.gr
   text-decoration: none;
 }
 
-.mwall_iso_dropdown ul li a:hover {
+.mwall-dropdown ul li a:hover {
   background: #f5f5f5;
   text-decoration: none;
 }
 
-.mwall_iso_dropdown ul li a:focus {
+.mwall-dropdown ul li a:focus {
   text-decoration: none;
   outline: none;
 }
 
-.mwall_iso_dropdown ul li a.mnw_filter_active {
+.mwall-dropdown ul li a.mwall-filter-active {
   background: #f5f5f5;
 }
 
-.mwall_iso_dropdown .dropdown-label {
+.mwall-dropdown .dropdown-label {
   background: #ffffff;
   border: 1px solid #d7d7d7;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08) inset;
@@ -297,33 +293,31 @@ website: 	https://www.minitek.gr
   color: #777;
 }
 
-.mwall_iso_dropdown:hover .dropdown-label {
+.mwall-dropdown:hover .dropdown-label {
   background: #fff;
 }
 
-.mwall_iso_dropdown.expanded .dropdown-label {
+.mwall-dropdown.expanded .dropdown-label {
   color: #fff;
 }
 
-.mwall_iso_dropdown.expanded:hover .dropdown-label {
+.mwall-dropdown.expanded:hover .dropdown-label {
   color: #fff !important;
 }
 
-.mwall_iso_dropdown .dropdown-label span {
+.mwall-dropdown .dropdown-label span {
   display: inline-block;
   line-height: 31px;
   font-size: 14px;
 }
 
-.mwall_iso_dropdown .dropdown-label span i {
+.mwall-dropdown .dropdown-label span i {
   margin: 0 7px;
 }
 
-/* /////////////////////////////////////// */
 /* Sortings buttons */
-/* /////////////////////////////////////// */
 
-.mwall_iso_sortings_cont {
+.mwall-sortings-container {
   padding: 0;
   position: relative;
   display: inline-block;
@@ -331,19 +325,17 @@ website: 	https://www.minitek.gr
   text-align: left;
 }
 
-.mwall_iso_sortings {
+.mwall-sortings {
   display: inline-block;
   position: relative;
   vertical-align: top;
 }
 
-.mwall_iso_sortings .sorting-group {
+.mwall-sortings .sorting-group {
   display: inline-block;
 }
 
-/* /////////////////////////////////////// */
-/* Wall items
-/* /////////////////////////////////////// */
+/* Wall items */
 
 .mwall-item {
   overflow: hidden;
@@ -390,9 +382,7 @@ website: 	https://www.minitek.gr
   overflow: hidden;
 }
 
-/* /////////////////////////////////////// */
-/* Items - Hidden Classes                  */
-/* /////////////////////////////////////// */
+/* Hidden classes */
 
 .mwall-item .db-hidden {
   display: none;
@@ -418,6 +408,10 @@ website: 	https://www.minitek.gr
   display: none;
 }
 
+.mwall-item .tags-hidden .mwall-item-tags {
+  display: none;
+}
+
 .mwall-item .hits-hidden .mwall-hits {
   display: none;
 }
@@ -430,9 +424,101 @@ website: 	https://www.minitek.gr
   display: none;
 }
 
-/* /////////////////////////////////////// */
-/* Items - Typography / Text Colors        */
-/* /////////////////////////////////////// */
+/* Light text */
+
+.light-text h3.mwall-title a,
+.light-text h3.mwall-title span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.light-text h3.mwall-title a:hover,
+.light-text h3.mwall-title a:focus {
+  color: #fff;
+}
+
+.light-text .mwall-item-info {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.light-text .mwall-item-info a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.light-text .mwall-item-info a:hover,
+.light-text .mwall-item-info a:focus {
+  color: #fff;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.8);
+}
+
+.light-text .mwall-s-desc,
+.light-text .mwall-desc,
+.light-text .mwall-hits,
+.light-text .mwall-count {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.light-text .mwall-date {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.light-text .mwall-readmore a {
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.light-text .mwall-readmore a:hover,
+.light-text .mwall-readmore a:focus {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+/* Dark text */
+
+.dark-text h3.mwall-title a,
+.dark-text h3.mwall-title span {
+  color: #333;
+}
+
+.dark-text h3.mwall-title a:hover,
+.dark-text h3.mwall-title a:focus {
+  color: #000;
+}
+
+.dark-text .mwall-item-info {
+  color: #555;
+}
+
+.dark-text .mwall-item-info a {
+  color: #555;
+}
+
+.dark-text .mwall-item-info a:hover,
+.dark-text .mwall-item-info a:focus {
+  color: #333;
+  border-bottom: 1px dotted #333;
+}
+
+.dark-text .mwall-s-desc,
+.dark-text .mwall-desc,
+.dark-text .mwall-hits,
+.dark-text .mwall-count {
+  color: #555;
+}
+
+.dark-text .mwall-date {
+  color: #666;
+}
+
+.dark-text .mwall-readmore a {
+  color: #555;
+  border: 1px solid #777;
+}
+
+.dark-text .mwall-readmore a:hover,
+.dark-text .mwall-readmore a:focus {
+  color: #000;
+  border: 1px solid #111;
+}
 
 /* Typography */
 
@@ -516,6 +602,23 @@ h3.mwall-title a:focus {
   padding: 0 15px;
 }
 
+.mwall-item-tags {
+  margin: 0 0 5px;
+  padding: 0 15px;
+}
+
+.mwall-item-tags ul {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.mwall-item-tags ul.tags li a,
+.mwall-item-tags ul.tags li a:hover,
+.mwall-item-tags ul.tags li a:focus {
+  border: 0 !important;
+  color: #ffffff;
+}
+
 .mwall-item-info a:hover,
 .mwall-item-info a:focus {
   text-decoration: none;
@@ -551,105 +654,7 @@ h3.mwall-title a:focus {
   text-decoration: none;
 }
 
-/* Dark Colors */
-
-.dark-text h3.mwall-title a,
-.dark-text h3.mwall-title span {
-  color: #333;
-}
-
-.dark-text h3.mwall-title a:hover,
-.dark-text h3.mwall-title a:focus {
-  color: #000;
-}
-
-.dark-text .mwall-item-info {
-  color: #555;
-}
-
-.dark-text .mwall-item-info a {
-  color: #555;
-}
-
-.dark-text .mwall-item-info a:hover,
-.dark-text .mwall-item-info a:focus {
-  color: #333;
-  border-bottom: 1px dotted #333;
-}
-
-.dark-text .mwall-s-desc,
-.dark-text .mwall-desc,
-.dark-text .mwall-hits,
-.dark-text .mwall-count {
-  color: #555;
-}
-
-.dark-text .mwall-date {
-  color: #666;
-}
-
-.dark-text .mwall-readmore a {
-  color: #555;
-  border: 1px solid #777;
-}
-
-.dark-text .mwall-readmore a:hover,
-.dark-text .mwall-readmore a:focus {
-  color: #000;
-  border: 1px solid #111;
-}
-
-/* Light Colors */
-
-.light-text h3.mwall-title a,
-.light-text h3.mwall-title span {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.light-text h3.mwall-title a:hover,
-.light-text h3.mwall-title a:focus {
-  color: #fff;
-}
-
-.light-text .mwall-item-info {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.light-text .mwall-item-info a {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.light-text .mwall-item-info a:hover,
-.light-text .mwall-item-info a:focus {
-  color: #fff;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.8);
-}
-
-.light-text .mwall-s-desc,
-.light-text .mwall-desc,
-.light-text .mwall-hits,
-.light-text .mwall-count {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.light-text .mwall-date {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.light-text .mwall-readmore a {
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-}
-
-.light-text .mwall-readmore a:hover,
-.light-text .mwall-readmore a:focus {
-  color: #fff;
-  border: 1px solid #fff;
-}
-
-/* /////////////////////////////////////// */
-/* Hover Box
-/* /////////////////////////////////////// */
+/* Hover Box */
 
 .mwall-hover-box {
   cursor: default;
@@ -683,9 +688,7 @@ h3.mwall-title a:focus {
   transform: translateY(-51%);
 }
 
-/* /////////////////////////////////////// */
-/* Hover Box Typography
-/* /////////////////////////////////////// */
+/* Hover Box Typography */
 
 .mwall-hover-box h3.mwall-item-title a,
 .mwall-hover-box h3.mwall-item-title span {
@@ -775,43 +778,41 @@ h3.mwall-title a:focus {
 
 /* Modal images */
 
-.mwall_container .modal {
+.mwall-container .modal {
   text-align: center;
 }
 
-.mwall_container .modal-dialog {
+.mwall-container .modal-dialog {
   display: inline-block;
   max-width: 80%;
   max-height: 100%;
   height: auto;
 }
 
-.mwall_container .modal-content {
+.mwall-container .modal-content {
   overflow: hidden;
 }
 
-.mwall_container .modal-body {
-  padding: 0;
-}
-
-.mwall_container .modal-header {
+.mwall-container .modal-header {
   min-height: 49px;
 }
 
-.mwall_container .modal-header .btn-close {
+.mwall-container .modal-header .btn-close {
   background: transparent
     url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3E%3C/svg%3E")
     50%/1em auto no-repeat;
 }
 
-.mwall_container .modal img {
+.mwall-container .modal-body {
+  padding: 0;
+}
+
+.mwall-container .modal img {
   max-width: 100%;
   max-height: 85vh;
 }
 
-/* /////////////////////////////////////// */
-/* Hover Box Effects - Animations
-/* /////////////////////////////////////// */
+/* Hover Box Effects - Animations */
 
 /* Simple, no effects */
 
@@ -955,102 +956,26 @@ h3.mwall-title a:focus {
 
 /* Zoom in */
 
-.mwall-cover.mnwzoomIn .mwall-hover-box.mnwzoomIn,
-.mwall-item.mnwzoomIn .mwall-hover-box.mnwzoomIn {
+.mwall-cover.mwall-zoomin .mwall-hover-box.mwall-zoomin,
+.mwall-item.mwall-zoomin .mwall-hover-box.mwall-zoomin {
   transform: scale(1, 1);
   visibility: visible;
   opacity: 1;
 }
 
-.mwall-cover.mnwzoomIn .mwall-hover-box,
-.mwall-item.mnwzoomIn .mwall-hover-box {
+.mwall-cover.mwall-zoomin .mwall-hover-box,
+.mwall-item.mwall-zoomin .mwall-hover-box {
   transform: scale(0, 0);
 }
 
-/* /////////////////////////////////////// */
-/* Detail box / Image / Hover positions
-/* /////////////////////////////////////// */
+/* Image position */
 
-/* Detail box positions */
-
-.mwall-masonry .mwall-item-outer-cont.content-left .mwall-item-inner {
-  bottom: 0;
-  left: 0;
-  top: 0;
-  width: 50%;
-}
-.mwall-masonry .mwall-item-outer-cont.content-right .mwall-item-inner {
-  bottom: 0;
-  right: 0;
-  top: 0;
-  width: 50%;
-}
-.mwall-masonry .mwall-item-outer-cont.content-top .mwall-item-inner {
-  right: 0;
-  left: 0;
-  top: 0;
-  height: 50%;
-}
-.mwall-masonry .mwall-item-outer-cont.content-bottom .mwall-item-inner {
-  right: 0;
-  left: 0;
-  bottom: 0;
-  height: 50%;
-}
-.mwall-masonry .mwall-item-outer-cont.content-cover .mwall-item-inner {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.mwall-masonry .mwall-item-inner.mnw-no-image {
+.mwall-masonry .mwall-item-inner.mwall-no-image {
   width: 100% !important;
   height: 100% !important;
 }
 
-/* Image positions */
-
-.mwall-masonry .half-size.content-left .mwall-photo-link {
-  right: 0;
-  left: auto;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-}
-.mwall-masonry .half-size.content-right .mwall-photo-link {
-  left: 0;
-  right: auto;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-}
-.mwall-masonry .half-size.content-top .mwall-photo-link {
-  right: 0;
-  left: 0;
-  top: auto;
-  bottom: 0;
-  height: 50%;
-}
-.mwall-masonry .half-size.content-bottom .mwall-photo-link {
-  right: 0;
-  left: 0;
-  bottom: auto;
-  top: 0;
-  height: 50%;
-}
-
-.mwall-masonry .content-cover .mwall-photo-link,
-.mwall-masonry .mnw-no-content .mwall-photo-link {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
-
-/* /////////////////////////////////////// */
-/* Wall items - Masonry / General
-/* /////////////////////////////////////// */
+/* Wall items - Masonry / General */
 
 .mwall-masonry .mwall-item-inner {
   position: absolute;
@@ -1060,9 +985,7 @@ h3.mwall-title a:focus {
   height: 100%;
 }
 
-/* /////////////////////////////////////// */
-/* Masonry - Item default heights
-/* /////////////////////////////////////// */
+/* Masonry - Item default heights */
 
 .mwall-big {
   height: 480px;
@@ -1080,352 +1003,322 @@ h3.mwall-title a:focus {
   height: 240px;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 1 */
-/* /////////////////////////////////////// */
 
-.mwall-grid1 .mnwitem1 {
+.mwall-grid1 .mwall-item1 {
   width: 100%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 3a */
-/* /////////////////////////////////////// */
 
-.mwall-grid3a .mnwitem1 {
+.mwall-grid3a .mwall-item1 {
   width: 50%;
 }
-.mwall-grid3a .mnwitem2 {
+.mwall-grid3a .mwall-item2 {
   width: 50%;
 }
-.mwall-grid3a .mnwitem3 {
+.mwall-grid3a .mwall-item3 {
   width: 50%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 3b */
-/* /////////////////////////////////////// */
 
-.mwall-grid3b .mnwitem1 {
+.mwall-grid3b .mwall-item1 {
   width: 50%;
 }
-.mwall-grid3b .mnwitem2 {
+.mwall-grid3b .mwall-item2 {
   width: 50%;
 }
-.mwall-grid3b .mnwitem3 {
+.mwall-grid3b .mwall-item3 {
   width: 50%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 3c */
-/* /////////////////////////////////////// */
 
-.mwall-grid3c .mnwitem1 {
+.mwall-grid3c .mwall-item1 {
   width: 50%;
 }
-.mwall-grid3c .mnwitem2 {
+.mwall-grid3c .mwall-item2 {
   width: 25%;
 }
-.mwall-grid3c .mnwitem3 {
+.mwall-grid3c .mwall-item3 {
   width: 25%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 4 */
-/* /////////////////////////////////////// */
 
-.mwall-grid4 .mnwitem1 {
+.mwall-grid4 .mwall-item1 {
   width: 50%;
 }
-.mwall-grid4 .mnwitem2 {
+.mwall-grid4 .mwall-item2 {
   width: 50%;
 }
-.mwall-grid4 .mnwitem3 {
+.mwall-grid4 .mwall-item3 {
   width: 25%;
 }
-.mwall-grid4 .mnwitem4 {
+.mwall-grid4 .mwall-item4 {
   width: 25%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 5 */
-/* /////////////////////////////////////// */
 
-.mwall-grid5 .mnwitem1 {
+.mwall-grid5 .mwall-item1 {
   width: 40%;
 }
-.mwall-grid5 .mnwitem2 {
+.mwall-grid5 .mwall-item2 {
   width: 20%;
 }
-.mwall-grid5 .mnwitem3 {
+.mwall-grid5 .mwall-item3 {
   width: 40%;
 }
-.mwall-grid5 .mnwitem4 {
+.mwall-grid5 .mwall-item4 {
   width: 20%;
 }
-.mwall-grid5 .mnwitem5 {
+.mwall-grid5 .mwall-item5 {
   width: 40%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 5b */
-/* /////////////////////////////////////// */
 
-.mwall-grid5b .mnwitem1 {
+.mwall-grid5b .mwall-item1 {
   width: 25%;
 }
-.mwall-grid5b .mnwitem2 {
+.mwall-grid5b .mwall-item2 {
   width: 25%;
 }
-.mwall-grid5b .mnwitem3 {
+.mwall-grid5b .mwall-item3 {
   width: 50%;
 }
-.mwall-grid5b .mnwitem4 {
+.mwall-grid5b .mwall-item4 {
   width: 25%;
 }
-.mwall-grid5b .mnwitem5 {
+.mwall-grid5b .mwall-item5 {
   width: 25%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 6 */
-/* /////////////////////////////////////// */
 
-.mwall-grid6 .mnwitem1 {
+.mwall-grid6 .mwall-item1 {
   width: 40%;
 }
-.mwall-grid6 .mnwitem2 {
+.mwall-grid6 .mwall-item2 {
   width: 20%;
 }
-.mwall-grid6 .mnwitem3 {
+.mwall-grid6 .mwall-item3 {
   width: 40%;
 }
-.mwall-grid6 .mnwitem4 {
+.mwall-grid6 .mwall-item4 {
   width: 20%;
 }
-.mwall-grid6 .mnwitem5 {
+.mwall-grid6 .mwall-item5 {
   width: 20%;
 }
-.mwall-grid6 .mnwitem6 {
+.mwall-grid6 .mwall-item6 {
   width: 20%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 7 */
-/* /////////////////////////////////////// */
 
-.mwall-grid7 .mnwitem1 {
+.mwall-grid7 .mwall-item1 {
   width: 50%;
 }
-.mwall-grid7 .mnwitem2 {
+.mwall-grid7 .mwall-item2 {
   width: 50%;
 }
-.mwall-grid7 .mnwitem3 {
+.mwall-grid7 .mwall-item3 {
   width: 25%;
 }
-.mwall-grid7 .mnwitem4 {
+.mwall-grid7 .mwall-item4 {
   width: 25%;
 }
-.mwall-grid7 .mnwitem5 {
+.mwall-grid7 .mwall-item5 {
   width: 25%;
 }
-.mwall-grid7 .mnwitem6 {
+.mwall-grid7 .mwall-item6 {
   width: 25%;
 }
-.mwall-grid7 .mnwitem7 {
+.mwall-grid7 .mwall-item7 {
   width: 25%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 8 */
-/* /////////////////////////////////////// */
 
-.mwall-grid8 .mnwitem1 {
+.mwall-grid8 .mwall-item1 {
   width: 40%;
 }
-.mwall-grid8 .mnwitem2 {
+.mwall-grid8 .mwall-item2 {
   width: 40%;
 }
-.mwall-grid8 .mnwitem3 {
+.mwall-grid8 .mwall-item3 {
   width: 20%;
 }
-.mwall-grid8 .mnwitem4 {
+.mwall-grid8 .mwall-item4 {
   width: 20%;
 }
-.mwall-grid8 .mnwitem5 {
+.mwall-grid8 .mwall-item5 {
   width: 20%;
 }
-.mwall-grid8 .mnwitem6 {
+.mwall-grid8 .mwall-item6 {
   width: 20%;
 }
-.mwall-grid8 .mnwitem7 {
+.mwall-grid8 .mwall-item7 {
   width: 40%;
 }
-.mwall-grid8 .mnwitem8 {
+.mwall-grid8 .mwall-item8 {
   width: 40%;
 }
 
-/* /////////////////////////////////////// */
 /* Masonry - Grid 9 */
-/* /////////////////////////////////////// */
 
-.mwall-grid9 .mnwitem1 {
+.mwall-grid9 .mwall-item1 {
   width: 50%;
 }
-.mwall-grid9 .mnwitem2 {
+.mwall-grid9 .mwall-item2 {
   width: 50%;
 }
-.mwall-grid9 .mnwitem3 {
+.mwall-grid9 .mwall-item3 {
   width: 25%;
 }
-.mwall-grid9 .mnwitem4 {
+.mwall-grid9 .mwall-item4 {
   width: 25%;
 }
-.mwall-grid9 .mnwitem5 {
+.mwall-grid9 .mwall-item5 {
   width: 25%;
 }
-.mwall-grid9 .mnwitem6 {
+.mwall-grid9 .mwall-item6 {
   width: 25%;
 }
-.mwall-grid9 .mnwitem7 {
+.mwall-grid9 .mwall-item7 {
   width: 25%;
 }
-.mwall-grid9 .mnwitem8 {
+.mwall-grid9 .mwall-item8 {
   width: 25%;
 }
-.mwall-grid9 .mnwitem9 {
+.mwall-grid9 .mwall-item9 {
   width: 25%;
 }
 
-/* /////////////////////////////////////// */
 /* Rows - Grid 9 */
-/* /////////////////////////////////////// */
 
-.mwall-grid9r .mnwitem1 {
+.mwall-grid9r .mwall-item1 {
   width: 33.33%;
 }
-.mwall-grid9r .mnwitem2 {
+.mwall-grid9r .mwall-item2 {
   width: 33.33%;
 }
-.mwall-grid9r .mnwitem3 {
+.mwall-grid9r .mwall-item3 {
   width: 33.33%;
 }
-.mwall-grid9r .mnwitem4 {
+.mwall-grid9r .mwall-item4 {
   width: 50%;
 }
-.mwall-grid9r .mnwitem5 {
+.mwall-grid9r .mwall-item5 {
   width: 50%;
 }
-.mwall-grid9r .mnwitem6 {
+.mwall-grid9r .mwall-item6 {
   width: 25%;
 }
-.mwall-grid9r .mnwitem7 {
+.mwall-grid9r .mwall-item7 {
   width: 25%;
 }
-.mwall-grid9r .mnwitem8 {
+.mwall-grid9r .mwall-item8 {
   width: 25%;
 }
-.mwall-grid9r .mnwitem9 {
+.mwall-grid9r .mwall-item9 {
   width: 25%;
 }
 
-/* /////////////////////////////////////// */
 /* Rows - Grid 12 */
-/* /////////////////////////////////////// */
 
-.mwall-grid12r .mnwitem1 {
+.mwall-grid12r .mwall-item1 {
   width: 25%;
 }
-.mwall-grid12r .mnwitem2 {
+.mwall-grid12r .mwall-item2 {
   width: 25%;
 }
-.mwall-grid12r .mnwitem3 {
+.mwall-grid12r .mwall-item3 {
   width: 25%;
 }
-.mwall-grid12r .mnwitem4 {
+.mwall-grid12r .mwall-item4 {
   width: 25%;
 }
-.mwall-grid12r .mnwitem5 {
+.mwall-grid12r .mwall-item5 {
   width: 20%;
 }
-.mwall-grid12r .mnwitem6 {
+.mwall-grid12r .mwall-item6 {
   width: 20%;
 }
-.mwall-grid12r .mnwitem7 {
+.mwall-grid12r .mwall-item7 {
   width: 20%;
 }
-.mwall-grid12r .mnwitem8 {
+.mwall-grid12r .mwall-item8 {
   width: 20%;
 }
-.mwall-grid12r .mnwitem9 {
+.mwall-grid12r .mwall-item9 {
   width: 20%;
 }
-.mwall-grid12r .mnwitem10 {
+.mwall-grid12r .mwall-item10 {
   width: 33.33%;
 }
-.mwall-grid12r .mnwitem11 {
+.mwall-grid12r .mwall-item11 {
   width: 33.33%;
 }
-.mwall-grid12r .mnwitem12 {
+.mwall-grid12r .mwall-item12 {
   width: 33.33%;
 }
 
-/* /////////////////////////////////////// */
 /* Rows - Grid 16 */
-/* /////////////////////////////////////// */
 
-.mwall-grid16r .mnwitem1 {
+.mwall-grid16r .mwall-item1 {
   width: 40%;
 }
-.mwall-grid16r .mnwitem2 {
+.mwall-grid16r .mwall-item2 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem3 {
+.mwall-grid16r .mwall-item3 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem4 {
+.mwall-grid16r .mwall-item4 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem5 {
+.mwall-grid16r .mwall-item5 {
   width: 40%;
 }
-.mwall-grid16r .mnwitem6 {
+.mwall-grid16r .mwall-item6 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem7 {
+.mwall-grid16r .mwall-item7 {
   width: 40%;
 }
-.mwall-grid16r .mnwitem8 {
+.mwall-grid16r .mwall-item8 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem9 {
+.mwall-grid16r .mwall-item9 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem10 {
+.mwall-grid16r .mwall-item10 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem11 {
+.mwall-grid16r .mwall-item11 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem12 {
+.mwall-grid16r .mwall-item12 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem13 {
+.mwall-grid16r .mwall-item13 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem14 {
+.mwall-grid16r .mwall-item14 {
   width: 20%;
 }
-.mwall-grid16r .mnwitem15 {
+.mwall-grid16r .mwall-item15 {
   width: 40%;
 }
-.mwall-grid16r .mnwitem16 {
+.mwall-grid16r .mwall-item16 {
   width: 20%;
 }
 
-/* /////////////////////////////////////// */
-/* Wall items - Masonry Columns
-/* /////////////////////////////////////// */
+/* Wall items - Masonry Columns */
 
 .mwall-columns .mwall-item-inner-cont {
   padding: 0;
@@ -1484,9 +1377,7 @@ h3.mwall-title a:focus {
   height: 100%;
 }
 
-/* /////////////////////////////////////// */
-/* Wall items - Vertical List
-/* /////////////////////////////////////// */
+/* Wall items - Vertical List */
 
 .mwall-list .mwall-item {
   width: 100%;
@@ -1510,4 +1401,17 @@ h3.mwall-title a:focus {
 .mwall-list .mwall-img-div img {
   width: 100%;
   max-width: 100%;
+}
+
+/* Other */
+
+.mwall-error {
+  display: inline-block;
+  font-size: 80%;
+  line-height: 21px;
+  padding: 5px 8px;
+  margin: 0 5px;
+  color: #888;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
 }
