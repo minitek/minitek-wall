@@ -14,76 +14,26 @@ if ($this->masonry_params['mas_category_filters'])
 {
 	$cat_array = array();
 
-	if (isset($this->masonry_params['mas_filters_mode']) && $this->masonry_params['mas_filters_mode'] == 'dynamic')
+	// Dynamic filters
+	foreach($this->wall as $key=>$wall_item)
 	{
-		// Dynamic filters
-		foreach($this->wall as $key=>$wall_item)
+		if (isset($wall_item->itemCategoryRaw) && $wall_item->itemCategoryRaw)
 		{
-			if (isset($wall_item->itemCategoryRaw) && $wall_item->itemCategoryRaw)
+			array_push($cat_array, $wall_item->itemCategoryRaw);
+		}
+		else if (isset($wall_item->itemCategoriesRaw) && $wall_item->itemCategoriesRaw)
+		{
+			foreach ($wall_item->itemCategoriesRaw as $key=>$itemCategory)
 			{
-				array_push($cat_array, $wall_item->itemCategoryRaw);
-			}
-			else if (isset($wall_item->itemCategoriesRaw) && $wall_item->itemCategoriesRaw)
-			{
-				foreach ($wall_item->itemCategoriesRaw as $key=>$itemCategory)
+				if (is_array($itemCategory))
 				{
-					if (is_array($itemCategory))
-					{
-						array_push($cat_array, $itemCategory['category_name']);
-					}
+					array_push($cat_array, $itemCategory['category_name']);
 				}
 			}
 		}
-
-		$cat_array = array_unique($cat_array);
-	}
-	else if (isset($this->masonry_params['mas_filters_mode']) && $this->masonry_params['mas_filters_mode'] == 'static')
-	{
-		// Static filters
-		$cat_ids = array();
-
-		// Register plugin source class
-		$source_type = $this->source_params['source_type'];
-		$class = 'MSource'.$source_type.'Source';
-		$plugin = 'msource'.$source_type;
-		\JLoader::register($class, JPATH_SITE .DS. 'plugins' .DS. 'content' .DS. $plugin .DS. 'helpers' .DS. 'source.php');
-
-		$source = new $class;
-
-		if (method_exists($source, 'getStaticCategories'))
-		{
-			$cat_ids = $source->getStaticCategories($this->source_params);
-
-			if (!empty($cat_ids))
-			{
-				$cat_array = $source->getCategoriesNames($cat_ids);
-			}
-		}
-	}
-	else
-	{
-		// Fallback to dynamic filters if categories type is not set
-		foreach($this->wall as $key=>$wall_item)
-		{
-			if (isset($wall_item->itemCategoryRaw) && $wall_item->itemCategoryRaw)
-			{
-				array_push($cat_array, $wall_item->itemCategoryRaw);
-			}
-			else if (isset($wall_item->itemCategoriesRaw) && $wall_item->itemCategoriesRaw)
-			{
-				foreach ($wall_item->itemCategoriesRaw as $key=>$itemCategory)
-				{
-					if (is_array($itemCategory))
-					{
-						array_push($cat_array, $itemCategory['category_name']);
-					}
-				}
-			}
-		}
-
-		$cat_array = array_unique($cat_array);
 	}
 
+	$cat_array = array_unique($cat_array);
 	asort($cat_array);
 	$cat_array = array_values($cat_array);
 
@@ -160,62 +110,19 @@ if ($this->masonry_params['mas_tag_filters'])
 {
 	$tag_array = array();
 
-	if (isset($this->masonry_params['mas_filters_mode']) && $this->masonry_params['mas_filters_mode'] == 'dynamic')
+	// Dynamic filters
+	foreach($this->wall as $key=>$wall_item)
 	{
-		// Dynamic filters
-		foreach($this->wall as $key=>$wall_item)
+		if (isset($wall_item->itemTags) && $wall_item->itemTags)
 		{
-			if (isset($wall_item->itemTags) && $wall_item->itemTags)
+			foreach($wall_item->itemTags as $key=>$itemTag)
 			{
-				foreach($wall_item->itemTags as $key=>$itemTag)
-				{
-					array_push($tag_array, $itemTag->title);
-				}
-			}
-		}
-
-		$tag_array = array_unique($tag_array);
-	}
-	else if (isset($this->masonry_params['mas_filters_mode']) && $this->masonry_params['mas_filters_mode'] == 'static')
-	{
-		// Static filters
-		$tag_ids = array();
-
-		// Register plugin source class
-		$source_type = $this->source_params['source_type'];
-		$class = 'MSource'.$source_type.'Source';
-		$plugin = 'msource'.$source_type;
-		\JLoader::register($class, JPATH_SITE .DS. 'plugins' .DS. 'content' .DS. $plugin .DS. 'helpers' .DS. 'source.php');
-
-		$source = new $class;
-
-		if (method_exists($source, 'getStaticTags'))
-		{
-			$tag_ids = $source->getStaticTags($this->source_params);
-
-			if (!empty($tag_ids))
-			{
-				$tag_array = $source->getTagsNames($tag_ids);
+				array_push($tag_array, $itemTag->title);
 			}
 		}
 	}
-	else
-	{
-		// Fallback to dynamic filters if tags type is not set
-		foreach($this->wall as $key=>$wall_item)
-		{
-			if (isset($wall_item->itemTags) && $wall_item->itemTags)
-			{
-				foreach($wall_item->itemTags as $key=>$itemTag)
-				{
-					array_push($tag_array, $itemTag->title);
-				}
-			}
-		}
 
-		$tag_array = array_unique($tag_array);
-	}
-
+	$tag_array = array_unique($tag_array);
 	asort($tag_array);
 	$tag_array = array_values($tag_array);
 
