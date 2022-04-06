@@ -1,8 +1,8 @@
 <?php
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
+* @title		Minitek Wall
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -15,93 +15,104 @@ if ($this->masonry_params['mas_category_filters'])
 	$cat_array = array();
 
 	// Dynamic filters
-	foreach($this->wall as $key=>$wall_item)
+	foreach ($this->wall as $key => $item)
 	{
-		if (isset($wall_item->itemCategoryRaw) && $wall_item->itemCategoryRaw)
+		if (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw)
 		{
-			array_push($cat_array, $wall_item->itemCategoryRaw);
-		}
-		else if (isset($wall_item->itemCategoriesRaw) && $wall_item->itemCategoriesRaw)
-		{
-			foreach ($wall_item->itemCategoriesRaw as $key=>$itemCategory)
+			foreach ($item->itemCategoriesRaw as $key => $itemCategory)
 			{
 				if (is_array($itemCategory))
-				{
-					array_push($cat_array, $itemCategory['category_name']);
-				}
+					$cat_array[$itemCategory['id']] = $itemCategory;
 			}
 		}
 	}
 
-	$cat_array = array_unique($cat_array);
-	asort($cat_array);
-	$cat_array = array_values($cat_array);
+	// Sort array
+	$column = array();
+	$id = array();
+	$field = isset($this->masonry_params['mas_filters_ordering']) ? $this->masonry_params['mas_filters_ordering'] : 'title';
+	$direction = isset($this->masonry_params['mas_filters_ordering_dir']) ? $this->masonry_params['mas_filters_ordering_dir'] : 'asc';
+	$direction = $direction == 'asc' ? SORT_ASC : SORT_DESC;
+	$keys = array_keys($cat_array); // Store original keys
 
-	if ($this->masonry_params['mas_filter_type'] == '1')
+	foreach ($cat_array as $key => $cat)
 	{
-		// Inline filters
-		?><div class="button-group button-group-category mwall_iso_buttons" data-filter-group="category"><?php
+		$column[$key] = $cat[$field];
+		$id[$key] = $cat['id'];
+	}
+
+	array_multisort(
+		$column, $direction, 
+		$id, $direction, 
+		$cat_array, $keys
+	);
+	$cat_array = array_combine($keys, $cat_array);
+
+	// Inline filters
+	if ($cat_array && $this->masonry_params['mas_filter_type'] == '1')
+	{
+		?><div class="mwall-filters-group button-group button-group-category mwall-buttons" data-filter-group="category"><?php
 		
 			if ($this->masonry_params['mas_category_filters_label'])
 			{
 				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_category_filters_label']); ?></span><?php
 			}
-
+			
 			?><ul>
 				<li>
-					<a href="#" data-filter="" class="mwall-filter mnw_filter_active"><?php 
+					<a href="#" data-id="0" data-filter="" class="mwall-filter mwall-filter-active"><?php
 						echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
 					?></a>
 				</li><?php 
 
-				foreach ($cat_array as $category)
+				foreach ($cat_array as $key => $category)
 				{
-					$cat_name_fixed = $this->utilities->cleanName($category);
-					$category = htmlspecialchars($category);
-					
+					$class = $this->utilities->cleanName($category['title']);
+					$title = htmlspecialchars($category['title']);
+
 					?><li>
-						<a href="#" data-filter=".cat-<?php echo $cat_name_fixed; ?>" class="mwall-filter"><?php 
-							echo $category; 
+						<a href="#" data-id="<?php echo $key; ?>" data-filter=".cat-<?php echo $class; ?>" class="mwall-filter"><?php 
+							echo $title; 
 						?></a>
 					</li><?php
 				}
-
 			?></ul>
 		</div><?php
 	}
 
-	if ($this->masonry_params['mas_filter_type'] == '2')
+	// Dropdown filters
+	if ($cat_array && $this->masonry_params['mas_filter_type'] == '2')
 	{
-		// Dropdown filters
-		?><div class="mwall_iso_dropdown">
-			<div class="dropdown-label cat-label">
-				<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_category_filters_label']); ?>">
-					<i class="fa fa-angle-down"></i><span><?php 
-						echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_category_filters_label']); 
-					?></span>
-				</span>
-			</div>
-			<ul class="button-group button-group-category" data-filter-group="category">
-				<li>
-					<a href="#" data-filter="" class="mwall-filter mnw_filter_active"><?php 
-						echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
-					?></a>
-				</li><?php 
-				
-				foreach ($cat_array as $category)
-				{
-					$cat_name_fixed = $this->utilities->cleanName($category);
-					$category = htmlspecialchars($category);
-
-					?><li>
-						<a href="#" data-filter=".cat-<?php echo $cat_name_fixed; ?>" class="mwall-filter"><?php 
-							echo $category; 
+		?><div class="mwall-filters-group">
+			<div class="mwall-dropdown">
+				<div class="dropdown-label cat-label">
+					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_category_filters_label']); ?>">
+						<i class="fa fa-angle-down"></i><span><?php 
+							echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_category_filters_label']); 
+						?></span>
+					</span>
+				</div>
+				<ul class="button-group button-group-category" data-filter-group="category">
+					<li>
+						<a href="#" data-id="0" data-filter="" class="mwall-filter mwall-filter-active"><?php
+							echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
 						?></a>
 					</li><?php 
-				}
 
-			?></ul>
-		</div><?php 
+					foreach ($cat_array as $key => $category)
+					{
+						$class = $this->utilities->cleanName($category['title']);
+						$title = htmlspecialchars($category['title']);
+						
+						?><li>
+							<a href="#" data-id="<?php echo $key; ?>" data-filter=".cat-<?php echo $class; ?>" class="mwall-filter"><?php
+								echo $title; 
+							?></a>
+						</li><?php 
+					}
+				?></ul>
+			</div>
+		</div><?php
 	}
 }
 
@@ -111,112 +122,132 @@ if ($this->masonry_params['mas_tag_filters'])
 	$tag_array = array();
 
 	// Dynamic filters
-	foreach($this->wall as $key=>$wall_item)
+	foreach ($this->wall as $key => $item)
 	{
-		if (isset($wall_item->itemTags) && $wall_item->itemTags)
+		if (isset($item->itemTagsRaw) && $item->itemTagsRaw)
 		{
-			foreach($wall_item->itemTags as $key=>$itemTag)
+			foreach ($item->itemTagsRaw as $key => $itemTag)
 			{
-				array_push($tag_array, $itemTag->title);
+				$tag_array[$itemTag['id']] = $itemTag;
 			}
 		}
 	}
 
-	$tag_array = array_unique($tag_array);
-	asort($tag_array);
-	$tag_array = array_values($tag_array);
+	// Sort array
+	$column = array();
+	$id = array();
+	$field = isset($this->masonry_params['mas_filters_ordering']) ? $this->masonry_params['mas_filters_ordering'] : 'title';
+	$direction = isset($this->masonry_params['mas_filters_ordering_dir']) ? $this->masonry_params['mas_filters_ordering_dir'] : 'asc';
+	$direction = $direction == 'asc' ? SORT_ASC : SORT_DESC;
+	$keys = array_keys($tag_array); // Store original keys
 
-	if ($this->masonry_params['mas_filter_type'] == '1')
+	foreach ($tag_array as $key => $tag)
 	{
-		// Inline filters
-		?><div class="button-group button-group-tag mwall_iso_buttons" data-filter-group="tag"><?php
-		
-		if ($this->masonry_params['mas_tag_filters_label'])
-		{
-			?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_tag_filters_label']); ?></span><?php
-		}
+		$column[$key] = $tag[$field];
+		$id[$key] = $tag['id'];
+	}
+
+	array_multisort(
+		$column, $direction, 
+		$id, $direction, 
+		$tag_array, $keys
+	);
+	$tag_array = array_combine($keys, $tag_array);
+
+	// Inline filters
+	if ($tag_array && $this->masonry_params['mas_filter_type'] == '1')
+	{
+		?><div class="mwall-filters-group button-group button-group-tag mwall-buttons" data-filter-group="tag"><?php
+
+			if ($this->masonry_params['mas_tag_filters_label'])
+			{
+				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_tag_filters_label']); ?></span><?php
+			}
 
 			?><ul>
 				<li>
-					<a href="#" data-filter="" class="mwall-filter mnw_filter_active"><?php 
+					<a href="#" data-id="0" data-filter="" class="mwall-filter mwall-filter-active"><?php 
 						echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
 					?></a>
-				</li><?php 
+				</li><?php
 
-				foreach ($tag_array as $tagName)
+				foreach ($tag_array as $key => $tag)
 				{
-					$tag_name_fixed = $this->utilities->cleanName($tagName);
-					$tag = htmlspecialchars($tagName);
-
+					$class = $this->utilities->cleanName($tag['title']);
+					$title = htmlspecialchars($tag['title']);
+					
 					?><li>
-						<a href="#" data-filter=".tag-<?php echo $tag_name_fixed; ?>" class="mwall-filter"><?php 
-							echo $tag; 
+						<a href="#" data-id="<?php echo $key; ?>" data-filter=".tag-<?php echo $class; ?>" class="mwall-filter"><?php 
+							echo $title; 
 						?></a>
-					</li><?php 
+					</li><?php
 				}
-
 			?></ul>
 		</div><?php 
 	}
-
-	if ($this->masonry_params['mas_filter_type'] == '2')
+	// Dropdown filters
+	if ($tag_array && $this->masonry_params['mas_filter_type'] == '2')
 	{
-		// Dropdown filters
-		?><div class="mwall_iso_dropdown">
-			<div class="dropdown-label tag-label">
-				<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_tag_filters_label']); ?>">
-					<i class="fa fa-angle-down"></i><span><?php 
-						echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_tag_filters_label']); 
-					?></span>
-				</span>
-			</div>
-			<ul class="button-group button-group-tag" data-filter-group="tag">
-				<li>
-					<a href="#" data-filter="" class="mwall-filter mnw_filter_active"><?php 
-						echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
-					?></a>
-				</li><?php 
-				
-				foreach ($tag_array as $tagName)
-				{
-					$tag_name_fixed = $this->utilities->cleanName($tagName);
-					$tag = htmlspecialchars($tagName);
-
-					?><li>
-						<a href="#" data-filter=".tag-<?php echo $tag_name_fixed; ?>" class="mwall-filter"><?php 
-							echo $tag; 
+		?><div class="mwall-filters-group">
+			<div class="mwall-dropdown">
+				<div class="dropdown-label tag-label">
+					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_tag_filters_label']); ?>">
+						<i class="fa fa-angle-down"></i><span><?php 
+							echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_tag_filters_label']); 
+						?></span>
+					</span>
+				</div>
+				<ul class="button-group button-group-tag" data-filter-group="tag">
+					<li>
+						<a href="#" data-id="0" data-filter="" class="mwall-filter mwall-filter-active"><?php 
+							echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
 						?></a>
 					</li><?php 
-				}
 
-			?></ul>
-		</div><?php 
+					foreach ($tag_array as $key => $tag)
+					{
+						$class = $this->utilities->cleanName($tag['title']);
+						$title = htmlspecialchars($tag['title']);
+						
+						?><li>
+							<a href="#" data-id="<?php echo $key; ?>" data-filter=".tag-<?php echo $class; ?>" class="mwall-filter"><?php 
+								echo $title; 
+							?></a>
+						</li><?php 
+					}
+				?></ul>
+			</div>
+		</div><?php
 	}
 }
 
 // Date Filters
 if ($this->masonry_params['mas_date_filters'])
 {
-	// Create date filters
 	$date_array = array();
 
-	foreach($this->wall as $key=>$wall_item)
+	// Dynamic filters
+	foreach ($this->wall as $key => $item)
 	{
-		if (isset($wall_item->itemDateRaw) && $wall_item->itemDateRaw)
-		{
-			array_push($date_array, \JHTML::_('date', $wall_item->itemDateRaw, 'Y-m'));
-		}
+		if (isset($item->itemDateRaw) && $item->itemDateRaw)
+			array_push($date_array, \JHTML::_('date', $item->itemDateRaw, 'Y-m'));
 	}
 
 	$date_array = array_unique($date_array);
-	rsort($date_array);
-	$date_array = array_values($date_array);
 
-	if ($this->masonry_params['mas_filter_type'] == '1')
+	// Sort array
+	$direction = isset($this->masonry_params['mas_filters_ordering_dir']) ? $this->masonry_params['mas_filters_ordering_dir'] : 'asc';
+
+	if ($direction == 'asc')
+		sort($date_array);
+	else 
+		rsort($date_array);
+
+	// Inline filters
+	if ($date_array && $this->masonry_params['mas_filter_type'] == '1')
 	{
-		// Inline filters
-		?><div class="button-group button-group-date mwall_iso_buttons" data-filter-group="date"><?php 
-		
+		?><div class="mwall-filters-group button-group button-group-date mwall-buttons" data-filter-group="date"><?php 
+
 			if ($this->masonry_params['mas_date_filters_label'])
 			{
 				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_date_filters_label']); ?></span><?php 
@@ -224,58 +255,56 @@ if ($this->masonry_params['mas_date_filters'])
 
 			?><ul>
 				<li>
-					<a href="#" data-filter="" class="mwall-filter mnw_filter_active"><?php 
+					<a href="#" data-id="0" data-filter="" class="mwall-filter mwall-filter-active"><?php 
 						echo \JText::_('COM_MINITEKWALL_SHOW_ALL'); 
 					?></a>
 				</li><?php 
-				
+
 				foreach ($date_array as $date)
 				{
-					$date_name_fixed = $this->utilities->cleanName($date);
+					$class = $this->utilities->cleanName($date);
 					$date = \JHTML::_('date', $date, 'M Y');
-
+					
 					?><li>
-						<a href="#" data-filter=".date-<?php echo $date_name_fixed; ?>" class="mwall-filter"><?php
-							echo $date; 
-						?></a>
-					</li><?php
+						<a href="#" data-id="<?php echo $class; ?>" data-filter=".date-<?php echo $class; ?>" class="mwall-filter"><?php 
+							echo $date; ?></a>
+					</li><?php 
 				}
-
 			?></ul>
 		</div><?php 
 	}
 
-	if ($this->masonry_params['mas_filter_type'] == '2')
+	// Dropdown filters
+	if ($date_array && $this->masonry_params['mas_filter_type'] == '2')
 	{
-		// Dropdown filters
-		?><div class="mwall_iso_dropdown">
-			<div class="dropdown-label date-label">
-				<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_date_filters_label']); ?>">
-					<i class="fa fa-angle-down"></i><span><?php 
-						echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_date_filters_label']); 
-					?></span>
-				</span>
-			</div>
-			<ul class="button-group button-group-date" data-filter-group="date">
-				<li>
-					<a href="#" data-filter="" class="mwall-filter mnw_filter_active"><?php 
-						echo JText::_('COM_MINITEKWALL_SHOW_ALL'); 
-					?></a>
-				</li><?php 
-				
-				foreach ($date_array as $date)
-				{
-					$date_name_fixed = $this->utilities->cleanName($date);
-					$date = \JHTML::_('date', $date, 'M Y');
-
-					?><li>
-						<a href="#" data-filter=".date-<?php echo $date_name_fixed; ?>" class="mwall-filter"><?php 
-							echo $date; 
+		?><div class="mwall-filters-group">
+			<div class="mwall-dropdown">
+				<div class="dropdown-label date-label">
+					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_date_filters_label']); ?>">
+						<i class="fa fa-angle-down"></i><span><?php 
+							echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params['mas_date_filters_label']); 
+						?></span>
+					</span></div>
+				<ul class="button-group button-group-date" data-filter-group="date">
+					<li>
+						<a href="#" data-id="0" data-filter="" class="mwall-filter mwall-filter-active"><?php 
+							echo JText::_('COM_MINITEKWALL_SHOW_ALL'); 
 						?></a>
 					</li><?php 
-				}
-				
-			?></ul>
-		</div><?php 
+
+					foreach ($date_array as $date)
+					{
+						$class = $this->utilities->cleanName($date);
+						$date = \JHTML::_('date', $date, 'M Y');
+
+						?><li>
+							<a href="#" data-id="<?php echo $class; ?>" data-filter=".date-<?php echo $class; ?>" class="mwall-filter"><?php 
+								echo $date; 
+							?></a>
+						</li><?php 
+					}
+				?></ul>
+			</div>
+		</div><?php
 	}
 }

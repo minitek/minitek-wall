@@ -1,8 +1,8 @@
 <?php
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
+* @title		Minitek Wall
+* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -97,13 +97,13 @@ class MinitekWallLibUtilities
 		return $name_fixed;
 	}
 
-	public static function recurseMasItemIndex($item_index, $gridType)
+	public static function getItemIndex($item_index, $gridType)
 	{
 		$item_index = $item_index - $gridType;
 
 		if ($item_index > $gridType)
 		{
-			$item_index = self::recurseMasItemIndex($item_index, $gridType);
+			$item_index = self::getItemIndex($item_index, $gridType);
 		}
 
 		return $item_index;
@@ -215,5 +215,19 @@ class MinitekWallLibUtilities
 		{
 			return false;
 		}
+	}
+
+	// Get custom grid
+	public static function getCustomGrid($id)
+	{
+		$db = \JFactory::getDBO();
+		$query = ' SELECT * '
+			. ' FROM '. $db->quoteName('#__minitek_wall_grids')
+			. ' WHERE '. $db->quoteName('id').' = '. $db->Quote($id);
+
+		$db->setQuery($query);
+		$result = $db->loadObject();
+
+		return $result;
 	}
 }

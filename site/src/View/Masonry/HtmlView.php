@@ -1,8 +1,8 @@
 <?php
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
+* @title		Minitek Wall
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\URI\URI;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\MVC\View\GenericDataException;
 
@@ -32,27 +33,45 @@ class HtmlView extends BaseHtmlView
 	 */
 	public function display($tpl = null)
  	{
-		$document = \JFactory::getDocument();
+		$document = Factory::getDocument();
+		$site_path = URI::root();
 		$this->model = $this->getModel();
 		$this->masonry_options = $this->model->masonry_options;
 		$this->utilities = $this->model->utilities;
 		$this->params = $this->utilities->getParams('com_minitekwall');
-		$jinput = \JFactory::getApplication()->input;
-		$this->widgetID = $jinput->get('widget_id', '', 'INT');
-		$page = $jinput->get('page', '1', 'INT');
+		$input = Factory::getApplication()->input;
+		$this->widgetID = $input->get('widget_id', '', 'INT');
+		$source_id = $this->model->utilities->getSourceID($this->widgetID);
+		$page = $input->get('page', 1, 'INT');
+
+		// Get filter data
+		$category = $input->json->get('category', [], 'ARRAY');
+		$tag = $input->json->get('tag', [], 'ARRAY');
+		$date = $input->json->get('date', '', 'CMD');
+		$ordering = $input->json->get('ordering', '', 'CMD');
+		$direction = $input->json->get('direction', '', 'CMD');
+
+		$filters = [
+			'category' => $category,
+			'tag' => $tag,
+			'date' => $date,
+			'ordering' => $ordering,
+			'direction' => $direction
+		];
 
 		// Get masonry parameters
 		$masonry_params = $this->utilities->getMasonryParams($this->widgetID);
 		$this->masonry_params = $masonry_params;
+
+		// Pagination
+		$startLimit = $masonry_params['mas_starting_limit'];
 
 		// Get Grid
 		$this->gridType = $masonry_params['mas_grid'];
 		$this->suffix = '';
 
 		if (array_key_exists('mas_suffix', $masonry_params))
-		{
 			$this->suffix = $masonry_params['mas_suffix'];
-		}
 
 		$masCols = $masonry_params['mas_cols'];
 		$masColsper = 100 / $masCols;
@@ -88,55 +107,11 @@ class HtmlView extends BaseHtmlView
 		$this->mas_image_link = true;
 
 		if (array_key_exists('mas_image_link', $masonry_params))
-		{
 			$this->mas_image_link = $masonry_params['mas_image_link'];
-		}
 
 		$mas_crop_images = $masonry_params['mas_crop_images'];
 		$mas_image_width = $masonry_params['mas_image_width'];
 		$mas_image_height = $masonry_params['mas_image_height'];
-		$this->full_width_image = $masonry_params['mas_full_width_image'];
-
-		// Get Total count - Arrows pagination
-		$startLimit = $masonry_params['mas_starting_limit'];
-
-		if ($page === '1')
-		{
-			// Add assets
-			$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
-			$wa->useStyle('com_minitekwall.minitekwall')
-				->useScript('com_minitekwall.imagesloaded')
-				->useScript('com_minitekwall.isotope')
-				->useScript('com_minitekwall.packery-mode')
-				->useScript('com_minitekwall.spin')
-				->useScript('com_minitekwall.minitekwall');
-				
-			// Initialize Mwall
-			$document->addScriptDeclaration("
-			document.addEventListener('DOMContentLoaded', function() 
-			{
-				Mwall.initialise(
-					".json_encode($masonry_params).", 
-					".$this->widgetID."
-				);
-			});
-			");
-
-			// Responsive Utilities
-			$responsive_masonry = $this->model->responsive_masonry;
-
-			if (array_key_exists('mas_enable_responsive', $masonry_params))
-			{
-				if ($masonry_params['mas_enable_responsive'])
-				{
-					$responsive_masonry->loadResponsiveMasonry($masonry_params, $this->widgetID);
-				}
-			}
-			else
-			{
-				$responsive_masonry->loadResponsiveMasonry($masonry_params, $this->widgetID);
-			}
-		}
 
 		// Detail box
 		$detailBoxTitleLimit = $masonry_params['mas_db_title_limit'];
@@ -147,60 +122,48 @@ class HtmlView extends BaseHtmlView
 
 		// Big
 		$this->detailBoxBig = $masonry_params['mas_db_big'];
-		$this->detailBoxPositionBig = $masonry_params['mas_db_position_big'];
-		$this->detailBoxBackgroundBig = $masonry_params['mas_db_bg_big'];
-		$this->detailBoxBackgroundOpacityBig = $masonry_params['mas_db_bg_opacity_big'];
-		$this->detailBoxTextColorBig = $masonry_params['mas_db_color_big'];
 		$this->detailBoxTitleBig = $masonry_params['mas_db_title_big'];
 		$this->detailBoxIntrotextBig = $masonry_params['mas_db_introtext_big'];
 		$this->detailBoxDateBig = $masonry_params['mas_db_date_big'];
 		$this->detailBoxCategoryBig = $masonry_params['mas_db_category_big'];
 		$this->detailBoxAuthorBig = $masonry_params['mas_db_author_big'];
+		$this->detailBoxTagsBig = isset($masonry_params['mas_db_tags_big']) ? $masonry_params['mas_db_tags_big'] : false;
 		$this->detailBoxHitsBig = $masonry_params['mas_db_hits_big'];
 		$this->detailBoxCountBig = $masonry_params['mas_db_count_big'];
 		$this->detailBoxReadmoreBig = $masonry_params['mas_db_readmore_big'];
 
 		// Landscape
 		$this->detailBoxLscape = $masonry_params['mas_db_lscape'];
-		$this->detailBoxPositionLscape = $masonry_params['mas_db_position_lscape'];
-		$this->detailBoxBackgroundLscape = $masonry_params['mas_db_bg_lscape'];
-		$this->detailBoxBackgroundOpacityLscape = $masonry_params['mas_db_bg_opacity_lscape'];
-		$this->detailBoxTextColorLscape = $masonry_params['mas_db_color_lscape'];
 		$this->detailBoxTitleLscape = $masonry_params['mas_db_title_lscape'];
 		$this->detailBoxIntrotextLscape = $masonry_params['mas_db_introtext_lscape'];
 		$this->detailBoxDateLscape = $masonry_params['mas_db_date_lscape'];
 		$this->detailBoxCategoryLscape = $masonry_params['mas_db_category_lscape'];
 		$this->detailBoxAuthorLscape = $masonry_params['mas_db_author_lscape'];
+		$this->detailBoxTagsLscape = isset($masonry_params['mas_db_tags_lscape']) ? $masonry_params['mas_db_tags_lscape'] : false;
 		$this->detailBoxHitsLscape = $masonry_params['mas_db_hits_lscape'];
 		$this->detailBoxCountLscape = $masonry_params['mas_db_count_lscape'];
 		$this->detailBoxReadmoreLscape = $masonry_params['mas_db_readmore_lscape'];
 
 		// Portrait
 		$this->detailBoxPortrait = $masonry_params['mas_db_portrait'];
-		$this->detailBoxPositionPortrait = $masonry_params['mas_db_position_portrait'];
-		$this->detailBoxBackgroundPortrait = $masonry_params['mas_db_bg_portrait'];
-		$this->detailBoxBackgroundOpacityPortrait = $masonry_params['mas_db_bg_opacity_portrait'];
-		$this->detailBoxTextColorPortrait = $masonry_params['mas_db_color_portrait'];
 		$this->detailBoxTitlePortrait = $masonry_params['mas_db_title_portrait'];
 		$this->detailBoxIntrotextPortrait = $masonry_params['mas_db_introtext_portrait'];
 		$this->detailBoxDatePortrait = $masonry_params['mas_db_date_portrait'];
 		$this->detailBoxCategoryPortrait = $masonry_params['mas_db_category_portrait'];
 		$this->detailBoxAuthorPortrait = $masonry_params['mas_db_author_portrait'];
+		$this->detailBoxTagsPortrait = isset($masonry_params['mas_db_tags_portrait']) ? $masonry_params['mas_db_tags_portrait'] : false;
 		$this->detailBoxHitsPortrait = $masonry_params['mas_db_hits_portrait'];
 		$this->detailBoxCountPortrait = $masonry_params['mas_db_count_portrait'];
 		$this->detailBoxReadmorePortrait = $masonry_params['mas_db_readmore_portrait'];
 
 		// Small
 		$this->detailBoxSmall = $masonry_params['mas_db_small'];
-		$this->detailBoxPositionSmall = $masonry_params['mas_db_position_small'];
-		$this->detailBoxBackgroundSmall = $masonry_params['mas_db_bg_small'];
-		$this->detailBoxBackgroundOpacitySmall = $masonry_params['mas_db_bg_opacity_small'];
-		$this->detailBoxTextColorSmall = $masonry_params['mas_db_color_small'];
 		$this->detailBoxTitleSmall = $masonry_params['mas_db_title_small'];
 		$this->detailBoxIntrotextSmall = $masonry_params['mas_db_introtext_small'];
 		$this->detailBoxDateSmall = $masonry_params['mas_db_date_small'];
 		$this->detailBoxCategorySmall = $masonry_params['mas_db_category_small'];
 		$this->detailBoxAuthorSmall = $masonry_params['mas_db_author_small'];
+		$this->detailBoxTagsSmall = isset($masonry_params['mas_db_tags_small']) ? $masonry_params['mas_db_tags_small'] : false;
 		$this->detailBoxHitsSmall = $masonry_params['mas_db_hits_small'];
 		$this->detailBoxCountSmall = $masonry_params['mas_db_count_small'];
 		$this->detailBoxReadmoreSmall = $masonry_params['mas_db_readmore_small'];
@@ -216,6 +179,7 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxDateColumns = $masonry_params['mas_db_date_columns'];
 		$this->detailBoxCategoryColumns = $masonry_params['mas_db_category_columns'];
 		$this->detailBoxAuthorColumns = $masonry_params['mas_db_author_columns'];
+		$this->detailBoxTagsColumns = isset($masonry_params['mas_db_tags_columns']) ? $masonry_params['mas_db_tags_columns'] : false;
 		$this->detailBoxHitsColumns = $masonry_params['mas_db_hits_columns'];
 		$this->detailBoxCountColumns = $masonry_params['mas_db_count_columns'];
 		$this->detailBoxReadmoreColumns = $masonry_params['mas_db_readmore_columns'];
@@ -227,10 +191,11 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxDateAll = true;
 		$this->detailBoxCategoryAll = true;
 		$this->detailBoxAuthorAll = true;
+		$this->detailBoxTagsAll = true;
 		$this->detailBoxHitsAll = true;
 		$this->detailBoxCountAll = true;
 		$this->detailBoxReadmoreAll = true;
-
+		
 		if ((int)$this->gridType != '98' && (int)$this->gridType != '99')
 		{
 			if (!$this->detailBoxBig &&
@@ -287,6 +252,15 @@ class HtmlView extends BaseHtmlView
 				$this->detailBoxAuthorAll = false;
 			}
 
+			if (!$this->detailBoxTagsBig &&
+				!$this->detailBoxTagsLscape &&
+				!$this->detailBoxTagsPortrait &&
+				!$this->detailBoxTagsSmall &&
+				!$this->detailBoxTagsColumns)
+			{
+				$this->detailBoxTagsAll = false;
+			}
+
 			if (!$this->detailBoxHitsBig &&
 				!$this->detailBoxHitsLscape &&
 				!$this->detailBoxHitsPortrait &&
@@ -317,49 +291,34 @@ class HtmlView extends BaseHtmlView
 		else
 		{
 			if (!$this->detailBoxColumns)
-			{
 				$this->detailBoxAll = false;
-			}
 
 			if (!$this->detailBoxTitleColumns)
-			{
 				$this->detailBoxTitleAll = false;
-			}
 
 			if (!$this->detailBoxIntrotextColumns)
-			{
 				$this->detailBoxIntrotextAll = false;
-			}
 
 			if (!$this->detailBoxDateColumns)
-			{
 				$this->detailBoxDateAll = false;
-			}
 
 			if (!$this->detailBoxCategoryColumns)
-			{
 				$this->detailBoxCategoryAll = false;
-			}
 
 			if (!$this->detailBoxAuthorColumns)
-			{
 				$this->detailBoxAuthorAll = false;
-			}
+
+			if (!$this->detailBoxTagsColumns)
+				$this->detailBoxTagsAll = false;
 
 			if (!$this->detailBoxHitsColumns)
-			{
 				$this->detailBoxHitsAll = false;
-			}
 
 			if (!$this->detailBoxCountColumns)
-			{
 				$this->detailBoxCountAll = false;
-			}
-
+			
 			if (!$this->detailBoxReadmoreColumns)
-			{
 				$this->detailBoxReadmoreAll = false;
-			}
 		}
 
 		// Hover box
@@ -393,33 +352,19 @@ class HtmlView extends BaseHtmlView
 		$this->hoverEffectClass = '';
 
 		if ($this->hoverBoxEffect == '4')
-		{
 			$this->hoverEffectClass = 'slideInRight';
-		}
-
-		if ($this->hoverBoxEffect == '5')
-		{
+		else if ($this->hoverBoxEffect == '5')
 			$this->hoverEffectClass = 'slideInLeft';
-		}
-
-		if ($this->hoverBoxEffect == '6')
-		{
+		else if ($this->hoverBoxEffect == '6')
 			$this->hoverEffectClass = 'slideInTop';
-		}
-
-		if ($this->hoverBoxEffect == '7')
-		{
+		else if ($this->hoverBoxEffect == '7')
 			$this->hoverEffectClass = 'slideInBottom';
-		}
-
-		if ($this->hoverBoxEffect == '8')
-		{
-			$this->hoverEffectClass = 'mnwzoomIn';
-		}
+		else if ($this->hoverBoxEffect == '8')
+			$this->hoverEffectClass = 'mwall-zoomin';
 
 		// Transition styles
 		$this->animated = '';
-
+		
 		if ($this->hoverBoxEffect != 'no' && $this->hoverBoxEffect != '2' && $this->hoverBoxEffect != '3')
 		{
 			$this->animated = '
@@ -448,23 +393,15 @@ class HtmlView extends BaseHtmlView
 
 		// Hover box text color
 		if ($this->hoverBoxTextColor == '1') 
-		{
 			$this->hoverTextColor = 'dark-text';
-		} 
 		else 
-		{
 			$this->hoverTextColor = 'light-text';
-		}
 
 		// Get wall
-		if ($page === '1')
-		{
-			$this->items = $this->model->getItems($this->widgetID);
-		}
+		if ($page === 1 && $input->get('task') != 'getFilters')
+			$this->items = $this->model->getItems($this->widgetID, $filters);
 		else
-		{
-			$this->items = $this->model->getItemsAjax($this->widgetID);
-		}
+			$this->items = $this->model->getItemsAjax($this->widgetID, $filters);
 
 		// Create display params
 		$detailBoxParams = array();
@@ -475,9 +412,7 @@ class HtmlView extends BaseHtmlView
 		$detailBoxParams['fallback_image'] = '';
 
 		if (array_key_exists('mas_fallback_image', $masonry_params))
-		{
 			$detailBoxParams['fallback_image'] = $masonry_params['mas_fallback_image'];
-		}
 
 		$detailBoxParams['detailBoxTitleLimit'] = $detailBoxTitleLimit;
 		$detailBoxParams['detailBoxIntrotextLimit'] = $detailBoxIntrotextLimit;
@@ -502,77 +437,72 @@ class HtmlView extends BaseHtmlView
 		// Assign a grid item number to each item
 		if (isset($this->wall))
 		{
-			if ($this->gridType === '999c') // custom grid
+			$this->custom_grid_id = false;
+			$grid = (int) $this->gridType;
+
+			if ($this->wall)
 			{
-				$this->custom_grid_id = isset($masonry_params['mas_custom_grid']) ? $masonry_params['mas_custom_grid'] : false;
-				$custom_grid = $this->utilities->getCustomGrid($this->custom_grid_id);
-				$grid_elements = json_decode($custom_grid->elements, false);
-
-				// Init custom grid widths
-				if ($page === '1' && !empty($grid_elements))
+				foreach ($this->wall as $key => $item)
 				{
-					$grid_columns = $custom_grid->columns;
-					$responsive_masonry->initCustomGridWidths($masonry_params, $grid_elements, $grid_columns, $this->widgetID);
-				}
+					// Item sizes
+					if ($page === 1)
+						$index = $key + 1;
+					else
+						$index = $startLimit + (($page - 2) * $pageLimit) + ($key + 1);
 
-				// Get number of items in custom grid
-				$grid = isset($grid_elements) ? count($grid_elements) : false;
+					$item->rawIndex = $index;
 
-				if (!$grid)
-				{
-					throw new GenericDataException(\JText::_('COM_MINITEKWALL_GRID_NOT_FOUND'), 500);
-
-					return false;
-				}
-			}
-			else
-			{
-				$this->custom_grid_id = false;
-				$grid = (int) $this->gridType;
-			}
-
-			foreach ($this->wall as $key => $item)
-			{
-				// Item sizes
-				if ($page === '1')
-				{
-					$index = $key + 1;
-				}
-				else
-				{
-					$index = $startLimit + (($page - 2) * $pageLimit) + ($key + 1);
-				}
-
-				$item->rawIndex = $index;
-
-				if ($index > $grid)
-				{
-					$item->itemIndex = $this->utilities->recurseMasItemIndex($index, $grid);
-				}
-				else
-				{
-					$item->itemIndex = $index;
+					if ($index > $grid)
+						$item->itemIndex = $this->utilities->getItemIndex($index, $grid);
+					else
+						$item->itemIndex = $index;
 				}
 			}
 		}
 
+		if ($page === 1 && $input->get('task') != 'getFilters')
+		{
+			// Add assets
+			$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+			$wa->useStyle('com_minitekwall.minitekwall')
+				->useScript('com_minitekwall.imagesloaded')
+				->useScript('com_minitekwall.isotope')
+				->useScript('com_minitekwall.packery-mode');
+						
+			$wa->useScript('com_minitekwall.spin')
+				->useScript('com_minitekwall.minitekwall');
+
+			// Initialize wall
+			$document->addScriptDeclaration("
+			document.addEventListener('DOMContentLoaded', function() 
+			{
+				Mwall.initialise(
+					".json_encode($masonry_params).", 
+					".$this->widgetID.", 
+					'".$source_id."',
+					'".$site_path."',
+				);
+			});
+			");
+
+			if (array_key_exists('mas_enable_responsive', $masonry_params))
+			{
+				if ($masonry_params['mas_enable_responsive'])
+					$this->model->responsive_masonry->loadResponsiveMasonry($masonry_params, $this->widgetID);
+			}
+			else
+				$this->model->responsive_masonry->loadResponsiveMasonry($masonry_params, $this->widgetID);
+		}
+
 		if ((!$this->wall || $this->wall == '' || $this->wall == 0))
 		{
-			if ($page === '1')
+			if ($page === 1)
 			{
-				if (!array_key_exists('mas_empty_message', $masonry_params))
-				{
-					$masonry_params['mas_empty_message'] = true;
-				}
+				$output = '<div class="mwall-results-empty-results">';
+				$output .= '<span>'.Text::_('COM_MINITEKWALL_NO_ITEMS').'</span>';
+				$output .= '</div>';
 
-				if ($masonry_params['mas_empty_message'])
-				{
-					$output = '<div class="mnw-results-empty-results">';
-					$output .= '<span>'.Text::_('COM_MINITEKWALL_NO_ITEMS').'</span>';
-					$output .= '</div>';
-
-					echo $output;
-				}
+				echo $output;
 			}
 		}
 		else
@@ -585,7 +515,7 @@ class HtmlView extends BaseHtmlView
 				return false;
 			}
 
-			if ($page === '1')
+			if ($page === 1 && $input->get('task') != 'getFilters')
 			{
 				// Get source params
 				$source_params = $this->utilities->getSourceParams($this->widgetID);
@@ -603,23 +533,17 @@ class HtmlView extends BaseHtmlView
 					$this->filters = true;
 				}
 				else
-				{
 					$this->filters = NULL;
-				}
 
 				// Get Sortings
 				if ($masonry_params['mas_title_sorting'] ||
-					$masonry_params['mas_category_sorting'] ||
-					$masonry_params['mas_author_sorting'] ||
 					$masonry_params['mas_date_sorting'] ||
 					$masonry_params['mas_hits_sorting'])
 				{
 					$this->sortings = true;
 				}
 				else
-				{
 					$this->sortings = NULL;
-				}
 
 				if (isset($this->filters) || isset($this->sortings))
 				{
@@ -639,7 +563,7 @@ class HtmlView extends BaseHtmlView
 				if ($layout)
 				{
 					$this->setLayout($layout);
-					$viewName = $jinput->get('view', 'masonry', 'WORD');
+					$viewName = $input->get('view', 'masonry', 'WORD');
 					$layoutTemplate = $this->getLayoutTemplate(); // This is empty if using a module and the override has the name 'default'. Use another name.
 					$this->addTemplatePath(JPATH_SITE.'/templates/'.$layoutTemplate.'/html/com_minitekwall/'.$viewName);
 				}
@@ -651,8 +575,8 @@ class HtmlView extends BaseHtmlView
 
  	public function setPageMeta($masonry_params, $params)
  	{
-		$document = \JFactory::getDocument();
-		$app = \JFactory::getApplication();
+		$document = Factory::getDocument();
+		$app = Factory::getApplication();
 		$menus = $app->getMenu();
 		$menu = $menus->getActive();
 
@@ -663,42 +587,28 @@ class HtmlView extends BaseHtmlView
 			$this->mas_page_title = true;
 
 			if ($menu)
-			{
 				$params->def('page_heading', $params->get('page_title', $menu->title));
-			}
 
 			$title = $params->get('page_title', '');
 
 			// Check for empty title and add site name if param is set
 			if (empty($title))
-			{
 				$title = $app->get('sitename');
-			}
 			else if ($app->get('sitename_pagetitles', 0) == 1)
-			{
 				$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
-			}
 			else if ($app->get('sitename_pagetitles', 0) == 2)
-			{
 				$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
-			}
 
 			$document->setTitle($title);
 
 			if ($params->get('menu-meta_description'))
-			{
 				$document->setDescription($params->get('menu-meta_description'));
-			}
 
 			if ($params->get('menu-meta_keywords'))
-			{
 				$document->setMetadata('keywords', $params->get('menu-meta_keywords'));
-			}
 
 			if ($params->get('robots'))
-			{
 				$document->setMetadata('robots', $params->get('robots'));
-			}
 		}
 
 		if (isset($menu->query['option']) && $menu->query['option'] == 'com_minitekwall')
@@ -707,17 +617,11 @@ class HtmlView extends BaseHtmlView
 
 			// Check for empty title and add site name if param is set
 			if (empty($title))
-			{
 				$title = $app->get('sitename');
-			}
 			else if ($app->get('sitename_pagetitles', 0) == 1)
-			{
 				$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
-			}
 			else if ($app->get('sitename_pagetitles', 0) == 2)
-			{
 				$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
-			}
 
 			$document->setTitle($title);
 		}
@@ -726,20 +630,20 @@ class HtmlView extends BaseHtmlView
  	public function getColumnsItemOptions()
  	{
 		$options = array(
-			"db_class" => "",
-			"title_class" => "",
-			"introtext_class" => "",
-			"date_class" => "",
-			"category_class" => "",
-			"type_class" => "",
-			"author_class" => "",
-			"hits_class" => "",
-			"count_class" => "",
-			"readmore_class" => "",
-			"db_bg_class" => "",
-			"db_bg_opacity_class" => "",
-			"db_color_class" => "",
-			"position_class" => ""
+		"db_class" => "",
+		"title_class" => "",
+		"introtext_class" => "",
+		"date_class" => "",
+		"category_class" => "",
+		"author_class" => "",
+		"tags_class" => "",
+		"hits_class" => "",
+		"count_class" => "",
+		"readmore_class" => "",
+		"db_bg_class" => "",
+		"db_bg_opacity_class" => "",
+		"db_color_class" => "",
+		"position_class" => ""
 		);
 
 		$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundColumns, true);
@@ -748,291 +652,34 @@ class HtmlView extends BaseHtmlView
 		$options['position_class'] = 'content-'.$this->detailBoxPositionColumns;
 
 		if (!$this->detailBoxColumns)
-		{
 			$options['db_class'] = 'db-hidden';
-		}
 
 		if (!$this->detailBoxTitleColumns)
-		{
 			$options['title_class'] = 'title-hidden';
-		}
 
 		if (!$this->detailBoxIntrotextColumns)
-		{
 			$options['introtext_class'] = 'introtext-hidden';
-		}
 
 		if (!$this->detailBoxDateColumns)
-		{
 			$options['date_class'] = 'date-hidden';
-		}
 
 		if (!$this->detailBoxCategoryColumns)
-		{
 			$options['category_class'] = 'category-hidden';
-		}
 
 		if (!$this->detailBoxAuthorColumns)
-		{
 			$options['author_class'] = 'author-hidden';
-		}
+
+		if (!$this->detailBoxTagsColumns)
+			$options['tags_class'] = 'tags-hidden';
 
 		if (!$this->detailBoxHitsColumns)
-		{
 			$options['hits_class'] = 'hits-hidden';
-		}
 
 		if (!$this->detailBoxCountColumns)
-		{
 			$options['count_class'] = 'count-hidden';
-		}
 
 		if (!$this->detailBoxReadmoreColumns)
-		{
 			$options['readmore_class'] = 'readmore-hidden';
-		}
-
-		return $options;
- 	}
-
- 	public function getMasonryItemOptions($item_size)
- 	{
-		$options = array(
-			"detail_box" => "",
-			"db_class" => "",
-			"title_class" => "",
-			"introtext_class" => "",
-			"date_class" => "",
-			"category_class" => "",
-			"type_class" => "",
-			"author_class" => "",
-			"hits_class" => "",
-			"count_class" => "",
-			"readmore_class" => "",
-			"db_bg_class" => "",
-			"db_bg_opacity_class" => "",
-			"db_color_class" => "",
-			"position_class" => ""
-		);
-
-		switch ($item_size)
-		{
-			case 'mwall-big':
-				$options['detail_box'] = $this->detailBoxBig;
-				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundBig, true);
-				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityBig, 2, '.', '');
-				$options['db_color_class'] = $this->detailBoxTextColorBig;
-				$options['position_class'] = 'content-'.$this->detailBoxPositionBig;
-
-				if (!$this->detailBoxBig)
-				{
-					$options['db_class'] = 'db-hidden';
-				}
-
-				if (!$this->detailBoxTitleBig)
-				{
-					$options['title_class'] = 'title-hidden';
-				}
-
-				if (!$this->detailBoxIntrotextBig)
-				{
-					$options['introtext_class'] = 'introtext-hidden';
-				}
-
-				if (!$this->detailBoxDateBig)
-				{
-					$options['date_class'] = 'date-hidden';
-				}
-
-				if (!$this->detailBoxCategoryBig)
-				{
-					$options['category_class'] = 'category-hidden';
-				}
-
-				if (!$this->detailBoxAuthorBig)
-				{
-					$options['author_class'] = 'author-hidden';
-				}
-
-				if (!$this->detailBoxHitsBig)
-				{
-					$options['hits_class'] = 'hits-hidden';
-				}
-
-				if (!$this->detailBoxCountBig)
-				{
-					$options['count_class'] = 'count-hidden';
-				}
-
-				if (!$this->detailBoxReadmoreBig)
-				{
-					$options['readmore_class'] = 'readmore-hidden';
-				}
-
-				break;
-
-			case 'mwall-horizontal':
-				$options['detail_box'] = $this->detailBoxLscape;
-				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundLscape, true);
-				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityLscape, 2, '.', '');
-				$options['db_color_class'] = $this->detailBoxTextColorLscape;
-				$options['position_class'] = 'content-'.$this->detailBoxPositionLscape;
-
-				if (!$this->detailBoxLscape)
-				{
-					$options['db_class'] = 'db-hidden';
-				}
-
-				if (!$this->detailBoxTitleLscape)
-				{
-					$options['title_class'] = 'title-hidden';
-				}
-
-				if (!$this->detailBoxIntrotextLscape)
-				{
-					$options['introtext_class'] = 'introtext-hidden';
-				}
-
-				if (!$this->detailBoxDateLscape)
-				{
-					$options['date_class'] = 'date-hidden';
-				}
-
-				if (!$this->detailBoxCategoryLscape)
-				{
-					$options['category_class'] = 'category-hidden';
-				}
-
-				if (!$this->detailBoxAuthorLscape)
-				{
-					$options['author_class'] = 'author-hidden';
-				}
-
-				if (!$this->detailBoxHitsLscape)
-				{
-					$options['hits_class'] = 'hits-hidden';
-				}
-
-				if (!$this->detailBoxCountLscape)
-				{
-					$options['count_class'] = 'count-hidden';
-				}
-
-				if (!$this->detailBoxReadmoreLscape)
-				{
-					$options['readmore_class'] = 'readmore-hidden';
-				}
-
-				break;
-
-			case 'mwall-vertical':
-				$options['detail_box'] = $this->detailBoxPortrait;
-				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundPortrait, true);
-				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityPortrait, 2, '.', '');
-				$options['db_color_class'] = $this->detailBoxTextColorPortrait;
-				$options['position_class'] = 'content-'.$this->detailBoxPositionPortrait;
-
-				if (!$this->detailBoxPortrait)
-				{
-					$options['db_class'] = 'db-hidden';
-				}
-
-				if (!$this->detailBoxTitlePortrait)
-				{
-					$options['title_class'] = 'title-hidden';
-				}
-
-				if (!$this->detailBoxIntrotextPortrait)
-				{
-					$options['introtext_class'] = 'introtext-hidden';
-				}
-
-				if (!$this->detailBoxDatePortrait)
-				{
-					$options['date_class'] = 'date-hidden';
-				}
-
-				if (!$this->detailBoxCategoryPortrait)
-				{
-					$options['category_class'] = 'category-hidden';
-				}
-
-				if (!$this->detailBoxAuthorPortrait)
-				{
-					$options['author_class'] = 'author-hidden';
-				}
-
-				if (!$this->detailBoxHitsPortrait)
-				{
-					$options['hits_class'] = 'hits-hidden';
-				}
-
-				if (!$this->detailBoxCountPortrait)
-				{
-					$options['count_class'] = 'count-hidden';
-				}
-
-				if (!$this->detailBoxReadmorePortrait)
-				{
-					$options['readmore_class'] = 'readmore-hidden';
-				}
-
-				break;
-
-			case 'mwall-small':
-				$options['detail_box'] = $this->detailBoxSmall;
-				$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundSmall, true);
-				$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacitySmall, 2, '.', '');
-				$options['db_color_class'] = $this->detailBoxTextColorSmall;
-				$options['position_class'] = 'content-'.$this->detailBoxPositionSmall;
-
-				if (!$this->detailBoxSmall)
-				{
-					$options['db_class'] = 'db-hidden';
-				}
-
-				if (!$this->detailBoxTitleSmall)
-				{
-					$options['title_class'] = 'title-hidden';
-				}
-
-				if (!$this->detailBoxIntrotextSmall)
-				{
-					$options['introtext_class'] = 'introtext-hidden';
-				}
-
-				if (!$this->detailBoxDateSmall)
-				{
-					$options['date_class'] = 'date-hidden';
-				}
-
-				if (!$this->detailBoxCategorySmall)
-				{
-					$options['category_class'] = 'category-hidden';
-				}
-
-				if (!$this->detailBoxAuthorSmall)
-				{
-					$options['author_class'] = 'author-hidden';
-				}
-
-				if (!$this->detailBoxHitsSmall)
-				{
-					$options['hits_class'] = 'hits-hidden';
-				}
-
-				if (!$this->detailBoxCountSmall)
-				{
-					$options['count_class'] = 'count-hidden';
-				}
-
-				if (!$this->detailBoxReadmoreSmall)
-				{
-					$options['readmore_class'] = 'readmore-hidden';
-				}
-
-				break;
-		}
 
 		return $options;
  	}

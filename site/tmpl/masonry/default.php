@@ -40,12 +40,14 @@ if ($this->mas_page_title)
 // Suffix
 $suffix = '';
 
-if (isset($this->suffix))
+if (isset($this->suffix)) 
+{
 	$suffix = $this->suffix;
+}
 
-?><div class="mwall_loader mas_loader" id="mwall_loader_<?php echo $this->widgetID; ?>"> </div>
+?><div class="mwall-container-loader mwall-loader" id="mwall_loader_<?php echo $this->widgetID; ?>"> </div>
 <div id="mwall_container_<?php echo $this->widgetID;
-	?>" class="mwall_container mwall-<?php echo $this->mwall_layout;
+	?>" class="mwall-container mwall-<?php echo $this->mwall_layout;
 	?> <?php echo $this->mwall_grid;
 	?> <?php echo $suffix;
 	?>" data-order="<?php echo $this->active_ordering;
@@ -53,12 +55,12 @@ if (isset($this->suffix))
 
 	if (isset($this->filters) || isset($this->sortings)) 
 	{
-		?><div class="mwall_filters_sortings"><?php
+		?><div class="mwall-filters-sortings"><?php
 			// Filters
 			if (isset($this->filters)) 
 			{
-				?><div id="mwall_iso_filters_cont_<?php echo $this->widgetID; ?>" class="mwall_iso_filters_cont">
-					<div id="mwall_iso_filters_<?php echo $this->widgetID; ?>" class="mwall_iso_filters"><?php
+				?><div id="mwall_filters_container_<?php echo $this->widgetID; ?>" class="mwall-filters-container">
+					<div id="mwall_filters_<?php echo $this->widgetID; ?>" class="mwall-filters"><?php
 						echo $this->loadTemplate('filters');
 					?></div>
 				</div><?php
@@ -67,32 +69,37 @@ if (isset($this->suffix))
 			// Sortings
 			if (isset($this->sortings)) 
 			{
-				?><div id="mwall_iso_sortings_cont_<?php echo $this->widgetID; ?>" class="mwall_iso_sortings_cont">
-					<div id="mwall_iso_sortings_<?php echo $this->widgetID; ?>" class="mwall_iso_sortings"><?php
+				?><div id="mwall_sortings_container_<?php echo $this->widgetID; ?>" class="mwall-sortings-container">
+					<div id="mwall_sortings_<?php echo $this->widgetID; ?>" class="mwall-sortings"><?php
 						echo $this->loadTemplate('sortings');
 					?></div>
 				</div><?php
 			}
 
 			// Reset button
-			if ($this->resetButton && (isset($this->filters) || isset($this->sortings))) 
-			{
-				?><div class="mwall_iso_reset_cont">
-					<div class="mwall_iso_reset">
+			if ($this->resetButton && (isset($this->filters) || isset($this->sortings))) {
+				?><div class="mwall-reset-container">
+					<div class="mwall-reset">
 						<button class="btn-reset" id="mwall_reset_<?php echo $this->widgetID; ?>">
-							<i class="fa fa-times"></i> <?php echo \JText::_('COM_MINITEKWALL_RESET'); ?>
-						</button>
+							<i class="fa fa-times"></i> <?php 
+							echo \JText::_('COM_MINITEKWALL_RESET');
+						?></button><div class="mwall-filters-loader"> </div>
 					</div>
 				</div><?php
 			}
-
 		?></div><?php
 	}
 
-	// Masonry Container
-	?><div id="mwall_iso_container_<?php
-		echo $this->widgetID; ?>" class="mwall_iso_container" style="margin: -<?php echo (int)$this->gutter; ?>px;"><?php
+	// Items
+	?><div id="mwall_items_<?php
+		echo $this->widgetID; ?>" class="mwall-items" style="margin: -<?php
+		echo (int)$this->gutter; ?>px;"><?php
 		echo $this->loadTemplate($this->mwall_layout);
+	?></div><?php
+
+	// 'No items' message
+	?><div class="mwall-no-items" style="display: none;"><?php 
+		echo \JText::_('COM_MINITEKWALL_NO_ITEMS'); 
 	?></div><?php
 
 	// Modal images

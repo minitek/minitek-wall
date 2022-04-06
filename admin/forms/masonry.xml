@@ -39,18 +39,6 @@
 			</field>
 
 			<field
-				name="mas_empty_message"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				label="COM_MINITEKWALL_FIELD_EMPTY_MESSAGE_LABEL"
-				description="COM_MINITEKWALL_FIELD_EMPTY_MESSAGE_DESC"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
 				name="mas_grid"
 				type="gridlist"
 				label="COM_MINITEKWALL_FIELD_GRID_LABEL"
@@ -1441,15 +1429,6 @@
 			/>
 
 			<field
-				name="mas_pag_keep_active"
-				type="profeature"
-				class="info"
-				default="0"
-				label="COM_MINITEKWALL_FIELD_PAGINATION_KEEP_FILTERS_ACTIVE_LABEL"
-				description="COM_MINITEKWALL_FIELD_PAGINATION_KEEP_FILTERS_ACTIVE_DESC"
-			/>
-
-			<field
 				name="mas_pag_reset_filters"
 				type="profeature"
 				class="info"
@@ -1640,30 +1619,6 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_TITLE_SORTING_LABEL"
 				description="COM_MINITEKWALL_FIELD_TITLE_SORTING_DESC"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
-				name="mas_category_sorting"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="0"
-				label="COM_MINITEKWALL_FIELD_CATEGORY_SORTING_LABEL"
-				description="COM_MINITEKWALL_FIELD_CATEGORY_SORTING_DESC"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
-				name="mas_author_sorting"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="0"
-				label="COM_MINITEKWALL_FIELD_AUTHOR_SORTING_LABEL"
-				description="COM_MINITEKWALL_FIELD_AUTHOR_SORTING_DESC"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>

@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
+* @title		Minitek Wall
 * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -19,34 +19,34 @@ class MinitekWallLibFilters
 		$border_radius = (int)$masonry_params['mas_filters_border_radius'];
 
 		$css = '
-		#'.$mwall.' .mwall_iso_buttons a {
+		#'.$mwall.' .mwall-buttons a {
 			border-radius: '.$border_radius.'px;
 		}
-		#'.$mwall.' .mwall_iso_buttons a.mnw_filter_active {
+		#'.$mwall.' .mwall-buttons a.mwall-filter-active {
 			background-color: '.$background_color.';
 			border-color: '.$background_color.';
 		}
-		#'.$mwall.' .mwall_iso_reset .btn-reset {
+		#'.$mwall.' .mwall-reset .btn-reset {
 			border-radius: '.$border_radius.'px;
 		}
-		#'.$mwall.' .mwall_iso_reset .btn-reset:hover,
-		#'.$mwall.' .mwall_iso_reset .btn-reset:focus {
+		#'.$mwall.' .mwall-reset .btn-reset:hover,
+		#'.$mwall.' .mwall-reset .btn-reset:focus {
 			background-color: '.$background_color.';
 			border-color: '.$background_color.';
 		}
 
-		#'.$mwall.' .mwall_iso_dropdown .dropdown-label {
+		#'.$mwall.' .mwall-dropdown .dropdown-label {
 			border-radius: '.$border_radius.'px;
 		}
-		#'.$mwall.' .mwall_iso_dropdown.expanded .dropdown-label {
+		#'.$mwall.' .mwall-dropdown.expanded .dropdown-label {
 			border-radius: '.$border_radius.'px '.$border_radius.'px 0 0;
 			background-color: '.$background_color.';
 			border-color: '.$background_color.';
 		}
-		#'.$mwall.' .mwall_iso_dropdown ul li a.mnw_filter_active {
+		#'.$mwall.' .mwall-dropdown ul li a.mwall-filter-active {
 			color: '.$background_color.';
 		}
-		#'.$mwall.' .mwall_iso_dropdown:hover .dropdown-label {
+		#'.$mwall.' .mwall-dropdown:hover .dropdown-label {
 			color: '.$background_color.';
 		}
 		';
