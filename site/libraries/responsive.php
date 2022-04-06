@@ -14,7 +14,7 @@ class MinitekWallLibResponsive
 	public function initCustomGridWidths($masonry_params, $elements, $columns, $widgetID)
 	{
 		$document = \JFactory::getDocument();
-		$mnwall = 'mnwall_iso_container_'.$widgetID;
+		$mwall = 'mwall_iso_container_'.$widgetID;
 		$column_percent = number_format((100 / $columns), 2, '.', '');
 		$dimensions_css = '';
 
@@ -25,7 +25,7 @@ class MinitekWallLibResponsive
 			$percent = (float)($width * $column_percent);
 
 			$dimensions_css .= '
-			#'.$mnwall.' .mnwitem'.$elem->index.' {
+			#'.$mwall.' .mnwitem'.$elem->index.' {
 				width: '.$percent.'%;
 			}';
 
@@ -38,7 +38,7 @@ class MinitekWallLibResponsive
 
 			$dimensions_css .= '@media only screen and (min-width:'.$responsive_lg.'px)
 			{
-				#'.$mnwall.' .mnwitem'.$elem->index.' {
+				#'.$mwall.' .mnwitem'.$elem->index.' {
 					height: '.($height * $lg_cell_height).'px;
 				}
 			}';
@@ -50,7 +50,7 @@ class MinitekWallLibResponsive
 
 			$dimensions_css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 			{
-				#'.$mnwall.' .mnwitem'.$elem->index.' {
+				#'.$mwall.' .mnwitem'.$elem->index.' {
 					height: '.($height * $md_cell_height).'px;
 				}
 			}';
@@ -62,7 +62,7 @@ class MinitekWallLibResponsive
 
 			$dimensions_css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 			{
-				#'.$mnwall.' .mnwitem'.$elem->index.' {
+				#'.$mwall.' .mnwitem'.$elem->index.' {
 					height: '.($height * $sm_cell_height).'px;
 				}
 			}';
@@ -74,7 +74,7 @@ class MinitekWallLibResponsive
 
 			$dimensions_css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 			{
-				#'.$mnwall.' .mnwitem'.$elem->index.' {
+				#'.$mwall.' .mnwitem'.$elem->index.' {
 					height: '.($height * $xs_cell_height).'px;
 				}
 			}';
@@ -85,7 +85,7 @@ class MinitekWallLibResponsive
 
 			$dimensions_css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 			{
-				#'.$mnwall.' .mnwitem'.$elem->index.' {
+				#'.$mwall.' .mnwitem'.$elem->index.' {
 					height: '.($height * $xxs_cell_height).'px;
 				}
 			}';
@@ -97,7 +97,7 @@ class MinitekWallLibResponsive
 	public function loadResponsiveMasonry($masonry_params, $widgetID)
 	{
 		$document = \JFactory::getDocument();
-		$mnwall = 'mnwall_iso_container_'.$widgetID;
+		$mwall = 'mwall_iso_container_'.$widgetID;
 
 		// Responsive settings
 		$responsive_lg = (int)$masonry_params['mas_responsive_lg'];
@@ -165,16 +165,16 @@ class MinitekWallLibResponsive
 		$lg_media = '@media only screen and (min-width:'.$responsive_lg.'px)
 		{';
 			$lg_media .= '
-				#'.$mnwall.' .mnwall-big {
+				#'.$mwall.' .mwall-big {
 					height: '.(2*$lg_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-horizontal {
+				#'.$mwall.' .mwall-horizontal {
 					height: '.($lg_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-vertical {
+				#'.$mwall.' .mwall-vertical {
 					height: '.(2*$lg_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-small {
+				#'.$mwall.' .mwall-small {
 					height: '.($lg_cell_height).'px;
 				}
 			';
@@ -183,7 +183,7 @@ class MinitekWallLibResponsive
 				|| !$masonry_params['mas_preserve_aspect_ratio']))
 			{
 				$lg_media .= '
-					.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$lg_cell_height.'px !important;
 					}
 				';
@@ -200,30 +200,30 @@ class MinitekWallLibResponsive
 			$md_media_jf = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 			{';
 				$md_media_jf .= '
-				#'.$mnwall.' .mnwall-big {
+				#'.$mwall.' .mwall-big {
 					height: '.(2*$md_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-horizontal {
+				#'.$mwall.' .mwall-horizontal {
 					height: '.($md_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-vertical {
+				#'.$mwall.' .mwall-vertical {
 					height: '.(2*$md_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-small {
+				#'.$mwall.' .mwall-small {
 					height: '.($md_cell_height).'px;
 				}
 
-				#'.$mnwall.' .mnwall-big .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-big .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title span {
 					font-size: 24px;
 					line-height: 28px;
 				}
-				#'.$mnwall.' .mnwall-horizontal .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-horizontal .mnwall-item-inner .mnwall-title span,
-				#'.$mnwall.' .mnwall-vertical .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-vertical .mnwall-item-inner .mnwall-title span,
-				#'.$mnwall.' .mnwall-small .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-small .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title span,
+				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title span,
+				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 20px;
 				}';
@@ -234,7 +234,7 @@ class MinitekWallLibResponsive
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
 						$md_media_jf .= '
-						.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$md_cell_height.'px !important;
 						}';
 					}
@@ -255,14 +255,14 @@ class MinitekWallLibResponsive
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
 					$md_media .= '
-					#'.$mnwall.' .mnwall-item {
+					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -276,16 +276,16 @@ class MinitekWallLibResponsive
 				else 
 				{
 					$md_media .= '
-					.mnwall-masonry #'.$mnwall.' .mnwall-item {
+					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$md_cell_height.'px !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
@@ -293,17 +293,17 @@ class MinitekWallLibResponsive
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
 						$md_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mnwall.' .mnwall-item-inner.mnw-no-image {
+						#'.$mwall.' .mwall-item-inner.mnw-no-image {
 							height: 100% !important;
 						}';
 					} 
 					else 
 					{
 						$md_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
 					}
@@ -313,17 +313,17 @@ class MinitekWallLibResponsive
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
 					$md_media .= '
-					.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$md_cell_height.'px !important;
 					}';
 				}
 
 				$md_media .= '
-				#'.$mnwall.' .mnwall-item {
+				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 24px;
 				}
@@ -335,7 +335,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
@@ -344,7 +344,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
@@ -356,7 +356,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
@@ -365,7 +365,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
@@ -377,7 +377,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
@@ -386,7 +386,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
@@ -398,7 +398,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
@@ -407,7 +407,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
@@ -419,7 +419,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
@@ -428,7 +428,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
@@ -440,7 +440,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
@@ -449,7 +449,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
@@ -461,7 +461,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
@@ -470,7 +470,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
@@ -482,7 +482,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
 					}
 				}';
@@ -491,7 +491,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -503,7 +503,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
@@ -512,7 +512,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -527,30 +527,30 @@ class MinitekWallLibResponsive
 			$sm_media_jf = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 			{';
 				$sm_media_jf .= '
-				#'.$mnwall.' .mnwall-big {
+				#'.$mwall.' .mwall-big {
 					height: '.(2*$sm_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-horizontal {
+				#'.$mwall.' .mwall-horizontal {
 					height: '.($sm_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-vertical {
+				#'.$mwall.' .mwall-vertical {
 					height: '.(2*$sm_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-small {
+				#'.$mwall.' .mwall-small {
 					height: '.($sm_cell_height).'px;
 				}
 
-				#'.$mnwall.' .mnwall-big .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-big .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title span {
 					font-size: 22px;
 					line-height: 26px;
 				}
-				#'.$mnwall.' .mnwall-horizontal .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-horizontal .mnwall-item-inner .mnwall-title span,
-				#'.$mnwall.' .mnwall-vertical .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-vertical .mnwall-item-inner .mnwall-title span,
-				#'.$mnwall.' .mnwall-small .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-small .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title span,
+				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title span,
+				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title span {
 					font-size: 17px;
 					line-height: 20px;
 				}';
@@ -561,7 +561,7 @@ class MinitekWallLibResponsive
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
 						$sm_media_jf .= '
-						.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$sm_cell_height.'px !important;
 						}';
 					}
@@ -582,14 +582,14 @@ class MinitekWallLibResponsive
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
 					$sm_media .= '
-					#'.$mnwall.' .mnwall-item {
+					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -603,16 +603,16 @@ class MinitekWallLibResponsive
 				else 
 				{
 					$sm_media .= '
-					.mnwall-masonry #'.$mnwall.' .mnwall-item {
+					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$sm_cell_height.'px !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
@@ -620,17 +620,17 @@ class MinitekWallLibResponsive
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
 						$sm_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mnwall.' .mnwall-item-inner.mnw-no-image {
+						#'.$mwall.' .mwall-item-inner.mnw-no-image {
 							height: 100% !important;
 						}';
 					} 
 					else 
 					{
 						$sm_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
 					}
@@ -640,17 +640,17 @@ class MinitekWallLibResponsive
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
 					$sm_media .= '
-					.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$sm_cell_height.'px !important;
 					}';
 				}
 
 				$sm_media .= '
-				#'.$mnwall.' .mnwall-item {
+				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-item-inner .mwall-title span {
 					font-size: 18px !important;
 					line-height: 24px;
 				}
@@ -662,7 +662,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
@@ -671,7 +671,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
@@ -683,7 +683,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
@@ -692,7 +692,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
@@ -704,7 +704,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
@@ -713,7 +713,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
@@ -725,7 +725,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
@@ -734,7 +734,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
@@ -746,7 +746,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
@@ -755,7 +755,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
@@ -767,7 +767,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
@@ -776,7 +776,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
@@ -788,7 +788,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
@@ -797,7 +797,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
@@ -809,7 +809,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
 					}
 				}';
@@ -818,7 +818,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -830,7 +830,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
@@ -839,7 +839,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -854,20 +854,20 @@ class MinitekWallLibResponsive
 			$xs_media_jf = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 			{';
 				$xs_media_jf .= '
-				#'.$mnwall.' .mnwall-big {
+				#'.$mwall.' .mwall-big {
 					height: '.(2*$xs_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-horizontal {
+				#'.$mwall.' .mwall-horizontal {
 					height: '.($xs_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-vertical {
+				#'.$mwall.' .mwall-vertical {
 					height: '.(2*$xs_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-small {
+				#'.$mwall.' .mwall-small {
 					height: '.($xs_cell_height).'px;
 				}
 
-				#'.$mnwall.' .mnwall-photo-link {
+				#'.$mwall.' .mwall-photo-link {
 					width: 100% !important;
 					height: 100% !important;
 				}';
@@ -878,7 +878,7 @@ class MinitekWallLibResponsive
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
 						$xs_media_jf .= '
-						.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$xs_cell_height.'px !important;
 						}';
 					}
@@ -899,14 +899,14 @@ class MinitekWallLibResponsive
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
 					$xs_media .= '
-					#'.$mnwall.' .mnwall-item {
+					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -920,16 +920,16 @@ class MinitekWallLibResponsive
 				else 
 				{
 					$xs_media .= '
-					.mnwall-masonry #'.$mnwall.' .mnwall-item {
+					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$xs_cell_height.'px !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
@@ -937,17 +937,17 @@ class MinitekWallLibResponsive
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
 						$xs_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mnwall.' .mnwall-item-inner.mnw-no-image {
+						#'.$mwall.' .mwall-item-inner.mnw-no-image {
 							height: 100% !important;
 						}';
 					} 
 					else 
 					{
 						$xs_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
 					}
@@ -957,18 +957,18 @@ class MinitekWallLibResponsive
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
 					$xs_media .= '
-					.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$xs_cell_height.'px !important;
 					}
 					';
 				}
 
 				$xs_media .= '
-				#'.$mnwall.' .mnwall-item {
+				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 24px;
 				}
@@ -980,7 +980,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
@@ -989,7 +989,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
@@ -1001,7 +1001,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
@@ -1010,7 +1010,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
@@ -1022,7 +1022,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
@@ -1031,7 +1031,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
@@ -1043,7 +1043,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
@@ -1052,7 +1052,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
@@ -1064,7 +1064,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
@@ -1073,7 +1073,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
@@ -1085,7 +1085,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
@@ -1094,7 +1094,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
@@ -1106,7 +1106,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
@@ -1115,7 +1115,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
@@ -1127,7 +1127,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
 					}
 				}';
@@ -1136,7 +1136,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -1148,7 +1148,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
@@ -1157,7 +1157,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -1172,20 +1172,20 @@ class MinitekWallLibResponsive
 			$xxs_media_jf = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 			{';
 				$xxs_media_jf .= '
-				#'.$mnwall.' .mnwall-big {
+				#'.$mwall.' .mwall-big {
 					height: '.(2*$xxs_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-horizontal {
+				#'.$mwall.' .mwall-horizontal {
 					height: '.($xxs_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-vertical {
+				#'.$mwall.' .mwall-vertical {
 					height: '.(2*$xxs_cell_height).'px;
 				}
-				#'.$mnwall.' .mnwall-small {
+				#'.$mwall.' .mwall-small {
 					height: '.($xxs_cell_height).'px;
 				}
 
-				#'.$mnwall.' .mnwall-photo-link {
+				#'.$mwall.' .mwall-photo-link {
 					width: 100% !important;
 					height: 100% !important;
 				}';
@@ -1196,7 +1196,7 @@ class MinitekWallLibResponsive
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
 						$xxs_media_jf .= '
-						.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$xxs_cell_height.'px !important;
 						}';
 					}
@@ -1217,14 +1217,14 @@ class MinitekWallLibResponsive
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
 					$xxs_media .= '
-					#'.$mnwall.' .mnwall-item {
+					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -1238,16 +1238,16 @@ class MinitekWallLibResponsive
 				else 
 				{
 					$xxs_media .= '
-					.mnwall-masonry #'.$mnwall.' .mnwall-item {
+					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$xxs_cell_height.'px !important;
 					}
-					#'.$mnwall.' .mnwall-item-inner {
+					#'.$mwall.' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mnwall-masonry #'.$mnwall.' .mnwall-item-outer-cont .mnwall-photo-link {
+					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
@@ -1255,17 +1255,17 @@ class MinitekWallLibResponsive
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
 						$xxs_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mnwall.' .mnwall-item-inner.mnw-no-image {
+						#'.$mwall.' .mwall-item-inner.mnw-no-image {
 							height: 100% !important;
 						}';
 					} 
 					else 
 					{
 						$xxs_media .= '
-						#'.$mnwall.' .mnwall-item-inner {
+						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
 					}
@@ -1275,17 +1275,17 @@ class MinitekWallLibResponsive
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
 					$xxs_media .= '
-					.mnwall-columns #'.$mnwall.' .mnwall-photo-link {
+					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$xxs_cell_height.'px !important;
 					}';
 				}
 
 				$xxs_media .= '
-				#'.$mnwall.' .mnwall-item {
+				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title a,
-				#'.$mnwall.' .mnwall-item-inner .mnwall-title span {
+				#'.$mwall.' .mwall-item-inner .mwall-title a,
+				#'.$mwall.' .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 24px;
 				}
@@ -1297,7 +1297,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
@@ -1306,7 +1306,7 @@ class MinitekWallLibResponsive
 			{
 				$detail_box_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box {
+					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
@@ -1318,7 +1318,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
@@ -1327,7 +1327,7 @@ class MinitekWallLibResponsive
 			{
 				$show_title_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-title {
+					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
@@ -1339,7 +1339,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
@@ -1348,7 +1348,7 @@ class MinitekWallLibResponsive
 			{
 				$show_introtext_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-desc {
+					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
@@ -1360,7 +1360,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
@@ -1369,7 +1369,7 @@ class MinitekWallLibResponsive
 			{
 				$show_date_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-date {
+					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
@@ -1381,7 +1381,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
@@ -1390,7 +1390,7 @@ class MinitekWallLibResponsive
 			{
 				$show_category_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-category {
+					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
@@ -1401,7 +1401,7 @@ class MinitekWallLibResponsive
 			if ($show_author_column) {
 				$show_author_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
@@ -1410,7 +1410,7 @@ class MinitekWallLibResponsive
 			{
 				$show_author_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-item-author {
+					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
@@ -1422,7 +1422,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
@@ -1431,7 +1431,7 @@ class MinitekWallLibResponsive
 			{
 				$show_hits_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-hits {
+					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
@@ -1443,7 +1443,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
 					}
 				}';
@@ -1452,7 +1452,7 @@ class MinitekWallLibResponsive
 			{
 				$show_count_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-count {
+					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -1464,7 +1464,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
@@ -1473,7 +1473,7 @@ class MinitekWallLibResponsive
 			{
 				$show_readmore_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
-					#'.$mnwall.' .mnwall-detail-box .mnwall-readmore {
+					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -1486,27 +1486,27 @@ class MinitekWallLibResponsive
 		if ($masonry_params['mas_grid'] == '99v')
 		{
 			$list_items_media = '
-			.mnwall-list #'.$mnwall.' .mnwall-item {
+			.mwall-list #'.$mwall.' .mwall-item {
 				width: 100% !important;
 				height: auto !important;
 			}
-			.mnwall-list #'.$mnwall.' .mnwall-item-inner {
+			.mwall-list #'.$mwall.' .mwall-item-inner {
 				width: auto !important;
 			}
-			.mnwall-list #'.$mnwall.' .mnwall-photo-link {
+			.mwall-list #'.$mwall.' .mwall-photo-link {
 				height: auto !important;
 			}
-			.mnwall-list #'.$mnwall.' .mnwall-item-inner .mnwall-title a,
-			.mnwall-list #'.$mnwall.' .mnwall-item-inner .mnwall-title span {
+			.mwall-list #'.$mwall.' .mwall-item-inner .mwall-title a,
+			.mwall-list #'.$mwall.' .mwall-item-inner .mwall-title span {
 				font-size: 18px;
 			}
 			@media only screen and (max-width: 550px)
 			{
-				.mnwall-list #'.$mnwall.' .mnwall-cover {
+				.mwall-list #'.$mwall.' .mwall-cover {
 					width: 100%;
 					max-width: inherit;
 				}
-				.mnwall-list #'.$mnwall.' .mnwall-photo-link img {
+				.mwall-list #'.$mwall.' .mwall-photo-link img {
 					width: 100%;
 					max-width: 100%;
 				}
