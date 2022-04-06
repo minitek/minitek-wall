@@ -1,5 +1,6 @@
 /* General */
 
+.com_minitekwall.view- a[target="_blank"]::before,
 .com_minitekwall.view-dashboard a[target="_blank"]::before,
 .com_minitekwall.view-widget a.btn[target="_blank"]::before {
   content: none;
