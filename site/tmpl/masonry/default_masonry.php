@@ -20,7 +20,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 		{
 			foreach ($item->itemCategoriesRaw as $category)
 			{
-				if (is_array($category))
+				if (is_array($category) && isset($category['title']))
 					$catfilter .= ' cat-'.$this->utilities->cleanName($category['title']);
 			}
 		}

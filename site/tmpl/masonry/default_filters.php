@@ -37,6 +37,9 @@ if ($this->masonry_params['mas_category_filters'])
 
 	foreach ($cat_array as $key => $cat)
 	{
+		if (!isset($cat[$field]))
+			return;
+
 		$column[$key] = $cat[$field];
 		$id[$key] = $cat['id'];
 	}
@@ -143,6 +146,9 @@ if ($this->masonry_params['mas_tag_filters'])
 
 	foreach ($tag_array as $key => $tag)
 	{
+		if (!isset($tag[$field]))
+			return;
+
 		$column[$key] = $tag[$field];
 		$id[$key] = $tag['id'];
 	}

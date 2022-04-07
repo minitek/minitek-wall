@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -22,7 +22,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 		{
 			foreach($item->itemCategoriesRaw as $category)
 			{
-				if (is_array($category))
+				if (is_array($category) && isset($category['title']))
 				{
 					$catfilter .= ' cat-'.$this->utilities->cleanName($category['title']);
 				}
