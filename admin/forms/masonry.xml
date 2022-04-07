@@ -53,9 +53,7 @@
 				class="info"
 				label="COM_MINITEKWALL_FIELD_CUSTOM_GRID_LABEL"
 				description="COM_MINITEKWALL_FIELD_CUSTOM_GRID_DESC"
-			>
-				<option value="">COM_MINITEKWALL_FIELD_OPTION_SELECT_GRID</option>
-			</field>
+			/>
 
 			<field
 				name="mas_cols"
@@ -1541,6 +1539,22 @@
 				class="info"
 				label="COM_MINITEKWALL_FIELD_FILTERS_MODE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTERS_MODE_DESC"
+			/>
+
+			<field
+				name="mas_filters_ordering"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_FILTERS_ORDERING_LABEL"
+				description="COM_MINITEKWALL_FIELD_FILTERS_ORDERING_DESC"
+			/>
+
+			<field
+				name="mas_filters_ordering_dir"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_FILTERS_ORDERING_DIRECTION_LABEL"
+				description="COM_MINITEKWALL_FIELD_FILTERS_ORDERING_DIRECTION_DESC"
 			/>
 
 			<field
