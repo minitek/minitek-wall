@@ -418,32 +418,34 @@
     dropdownFilters() {
       const self = this;
 
-      self.container
-        .querySelector(".mwall-filters-container")
-        .querySelectorAll(".mwall-dropdown")
-        .forEach(function (dropdownGroup) {
-          dropdownGroup
-            .querySelector(".dropdown-label")
-            .addEventListener("click", function (e) {
-              e.preventDefault();
-              var filter_open;
+      if (self.container.querySelector(".mwall-filters-container")) {
+        self.container
+          .querySelector(".mwall-filters-container")
+          .querySelectorAll(".mwall-dropdown")
+          .forEach(function (dropdownGroup) {
+            dropdownGroup
+              .querySelector(".dropdown-label")
+              .addEventListener("click", function (e) {
+                e.preventDefault();
+                var filter_open;
 
-              if (
-                this.closest(".mwall-dropdown").classList.contains("expanded")
-              )
-                filter_open = true;
-              else filter_open = false;
+                if (
+                  this.closest(".mwall-dropdown").classList.contains("expanded")
+                )
+                  filter_open = true;
+                else filter_open = false;
 
-              self.container
-                .querySelectorAll(".mwall-dropdown")
-                .forEach(function (a) {
-                  a.classList.remove("expanded");
-                });
+                self.container
+                  .querySelectorAll(".mwall-dropdown")
+                  .forEach(function (a) {
+                    a.classList.remove("expanded");
+                  });
 
-              if (!filter_open)
-                this.closest(".mwall-dropdown").classList.add("expanded");
-            });
-        });
+                if (!filter_open)
+                  this.closest(".mwall-dropdown").classList.add("expanded");
+              });
+          });
+      }
 
       // Close dropdowns
       document.addEventListener("mouseup", function (e) {
