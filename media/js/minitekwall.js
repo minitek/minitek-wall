@@ -119,58 +119,63 @@
 
       if (effects.includes("scale")) hiddenTransform = "scale(0.001)";
 
-      imagesLoaded(self.iso_container, function () {
-        self.wall = new Isotope(self.iso_container, {
-          itemSelector: ".mwall-item",
-          layoutMode: self.layoutMode,
-          vertical: {
-            horizontalAlignment: 0,
-          },
-          initLayout: false,
-          stagger: self.transitionStagger,
-          transitionDuration: self.transitionDuration,
-          hiddenStyle: {
-            opacity: hiddenOpacity,
-            transform: hiddenTransform,
-          },
-          visibleStyle: {
-            opacity: 1,
-            transform: "scale(1)",
-          },
-          getSortData: {
-            ordering: "[data-ordering] parseInt",
-            fordering: "[data-fordering] parseInt",
-            hits: "[data-hits] parseInt",
-            title: "[data-title]",
-            id: "[data-id] parseInt",
-            alias: "[data-alias]",
-            date: "[data-date]",
-            modified: "[data-modified]",
-            start: "[data-start]",
-            finish: "[data-finish]",
-            index: "[data-index] parseInt",
-          },
-        });
-
-        self.container.style.display = "block";
-
-        if (self.filtersEnabled && self.filtersMode == "static") {
-          self.wall.arrange({
-            sortBy: ["index"],
-            sortAscending: { index: true },
+      imagesLoaded(
+        self.iso_container,
+        { background: ".mwall-photo-link" },
+        function () {
+          self.wall = new Isotope(self.iso_container, {
+            itemSelector: ".mwall-item",
+            layoutMode: self.layoutMode,
+            vertical: {
+              horizontalAlignment: 0,
+            },
+            initLayout: false,
+            stagger: self.transitionStagger,
+            transitionDuration: self.transitionDuration,
+            hiddenStyle: {
+              opacity: hiddenOpacity,
+              transform: hiddenTransform,
+            },
+            visibleStyle: {
+              opacity: 1,
+              transform: "scale(1)",
+            },
+            getSortData: {
+              ordering: "[data-ordering] parseInt",
+              fordering: "[data-fordering] parseInt",
+              hits: "[data-hits] parseInt",
+              title: "[data-title]",
+              id: "[data-id] parseInt",
+              alias: "[data-alias]",
+              date: "[data-date]",
+              modified: "[data-modified]",
+              start: "[data-start]",
+              finish: "[data-finish]",
+              index: "[data-index] parseInt",
+            },
           });
-        } else {
-          self.wall.arrange({
-            sortBy: self.sortBy,
-            sortAscending: self.sortAscending,
-          });
+
+          self.container.style.display = "block";
+
+          if (self.filtersEnabled && self.filtersMode == "static") {
+            self.wall.arrange({
+              sortBy: ["index"],
+              sortAscending: { index: true },
+            });
+          } else {
+            self.wall.arrange({
+              sortBy: self.sortBy,
+              sortAscending: self.sortAscending,
+            });
+          }
+
+          self.fixEqualHeights("all");
+          self.container.style.opacity = 1;
+          document.querySelector(
+            "#mwall_loader_" + self.widgetId
+          ).style.display = "none";
         }
-
-        self.fixEqualHeights("all");
-        self.container.style.opacity = 1;
-        document.querySelector("#mwall_loader_" + self.widgetId).style.display =
-          "none";
-      });
+      );
 
       // Handle resize
       var _resize;
