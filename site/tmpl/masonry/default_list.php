@@ -119,7 +119,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 					if (isset($item->itemImage) && $item->itemImage && $this->mas_images) 
 					{
 						?><div class="mwall-cover <?php echo $this->hoverEffectClass; ?>">
-							<div class="mwall-img-div" style=" <?php echo $this->animated_flip; ?>">
+							<div class="mwall-img-div" style="<?php echo $this->animated_flip; ?>">
 								<div class="mwall-item-img"><?php 
 									if (isset($item->itemLink) && $this->mas_image_link) 
 									{
