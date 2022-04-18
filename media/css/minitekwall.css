@@ -70,6 +70,12 @@ website: 	https://www.minitek.gr
   max-height: 100%;
 }
 
+.mwall-no-items {
+  display: none;
+  padding: 40px 20px;
+  text-align: center;
+}
+
 /* Loader */
 
 .mwall-loader {
