@@ -331,7 +331,7 @@
 			<field
 				name="mas_db_bg_big"
 				type="color"
-				default="#de921a"
+				default="#dd5f5f"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
@@ -667,7 +667,7 @@
 			<field
 				name="mas_db_bg_portrait"
 				type="color"
-				default="#de921a"
+				default="#e66eb8"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
@@ -835,7 +835,7 @@
 			<field
 				name="mas_db_bg_small"
 				type="color"
-				default="#de921a"
+				default="#24a9b7"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
@@ -1001,7 +1001,7 @@
 			<field
 				name="mas_db_bg_columns"
 				type="color"
-				default="#de921a"
+				default="#1b98e0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
 			/>
@@ -1152,7 +1152,7 @@
 			<field
 				name="mas_hb_bg"
 				type="color"
-				default="#de921a"
+				default="#eb885e"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_DESC"
 			/>
