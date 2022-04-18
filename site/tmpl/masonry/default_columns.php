@@ -197,7 +197,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										}
 
 										if (($this->detailBoxCategoryAll && isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw) || 
-											($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) || 
+											($this->detailBoxAuthorAll && isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || 
 											($this->detailBoxTagsAll && isset($item->itemTags) && $item->itemTags && isset($item->itemTagsLayout))) 
 										{
 											?><div class="mwall-item-info"><?php 
@@ -209,7 +209,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 													?></p><?php 
 												}
 
-												if ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) 
+												if ($this->detailBoxAuthorAll && isset($item->itemAuthorRaw) && $item->itemAuthorRaw) 
 												{
 													?><p class="mwall-item-author">
 														<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
@@ -298,14 +298,14 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 											{
 												?><div class="mwall-item-info"><?php 
 													
-													if ((isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw) && $this->hoverBoxCategory) 
+													if (isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw && $this->hoverBoxCategory) 
 													{
 														?><p class="mwall-item-category">
 															<span><?php echo \JText::sprintf('COM_MINITEKWALL_IN_CATEGORIES', $item->itemCategory); ?> </span><?php 
 														?></p><?php 
 													}
 
-													if (((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)) && $this->hoverBoxAuthor) 
+													if (isset($item->itemAuthorRaw) && $item->itemAuthorRaw && $this->hoverBoxAuthor) 
 													{
 														?><p class="mwall-item-author">
 															<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
@@ -410,7 +410,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							}
 
 							if (($this->detailBoxCategoryAll && isset($item->itemCategoriesRaw) && $item->itemCategoriesRaw) || 
-								($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) ||
+								($this->detailBoxAuthorAll && isset($item->itemAuthorRaw) && $item->itemAuthorRaw) ||
 								($this->detailBoxTagsAll && isset($item->itemTags) && $item->itemTags && isset($item->itemTagsLayout))) 
 							{
 								?><div class="mwall-item-info"><?php 
@@ -422,7 +422,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										?></p><?php 
 									}
 
-									if ($this->detailBoxAuthorAll && ((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw))) 
+									if ($this->detailBoxAuthorAll && isset($item->itemAuthorRaw) && $item->itemAuthorRaw) 
 									{
 										?><p class="mwall-item-author">
 											<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span><?php 
@@ -520,7 +520,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 												?></p><?php 
 											}
 
-											if (((isset($item->itemAuthorRaw) && $item->itemAuthorRaw) || (isset($item->itemAuthorsRaw) && $item->itemAuthorsRaw)) && $this->hoverBoxAuthor) 
+											if (isset($item->itemAuthorRaw) && $item->itemAuthorRaw && $this->hoverBoxAuthor) 
 											{
 												?><p class="mwall-item-author">
 													<span><?php echo \JText::sprintf('COM_MINITEKWALL_BY_AUTHOR', $item->itemAuthor); ?> </span>
