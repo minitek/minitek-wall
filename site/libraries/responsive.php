@@ -195,6 +195,11 @@ class MinitekWallLibResponsive
 			}';
 		}
 
+		$css .= '
+		#'.$mwall.' .mwall-big .mwall-photo-link {	
+			background-color: rgba('.$bg_big.','.$bg_opacity_big.');
+		}';
+
 		if ($masonry_params['mas_db_big'])
 		{
 			$css .= '
@@ -480,6 +485,11 @@ class MinitekWallLibResponsive
 				border: 1px solid #111;
 			}';
 		}
+
+		$css .= '
+		#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
+			background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
+		}';
 
 		if ($masonry_params['mas_db_lscape'])
 		{
@@ -767,6 +777,11 @@ class MinitekWallLibResponsive
 			}';
 		}
 
+		$css .= '
+		#'.$mwall.' .mwall-vertical .mwall-photo-link {	
+			background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
+		}';
+
 		if ($masonry_params['mas_db_portrait'])
 		{
 			$css .= '
@@ -1052,6 +1067,11 @@ class MinitekWallLibResponsive
 				border: 1px solid #111;
 			}';
 		}
+
+		$css .= '
+		#'.$mwall.' .mwall-small .mwall-photo-link {	
+			background-color: rgba('.$bg_small.','.$bg_opacity_small.');
+		}';
 
 		if ($masonry_params['mas_db_small'])
 		{
@@ -2741,6 +2761,17 @@ class MinitekWallLibResponsive
 			}
 
 			$document->addStyleDeclaration( $show_readmore_column_css );
+		}
+
+		// Columns photo-link background color
+		if ($masonry_params['mas_grid'] == '98o')
+		{
+			$css = '
+			#'.$mwall.' .mwall-photo-link {	
+				background-color: rgba('.$bg_columns.','.$bg_opacity_columns.');
+			}';
+
+			$document->addStyleDeclaration( $css );
 		}
 
 		// List items - Responsive configuration
