@@ -1494,7 +1494,7 @@
 			<field
 				name="mas_filters_bg"
 				type="color"
-				default="#e96d51"
+				default="#dd5f5f"
 				label="COM_MINITEKWALL_FIELD_FILTERS_THEME_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTERS_THEME_DESC"
 			/>
