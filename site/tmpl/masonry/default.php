@@ -81,7 +81,7 @@ if (isset($this->suffix))
 				?><div class="mwall-reset-container">
 					<div class="mwall-reset">
 						<button class="btn-reset" id="mwall_reset_<?php echo $this->widgetID; ?>">
-							<i class="fa fa-times"></i> <?php 
+							<i class="fas fa-undo-alt"></i>&nbsp;&nbsp;<?php 
 							echo \JText::_('COM_MINITEKWALL_RESET');
 						?></button><div class="mwall-filters-loader"> </div>
 					</div>
