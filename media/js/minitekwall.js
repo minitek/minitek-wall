@@ -170,16 +170,6 @@
         self.container.style.opacity = 1;
         document.querySelector("#mwall_loader_" + self.widgetId).style.display =
           "none";
-
-        self.wall.on("layoutComplete", function (items) {
-          if (items.length == 0) {
-            self.container.querySelector(".mwall-no-items").style.display =
-              "block";
-          } else {
-            self.container.querySelector(".mwall-no-items").style.display =
-              "none";
-          }
-        });
       });
 
       // Handle resize
@@ -192,6 +182,14 @@
           self.doneBrowserResizing(self);
         }, 500);
       });
+    }
+
+    resultsMessage(self, items) {
+      if (items.length == 0) {
+        self.container.querySelector(".mwall-no-items").style.display = "block";
+      } else {
+        self.container.querySelector(".mwall-no-items").style.display = "none";
+      }
     }
 
     reindexItem(grid, index) {
@@ -566,6 +564,10 @@
                 filterValue += filters[prop];
               }
 
+              self.wall.once("layoutComplete", function (items) {
+                self.resultsMessage(self, items);
+              });
+
               // Update Isotope
               self.wall.arrange({
                 filter: filterValue,
@@ -666,6 +668,8 @@
 
       // Reset dynamic filters and sortings
       this.resetFilters = function resetFilters() {
+        self.container.querySelector(".mwall-no-items").style.display = "none";
+
         // Reset active buttons
         self.container
           .querySelectorAll(".button-group")
