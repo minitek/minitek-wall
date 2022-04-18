@@ -103,7 +103,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 				{
 					echo $options['position_class'];
 				}
-				?>" style=" <?php echo $this->animated_flip; ?>"><?php 
+				?>" style="<?php echo $this->animated_flip; ?>"><?php 
 
 				?><div class="mwall-item-inner-cont" style="<?php 
 					if ($options['position_class'] == 'content-below' || (!isset($item->itemImage) || !$item->itemImage || !$this->mas_images)) 
