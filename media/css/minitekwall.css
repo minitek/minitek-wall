@@ -780,6 +780,7 @@ h3.mwall-title a:focus {
 
 .mwall-container .modal {
   text-align: center;
+  padding: 0 !important;
 }
 
 .mwall-container .modal-dialog {
