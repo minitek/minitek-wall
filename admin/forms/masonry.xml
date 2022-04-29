@@ -1170,8 +1170,8 @@
 				<option value="1">COM_MINITEKWALL_SIMPLE_FADE</option>
 				<option value="2">COM_MINITEKWALL_FLIP_Y</option>
 				<option value="3">COM_MINITEKWALL_FLIP_X</option>
-				<option value="5">COM_MINITEKWALL_SLIDE_IN_LEFT</option>
 				<option value="4">COM_MINITEKWALL_SLIDE_IN_RIGHT</option>
+				<option value="5">COM_MINITEKWALL_SLIDE_IN_LEFT</option>
 				<option value="6">COM_MINITEKWALL_SLIDE_IN_TOP</option>
 				<option value="7">COM_MINITEKWALL_SLIDE_IN_BOTTOM</option>
 				<option value="8">COM_MINITEKWALL_ZOOM_IN</option>
