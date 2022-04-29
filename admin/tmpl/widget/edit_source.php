@@ -29,7 +29,7 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 	<div class="card-body">
 		<form action="<?php echo Route::_('index.php?option=com_minitekwall&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="widget-form" class="form-validate"><?php 
 			// Core plugins 
-			?><h4 class="header m-3 p-3"><?php echo Text::_('COM_MINITEKWALL_WIDGET_CORE_PLUGINS'); ?></h4>
+			?><h4 class="header mx-3 my-0 p-3"><?php echo Text::_('COM_MINITEKWALL_WIDGET_CORE_PLUGINS'); ?></h4>
 			<div class="row"><?php
 				foreach ($this->corePlugins as $corePlugin) 
 				{
