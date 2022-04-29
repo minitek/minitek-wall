@@ -513,7 +513,7 @@ h3.mwall-title a:focus {
 }
 
 .mwall-item-tags {
-  margin: 0 0 5px;
+  margin: 0;
   padding: 0 15px;
 }
 
@@ -527,6 +527,10 @@ h3.mwall-title a:focus {
 .mwall-item-tags ul.tags li a:focus {
   border: 0 !important;
   color: #ffffff;
+}
+
+.mwall-item-tags ul.tags li a {
+  margin-bottom: 5px;
 }
 
 .mwall-item-info a:hover,
