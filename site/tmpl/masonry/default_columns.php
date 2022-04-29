@@ -55,7 +55,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			echo $catfilter; ?> <?php 
 			echo $tagfilter; ?> <?php 
 			echo $datefilter; ?> <?php 
-			echo $this->hoverEffectClass; ?>" style="padding: <?php 
+			echo $this->hoverOffset; ?>" style="padding: <?php 
 			echo (int)$this->gutter; ?>px; <?php 
 			echo $this->cols; ?>" <?php 
 			if (isset($item->itemID)) 
@@ -123,8 +123,8 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 					if (isset($item->itemImage) && $item->itemImage && $this->mas_images) 
 					{
-						?><div class="mwall-cover <?php echo $this->hoverEffectClass; ?>">
-							<div class="mwall-img-div" style="<?php 
+						?><div class="mwall-cover <?php echo $this->hoverOffset; ?> <?php echo $this->perspective; ?>">
+							<div class="mwall-img-div <?php echo $this->flipBase; ?> <?php echo $this->flipClass; ?>" style="<?php 
 								echo $this->animated_flip;
 								if ($options['position_class'] != 'content-below') 
 								{
@@ -264,7 +264,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 								if ($this->hoverBox) 
 								{
-									?><div class="mwall-hover-box" style="<?php 
+									?><div class="mwall-hover-box <?php echo $this->hoverClass; ?>" style="<?php 
 										echo $this->animated;
 										?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php
 
@@ -474,11 +474,11 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 						?></div><?php 
 					}
 
-					if (! $this->mas_images || !isset($item->itemImage) || !$item->itemImage) 
+					if (!$this->mas_images || !isset($item->itemImage) || !$item->itemImage) 
 					{
 						if ($this->hoverBox) 
 						{
-							?><div class="mwall-hover-box" style="<?php 
+							?><div class="mwall-hover-box <?php echo $this->hoverClass; ?>" style="<?php 
 								echo $this->animated; 
 								?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php 
 

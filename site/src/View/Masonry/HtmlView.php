@@ -347,18 +347,52 @@ class HtmlView extends BaseHtmlView
 		}
 
 		// Hover effects
-		$this->hoverEffectClass = '';
+		$this->hoverOffset = '';
+		$this->hoverClass = '';
+		$this->flipBase = '';
+		$this->perspective = '';
+		$this->flipClass = '';
 
-		if ($this->hoverBoxEffect == '4')
-			$this->hoverEffectClass = 'slideInRight';
+		if ($this->hoverBoxEffect == 'no')
+			$this->hoverClass = 'hoverShow';
+		else if ($this->hoverBoxEffect == '1')
+			$this->hoverClass = 'hoverFadeIn';
+		else if ($this->hoverBoxEffect == '2')
+		{
+			$this->flipBase = 'flipBase';
+			$this->perspective = 'perspective';
+			$this->flipClass = 'flipY';
+		}
+		else if ($this->hoverBoxEffect == '3')
+		{
+			$this->flipBase = 'flipBase';
+			$this->perspective = 'perspective';
+			$this->flipClass = 'flipX';
+		}
+		else if ($this->hoverBoxEffect == '4') {
+			$this->hoverOffset = 'rightOffset';
+			$this->hoverClass = 'slideInRight';
+		}
 		else if ($this->hoverBoxEffect == '5')
-			$this->hoverEffectClass = 'slideInLeft';
-		else if ($this->hoverBoxEffect == '6')
-			$this->hoverEffectClass = 'slideInTop';
+		{
+			$this->hoverOffset = 'leftOffset';
+			$this->hoverClass = 'slideInLeft';
+		}
+		else if ($this->hoverBoxEffect == '6') 
+		{
+			$this->hoverOffset = 'topOffset';
+			$this->hoverClass = 'slideInTop';
+		}
 		else if ($this->hoverBoxEffect == '7')
-			$this->hoverEffectClass = 'slideInBottom';
+		{
+			$this->hoverOffset = 'bottomOffset';
+			$this->hoverClass = 'slideInBottom';
+		}
 		else if ($this->hoverBoxEffect == '8')
-			$this->hoverEffectClass = 'mwall-zoomin';
+		{
+			$this->hoverOffset = 'zoomOffset';
+			$this->hoverClass = 'zoomIn';
+		}
 
 		// Transition styles
 		$this->animated = '';

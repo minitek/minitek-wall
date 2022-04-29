@@ -55,7 +55,11 @@ if (!empty($this->wall) || $this->wall!== 0)
 			echo $tagfilter; ?> <?php 
 			echo $datefilter; ?> <?php 
 			echo $class; ?> <?php 
-			echo $this->hoverEffectClass; ?>" style="padding:<?php 
+			if ($this->perspective)
+			{
+				echo $this->perspective; ?> <?php 
+			}
+			echo $this->hoverOffset; ?>" style="padding:<?php 
 			echo (int)$this->gutter; ?>px;" <?php 
 			if (isset($item->itemID)) 
 			{
@@ -100,7 +104,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 			}
 			?>><?php 
 
-			?><div class="mwall-item-outer-cont" style="<?php 
+			?><div class="mwall-item-outer-cont <?php echo $this->flipBase; ?> <?php echo $this->flipClass; ?>" style="<?php 
 				if ($this->mas_border_radius) 
 				{
 					?>border-radius: <?php echo $this->mas_border_radius; ?>px; <?php 
@@ -228,7 +232,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 				
 				if ($this->hoverBox) 
 				{
-					?><div class="mwall-hover-box" style="<?php 
+					?><div class="mwall-hover-box <?php echo $this->hoverClass; ?>" style="<?php 
 						echo $this->animated;
 						?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php 
 
