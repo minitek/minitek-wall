@@ -346,14 +346,11 @@
 
 			<field
 				name="mas_db_color_big"
-				type="list"
-				default="light-text"
+				type="color"
+				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
-			>
-				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
-				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
-			</field>
+			/>
 
 			<field
 				name="mas_db_title_big"
@@ -514,14 +511,11 @@
 
 			<field
 				name="mas_db_color_lscape"
-				type="list"
-				default="light-text"
+				type="color"
+				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
-			>
-				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
-				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
-			</field>
+			/>
 
 			<field
 				name="mas_db_title_lscape"
@@ -682,14 +676,11 @@
 
 			<field
 				name="mas_db_color_portrait"
-				type="list"
-				default="light-text"
+				type="color"
+				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
-			>
-				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
-				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
-			</field>
+			/>
 
 			<field
 				name="mas_db_title_portrait"
@@ -850,14 +841,11 @@
 
 			<field
 				name="mas_db_color_small"
-				type="list"
-				default="light-text"
+				type="color"
+				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
-			>
-				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
-				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
-			</field>
+			/>
 
 			<field
 				name="mas_db_title_small"
@@ -1016,14 +1004,11 @@
 
 			<field
 				name="mas_db_color_columns"
-				type="list"
-				default="light-text"
+				type="color"
+				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
-			>
-				<option value="dark-text">COM_MINITEKWALL_FIELD_DARK</option>
-				<option value="light-text">COM_MINITEKWALL_FIELD_LIGHT</option>
-			</field>
+			/>
 
 			<field
 				name="mas_db_title_columns"
@@ -1167,14 +1152,11 @@
 
 			<field
 				name="mas_hb_text_color"
-				type="list"
-				default="2"
+				type="color"
+				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_DESC"
-			>
-				<option value="1">COM_MINITEKWALL_FIELD_DARK</option>
-				<option value="2">COM_MINITEKWALL_FIELD_LIGHT</option>
-			</field>
+			/>
 
 			<field
 				name="mas_hb_effect"

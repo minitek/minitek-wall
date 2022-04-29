@@ -13,6 +13,9 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 {
 	$options = $this->getColumnsItemOptions();
 
+	// Extra css
+	$this->model->responsive_masonry->masonryItemCss($this->masonry_params, $this->widgetID);
+
 	foreach ($this->wall as $key=>$item)
 	{
 		// Cat Filters
@@ -154,7 +157,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								if ($options['position_class'] != 'content-below' && $this->detailBoxAll) 
 								{
 									?><div class="mwall-item-inner mwall-detail-box <?php 
-										echo $options['db_color_class']; ?> <?php 
 										echo $options['db_class']; ?> <?php 
 										echo $options['title_class']; ?> <?php 
 										echo $options['introtext_class']; ?> <?php 
@@ -266,7 +268,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										echo $this->animated;
 										?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php
 
-										?><div class="mwall-hover-box-content <?php echo $this->hoverTextColor; ?>"><?php 
+										?><div class="mwall-hover-box-content"><?php 
 										
 											if ($this->hoverBoxDate && isset($item->itemDate)) 
 											{
@@ -366,7 +368,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 					if (($options['position_class'] == 'content-below' || (!isset($item->itemImage) || !$item->itemImage || !$this->mas_images)) && $this->detailBoxAll) 
 					{
 						?><div class="mwall-item-inner mwall-detail-box <?php 
-							echo $options['db_color_class']; ?> <?php 
 							echo $options['db_class']; ?> <?php 
 							echo $options['title_class']; ?> <?php 
 							echo $options['introtext_class']; ?> <?php 
@@ -481,7 +482,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								echo $this->animated; 
 								?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php 
 
-								?><div class="mwall-hover-box-content <?php echo $this->hoverTextColor; ?>"><?php 
+								?><div class="mwall-hover-box-content"><?php 
 								
 									if ($this->hoverBoxDate && isset($item->itemDate)) 
 									{

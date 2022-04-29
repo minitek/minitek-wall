@@ -11,6 +11,9 @@ defined('_JEXEC') or die;
 
 if (!empty($this->wall) || $this->wall!== 0)
 {
+	// Extra css
+	$this->model->responsive_masonry->masonryItemCss($this->masonry_params, $this->widgetID);
+
 	foreach ($this->wall as $key => $item)
 	{
 		// Cat Filters
@@ -46,9 +49,6 @@ if (!empty($this->wall) || $this->wall!== 0)
 		$item_index = $item->itemIndex;
 		$item_size = $this->masonry_options->getMasonryItemSize($this->gridType, $item_index, $this->custom_grid_id);
 		$class = 'mwall-item'.$item_index.' '.$item_size;
-
-		// Data visibility css
-		$this->model->responsive_masonry->masonryItemCss($this->masonry_params, $this->widgetID);
 		
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
@@ -232,7 +232,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 						echo $this->animated;
 						?> background-color: rgba(<?php echo $this->hb_bg_class; ?>,<?php echo $this->hb_bg_opacity_class; ?>);"><?php 
 
-						?><div class="mwall-hover-box-content <?php echo $this->hoverTextColor; ?>"><?php 
+						?><div class="mwall-hover-box-content"><?php 
 						
 							if ($this->hoverBoxDate && isset($item->itemDate)) 
 							{

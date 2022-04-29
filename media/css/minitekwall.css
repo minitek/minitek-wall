@@ -430,102 +430,6 @@ website: 	https://www.minitek.gr
   display: none;
 }
 
-/* Light text */
-
-.light-text h3.mwall-title a,
-.light-text h3.mwall-title span {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.light-text h3.mwall-title a:hover,
-.light-text h3.mwall-title a:focus {
-  color: #fff;
-}
-
-.light-text .mwall-item-info {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.light-text .mwall-item-info a {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.light-text .mwall-item-info a:hover,
-.light-text .mwall-item-info a:focus {
-  color: #fff;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.8);
-}
-
-.light-text .mwall-s-desc,
-.light-text .mwall-desc,
-.light-text .mwall-hits,
-.light-text .mwall-count {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.light-text .mwall-date {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.light-text .mwall-readmore a {
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-}
-
-.light-text .mwall-readmore a:hover,
-.light-text .mwall-readmore a:focus {
-  color: #fff;
-  border: 1px solid #fff;
-}
-
-/* Dark text */
-
-.dark-text h3.mwall-title a,
-.dark-text h3.mwall-title span {
-  color: #333;
-}
-
-.dark-text h3.mwall-title a:hover,
-.dark-text h3.mwall-title a:focus {
-  color: #000;
-}
-
-.dark-text .mwall-item-info {
-  color: #555;
-}
-
-.dark-text .mwall-item-info a {
-  color: #555;
-}
-
-.dark-text .mwall-item-info a:hover,
-.dark-text .mwall-item-info a:focus {
-  color: #333;
-  border-bottom: 1px dotted #333;
-}
-
-.dark-text .mwall-s-desc,
-.dark-text .mwall-desc,
-.dark-text .mwall-hits,
-.dark-text .mwall-count {
-  color: #555;
-}
-
-.dark-text .mwall-date {
-  color: #666;
-}
-
-.dark-text .mwall-readmore a {
-  color: #555;
-  border: 1px solid #777;
-}
-
-.dark-text .mwall-readmore a:hover,
-.dark-text .mwall-readmore a:focus {
-  color: #000;
-  border: 1px solid #111;
-}
-
 /* Typography */
 
 h3.mwall-title {
@@ -1396,7 +1300,7 @@ h3.mwall-title a:focus {
 
 .mwall-list .mwall-item-inner {
   position: relative;
-  padding: 0 10px;
+  padding: 10px;
 }
 
 .mwall-list .mwall-cover {
