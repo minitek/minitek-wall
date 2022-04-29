@@ -173,7 +173,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxPositionColumns = $masonry_params['mas_db_position_columns'];
 		$this->detailBoxBackgroundColumns = $masonry_params['mas_db_bg_columns'];
 		$this->detailBoxBackgroundOpacityColumns = $masonry_params['mas_db_bg_opacity_columns'];
-		$this->detailBoxTextColorColumns = $masonry_params['mas_db_color_columns'];
 		$this->detailBoxTitleColumns = $masonry_params['mas_db_title_columns'];
 		$this->detailBoxIntrotextColumns = $masonry_params['mas_db_introtext_columns'];
 		$this->detailBoxDateColumns = $masonry_params['mas_db_date_columns'];
@@ -325,7 +324,6 @@ class HtmlView extends BaseHtmlView
 		$this->hoverBox = $masonry_params['mas_hb'];
 		$this->hoverBoxBg = $masonry_params['mas_hb_bg'];
 		$this->hoverBoxBgOpacity = $masonry_params['mas_hb_bg_opacity'];
-		$this->hoverBoxTextColor = $masonry_params['mas_hb_text_color'];
 		$this->hoverBoxEffect = $masonry_params['mas_hb_effect'];
 		$this->hoverBoxEffectSpeed = $masonry_params['mas_hb_effect_speed'];
 		$hoverBoxEffectEasing = $masonry_params['mas_hb_effect_easing'];
@@ -390,12 +388,6 @@ class HtmlView extends BaseHtmlView
 		// Hover box background
 		$this->hb_bg_class = $this->utilities->hex2RGB($this->hoverBoxBg, true);
 		$this->hb_bg_opacity_class = number_format((float)$this->hoverBoxBgOpacity, 2, '.', '');
-
-		// Hover box text color
-		if ($this->hoverBoxTextColor == '1') 
-			$this->hoverTextColor = 'dark-text';
-		else 
-			$this->hoverTextColor = 'light-text';
 
 		// Get wall
 		if ($page === 1 && $input->get('task') != 'getFilters')
@@ -642,13 +634,11 @@ class HtmlView extends BaseHtmlView
 		"readmore_class" => "",
 		"db_bg_class" => "",
 		"db_bg_opacity_class" => "",
-		"db_color_class" => "",
 		"position_class" => ""
 		);
 
 		$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundColumns, true);
 		$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityColumns, 2, '.', '');
-		$options['db_color_class'] = $this->detailBoxTextColorColumns;
 		$options['position_class'] = 'content-'.$this->detailBoxPositionColumns;
 
 		if (!$this->detailBoxColumns)
