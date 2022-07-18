@@ -208,7 +208,7 @@ class MinitekWallLibResponsive
 		$bg_opacity_big = number_format((float)$masonry_params['mas_db_bg_opacity_big'], 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-big .mwall-photo-link {	
+		#'.$mwall.' .mwall-big .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_big.','.$bg_opacity_big.');
 		}';
 
@@ -297,15 +297,15 @@ class MinitekWallLibResponsive
 						top: 0;
 						height: 50%;
 					}';
-					
-					$css .= '
-					#'.$mwall.' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
-						right: 0;
-						left: 0;
-						bottom: 0;
-						height: 50%;
-					}';
 				}
+
+				$css .= '
+				#'.$mwall.' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
+					right: 0;
+					left: 0;
+					bottom: 0;
+					height: 50%;
+				}';
 			}
 		}
 		else if (!$masonry_params['mas_db_big'])
@@ -455,7 +455,7 @@ class MinitekWallLibResponsive
 		$bg_opacity_lscape = number_format((float)$masonry_params['mas_db_bg_opacity_lscape'], 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
+		#'.$mwall.' .mwall-horizontal .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
 		}';
 
@@ -702,7 +702,7 @@ class MinitekWallLibResponsive
 		$bg_opacity_portrait = number_format((float)$masonry_params['mas_db_bg_opacity_portrait'], 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-vertical .mwall-photo-link {	
+		#'.$mwall.' .mwall-vertical .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
 		}';
 
@@ -949,7 +949,7 @@ class MinitekWallLibResponsive
 		$bg_opacity_small = number_format((float)$masonry_params['mas_db_bg_opacity_small'], 2, '.', '');
 
 		$css .= '
-			#'.$mwall.' .mwall-small .mwall-photo-link {	
+			#'.$mwall.' .mwall-small .mwall-item-inner-cont {	
 				background-color: rgba('.$bg_small.','.$bg_opacity_small.');
 			}';
 
@@ -1126,6 +1126,7 @@ class MinitekWallLibResponsive
 		$utilities = new \MinitekWallLibUtilities;
 		$document = \JFactory::getDocument();
 		$mwall = 'mwall_items_'.$widgetID;
+		$css = '';
 
 		// Responsive settings
 		$responsive_lg = (int)$masonry_params['mas_responsive_lg'];
@@ -1193,9 +1194,9 @@ class MinitekWallLibResponsive
 		$bg_opacity_columns = number_format((float)$masonry_params['mas_db_bg_opacity_columns'], 2, '.', '');
 
 		// Media CSS - Large
-		$lg_media = '@media only screen and (min-width:'.$responsive_lg.'px)
+		$css .= '@media only screen and (min-width:'.$responsive_lg.'px)
 		{';
-			$lg_media .= '
+			$css .= '
 			#'.$mwall.' .mwall-big {
 				height: '.(2*$lg_cell_height).'px;
 			}
@@ -1212,22 +1213,20 @@ class MinitekWallLibResponsive
 			if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 				|| !$masonry_params['mas_preserve_aspect_ratio']))
 			{
-				$lg_media .= '
+				$css .= '
 				.mwall-columns #'.$mwall.' .mwall-photo-link {
 					height: '.$lg_cell_height.'px !important;
 				}';
 			}
-		$lg_media .= '
+		$css .= '
 		}';
-
-		$document->addStyleDeclaration( $lg_media );
 
 		// Media CSS - Medium
 		if (!$md_type)
 		{
-			$md_media_jf = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 			{';
-				$md_media_jf .= '
+				$css .= '
 				#'.$mwall.' .mwall-big {
 					height: '.(2*$md_cell_height).'px;
 				}
@@ -1261,16 +1260,14 @@ class MinitekWallLibResponsive
 					if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
-						$md_media_jf .= '
+						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$md_cell_height.'px !important;
 						}';
 					}
 				}
-			$md_media_jf .= '
+			$css .= '
 			}';
-
-			$document->addStyleDeclaration( $md_media_jf );
 		}
 		
 		// Media CSS - Medium - Equal columns
@@ -1278,11 +1275,11 @@ class MinitekWallLibResponsive
 		{
 			$items_width = number_format((float)(100 / $responsive_md_num), 2, '.', '');
 			
-			$md_media = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 			{ ';
 				if ($masonry_params['mas_grid'] != '99v')
 				{
-					$md_media .= 
+					$css .= 
 					'#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
@@ -1290,7 +1287,7 @@ class MinitekWallLibResponsive
 
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
-					$md_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
@@ -1311,7 +1308,7 @@ class MinitekWallLibResponsive
 				} 
 				else 
 				{
-					$md_media .= '
+					$css .= '
 					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$md_cell_height.'px !important;
 					}
@@ -1328,7 +1325,7 @@ class MinitekWallLibResponsive
 
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
-						$md_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
@@ -1338,7 +1335,7 @@ class MinitekWallLibResponsive
 					} 
 					else 
 					{
-						$md_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
@@ -1348,13 +1345,13 @@ class MinitekWallLibResponsive
 				if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
-					$md_media .= '
+					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$md_cell_height.'px !important;
 					}';
 				}
 
-				$md_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
@@ -1372,7 +1369,7 @@ class MinitekWallLibResponsive
 				else 
 					$db_color = $utilities->hex2RGB($masonry_params['mas_db_color_columns'], true);
 
-				$md_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
 				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
 					color: rgba('.$db_color.', 0.9) !important;
@@ -1419,13 +1416,11 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
-			$md_media .= '}';
-
-			$document->addStyleDeclaration( $md_media );
+			$css .= '}';
 
 			if ($detail_box_column) 
 			{
-				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
@@ -1434,19 +1429,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $detail_box_column_css );
 
 			if ($show_title_column) 
 			{
-				$show_title_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
@@ -1455,19 +1448,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_title_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_title_column_css );
 
 			if ($show_introtext_column) 
 			{
-				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
@@ -1476,19 +1467,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_introtext_column_css );
 
 			if ($show_date_column) 
 			{
-				$show_date_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
@@ -1497,19 +1486,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_date_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_date_column_css );
 
 			if ($show_category_column) 
 			{
-				$show_category_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
@@ -1518,19 +1505,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_category_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_category_column_css );
 
 			if ($show_author_column) 
 			{
-				$show_author_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
@@ -1539,19 +1524,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_author_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_author_column_css );
 
 			if ($show_tags_column) 
 			{
-				$show_tags_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
@@ -1560,19 +1543,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_tags_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_tags_column_css );
 
 			if ($show_hits_column) 
 			{
-				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
@@ -1581,19 +1562,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_hits_column_css );
 
 			if ($show_count_column) 
 			{
-				$show_count_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
@@ -1602,19 +1581,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_count_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_count_column_css );
 
 			if ($show_readmore_column) 
 			{
-				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
@@ -1623,23 +1600,21 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_readmore_column_css );
 		}
 
 		// Media CSS - Small
 		if (!$sm_type)
 		{
-			$sm_media_jf = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 			{';
-				$sm_media_jf .= '
+				$css .= '
 				#'.$mwall.' .mwall-big {
 					height: '.(2*$sm_cell_height).'px;
 				}
@@ -1673,16 +1648,14 @@ class MinitekWallLibResponsive
 					if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
-						$sm_media_jf .= '
+						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$sm_cell_height.'px !important;
 						}';
 					}
 				}
-			$sm_media_jf .= '
+			$css .= '
 			}';
-
-			$document->addStyleDeclaration( $sm_media_jf );
 		}
 
 		// Media CSS - Small - Equal columns
@@ -1690,11 +1663,11 @@ class MinitekWallLibResponsive
 		{
 			$items_width = number_format((float)(100 / $responsive_sm_num), 2, '.', '');
 			
-			$sm_media = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 			{ ';
 				if ($masonry_params['mas_grid'] != '99v')
 				{
-					$sm_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
@@ -1702,7 +1675,7 @@ class MinitekWallLibResponsive
 
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
-					$sm_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
@@ -1723,7 +1696,7 @@ class MinitekWallLibResponsive
 				} 
 				else 
 				{
-					$sm_media .= '
+					$css .= '
 					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$sm_cell_height.'px !important;
 					}
@@ -1740,7 +1713,7 @@ class MinitekWallLibResponsive
 
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
-						$sm_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
@@ -1750,7 +1723,7 @@ class MinitekWallLibResponsive
 					} 
 					else 
 					{
-						$sm_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
@@ -1760,13 +1733,13 @@ class MinitekWallLibResponsive
 				if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
-					$sm_media .= '
+					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$sm_cell_height.'px !important;
 					}';
 				}
 
-				$sm_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
@@ -1784,7 +1757,7 @@ class MinitekWallLibResponsive
 				else 
 					$db_color = $utilities->hex2RGB($masonry_params['mas_db_color_columns'], true);
 
-				$sm_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
 				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
 					color: rgba('.$db_color.', 0.9) !important;
@@ -1831,13 +1804,11 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
-			$sm_media .= '}';
-
-			$document->addStyleDeclaration( $sm_media );
+			$css .= '}';
 
 			if ($detail_box_column) 
 			{
-				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
@@ -1846,19 +1817,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $detail_box_column_css );
 
 			if ($show_title_column) 
 			{
-				$show_title_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
@@ -1867,19 +1836,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_title_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_title_column_css );
 
 			if ($show_introtext_column) 
 			{
-				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
@@ -1888,19 +1855,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_introtext_column_css );
 
 			if ($show_date_column) 
 			{
-				$show_date_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
@@ -1909,19 +1874,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_date_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_date_column_css );
 
 			if ($show_category_column) 
 			{
-				$show_category_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
@@ -1930,19 +1893,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_category_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_category_column_css );
 
 			if ($show_author_column) 
 			{
-				$show_author_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
@@ -1951,19 +1912,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_author_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_author_column_css );
 
 			if ($show_tags_column) 
 			{
-				$show_tags_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
@@ -1972,19 +1931,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_tags_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_tags_column_css );
 
 			if ($show_hits_column) 
 			{
-				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
@@ -1993,19 +1950,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_hits_column_css );
 
 			if ($show_count_column) 
 			{
-				$show_count_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
@@ -2014,19 +1969,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_count_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_count_column_css );
 
 			if ($show_readmore_column) 
 			{
-				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
@@ -2035,23 +1988,21 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_readmore_column_css );
 		}
 
 		// Media CSS - Extra small
 		if (!$xs_type)
 		{
-			$xs_media_jf = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 			{';
-				$xs_media_jf .= '
+				$css .= '
 				#'.$mwall.' .mwall-big {
 					height: '.(2*$xs_cell_height).'px;
 				}
@@ -2075,16 +2026,14 @@ class MinitekWallLibResponsive
 					if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
-						$xs_media_jf .= '
+						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$xs_cell_height.'px !important;
 						}';
 					}
 				}
-			$xs_media_jf .= '
+			$css .= '
 			}';
-
-			$document->addStyleDeclaration( $xs_media_jf );
 		}
 
 		// Media CSS - Extra small - Equal columns
@@ -2092,11 +2041,11 @@ class MinitekWallLibResponsive
 		{
 			$items_width = number_format((float)(100 / $responsive_xs_num), 2, '.', '');
 			
-			$xs_media = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 			{ ';
 				if ($masonry_params['mas_grid'] != '99v')
 				{
-					$xs_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
@@ -2104,7 +2053,7 @@ class MinitekWallLibResponsive
 
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
-					$xs_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
@@ -2125,7 +2074,7 @@ class MinitekWallLibResponsive
 				} 
 				else 
 				{
-					$xs_media .= '
+					$css .= '
 					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$xs_cell_height.'px !important;
 					}
@@ -2142,7 +2091,7 @@ class MinitekWallLibResponsive
 
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
-						$xs_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
@@ -2152,7 +2101,7 @@ class MinitekWallLibResponsive
 					} 
 					else 
 					{
-						$xs_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
@@ -2162,13 +2111,13 @@ class MinitekWallLibResponsive
 				if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
-					$xs_media .= '
+					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$xs_cell_height.'px !important;
 					}';
 				}
 
-				$xs_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
@@ -2186,7 +2135,7 @@ class MinitekWallLibResponsive
 				else 
 					$db_color = $utilities->hex2RGB($masonry_params['mas_db_color_columns'], true);
 
-				$xs_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
 				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
 					color: rgba('.$db_color.', 0.9) !important;
@@ -2233,13 +2182,11 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
-			$xs_media .= '}';
-
-			$document->addStyleDeclaration( $xs_media );
+			$css .= '}';
 
 			if ($detail_box_column) 
 			{
-				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
@@ -2248,7 +2195,7 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$detail_box_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
@@ -2256,11 +2203,9 @@ class MinitekWallLibResponsive
 				}';
 			}
 			
-			$document->addStyleDeclaration( $detail_box_column_css );
-
 			if ($show_title_column) 
 			{
-				$show_title_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
@@ -2269,19 +2214,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_title_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_title_column_css );
 
 			if ($show_introtext_column) 
 			{
-				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
@@ -2290,19 +2233,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_introtext_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_introtext_column_css );
 
 			if ($show_date_column) 
 			{
-				$show_date_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
@@ -2311,19 +2252,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_date_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_date_column_css );
 
 			if ($show_category_column) 
 			{
-				$show_category_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
@@ -2332,19 +2271,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_category_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_category_column_css );
 
 			if ($show_author_column) 
 			{
-				$show_author_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
@@ -2353,19 +2290,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_author_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_author_column_css );
 
 			if ($show_tags_column) 
 			{
-				$show_tags_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
@@ -2374,19 +2309,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_tags_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_tags_column_css );
 
 			if ($show_hits_column) 
 			{
-				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
@@ -2395,19 +2328,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_hits_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_hits_column_css );
 
 			if ($show_count_column) 
 			{
-				$show_count_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
@@ -2416,19 +2347,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_count_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_count_column_css );
 
 			if ($show_readmore_column) 
 			{
-				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
@@ -2437,23 +2366,21 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_readmore_column_css = '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_readmore_column_css );
 		}
 
 		// Media CSS - Extra extra small
 		if (!$xxs_type)
 		{
-			$xxs_media_jf = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 			{';
-				$xxs_media_jf .= '
+				$css .= '
 				#'.$mwall.' .mwall-big {
 					height: '.(2*$xxs_cell_height).'px;
 				}
@@ -2477,16 +2404,14 @@ class MinitekWallLibResponsive
 					if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 						|| !$masonry_params['mas_preserve_aspect_ratio']))
 					{
-						$xxs_media_jf .= '
+						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
 							height: '.$xxs_cell_height.'px !important;
 						}';
 					}
 				}
-			$xxs_media_jf .= '
+			$css .= '
 			}';
-
-			$document->addStyleDeclaration( $xxs_media_jf );
 		}
 
 		// Media CSS - Extra extra small - Equal columns
@@ -2494,11 +2419,11 @@ class MinitekWallLibResponsive
 		{
 			$items_width = number_format((float)(100 / $responsive_xxs_num), 2, '.', '');
 			
-			$xxs_media = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 			{ ';
 				if ($masonry_params['mas_grid'] != '99v')
 				{
-					$xxs_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
@@ -2506,7 +2431,7 @@ class MinitekWallLibResponsive
 
 				if ($masonry_params['mas_db_position_columns'] == 'below')
 				{
-					$xxs_media .= '
+					$css .= '
 					#'.$mwall.' .mwall-item {
 						height: auto !important;
 					}
@@ -2527,7 +2452,7 @@ class MinitekWallLibResponsive
 				} 
 				else 
 				{
-					$xxs_media .= '
+					$css .= '
 					.mwall-masonry #'.$mwall.' .mwall-item {
 						height: '.$xxs_cell_height.'px !important;
 					}
@@ -2544,7 +2469,7 @@ class MinitekWallLibResponsive
 
 					if ($masonry_params['mas_db_position_columns'] == 'bottom')
 					{
-						$xxs_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: auto !important;
 						}
@@ -2554,7 +2479,7 @@ class MinitekWallLibResponsive
 					} 
 					else 
 					{
-						$xxs_media .= '
+						$css .= '
 						#'.$mwall.' .mwall-item-inner {
 							height: 100% !important;
 						}';
@@ -2564,14 +2489,14 @@ class MinitekWallLibResponsive
 				if ((!isset($masonry_params['mas_preserve_aspect_ratio'])
 					|| !$masonry_params['mas_preserve_aspect_ratio']))
 				{
-					$xxs_media .= '
+					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
 						height: '.$xxs_cell_height.'px !important;
 					}
 					';
 				}
 
-				$xxs_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-item {
 					width: '.$items_width.'% !important;
 				}
@@ -2589,7 +2514,7 @@ class MinitekWallLibResponsive
 				else 
 					$db_color = $utilities->hex2RGB($masonry_params['mas_db_color_columns'], true);
 
-				$xxs_media .= '
+				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
 				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
 					color: rgba('.$db_color.', 0.9) !important;
@@ -2636,13 +2561,11 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
-			$xxs_media .= '}';
-
-			$document->addStyleDeclaration( $xxs_media );
+			$css .= '}';
 
 			if ($detail_box_column) 
 			{
-				$detail_box_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: block !important;
@@ -2651,19 +2574,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$detail_box_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $detail_box_column_css );
 
 			if ($show_title_column) 
 			{
-				$show_title_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: block !important;
@@ -2672,19 +2593,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_title_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_title_column_css );
 
 			if ($show_introtext_column) 
 			{
-				$show_introtext_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: block !important;
@@ -2693,19 +2612,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_introtext_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_introtext_column_css );
 
 			if ($show_date_column) 
 			{
-				$show_date_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: block !important;
@@ -2714,19 +2631,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_date_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_date_column_css );
 
 			if ($show_category_column) 
 			{
-				$show_category_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: block !important;
@@ -2735,19 +2650,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_category_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_category_column_css );
 
 			if ($show_author_column) 
 			{
-				$show_author_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: block !important;
@@ -2756,19 +2669,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_author_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_author_column_css );
 
 			if ($show_tags_column) 
 			{
-				$show_tags_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
@@ -2777,19 +2688,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_tags_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_tags_column_css );
 
 			if ($show_hits_column) 
 			{
-				$show_hits_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: block !important;
@@ -2798,19 +2707,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_hits_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_hits_column_css );
 
 			if ($show_count_column) 
 			{
-				$show_count_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: block !important;
@@ -2819,19 +2726,17 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_count_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_count_column_css );
 
 			if ($show_readmore_column) 
 			{
-				$show_readmore_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: block !important;
@@ -2840,32 +2745,28 @@ class MinitekWallLibResponsive
 			} 
 			else 
 			{
-				$show_readmore_column_css = '@media only screen and (max-width:'.$responsive_xs_min.'px)
+				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
 			}
-
-			$document->addStyleDeclaration( $show_readmore_column_css );
 		}
 
 		// Columns photo-link background color
 		if ($masonry_params['mas_grid'] == '98o')
 		{
-			$css = '
-			#'.$mwall.' .mwall-photo-link {	
+			$css .= '
+			#'.$mwall.' .mwall-item-inner-cont {
 				background-color: rgba('.$bg_columns.','.$bg_opacity_columns.');
 			}';
-			
-			$document->addStyleDeclaration( $css );
 		}
 
 		// List items - Responsive configuration
 		if ($masonry_params['mas_grid'] == '99v')
 		{
-			$list_items_media = '
+			$css .= '
 			.mwall-list #'.$mwall.' .mwall-item {
 				width: 100% !important;
 				height: auto !important;
@@ -2891,8 +2792,8 @@ class MinitekWallLibResponsive
 					max-width: 100%;
 				}
 			}';
-
-			$document->addStyleDeclaration( $list_items_media );
 		}
+
+		$document->addStyleDeclaration( $css );
 	}
 }

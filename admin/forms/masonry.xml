@@ -20,8 +20,6 @@
 			<field
 				name="mas_suffix"
 				type="text"
-				class="inputbox"
-				size="40"
 				label="COM_MINITEKWALL_FIELD_CLASS_SUFFIX_LABEL"
 				description="COM_MINITEKWALL_FIELD_CLASS_SUFFIX_DESC"
 			/>
@@ -92,27 +90,31 @@
 			<field
 				name="mas_gutter"
 				type="number"
-				class="inputbox"
-				size="40"
 				label="COM_MINITEKWALL_FIELD_GUTTER_LABEL"
 				description="COM_MINITEKWALL_FIELD_GUTTER_DESC"
 				default="5"
+				min="0" 
+				step="1" 
 			/>
 
 			<field
 				name="mas_border_radius"
 				type="number"
-				default="0"
 				label="COM_MINITEKWALL_FIELD_ITEMS_BORDER_RADIUS_LABEL"
 				description="COM_MINITEKWALL_FIELD_ITEMS_BORDER_RADIUS_DESC"
+				default="0"
+				min="0" 
+				step="1" 
 			/>
 
 			<field
 				name="mas_border"
 				type="number"
-				default="0"
 				label="COM_MINITEKWALL_FIELD_ITEMS_BORDER_LABEL"
 				description="COM_MINITEKWALL_FIELD_ITEMS_BORDER_DESC"
+				default="0"
+				min="0" 
+				step="1" 
 			/>
 
 			<field
@@ -166,17 +168,21 @@
 			<field
 				name="mas_image_width"
 				type="number"
-				default="400"
 				label="COM_MINITEKWALL_FIELD_CROP_WIDTH_LABEL"
 				description="COM_MINITEKWALL_FIELD_CROP_WIDTH_DESC"
+				default="400"
+				min="0"
+				step="1"
 			/>
 
 			<field
 				name="mas_image_height"
 				type="number"
-				default="300"
 				label="COM_MINITEKWALL_FIELD_CROP_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CROP_HEIGHT_DESC"
+				default="300"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -206,10 +212,45 @@
 			<field
 				name="mas_fallback_image"
 				type="text"
-				class="inputbox"
 				label="COM_MINITEKWALL_FIELD_FALLBACK_IMAGE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FALLBACK_IMAGE_DESC"
 				default=""
+			/>
+
+			<field
+				name="mas_image_hover_opacity"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_OPACITY_LABEL"
+				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_OPACITY_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_image_hover_scale"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SCALE_LABEL"
+				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SCALE_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_image_hover_speed"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SPEED_LABEL"
+				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SPEED_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_image_hover_easing"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_EASING_LABEL"
+				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_EASING_DESC"
+				default="0"
 			/>
 
 		</fieldset>
@@ -221,11 +262,11 @@
 			<field
 				name="mas_db_title_limit"
 				type="number"
-				default="15"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LIMIT_DESC"
-				class="inputbox"
-				size="5"
+				default="15"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -243,11 +284,11 @@
 			<field
 				name="mas_db_introtext_limit"
 				type="number"
-				default="15"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LIMIT_DESC"
-				class="inputbox"
-				size="5"
+				default="15"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -267,8 +308,6 @@
 				type="text"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_FORMAT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_FORMAT_DESC"
-				class="inputbox"
-				size="5"
 				default="F d, Y"
 			/>
 
@@ -295,6 +334,33 @@
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
+
+			<field
+				name="mas_db_effect"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_EFFECT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_EFFECT_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_db_speed"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_SPEED_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_SPEED_DESC"
+				default="0"
+			/>
+
+			<field
+				name="mas_db_easing"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_EASING_LABEL"
+				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_EASING_DESC"
+				default="0"				
+			/>
 
 		</fieldset>
 
@@ -338,10 +404,13 @@
 
 			<field
 				name="mas_db_bg_opacity_big"
-				type="text"
-				default="0.75"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				default="0.75"
+				min="0" 
+				max="1" 
+				step="0.01" 
 			/>
 
 			<field
@@ -503,10 +572,13 @@
 
 			<field
 				name="mas_db_bg_opacity_lscape"
-				type="text"
-				default="0.75"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				default="0.75"
+				min="0" 
+				max="1" 
+				step="0.01" 
 			/>
 
 			<field
@@ -668,10 +740,13 @@
 
 			<field
 				name="mas_db_bg_opacity_portrait"
-				type="text"
-				default="0.75"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				default="0.75"
+				min="0" 
+				max="1" 
+				step="0.01" 
 			/>
 
 			<field
@@ -833,10 +908,13 @@
 
 			<field
 				name="mas_db_bg_opacity_small"
-				type="text"
-				default="0.75"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				default="0.75"
+				min="0" 
+				max="1" 
+				step="0.01" 
 			/>
 
 			<field
@@ -996,10 +1074,13 @@
 
 			<field
 				name="mas_db_bg_opacity_columns"
-				type="text"
-				default="0.75"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_OPACITY_DESC"
+				default="0.75"
+				min="0" 
+				max="1" 
+				step="0.01" 
 			/>
 
 			<field
@@ -1144,10 +1225,13 @@
 
 			<field
 				name="mas_hb_bg_opacity"
-				type="text"
-				default="0.75"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_OPACITY_DESC"
+				default="0.75"
+				min="0" 
+				max="1" 
+				step="0.01" 
 			/>
 
 			<field
@@ -1179,16 +1263,19 @@
 
 			<field
 				name="mas_hb_effect_speed"
-				type="text"
-				default="0.4"
+				type="number"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_SPEED_DESC"
+				default="0.4"
+				min="0" 
+				max="10" 
+				step="0.1" 
 			/>
 
 			<field
 				name="mas_hb_effect_easing"
 				type="list"
-				default="smooth"
+				default="cubic-bezier(0.445, 0.05, 0.55, 0.95)"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_EASING_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_EASING_DESC"
 			>
@@ -1233,11 +1320,11 @@
 			<field
 				name="mas_hb_title_limit"
 				type="number"
-				default="15"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LIMIT_DESC"
-				class="inputbox"
-				size="5"
+				default="15"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -1255,11 +1342,11 @@
 			<field
 				name="mas_hb_introtext_limit"
 				type="number"
-				default="15"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LIMIT_DESC"
-				class="inputbox"
-				size="5"
+				default="15"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -1292,8 +1379,6 @@
 				type="text"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_FORMAT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_FORMAT_DESC"
-				class="inputbox"
-				size="5"
 				default="F d, Y"
 			/>
 
@@ -1380,25 +1465,23 @@
 				label="COM_MINITEKWALL_FIELD_PAGINATION_LABEL"
 				description="COM_MINITEKWALL_FIELD_PAGINATION_DESC"
 				title="COM_MINITEKWALL_FIELD_PAGINATION_TITLE"
-				size="1"
 				default="1"
 			/>
 
 			<field
 				name="mas_starting_limit"
 				type="number"
-				class="inputbox"
-				size="40"
-				label="COM_MINITEKWALL_FIELD_STARTING_LIMIT_LABEL"
-				description="COM_MINITEKWALL_FIELD_STARTING_LIMIT_DESC"
+				label="COM_MINITEKWALL_FIELD_PAGE_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_PAGE_LIMIT_DESC"
 				default="7"
+				min="1"
+				step="1"
 			/>
 
 			<field
 				name="mas_page_limit"
 				type="profeature"
 				class="info"
-				size="40"
 				label="COM_MINITEKWALL_FIELD_PAGE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_PAGE_LIMIT_DESC"
 				default="0"
@@ -1408,7 +1491,6 @@
 				name="mas_global_limit"
 				type="profeature"
 				class="info"
-				size="40"
 				label="COM_MINITEKWALL_FIELD_GLOBAL_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_GLOBAL_LIMIT_DESC"
 				default="0"
@@ -1438,7 +1520,6 @@
 				class="info"
 				label="COM_MINITEKWALL_FIELD_PAGINATION_ARROWS_LABEL"
 				description="COM_MINITEKWALL_FIELD_PAGINATION_ARROWS_DESC"
-				size="1"
 				default="0"
 			/>
 
@@ -1484,9 +1565,11 @@
 			<field
 				name="mas_filters_border_radius"
 				type="number"
-				default="3"
 				label="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTERS_BORDER_RADIUS_DESC"
+				default="3"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -1689,17 +1772,21 @@
 			<field
 				name="mas_transition_duration"
 				type="number"
-				default="400"
 				label="COM_MINITEKWALL_FIELD_TRANSITION_DURATION_LABEL"
 				description="COM_MINITEKWALL_FIELD_TRANSITION_DURATION_DESC"
+				default="400"
+				min="0"
+				step="1"
 			/>
 
 			<field
 				name="mas_transition_stagger"
 				type="number"
-				default="0"
 				label="COM_MINITEKWALL_FIELD_TRANSITION_STAGGER_LABEL"
 				description="COM_MINITEKWALL_FIELD_TRANSITION_STAGGER_DESC"
+				default="0"
+				min="0"
+				step="1"
 			/>
 
 		</fieldset>
@@ -1723,17 +1810,21 @@
 			<field
 				name="mas_responsive_lg"
 				type="number"
-				default="1139"
 				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_L_DESC"
+				default="1139"
+				min="0"
+				step="1"
 			/>
 
 			<field
 				name="mas_lg_cell_height"
 				type="number"
-				default="240"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
 			/>
 
 			<field type="separator" text="COM_MINITEKWALL_FIELD_M_SETTINGS" />
@@ -1741,9 +1832,11 @@
 			<field
 				name="mas_responsive_md"
 				type="number"
-				default="939"
 				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_M_DESC"
+				default="939"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -1771,9 +1864,11 @@
 			<field
 				name="mas_md_cell_height"
 				type="number"
-				default="240"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
 			/>
 
 			<field type="separator" text="COM_MINITEKWALL_FIELD_S_SETTINGS" />
@@ -1781,9 +1876,11 @@
 			<field
 				name="mas_responsive_sm"
 				type="number"
-				default="719"
 				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_S_DESC"
+				default="719"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -1811,9 +1908,11 @@
 			<field
 				name="mas_sm_cell_height"
 				type="number"
-				default="240"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
 			/>
 
 			<field type="separator" text="COM_MINITEKWALL_FIELD_XS_SETTINGS" />
@@ -1821,9 +1920,11 @@
 			<field
 				name="mas_responsive_xs"
 				type="number"
-				default="479"
 				label="COM_MINITEKWALL_FIELD_SIZE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_SIZE_LIMIT_XS_DESC"
+				default="479"
+				min="0"
+				step="1"
 			/>
 
 			<field
@@ -1851,9 +1952,11 @@
 			<field
 				name="mas_xs_cell_height"
 				type="number"
-				default="240"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
 			/>
 
 			<field type="separator" text="COM_MINITEKWALL_FIELD_XXS_SETTINGS" />
@@ -1883,9 +1986,11 @@
 			<field
 				name="mas_xxs_cell_height"
 				type="number"
-				default="240"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
 			/>
 
 		</fieldset>
