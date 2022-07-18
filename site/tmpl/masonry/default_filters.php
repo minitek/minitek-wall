@@ -25,6 +25,25 @@ if ($this->masonry_params['mas_category_filters'])
 					$cat_array[$itemCategory['id']] = $itemCategory;
 			}
 		}
+
+		// Remove duplicates
+		$tmp = array();
+		$duplicates = array();
+		foreach ($cat_array as $key => $filter) 
+		{
+			if (in_array($filter["title"], $tmp))
+				$duplicates[] = $key;
+			else
+				$tmp[] = $filter["title"];
+		}
+
+		if (!empty($duplicates))
+		{
+			foreach ($duplicates as $id)
+			{
+				unset($cat_array[$id]);
+			}
+		}
 	}
 
 	// Sort array
@@ -132,6 +151,25 @@ if ($this->masonry_params['mas_tag_filters'])
 			foreach ($item->itemTagsRaw as $key => $itemTag)
 			{
 				$tag_array[$itemTag['id']] = $itemTag;
+			}
+		}
+
+		// Remove duplicates
+		$tmp = array();
+		$duplicates = array();
+		foreach ($tag_array as $key => $filter) 
+		{
+			if (in_array($filter["title"], $tmp))
+				$duplicates[] = $key;
+			else
+				$tmp[] = $filter["title"];
+		}
+
+		if (!empty($duplicates))
+		{
+			foreach ($duplicates as $id)
+			{
+				unset($tag_array[$id]);
 			}
 		}
 	}
