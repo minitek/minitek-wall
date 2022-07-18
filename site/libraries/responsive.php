@@ -205,7 +205,9 @@ class MinitekWallLibResponsive
 
 		// Images and dimensions - Big
 		$bg_big = $utilities->hex2RGB($masonry_params['mas_db_bg_big'], true);
-		$bg_opacity_big = number_format((float)$masonry_params['mas_db_bg_opacity_big'], 2, '.', '');
+		$bg_opacity_big = !$masonry_params['mas_full_width_image'] && $masonry_params['mas_db_position_big'] != 'cover'
+			? 1 
+			: number_format((float)$masonry_params['mas_db_bg_opacity_big'], 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-big .mwall-item-inner-cont {	
@@ -452,7 +454,9 @@ class MinitekWallLibResponsive
 		
 		// Images and dimensions - Landscape
 		$bg_lscape = $utilities->hex2RGB($masonry_params['mas_db_bg_lscape'], true);
-		$bg_opacity_lscape = number_format((float)$masonry_params['mas_db_bg_opacity_lscape'], 2, '.', '');
+		$bg_opacity_lscape = !$masonry_params['mas_full_width_image'] && $masonry_params['mas_db_position_lscape'] != 'cover'
+			? 1
+			: number_format((float)$masonry_params['mas_db_bg_opacity_lscape'], 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-horizontal .mwall-item-inner-cont {	
@@ -699,7 +703,9 @@ class MinitekWallLibResponsive
 
 		// Images and dimensions - Portrait
 		$bg_portrait = $utilities->hex2RGB($masonry_params['mas_db_bg_portrait'], true);
-		$bg_opacity_portrait = number_format((float)$masonry_params['mas_db_bg_opacity_portrait'], 2, '.', '');
+		$bg_opacity_portrait = !$masonry_params['mas_full_width_image'] && $masonry_params['mas_db_position_portrait'] != 'cover'
+			? 1
+			: number_format((float)$masonry_params['mas_db_bg_opacity_portrait'], 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-vertical .mwall-item-inner-cont {	
@@ -946,7 +952,9 @@ class MinitekWallLibResponsive
 		
 		// Images and dimensions - Small
 		$bg_small = $utilities->hex2RGB($masonry_params['mas_db_bg_small'], true);
-		$bg_opacity_small = number_format((float)$masonry_params['mas_db_bg_opacity_small'], 2, '.', '');
+		$bg_opacity_small = !$masonry_params['mas_full_width_image'] && $masonry_params['mas_db_position_small'] != 'cover'
+			? 1
+			: number_format((float)$masonry_params['mas_db_bg_opacity_small'], 2, '.', '');
 
 		$css .= '
 			#'.$mwall.' .mwall-small .mwall-item-inner-cont {	
