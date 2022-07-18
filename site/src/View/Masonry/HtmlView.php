@@ -353,45 +353,48 @@ class HtmlView extends BaseHtmlView
 		$this->perspective = '';
 		$this->flipClass = '';
 
-		if ($this->hoverBoxEffect == 'no')
-			$this->hoverClass = 'hoverShow';
-		else if ($this->hoverBoxEffect == '1')
-			$this->hoverClass = 'hoverFadeIn';
-		else if ($this->hoverBoxEffect == '2')
+		if ($this->hoverBox)
 		{
-			$this->flipBase = 'flipBase';
-			$this->perspective = 'perspective';
-			$this->flipClass = 'flipY';
-		}
-		else if ($this->hoverBoxEffect == '3')
-		{
-			$this->flipBase = 'flipBase';
-			$this->perspective = 'perspective';
-			$this->flipClass = 'flipX';
-		}
-		else if ($this->hoverBoxEffect == '4') {
-			$this->hoverOffset = 'rightOffset';
-			$this->hoverClass = 'slideInRight';
-		}
-		else if ($this->hoverBoxEffect == '5')
-		{
-			$this->hoverOffset = 'leftOffset';
-			$this->hoverClass = 'slideInLeft';
-		}
-		else if ($this->hoverBoxEffect == '6') 
-		{
-			$this->hoverOffset = 'topOffset';
-			$this->hoverClass = 'slideInTop';
-		}
-		else if ($this->hoverBoxEffect == '7')
-		{
-			$this->hoverOffset = 'bottomOffset';
-			$this->hoverClass = 'slideInBottom';
-		}
-		else if ($this->hoverBoxEffect == '8')
-		{
-			$this->hoverOffset = 'zoomOffset';
-			$this->hoverClass = 'zoomIn';
+			if ($this->hoverBoxEffect == 'no')
+				$this->hoverClass = 'hoverShow';
+			else if ($this->hoverBoxEffect == '1')
+				$this->hoverClass = 'hoverFadeIn';
+			else if ($this->hoverBoxEffect == '2')
+			{
+				$this->flipBase = 'flipBase';
+				$this->perspective = 'perspective';
+				$this->flipClass = 'flipY';
+			}
+			else if ($this->hoverBoxEffect == '3')
+			{
+				$this->flipBase = 'flipBase';
+				$this->perspective = 'perspective';
+				$this->flipClass = 'flipX';
+			}
+			else if ($this->hoverBoxEffect == '4') {
+				$this->hoverOffset = 'rightOffset';
+				$this->hoverClass = 'slideInRight';
+			}
+			else if ($this->hoverBoxEffect == '5')
+			{
+				$this->hoverOffset = 'leftOffset';
+				$this->hoverClass = 'slideInLeft';
+			}
+			else if ($this->hoverBoxEffect == '6') 
+			{
+				$this->hoverOffset = 'topOffset';
+				$this->hoverClass = 'slideInTop';
+			}
+			else if ($this->hoverBoxEffect == '7')
+			{
+				$this->hoverOffset = 'bottomOffset';
+				$this->hoverClass = 'slideInBottom';
+			}
+			else if ($this->hoverBoxEffect == '8')
+			{
+				$this->hoverOffset = 'zoomOffset';
+				$this->hoverClass = 'zoomIn';
+			}
 		}
 
 		// Transition styles
