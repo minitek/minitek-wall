@@ -1321,6 +1321,10 @@ h3.mwall-title a:focus {
   max-width: 100%;
 }
 
+.mwall-list .mwall-photo-link {
+  display: inline-block;
+}
+
 /* Other */
 
 .mwall-error {
