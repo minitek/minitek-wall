@@ -45,6 +45,17 @@ if (isset($this->suffix))
 	$suffix = $this->suffix;
 }
 
+// Widget description
+$show_description = isset($this->masonry_params['mas_description']) && $this->masonry_params['mas_description'] ? true : false;
+
+if ($show_description && $this->item->description)
+{
+	?><div class="mwall-description"><?php
+		echo $this->item->description;
+	?></div><?php 
+}
+
+// Wall container
 ?><div class="mwall-container-loader mwall-loader" id="mwall_loader_<?php echo $this->widgetID; ?>"> </div>
 <div id="mwall_container_<?php echo $this->widgetID;
 	?>" class="mwall-container mwall-<?php echo $this->mwall_layout;

@@ -41,7 +41,8 @@ class HtmlView extends BaseHtmlView
 		$this->params = $this->utilities->getParams('com_minitekwall');
 		$input = Factory::getApplication()->input;
 		$this->widgetID = $input->get('widget_id', '', 'INT');
-		$source_id = $this->model->utilities->getSourceID($this->widgetID);
+		$this->item  = $this->model->getItem($this->widgetID);
+		$source_id = $this->item->source_id;
 		$page = $input->get('page', 1, 'INT');
 
 		// Get filter data
@@ -60,7 +61,7 @@ class HtmlView extends BaseHtmlView
 		];
 
 		// Get masonry parameters
-		$masonry_params = $this->utilities->getMasonryParams($this->widgetID);
+		$masonry_params = json_decode($this->item->masonry_params, true);
 		$this->masonry_params = $masonry_params;
 
 		// Pagination
@@ -547,7 +548,7 @@ class HtmlView extends BaseHtmlView
 			if ($page === 1 && $input->get('task') != 'getFilters')
 			{
 				// Get source params
-				$source_params = $this->utilities->getSourceParams($this->widgetID);
+				$source_params = json_decode($this->item->source_params, true);
 				$this->source_params = $source_params;
 
 				// Get items ordering

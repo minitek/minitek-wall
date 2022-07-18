@@ -11,6 +11,10 @@ website: 	https://www.minitek.gr
 
 /* General */
 
+.mwall-description {
+  padding: 20px 0;
+}
+
 .mwall-container-loader {
   display: none;
   line-height: 20px;

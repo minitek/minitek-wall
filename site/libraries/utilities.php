@@ -37,19 +37,6 @@ class MinitekWallLibUtilities
 		return $params;
 	}
 
-	// Get source id
-	public static function getSourceID($widgetID)
-	{
-		$db = \JFactory::getDBO();
-		$query = ' SELECT * '
-			. ' FROM '. $db->quoteName('#__minitek_wall_widgets') . ' '
-			. ' WHERE '.$db->quoteName('id').' = ' . $db->Quote($widgetID);
-		$db->setQuery($query);
-		$source_id = $db->loadObject()->source_id;
-
-		return $source_id;
-	}
-
 	// Get source
 	public static function getSourceParams($widgetID)
 	{
@@ -60,31 +47,7 @@ class MinitekWallLibUtilities
 		$db->setQuery($query);
 		$source_params = $db->loadObject()->source_params;
 
-		return self::decodeJSONParams($source_params);
-	}
-
-	// Decode json params
-	public static function decodeJSONParams($json)
-	{
-		$params = json_decode($json, true);
-
-		return $params;
-	}
-
-	// Get masonry_params
-	public static function getMasonryParams($widgetID)
-	{
-		$db = \JFactory::getDBO();
-		$query = ' SELECT * '
-			. ' FROM '. $db->quoteName('#__minitek_wall_widgets')
-			. ' WHERE '. $db->quoteName('state').' = '. $db->Quote('1')
-			. ' AND '. $db->quoteName('id').' = '. $db->Quote($widgetID);
-
-		$db->setQuery($query);
-		$result = $db->loadObject();
-		$masonry_params = $result->masonry_params;
-
-		return self::decodeJSONParams($masonry_params);
+		return json_decode($source_params, true);
 	}
 
 	public static function cleanName($name)
