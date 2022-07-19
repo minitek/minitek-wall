@@ -141,7 +141,7 @@
               ordering: "[data-ordering] parseInt",
               fordering: "[data-fordering] parseInt",
               hits: "[data-hits] parseInt",
-              title: "[data-title]",
+              title: "[data-mw-title]",
               id: "[data-id] parseInt",
               alias: "[data-alias]",
               date: "[data-date]",

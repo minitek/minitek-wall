@@ -62,7 +62,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			{
 				?>data-id="<?php echo (int)$item->itemID; ?>" <?php 
 			}
-			?>data-title="<?php echo strtolower(htmlspecialchars($item->itemTitleRaw)); ?>" <?php 
+			?>data-mw-title="<?php echo strtolower(htmlspecialchars($item->itemTitleRaw)); ?>" <?php 
 			if (isset($item->itemDateRaw)) 
 			{
 				?>data-date="<?php echo $item->itemDateRaw; ?>" <?php
