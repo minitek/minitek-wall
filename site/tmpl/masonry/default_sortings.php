@@ -33,6 +33,9 @@ switch ($this->active_ordering)
 		$title_sort_active = 'mwall-filter-active';
 		break;
 	case 'date':
+	case 'modified':
+	case 'start':
+	case 'finish':
 		$date_sort_active = 'mwall-filter-active';
 		break;
 	case 'hits':
@@ -58,8 +61,12 @@ if ($this->masonry_params['mas_sorting_type'] == 1)
 
 			if ($this->masonry_params['mas_date_sorting'])
 			{
+				$date_sort_value = in_array($this->active_ordering, ['modified', 'start', 'finish']) 
+					? $this->active_ordering
+					: 'date';
+
 				?><li>
-					<a href="#" data-sort-value="date" class="mwall-filter <?php echo $date_sort_active; ?>"><?php 
+					<a href="#" data-sort-value="<?php echo $date_sort_value; ?>" class="mwall-filter <?php echo $date_sort_active; ?>"><?php 
 						echo \JText::_('COM_MINITEKWALL_DATE'); 
 					?></a>
 				</li><?php 
@@ -123,8 +130,12 @@ if ($this->masonry_params['mas_sorting_type'] == 2)
 
 				if ($this->masonry_params['mas_date_sorting'])
 				{
+					$date_sort_value = in_array($this->active_ordering, ['modified', 'start', 'finish']) 
+						? $this->active_ordering
+						: 'date';
+
 					?><li>
-						<a href="#" data-sort-value="date" class="mwall-filter <?php echo $date_sort_active; ?>"><?php 
+						<a href="#" data-sort-value="<?php echo $date_sort_value; ?>" class="mwall-filter <?php echo $date_sort_active; ?>"><?php 
 							echo \JText::_('COM_MINITEKWALL_DATE'); 
 						?></a>
 					</li><?php 

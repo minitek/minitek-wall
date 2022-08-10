@@ -548,12 +548,11 @@ class HtmlView extends BaseHtmlView
 			if ($page === 1 && $input->get('task') != 'getFilters')
 			{
 				// Get source params
-				$source_params = json_decode($this->item->source_params, true);
-				$this->source_params = $source_params;
+				$this->source_params = json_decode($this->item->source_params, true);
 
 				// Get items ordering
-				$this->active_ordering = $this->model->getItemsOrdering($source_params);
-				$this->active_direction = $this->model->getItemsDirection($source_params);
+				$this->active_ordering = $this->model->getItemsOrdering($this->source_params);
+				$this->active_direction = $this->model->getItemsDirection($this->source_params);
 
 				// Get Filters
 				if ($masonry_params['mas_category_filters'] ||
