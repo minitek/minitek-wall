@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Filter\OutputFilter;
+
 // Category Filters
 if ($this->masonry_params['mas_category_filters'])
 {
@@ -21,8 +23,11 @@ if ($this->masonry_params['mas_category_filters'])
 		{
 			foreach ($item->itemCategoriesRaw as $key => $itemCategory)
 			{
-				if (is_array($itemCategory))
+				if (is_array($itemCategory)) 
+				{
 					$cat_array[$itemCategory['id']] = $itemCategory;
+					$cat_array[$itemCategory['id']]['alias'] = OutputFilter::stringURLSafe($itemCategory['title']);
+				}
 			}
 		}
 
@@ -50,6 +55,7 @@ if ($this->masonry_params['mas_category_filters'])
 	$column = array();
 	$id = array();
 	$field = isset($this->masonry_params['mas_filters_ordering']) ? $this->masonry_params['mas_filters_ordering'] : 'title';
+	$field = $field === 'title' ? 'alias' : $field;
 	$direction = isset($this->masonry_params['mas_filters_ordering_dir']) ? $this->masonry_params['mas_filters_ordering_dir'] : 'asc';
 	$direction = $direction == 'asc' ? SORT_ASC : SORT_DESC;
 	$keys = array_keys($cat_array); // Store original keys
@@ -151,6 +157,7 @@ if ($this->masonry_params['mas_tag_filters'])
 			foreach ($item->itemTagsRaw as $key => $itemTag)
 			{
 				$tag_array[$itemTag['id']] = $itemTag;
+				$tag_array[$itemTag['id']]['alias'] = OutputFilter::stringURLSafe($itemTag['title']);
 			}
 		}
 
@@ -178,6 +185,7 @@ if ($this->masonry_params['mas_tag_filters'])
 	$column = array();
 	$id = array();
 	$field = isset($this->masonry_params['mas_filters_ordering']) ? $this->masonry_params['mas_filters_ordering'] : 'title';
+	$field = $field === 'title' ? 'alias' : $field;
 	$direction = isset($this->masonry_params['mas_filters_ordering_dir']) ? $this->masonry_params['mas_filters_ordering_dir'] : 'asc';
 	$direction = $direction == 'asc' ? SORT_ASC : SORT_DESC;
 	$keys = array_keys($tag_array); // Store original keys
