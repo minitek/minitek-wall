@@ -1,62 +1,62 @@
 {
-  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
-  "name": "com_minitekwall",
-  "version": "4.2.3",
-  "description": "A powerful masonry layout system for displaying content in Joomla.",
-  "license": "GPL-3.0-or-later",
-  "assets": [
-    {
-      "name": "com_minitekwall.admin-minitekwall",
-      "type": "style",
-      "uri": "com_minitekwall/admin-minitekwall.css"
-    },
-    {
-      "name": "com_minitekwall.admin-minitekwall",
-      "type": "script",
-      "uri": "com_minitekwall/admin-minitekwall.js",
-      "dependencies": ["core"]
-    },
-    {
-      "name": "com_minitekwall.admin-dashboard",
-      "type": "script",
-      "uri": "com_minitekwall/admin-dashboard.js",
-      "dependencies": ["core"]
-    },
-    {
-      "name": "com_minitekwall.fontawesome",
-      "type": "script",
-      "uri": "https://kit.fontawesome.com/ddbd3bdfdd.js"
-    },
-    {
-      "name": "com_minitekwall.minitekwall",
-      "type": "style",
-      "uri": "com_minitekwall/minitekwall.css"
-    },
-    {
-      "name": "com_minitekwall.imagesloaded",
-      "type": "script",
-      "uri": "com_minitekwall/imagesloaded.pkgd.min.js"
-    },
-    {
-      "name": "com_minitekwall.isotope",
-      "type": "script",
-      "uri": "com_minitekwall/isotope.pkgd.min.js"
-    },
-    {
-      "name": "com_minitekwall.packery-mode",
-      "type": "script",
-      "uri": "com_minitekwall/packery-mode.pkgd.min.js"
-    },
-    {
-      "name": "com_minitekwall.spin",
-      "type": "script",
-      "uri": "com_minitekwall/spin.min.js"
-    },
-    {
-      "name": "com_minitekwall.minitekwall",
-      "type": "script",
-      "uri": "com_minitekwall/minitekwall.js",
-      "dependencies": ["core"]
-    }
-  ]
+    "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+    "name": "com_minitekwall",
+    "version": "4.2.4",
+    "description": "A powerful masonry layout system for displaying content in Joomla.",
+    "license": "GPL-3.0-or-later",
+    "assets": [
+        {
+            "name": "com_minitekwall.admin-minitekwall",
+            "type": "style",
+            "uri": "com_minitekwall/admin-minitekwall.css"
+        },
+        {
+            "name": "com_minitekwall.admin-minitekwall",
+            "type": "script",
+            "uri": "com_minitekwall/admin-minitekwall.js",
+            "dependencies": ["core"]
+        },
+        {
+            "name": "com_minitekwall.admin-dashboard",
+            "type": "script",
+            "uri": "com_minitekwall/admin-dashboard.js",
+            "dependencies": ["core"]
+        },
+        {
+            "name": "com_minitekwall.fontawesome",
+            "type": "script",
+            "uri": "https://kit.fontawesome.com/ddbd3bdfdd.js"
+        },
+        {
+            "name": "com_minitekwall.minitekwall",
+            "type": "style",
+            "uri": "com_minitekwall/minitekwall.css"
+        },
+        {
+            "name": "com_minitekwall.imagesloaded",
+            "type": "script",
+            "uri": "com_minitekwall/imagesloaded.pkgd.min.js"
+        },
+        {
+            "name": "com_minitekwall.isotope",
+            "type": "script",
+            "uri": "com_minitekwall/isotope.pkgd.min.js"
+        },
+        {
+            "name": "com_minitekwall.packery-mode",
+            "type": "script",
+            "uri": "com_minitekwall/packery-mode.pkgd.min.js"
+        },
+        {
+            "name": "com_minitekwall.spin",
+            "type": "script",
+            "uri": "com_minitekwall/spin.min.js"
+        },
+        {
+            "name": "com_minitekwall.minitekwall",
+            "type": "script",
+            "uri": "com_minitekwall/minitekwall.js",
+            "dependencies": ["core"]
+        }
+    ]
 }
