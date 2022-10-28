@@ -1608,6 +1608,14 @@
 				<option value="1">JYES</option>
 			</field>
 
+			<field
+				name="mas_url_hash"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_URL_HASH_LABEL"
+				description="COM_MINITEKWALL_FIELD_URL_HASH_DESC"
+			/>
+
 			<field type="separator" text="COM_MINITEKWALL_FIELD_FILTERS_SEPARATOR" />
 
 			<field
@@ -1616,6 +1624,14 @@
 				class="info"
 				label="COM_MINITEKWALL_FIELD_FILTERS_MODE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FILTERS_MODE_DESC"
+			/>
+
+			<field
+				name="mas_multiple_filters"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_MULTIPLE_FILTERS_LABEL"
+				description="COM_MINITEKWALL_FIELD_MULTIPLE_FILTERS_DESC"
 			/>
 
 			<field
