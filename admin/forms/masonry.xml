@@ -1890,6 +1890,18 @@
 			/>
 
 			<field
+				name="mas_md_hide_images"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
+				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
 				name="mas_md_cell_height"
 				type="number"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
@@ -1932,6 +1944,18 @@
 				last="10"
 				step="1"
 			/>
+
+			<field
+				name="mas_sm_hide_images"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
+				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
 
 			<field
 				name="mas_sm_cell_height"
@@ -1978,6 +2002,18 @@
 			/>
 
 			<field
+				name="mas_xs_hide_images"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
+				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
 				name="mas_xs_cell_height"
 				type="number"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
@@ -2010,6 +2046,18 @@
 				last="10"
 				step="1"
 			/>
+
+			<field
+				name="mas_xxs_hide_images"
+				type="radio"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
+				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
 
 			<field
 				name="mas_xxs_cell_height"

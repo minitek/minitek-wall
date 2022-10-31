@@ -1151,6 +1151,7 @@ class MinitekWallLibResponsive
 		$responsive_md = (int)$masonry_params['mas_responsive_md'];
 		$responsive_md_min = $responsive_md - 1;
 		$md_cell_height = '240';
+		$md_hide_images = isset($masonry_params['mas_md_hide_images']) && $masonry_params['mas_md_hide_images'] ? true : false;
 
 		if (array_key_exists('mas_md_cell_height', $masonry_params))
 		{
@@ -1162,6 +1163,7 @@ class MinitekWallLibResponsive
 		$responsive_sm = (int)$masonry_params['mas_responsive_sm'];
 		$responsive_sm_min = $responsive_sm - 1;
 		$sm_cell_height = '240';
+		$sm_hide_images = isset($masonry_params['mas_sm_hide_images']) && $masonry_params['mas_sm_hide_images'] ? true : false;
 
 		if (array_key_exists('mas_sm_cell_height', $masonry_params))
 		{
@@ -1173,6 +1175,7 @@ class MinitekWallLibResponsive
 		$responsive_xs = (int)$masonry_params['mas_responsive_xs'];
 		$responsive_xs_min = $responsive_xs - 1;
 		$xs_cell_height = '240';
+		$xs_hide_images = isset($masonry_params['mas_xs_hide_images']) && $masonry_params['mas_xs_hide_images'] ? true : false;
 
 		if (array_key_exists('mas_xs_cell_height', $masonry_params))
 		{
@@ -1182,6 +1185,7 @@ class MinitekWallLibResponsive
 		$xxs_type = $masonry_params['mas_xxs_type'];
 		$responsive_xxs_num = (int)$masonry_params['mas_responsive_xxs_num'];
 		$xxs_cell_height = '240';
+		$xxs_hide_images = isset($masonry_params['mas_xxs_hide_images']) && $masonry_params['mas_xxs_hide_images'] ? true : false;
 
 		if (array_key_exists('mas_xxs_cell_height', $masonry_params))
 		{
@@ -1424,6 +1428,14 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
+
+				// Hide images
+				if ($md_hide_images) 
+				{
+					$css .= '#'.$mwall.' .mwall-cover {
+						display: none;
+					}';
+				}
 			$css .= '}';
 
 			if ($detail_box_column) 
@@ -1812,6 +1824,14 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
+
+				// Hide images
+				if ($sm_hide_images) 
+				{
+					$css .= '#'.$mwall.' .mwall-cover {
+						display: none;
+					}';
+				}
 			$css .= '}';
 
 			if ($detail_box_column) 
@@ -2190,6 +2210,14 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
+
+				// Hide images
+				if ($xs_hide_images) 
+				{
+					$css .= '#'.$mwall.' .mwall-cover {
+						display: none;
+					}';
+				}
 			$css .= '}';
 
 			if ($detail_box_column) 
@@ -2569,6 +2597,14 @@ class MinitekWallLibResponsive
 					color: rgba('.$db_color.', 1) !important;
 					border: 1px solid rgba('.$db_color.', 1) !important;
 				}';
+
+				// Hide images
+				if ($xxs_hide_images) 
+				{
+					$css .= '#'.$mwall.' .mwall-cover {
+						display: none;
+					}';
+				}
 			$css .= '}';
 
 			if ($detail_box_column) 
@@ -2792,12 +2828,7 @@ class MinitekWallLibResponsive
 			@media only screen and (max-width: 550px)
 			{
 				.mwall-list #'.$mwall.' .mwall-cover {
-					width: 100%;
-					max-width: inherit;
-				}
-				.mwall-list #'.$mwall.' .mwall-photo-link img {
-					width: 100%;
-					max-width: 100%;
+					display: none;
 				}
 			}';
 		}
