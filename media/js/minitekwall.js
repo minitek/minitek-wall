@@ -31,6 +31,15 @@
             // Initialize wall
             this.initializeWall();
 
+            // Initialize filters
+            this.filters = {
+                category: [],
+                tag: [],
+                date: [],
+                ordering: "",
+                direction: "",
+            };
+
             // Dynamic filters
             if (this.filtersEnabled && this.filtersMode == "dynamic")
                 this.dynamicFilters();
@@ -427,6 +436,12 @@
                             a.addEventListener("click", function (e) {
                                 e.preventDefault();
 
+                                var filter = this.getAttribute("data-filter");
+                                var filterGroup =
+                                    buttonGroup.getAttribute(
+                                        "data-filter-group"
+                                    );
+
                                 if (
                                     buttonGroup.querySelector(
                                         ".mwall-filter-active"
@@ -438,7 +453,21 @@
                                             "mwall-filter-active"
                                         );
 
-                                a.classList.add("mwall-filter-active");
+                                // Toggle active filter
+                                if (self.filters[filterGroup].includes(filter))
+                                    a.classList.remove("mwall-filter-active");
+                                else a.classList.add("mwall-filter-active");
+
+                                if (
+                                    !buttonGroup.querySelectorAll(
+                                        ".mwall-filter-active"
+                                    ).length
+                                )
+                                    buttonGroup
+                                        .querySelector(
+                                            ".mwall-filter[data-filter='']"
+                                        )
+                                        .classList.add("mwall-filter-active");
                             });
                         });
                 });
@@ -550,7 +579,6 @@
 
         dynamicFilters() {
             const self = this;
-            var filters = {};
 
             // Filters
             if (self.container.querySelector(".mwall-filters-container")) {
@@ -568,12 +596,38 @@
                             e.target.classList.contains("mwall-filter")
                         ) {
                             var _this = e.target;
+                            var data_filter = _this.getAttribute("data-filter");
+
+                            // Get group key
+                            var filterGroup = _this
+                                .closest(".button-group")
+                                .getAttribute("data-filter-group");
+
+                            // Check whether filter exists
+                            let index =
+                                self.filters[filterGroup].indexOf(data_filter);
+
+                            // Add filter to group if it does not exist
+                            if (index === -1) {
+                                if (data_filter)
+                                    self.filters[filterGroup] = [data_filter];
+                                else self.filters[filterGroup] = [];
+                            } else {
+                                self.filters[filterGroup] = [];
+                            }
+
+                            var filterValue = "";
+
+                            for (var prop in self.filters) {
+                                for (var filter in prop) {
+                                    if (self.filters[prop][filter])
+                                        filterValue +=
+                                            self.filters[prop][filter];
+                                }
+                            }
 
                             // Show filter name in dropdown
                             if (_this.closest(".mwall-dropdown")) {
-                                var data_filter_attr =
-                                    _this.getAttribute("data-filter");
-
                                 if (
                                     typeof data_filter_attr !==
                                         typeof undefined &&
@@ -581,9 +635,19 @@
                                 ) {
                                     var filter_text;
 
-                                    if (data_filter_attr.length)
-                                        filter_text = _this.textContent;
-                                    else
+                                    if (data_filter_attr.length) {
+                                        if (index === -1)
+                                            filter_text = _this.textContent;
+                                        // Deselect filter
+                                        else if (index >= 0) {
+                                            filter_text = _this
+                                                .closest(".mwall-dropdown")
+                                                .querySelector(
+                                                    ".dropdown-label span"
+                                                )
+                                                .getAttribute("data-label");
+                                        }
+                                    } else
                                         filter_text = _this
                                             .closest(".mwall-dropdown")
                                             .querySelector(
@@ -599,22 +663,7 @@
                                 }
                             }
 
-                            // Get group key
-                            var filterGroup = _this
-                                .closest(".button-group")
-                                .getAttribute("data-filter-group");
-
-                            // Set filter for group
-                            filters[filterGroup] =
-                                _this.getAttribute("data-filter");
-
-                            // Combine filters
-                            var filterValue = "";
-
-                            for (var prop in filters) {
-                                filterValue += filters[prop];
-                            }
-
+                            // Show results message
                             self.wall.once("layoutComplete", function (items) {
                                 self.resultsMessage(self, items);
                             });
@@ -740,7 +789,7 @@
                         // Reset filters
                         var filterGroup =
                             buttonGroup.getAttribute("data-filter-group");
-                        filters[filterGroup] = "";
+                        self.filters[filterGroup] = [];
                     });
 
                 // Reset dropdown filters text
