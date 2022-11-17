@@ -659,7 +659,6 @@ class HtmlView extends BaseHtmlView
  	public function getColumnsItemOptions()
  	{
 		$options = array(
-		"db_class" => "",
 		"title_class" => "",
 		"introtext_class" => "",
 		"date_class" => "",
@@ -677,9 +676,6 @@ class HtmlView extends BaseHtmlView
 		$options['db_bg_class'] = $this->utilities->hex2RGB($this->detailBoxBackgroundColumns, true);
 		$options['db_bg_opacity_class'] = number_format((float)$this->detailBoxBackgroundOpacityColumns, 2, '.', '');
 		$options['position_class'] = 'content-'.$this->detailBoxPositionColumns;
-
-		if (!$this->detailBoxColumns)
-			$options['db_class'] = 'db-hidden';
 
 		if (!$this->detailBoxTitleColumns)
 			$options['title_class'] = 'title-hidden';

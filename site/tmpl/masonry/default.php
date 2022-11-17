@@ -114,7 +114,7 @@ if ($show_description && $this->item->description)
 	?></div><?php
 
 	// Modal images
-	if ($this->hoverBox && $this->hoverBoxZoomButton && $this->mas_images) 
+	if ($this->hoverBox && $this->hoverBoxZoomButton && $this->mas_images == '1') 
 	{
 		echo HTMLHelper::_(
 			'bootstrap.renderModal',
