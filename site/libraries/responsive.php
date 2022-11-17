@@ -306,6 +306,7 @@ class MinitekWallLibResponsive
 					right: 0;
 					left: 0;
 					bottom: 0;
+					top: auto;
 					height: 50%;
 				}';
 			}
@@ -555,6 +556,7 @@ class MinitekWallLibResponsive
 					right: 0;
 					left: 0;
 					bottom: 0;
+					top: auto;
 					height: 50%;
 				}';
 			}
@@ -804,6 +806,7 @@ class MinitekWallLibResponsive
 					right: 0;
 					left: 0;
 					bottom: 0;
+					top: auto;
 					height: 50%;
 				}';
 			}
@@ -1053,6 +1056,7 @@ class MinitekWallLibResponsive
 					right: 0;
 					left: 0;
 					bottom: 0;
+					top: auto;
 					height: 50%;
 				}';
 			}
@@ -1065,7 +1069,7 @@ class MinitekWallLibResponsive
 			}
 
 			#'.$mwall.' .mwall-small .mwall-item-inner.mwall-no-image {
-				display: block;
+				display: block !important;
 				background-color: rgba('.$bg_small.','.$bg_opacity_small.');
 			}';
 		}
@@ -1294,6 +1298,9 @@ class MinitekWallLibResponsive
 					$css .= 
 					'#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
+					}
+					#'.$mwall.' .mwall-item-inner-cont {	
+						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
 				}
 
@@ -1432,8 +1439,10 @@ class MinitekWallLibResponsive
 				// Hide images
 				if ($md_hide_images) 
 				{
-					$css .= '#'.$mwall.' .mwall-cover {
-						display: none;
+					$css .= '
+					#'.$mwall.' .mwall-cover,
+					#'.$mwall.' .mwall-photo-link {
+						display: none !important;
 					}';
 				}
 			$css .= '}';
@@ -1690,6 +1699,9 @@ class MinitekWallLibResponsive
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
+					}
+					#'.$mwall.' .mwall-item-inner-cont {	
+						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
 				}
 
@@ -1828,8 +1840,10 @@ class MinitekWallLibResponsive
 				// Hide images
 				if ($sm_hide_images) 
 				{
-					$css .= '#'.$mwall.' .mwall-cover {
-						display: none;
+					$css .= '
+					#'.$mwall.' .mwall-cover,
+					#'.$mwall.' .mwall-photo-link {
+						display: none !important;
 					}';
 				}
 			$css .= '}';
@@ -2076,6 +2090,9 @@ class MinitekWallLibResponsive
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
+					}
+					#'.$mwall.' .mwall-item-inner-cont {	
+						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
 				}
 
@@ -2214,8 +2231,10 @@ class MinitekWallLibResponsive
 				// Hide images
 				if ($xs_hide_images) 
 				{
-					$css .= '#'.$mwall.' .mwall-cover {
-						display: none;
+					$css .= '
+					#'.$mwall.' .mwall-cover,
+					#'.$mwall.' .mwall-photo-link {
+						display: none !important;
 					}';
 				}
 			$css .= '}';
@@ -2462,6 +2481,9 @@ class MinitekWallLibResponsive
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
 						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
+					}
+					#'.$mwall.' .mwall-item-inner-cont {	
+						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
 					}';
 				}
 
@@ -2601,8 +2623,10 @@ class MinitekWallLibResponsive
 				// Hide images
 				if ($xxs_hide_images) 
 				{
-					$css .= '#'.$mwall.' .mwall-cover {
-						display: none;
+					$css .= '
+					#'.$mwall.' .mwall-cover,
+					#'.$mwall.' .mwall-photo-link {
+						display: none !important;
 					}';
 				}
 			$css .= '}';
