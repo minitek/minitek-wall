@@ -1,8 +1,8 @@
 {
     "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
     "name": "com_minitekwall",
-    "version": "4.2.6",
-    "description": "A powerful masonry layout system for displaying content in Joomla.",
+    "version": "4.2.7",
+    "description": "A masonry layout system for Joomla.",
     "license": "GPL-3.0-or-later",
     "assets": [
         {
