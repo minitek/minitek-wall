@@ -74,6 +74,7 @@
 				first="1"
 				last="10"
 				step="1"
+				showon="mas_grid:98o"
 			/>
 
 			<field
@@ -94,6 +95,7 @@
 				label="COM_MINITEKWALL_FIELD_FORCE_EQUAL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_FORCE_EQUAL_HEIGHT_DESC"
 				default="0"
+				showon="mas_grid:98o"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -143,14 +145,14 @@
 
 			<field
 				name="mas_images"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				label="COM_MINITEKWALL_FIELD_SHOW_IMAGES_LABEL"
-				description="COM_MINITEKWALL_FIELD_SHOW_IMAGES_DESC"
+				type="list"
+				label="COM_MINITEKWALL_FIELD_SHOW_IMAGES_OR_VIDEOS_LABEL"
+				description="COM_MINITEKWALL_FIELD_SHOW_IMAGES_OR_VIDEOS_DESC"
 				default="1"
 			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
+				<option value="0">JNONE</option>
+				<option value="1">COM_MINITEKWALL_FIELD_OPTION_IMAGES</option>
+				<option value="2" disabled="disabled">COM_MINITEKWALL_FIELD_OPTION_VIDEOS</option>
 			</field>
 
 			<field
@@ -160,6 +162,7 @@
 				label="COM_MINITEKWALL_FIELD_IMAGE_LINK_LABEL"
 				description="COM_MINITEKWALL_FIELD_IMAGE_LINK_DESC"
 				default="1"
+				showon="mas_images:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -172,6 +175,7 @@
 				label="COM_MINITEKWALL_FIELD_CROP_IMAGES_LABEL"
 				description="COM_MINITEKWALL_FIELD_CROP_IMAGES_DESC"
 				default="0"
+				showon="mas_images:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -185,6 +189,7 @@
 				default="400"
 				min="0"
 				step="1"
+				showon="mas_images:1[AND]mas_crop_images:1"
 			/>
 
 			<field
@@ -195,6 +200,7 @@
 				default="300"
 				min="0"
 				step="1"
+				showon="mas_images:1[AND]mas_crop_images:1"
 			/>
 
 			<field
@@ -204,6 +210,7 @@
 				label="COM_MINITEKWALL_FIELD_PRESERVE_ASPECT_RATIO_LABEL"
 				description="COM_MINITEKWALL_FIELD_PRESERVE_ASPECT_RATIO_DESC"
 				default="0"
+				showon="mas_images:1[AND]mas_crop_images:0[AND]mas_grid:98o"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -216,6 +223,7 @@
 				label="COM_MINITEKWALL_FIELD_FULL_WIDTH_IMAGE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FULL_WIDTH_IMAGE_DESC"
 				default="1"
+				showon="mas_images:1[AND]mas_grid!:98o,99v"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -227,6 +235,7 @@
 				label="COM_MINITEKWALL_FIELD_FALLBACK_IMAGE_LABEL"
 				description="COM_MINITEKWALL_FIELD_FALLBACK_IMAGE_DESC"
 				default=""
+				showon="mas_images:1"
 			/>
 
 			<field
@@ -236,6 +245,7 @@
 				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_OPACITY_LABEL"
 				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_OPACITY_DESC"
 				default="0"
+				showon="mas_images:1"
 			/>
 
 			<field
@@ -245,6 +255,7 @@
 				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SCALE_LABEL"
 				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SCALE_DESC"
 				default="0"
+				showon="mas_images:1"
 			/>
 
 			<field
@@ -254,6 +265,7 @@
 				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SPEED_LABEL"
 				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_SPEED_DESC"
 				default="0"
+				showon="mas_images:1"
 			/>
 
 			<field
@@ -263,6 +275,7 @@
 				label="COM_MINITEKWALL_FIELD_IMAGE_HOVER_EASING_LABEL"
 				description="COM_MINITEKWALL_FIELD_IMAGE_HOVER_EASING_DESC"
 				default="0"
+				showon="mas_images:1"
 			/>
 
 		</fieldset>
@@ -398,6 +411,7 @@
 				default="left"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
 				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
@@ -412,6 +426,7 @@
 				default="#dd5f5f"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				showon="mas_db_big:1"
 			/>
 
 			<field
@@ -422,7 +437,8 @@
 				default="0.75"
 				min="0" 
 				max="1" 
-				step="0.01" 
+				step="0.01"
+				showon="mas_db_big:1"
 			/>
 
 			<field
@@ -431,6 +447,7 @@
 				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+				showon="mas_db_big:1"
 			/>
 
 			<field
@@ -440,6 +457,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -452,6 +470,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -464,6 +483,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -476,6 +496,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -488,6 +509,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -500,6 +522,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -512,6 +535,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -524,6 +548,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -536,6 +561,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+				showon="mas_db_big:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -566,6 +592,7 @@
 				default="left"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
 				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
@@ -580,6 +607,7 @@
 				default="#1b98e0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				showon="mas_db_lscape:1"
 			/>
 
 			<field
@@ -590,7 +618,8 @@
 				default="0.75"
 				min="0" 
 				max="1" 
-				step="0.01" 
+				step="0.01"
+				showon="mas_db_lscape:1"
 			/>
 
 			<field
@@ -599,6 +628,7 @@
 				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+				showon="mas_db_lscape:1"
 			/>
 
 			<field
@@ -608,6 +638,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -620,6 +651,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -632,6 +664,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -644,6 +677,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -656,6 +690,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -668,6 +703,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -680,6 +716,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -692,6 +729,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -704,6 +742,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -734,6 +773,7 @@
 				default="bottom"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
 				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
@@ -748,6 +788,7 @@
 				default="#e66eb8"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				showon="mas_db_portrait:1"
 			/>
 
 			<field
@@ -758,7 +799,8 @@
 				default="0.75"
 				min="0" 
 				max="1" 
-				step="0.01" 
+				step="0.01"
+				showon="mas_db_portrait:1"
 			/>
 
 			<field
@@ -767,6 +809,7 @@
 				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+				showon="mas_db_portrait:1"
 			/>
 
 			<field
@@ -776,6 +819,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -788,6 +832,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -800,6 +845,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -812,6 +858,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -824,6 +871,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -836,6 +884,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -848,6 +897,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -860,6 +910,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -872,6 +923,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+				showon="mas_db_portrait:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -902,6 +954,7 @@
 				default="cover"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="top">COM_MINITEKWALL_FIELD_TOP</option>
 				<option value="right">COM_MINITEKWALL_FIELD_RIGHT</option>
@@ -916,6 +969,7 @@
 				default="#24a9b7"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				showon="mas_db_small:1"
 			/>
 
 			<field
@@ -926,7 +980,8 @@
 				default="0.75"
 				min="0" 
 				max="1" 
-				step="0.01" 
+				step="0.01"
+				showon="mas_db_small:1"
 			/>
 
 			<field
@@ -935,6 +990,7 @@
 				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+				showon="mas_db_small:1"
 			/>
 
 			<field
@@ -944,6 +1000,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -956,6 +1013,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -968,6 +1026,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -980,6 +1039,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -992,6 +1052,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1004,6 +1065,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1016,6 +1078,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1028,6 +1091,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1040,6 +1104,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+				showon="mas_db_small:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1070,6 +1135,7 @@
 				default="below"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_POSITION_COLUMNS_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="below">COM_MINITEKWALL_FIELD_OUTSIDE_BELOW</option>
 				<option value="bottom">COM_MINITEKWALL_FIELD_INSIDE_BOTTOM</option>
@@ -1082,6 +1148,7 @@
 				default="#1b98e0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_BG_DESC"
+				showon="mas_db_columns:1"
 			/>
 
 			<field
@@ -1092,7 +1159,8 @@
 				default="0.75"
 				min="0" 
 				max="1" 
-				step="0.01" 
+				step="0.01"
+				showon="mas_db_columns:1"
 			/>
 
 			<field
@@ -1101,6 +1169,7 @@
 				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TEXT_COLOR_DESC"
+				showon="mas_db_columns:1"
 			/>
 
 			<field
@@ -1110,6 +1179,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1122,6 +1192,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1134,6 +1205,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_DATE_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1146,6 +1218,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_CATEGORY_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1158,6 +1231,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_AUTHOR_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1170,6 +1244,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TAGS_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1182,6 +1257,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1194,6 +1270,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1206,6 +1283,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_READMORE_DESC"
+				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1233,6 +1311,7 @@
 				default="#eb885e"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_BG_DESC"
+				showon="mas_hb:1"
 			/>
 
 			<field
@@ -1243,7 +1322,8 @@
 				default="0.75"
 				min="0" 
 				max="1" 
-				step="0.01" 
+				step="0.01"
+				showon="mas_hb:1"
 			/>
 
 			<field
@@ -1252,6 +1332,7 @@
 				default="#ffffff"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TEXT_COLOR_DESC"
+				showon="mas_hb:1"
 			/>
 
 			<field
@@ -1261,6 +1342,7 @@
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_DESC"
 				size="1"
 				default="1"
+				showon="mas_hb:1"
 			>
 				<option value="no">COM_MINITEKWALL_SIMPLE_NO_EFFECTS</option>
 				<option value="1">COM_MINITEKWALL_SIMPLE_FADE</option>
@@ -1281,7 +1363,8 @@
 				default="0.4"
 				min="0" 
 				max="10" 
-				step="0.1" 
+				step="0.1"
+				showon="mas_hb:1[AND]mas_hb_effect!:no"
 			/>
 
 			<field
@@ -1290,6 +1373,7 @@
 				default="cubic-bezier(0.445, 0.05, 0.55, 0.95)"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_EASING_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_EFFECT_EASING_DESC"
+				showon="mas_hb:1[AND]mas_hb_effect!:no"
 			>
 				<option value="cubic-bezier(0.47, 0, 0.745, 0.715)">easeInSine</option>
 				<option value="cubic-bezier(0.39, 0.575, 0.565, 1)">easeOutSine</option>
@@ -1324,6 +1408,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1337,6 +1422,7 @@
 				default="15"
 				min="0"
 				step="1"
+				showon="mas_hb:1[AND]mas_hb_title:1"
 			/>
 
 			<field
@@ -1346,6 +1432,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1359,6 +1446,7 @@
 				default="15"
 				min="0"
 				step="1"
+				showon="mas_hb:1[AND]mas_hb_introtext:1"
 			/>
 
 			<field
@@ -1368,6 +1456,7 @@
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_STRIP_TAGS_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_STRIP_TAGS_DESC"
 				default="1"
+				showon="mas_hb:1[AND]mas_hb_introtext:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -1380,6 +1469,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1392,6 +1482,7 @@
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_FORMAT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_DATE_FORMAT_DESC"
 				default="F d, Y"
+				showon="mas_hb:1[AND]mas_hb_date:1"
 			/>
 
 			<field
@@ -1401,6 +1492,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_CATEGORY_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_CATEGORY_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1413,6 +1505,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_AUTHOR_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_AUTHOR_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1425,6 +1518,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_HITS_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1437,6 +1531,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_LINK_BUTTON_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_LINK_BUTTON_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1449,6 +1544,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_ZOOM_BUTTON_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_ZOOM_BUTTON_DESC"
+				showon="mas_hb:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1461,6 +1557,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_MODAL_TITLE_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_MODAL_TITLE_DESC"
+				showon="mas_hb:1[AND]mas_hb_zoom:1"
 			>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
@@ -1483,8 +1580,8 @@
 			<field
 				name="mas_starting_limit"
 				type="number"
-				label="COM_MINITEKWALL_FIELD_PAGE_LIMIT_LABEL"
-				description="COM_MINITEKWALL_FIELD_PAGE_LIMIT_DESC"
+				label="COM_MINITEKWALL_FIELD_STARTING_LIMIT_LABEL"
+				description="COM_MINITEKWALL_FIELD_STARTING_LIMIT_DESC"
 				default="7"
 				min="1"
 				step="1"
@@ -1603,6 +1700,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_CLOSE_FILTERS_LABEL"
 				description="COM_MINITEKWALL_FIELD_CLOSE_FILTERS_DESC"
+				showon="mas_filter_type:2[OR]mas_sorting_type:2"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
@@ -1842,7 +1940,7 @@
 				<option value="1">JYES</option>
 			</field>
 
-			<field type="separator" text="COM_MINITEKWALL_FIELD_L_SETTINGS" />
+			<field type="separator" text="COM_MINITEKWALL_FIELD_L_SETTINGS" showon="mas_enable_responsive:1" />
 
 			<field
 				name="mas_responsive_lg"
@@ -1852,6 +1950,7 @@
 				default="1139"
 				min="0"
 				step="1"
+				showon="mas_enable_responsive:1"
 			/>
 
 			<field
@@ -1862,9 +1961,10 @@
 				default="240"
 				min="0"
 				step="1"
+				showon="mas_enable_responsive:1"
 			/>
 
-			<field type="separator" text="COM_MINITEKWALL_FIELD_M_SETTINGS" />
+			<field type="separator" text="COM_MINITEKWALL_FIELD_M_SETTINGS" showon="mas_enable_responsive:1" />
 
 			<field
 				name="mas_responsive_md"
@@ -1874,6 +1974,18 @@
 				default="939"
 				min="0"
 				step="1"
+				showon="mas_enable_responsive:1"
+			/>
+
+			<field
+				name="mas_md_cell_height"
+				type="number"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
+				showon="mas_enable_responsive:1"
 			/>
 
 			<field
@@ -1882,6 +1994,7 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+				showon="mas_enable_responsive:1"
 			>
 				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
 				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
@@ -1896,6 +2009,7 @@
 				first="1"
 				last="10"
 				step="1"
+				showon="mas_enable_responsive:1[AND]mas_md_type:1"
 			/>
 
 			<field
@@ -1905,22 +2019,13 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
 				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+				showon="mas_enable_responsive:1[AND]mas_md_type:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
-			<field
-				name="mas_md_cell_height"
-				type="number"
-				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
-				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
-				default="240"
-				min="0"
-				step="1"
-			/>
-
-			<field type="separator" text="COM_MINITEKWALL_FIELD_S_SETTINGS" />
+			<field type="separator" text="COM_MINITEKWALL_FIELD_S_SETTINGS" showon="mas_enable_responsive:1" />
 
 			<field
 				name="mas_responsive_sm"
@@ -1930,6 +2035,18 @@
 				default="719"
 				min="0"
 				step="1"
+				showon="mas_enable_responsive:1"
+			/>
+
+			<field
+				name="mas_sm_cell_height"
+				type="number"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
+				showon="mas_enable_responsive:1"
 			/>
 
 			<field
@@ -1938,6 +2055,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+				showon="mas_enable_responsive:1"
 			>
 				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
 				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
@@ -1952,6 +2070,7 @@
 				first="1"
 				last="10"
 				step="1"
+				showon="mas_enable_responsive:1[AND]mas_sm_type:1"
 			/>
 
 			<field
@@ -1961,22 +2080,13 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
 				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+				showon="mas_enable_responsive:1[AND]mas_sm_type:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
-			<field
-				name="mas_sm_cell_height"
-				type="number"
-				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
-				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
-				default="240"
-				min="0"
-				step="1"
-			/>
-
-			<field type="separator" text="COM_MINITEKWALL_FIELD_XS_SETTINGS" />
+			<field type="separator" text="COM_MINITEKWALL_FIELD_XS_SETTINGS" showon="mas_enable_responsive:1" />
 
 			<field
 				name="mas_responsive_xs"
@@ -1986,6 +2096,18 @@
 				default="479"
 				min="0"
 				step="1"
+				showon="mas_enable_responsive:1"
+			/>
+
+			<field
+				name="mas_xs_cell_height"
+				type="number"
+				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
+				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
+				default="240"
+				min="0"
+				step="1"
+				showon="mas_enable_responsive:1"
 			/>
 
 			<field
@@ -1994,6 +2116,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+				showon="mas_enable_responsive:1"
 			>
 				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
 				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
@@ -2008,6 +2131,7 @@
 				first="1"
 				last="10"
 				step="1"
+				showon="mas_enable_responsive:1[AND]mas_xs_type:1"
 			/>
 
 			<field
@@ -2017,22 +2141,24 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
 				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+				showon="mas_enable_responsive:1[AND]mas_xs_type:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
+			<field type="separator" text="COM_MINITEKWALL_FIELD_XXS_SETTINGS" showon="mas_enable_responsive:1" />
+
 			<field
-				name="mas_xs_cell_height"
+				name="mas_xxs_cell_height"
 				type="number"
 				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
 				default="240"
 				min="0"
 				step="1"
+				showon="mas_enable_responsive:1"
 			/>
-
-			<field type="separator" text="COM_MINITEKWALL_FIELD_XXS_SETTINGS" />
 
 			<field
 				name="mas_xxs_type"
@@ -2040,6 +2166,7 @@
 				default="1"
 				label="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_LABEL"
 				description="COM_MINITEKWALL_FIELD_LAYOUT_TYPE_DESC"
+				showon="mas_enable_responsive:1"
 			>
 				<option value="0">COM_MINITEKWALL_FIELD_OPTION_MASONRY_GRID</option>
 				<option value="1">COM_MINITEKWALL_FIELD_OPTION_EQUAL_COLUMNS</option>
@@ -2054,6 +2181,7 @@
 				first="1"
 				last="10"
 				step="1"
+				showon="mas_enable_responsive:1[AND]mas_xxs_type:1"
 			/>
 
 			<field
@@ -2063,20 +2191,11 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_HIDE_IMAGES_LABEL"
 				description="COM_MINITEKWALL_FIELD_HIDE_IMAGES_DESC"
+				showon="mas_enable_responsive:1[AND]mas_xxs_type:1"
 			>
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
-
-			<field
-				name="mas_xxs_cell_height"
-				type="number"
-				label="COM_MINITEKWALL_FIELD_CELL_HEIGHT_LABEL"
-				description="COM_MINITEKWALL_FIELD_CELL_HEIGHT_DESC"
-				default="240"
-				min="0"
-				step="1"
-			/>
 
 		</fieldset>
 

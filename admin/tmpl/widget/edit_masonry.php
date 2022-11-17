@@ -27,7 +27,7 @@ use Joomla\CMS\Language\Text;
 
 <?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_image_settings', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_IMAGES')); ?>
+<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_image_settings', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_IMAGES_AND_VIDEOS')); ?>
 
 	<div class="row">
 		<div class="col-12">
