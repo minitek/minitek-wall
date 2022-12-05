@@ -12,7 +12,6 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\View\GenericDataException;
 use Joomla\Component\Installer\Administrator\Model\InstallModel;
-use Joomla\Component\Installer\Administrator\Model\ManageModel;
 
 jimport('joomla.filesystem.folder');
 
@@ -54,70 +53,40 @@ class com_minitekwallInstallerScript
 			{
 				self::update4015($parent);
 			}
+
+			// v4.3.0 - Run update script if installed version is older than 4.2.9
+			if (isset($this->installed_version) && $this->installed_version && version_compare($this->installed_version, '4.2.9', '<'))
+			{
+				self::update429($parent);
+			}
 		}
 	}
-
-	/*
-	 * $parent is the class calling this method.
-	 * install runs after the database scripts are executed.
-	 * If the extension is new, the install method is run.
-	 * If install returns false, Joomla will abort the install and undo everything already done.
-	 */
-	function install($parent)
-	{}
-
-	/*
-	 * $parent is the class calling this method.
-	 * update runs after the database scripts are executed.
-	 * If the extension exists, then the update method is run.
-	 * If this returns false, Joomla will abort the update and undo everything already done.
-	 */
-	function update($parent)
-	{}
-
-	/*
-	 * $parent is the class calling this method.
-	 * $type is the type of change (install, update or discover_install, not uninstall).
-	 * postflight is run after the extension is registered in the database.
-	 */
-	function postflight($type, $parent)
-	{
-		if ($type != 'uninstall')
-		{
-			// Install Minitek Wall Module
-			self::installModule();
-			
-			// Install Content Source Plugin
-			self::installContentSource();
-		}
-	}
-
-	/*
-	 * $parent is the class calling this method
-	 * uninstall runs before any other action is taken (file removal or database processing).
-	 */
-	function uninstall($parent)
-	{}
 
 	/**
-	 * $parent is the class calling this method
-	 * get installed version.
+	 * $parent is the class calling this method.
+	 * update runs if old version is older than 4.2.9.
 	 */
-	private static function getInstalledVersion()
+	private static function update429($parent)
 	{
-		$db = Factory::getDBO();
-		$query = 'SELECT '.$db->quoteName('manifest_cache').' FROM '.$db->quoteName('#__extensions');
-		$query .= ' WHERE ' . $db->quoteName('element').' = '.$db->quote('com_minitekwall');
-		$db->setQuery($query);
+		$db = Factory::getDbo();
 
-		if ($row = $db->loadObject())
+		$widgets_columns = $db->getTableColumns('#__minitek_wall_widgets');
+
+		// Delete column 'source_type_id' in #__minitek_wall_widgets
+		if (isset($widgets_columns['source_type_id']))
 		{
-			$manifest_cache = json_decode($row->manifest_cache, false);
+			$query = $db->getQuery(true);
+			$query = " ALTER TABLE `#__minitek_wall_widgets` ";
+			$query .= " DROP COLUMN `source_type_id` ";
+			$db->setQuery($query);
 
-			return $manifest_cache;
-		}
-		
-		return false;
+			if (!$result = $db->execute())
+			{
+				throw new GenericDataException('Error 4.2.9: Could not delete column source_type_id.', 500);
+
+				return false;
+			}
+		}		
 	}
 
 	/**
@@ -608,6 +577,69 @@ class com_minitekwallInstallerScript
 				return false;
 			}
 		}
+	}
+
+	/*
+	 * $parent is the class calling this method.
+	 * install runs after the database scripts are executed.
+	 * If the extension is new, the install method is run.
+	 * If install returns false, Joomla will abort the install and undo everything already done.
+	 */
+	function install($parent)
+	{}
+
+	/*
+	 * $parent is the class calling this method.
+	 * update runs after the database scripts are executed.
+	 * If the extension exists, then the update method is run.
+	 * If this returns false, Joomla will abort the update and undo everything already done.
+	 */
+	function update($parent)
+	{}
+
+	/*
+	 * $parent is the class calling this method.
+	 * $type is the type of change (install, update or discover_install, not uninstall).
+	 * postflight is run after the extension is registered in the database.
+	 */
+	function postflight($type, $parent)
+	{
+		if ($type != 'uninstall')
+		{
+			// Install Minitek Wall Module
+			self::installModule();
+			
+			// Install Content Source Plugin
+			self::installContentSource();
+		}
+	}
+
+	/*
+	 * $parent is the class calling this method
+	 * uninstall runs before any other action is taken (file removal or database processing).
+	 */
+	function uninstall($parent)
+	{}
+
+	/**
+	 * $parent is the class calling this method
+	 * get installed version.
+	 */
+	private static function getInstalledVersion()
+	{
+		$db = Factory::getDBO();
+		$query = 'SELECT '.$db->quoteName('manifest_cache').' FROM '.$db->quoteName('#__extensions');
+		$query .= ' WHERE ' . $db->quoteName('element').' = '.$db->quote('com_minitekwall');
+		$db->setQuery($query);
+
+		if ($row = $db->loadObject())
+		{
+			$manifest_cache = json_decode($row->manifest_cache, false);
+
+			return $manifest_cache;
+		}
+		
+		return false;
 	}
 
 	/**
