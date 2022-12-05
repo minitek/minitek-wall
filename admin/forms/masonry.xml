@@ -1828,6 +1828,25 @@
 				showon="mas_date_filters:1"
 			/>
 
+			<field
+				name="mas_date_filters_format"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_DATE_FILTERS_FORMAT_LABEL"
+				description="COM_MINITEKWALL_FIELD_DATE_FILTERS_FORMAT_DESC"
+				showon="mas_date_filters:1"
+			/>
+
+			<field type="separator" text="COM_MINITEKWALL_FIELD_SEARCH_FILTER_SEPARATOR" />
+
+			<field
+				name="mas_search_filter"
+				type="profeature"
+				class="info"
+				label="COM_MINITEKWALL_FIELD_SEARCH_FILTER_LABEL"
+				description="COM_MINITEKWALL_FIELD_SEARCH_FILTER_DESC"
+			/>
+
 			<field type="separator" text="COM_MINITEKWALL_FIELD_SORTINGS_SEPARATOR" />
 
 			<field
