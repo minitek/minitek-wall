@@ -16,6 +16,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\URI\URI;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\MVC\View\GenericDataException;
+use Joomla\Registry\Registry;
 
 /**
  * HTML Masonry View class for the MinitekWall component
@@ -61,25 +62,21 @@ class HtmlView extends BaseHtmlView
 		];
 
 		// Get masonry parameters
-		$masonry_params = json_decode($this->item->masonry_params, true);
+		$masonry_params = new Registry($this->item->masonry_params);
 		$this->masonry_params = $masonry_params;
 
 		// Pagination
-		$startLimit = $masonry_params['mas_starting_limit'];
+		$startLimit = $masonry_params->get('mas_starting_limit', 7);
 
 		// Get Grid
-		$this->gridType = $masonry_params['mas_grid'];
-		$this->suffix = '';
-
-		if (array_key_exists('mas_suffix', $masonry_params))
-			$this->suffix = $masonry_params['mas_suffix'];
-
-		$masCols = $masonry_params['mas_cols'];
+		$this->gridType = $masonry_params->get('mas_grid', 7);
+		$this->suffix = $masonry_params->get('mas_suffix', '');
+		$masCols = $masonry_params->get('mas_cols', 4);
 		$masColsper = 100 / $masCols;
-		$this->gutter = $masonry_params['mas_gutter'];
-		$this->mas_border_radius = (int)$masonry_params['mas_border_radius'];
-		$this->mas_border = (int)$masonry_params['mas_border'];
-		$this->mas_border_color = $masonry_params['mas_border_color'];
+		$this->gutter = $masonry_params->get('mas_gutter', 5);
+		$this->mas_border_radius = (int)$masonry_params->get('mas_border_radius', 0);
+		$this->mas_border = (int)$masonry_params->get('mas_border', 0);
+		$this->mas_border_color = $masonry_params->get('mas_border_color', '#eeeeee');
 
 		// Layout/Grid class
 		if ($this->gridType == '99v')
@@ -104,85 +101,81 @@ class HtmlView extends BaseHtmlView
 		$this->cols = 'width: '.$masColsper.'%;';
 
 		// Images
-		$this->mas_images = $masonry_params['mas_images'];
-		$this->mas_image_link = true;
-
-		if (array_key_exists('mas_image_link', $masonry_params))
-			$this->mas_image_link = $masonry_params['mas_image_link'];
-
-		$mas_crop_images = $masonry_params['mas_crop_images'];
-		$mas_image_width = $masonry_params['mas_image_width'];
-		$mas_image_height = $masonry_params['mas_image_height'];
+		$this->mas_images = $masonry_params->get('mas_images', 1);
+		$this->mas_image_link = $masonry_params->get('mas_image_link', 1);
+		$mas_crop_images = $masonry_params->get('mas_crop_images', 0);
+		$mas_image_width = $masonry_params->get('mas_image_width', 400);
+		$mas_image_height = $masonry_params->get('mas_image_height', 300);
 
 		// Detail box
-		$detailBoxTitleLimit = $masonry_params['mas_db_title_limit'];
-		$this->detailBoxTitleLink = isset($masonry_params['mas_db_title_link']) ? $masonry_params['mas_db_title_link'] : true;
-		$detailBoxIntrotextLimit = $masonry_params['mas_db_introtext_limit'];
-		$detailBoxStripTags = $masonry_params['mas_db_strip_tags'];
-		$detailBoxDateFormat = $masonry_params['mas_db_date_format'];
+		$detailBoxTitleLimit = $masonry_params->get('mas_db_title_limit', 15);
+		$this->detailBoxTitleLink = $masonry_params->get('mas_db_title_link', 1);
+		$detailBoxIntrotextLimit = $masonry_params->get('mas_db_introtext_limit', 15);
+		$detailBoxStripTags = $masonry_params->get('mas_db_strip_tags', 1);
+		$detailBoxDateFormat = $masonry_params->get('mas_db_date_format', 'F d, Y');
 
 		// Big
-		$this->detailBoxBig = $masonry_params['mas_db_big'];
-		$this->detailBoxTitleBig = $masonry_params['mas_db_title_big'];
-		$this->detailBoxIntrotextBig = $masonry_params['mas_db_introtext_big'];
-		$this->detailBoxDateBig = $masonry_params['mas_db_date_big'];
-		$this->detailBoxCategoryBig = $masonry_params['mas_db_category_big'];
-		$this->detailBoxAuthorBig = $masonry_params['mas_db_author_big'];
-		$this->detailBoxTagsBig = isset($masonry_params['mas_db_tags_big']) ? $masonry_params['mas_db_tags_big'] : false;
-		$this->detailBoxHitsBig = $masonry_params['mas_db_hits_big'];
-		$this->detailBoxCountBig = $masonry_params['mas_db_count_big'];
-		$this->detailBoxReadmoreBig = $masonry_params['mas_db_readmore_big'];
+		$this->detailBoxBig = $masonry_params->get('mas_db_big', 1);
+		$this->detailBoxTitleBig = $masonry_params->get('mas_db_title_big', 1);
+		$this->detailBoxIntrotextBig = $masonry_params->get('mas_db_introtext_big', 1);
+		$this->detailBoxDateBig = $masonry_params->get('mas_db_date_big', 1);
+		$this->detailBoxCategoryBig = $masonry_params->get('mas_db_category_big', 1);
+		$this->detailBoxAuthorBig = $masonry_params->get('mas_db_author_big', 1);
+		$this->detailBoxTagsBig = $masonry_params->get('mas_db_tags_big', 0);
+		$this->detailBoxHitsBig = $masonry_params->get('mas_db_hits_big', 0);
+		$this->detailBoxCountBig = $masonry_params->get('mas_db_count_big', 0);
+		$this->detailBoxReadmoreBig = $masonry_params->get('mas_db_readmore_big', 0);
 
 		// Landscape
-		$this->detailBoxLscape = $masonry_params['mas_db_lscape'];
-		$this->detailBoxTitleLscape = $masonry_params['mas_db_title_lscape'];
-		$this->detailBoxIntrotextLscape = $masonry_params['mas_db_introtext_lscape'];
-		$this->detailBoxDateLscape = $masonry_params['mas_db_date_lscape'];
-		$this->detailBoxCategoryLscape = $masonry_params['mas_db_category_lscape'];
-		$this->detailBoxAuthorLscape = $masonry_params['mas_db_author_lscape'];
-		$this->detailBoxTagsLscape = isset($masonry_params['mas_db_tags_lscape']) ? $masonry_params['mas_db_tags_lscape'] : false;
-		$this->detailBoxHitsLscape = $masonry_params['mas_db_hits_lscape'];
-		$this->detailBoxCountLscape = $masonry_params['mas_db_count_lscape'];
-		$this->detailBoxReadmoreLscape = $masonry_params['mas_db_readmore_lscape'];
+		$this->detailBoxLscape = $masonry_params->get('mas_db_lscape', 1);
+		$this->detailBoxTitleLscape = $masonry_params->get('mas_db_title_lscape', 1);
+		$this->detailBoxIntrotextLscape = $masonry_params->get('mas_db_introtext_lscape', 1);
+		$this->detailBoxDateLscape = $masonry_params->get('mas_db_date_lscape', 1);
+		$this->detailBoxCategoryLscape = $masonry_params->get('mas_db_category_lscape', 1);
+		$this->detailBoxAuthorLscape = $masonry_params->get('mas_db_author_lscape', 1);
+		$this->detailBoxTagsLscape = $masonry_params->get('mas_db_tags_lscape', 0);
+		$this->detailBoxHitsLscape = $masonry_params->get('mas_db_hits_lscape', 0);
+		$this->detailBoxCountLscape = $masonry_params->get('mas_db_count_lscape', 0);
+		$this->detailBoxReadmoreLscape = $masonry_params->get('mas_db_readmore_lscape', 0);
 
 		// Portrait
-		$this->detailBoxPortrait = $masonry_params['mas_db_portrait'];
-		$this->detailBoxTitlePortrait = $masonry_params['mas_db_title_portrait'];
-		$this->detailBoxIntrotextPortrait = $masonry_params['mas_db_introtext_portrait'];
-		$this->detailBoxDatePortrait = $masonry_params['mas_db_date_portrait'];
-		$this->detailBoxCategoryPortrait = $masonry_params['mas_db_category_portrait'];
-		$this->detailBoxAuthorPortrait = $masonry_params['mas_db_author_portrait'];
-		$this->detailBoxTagsPortrait = isset($masonry_params['mas_db_tags_portrait']) ? $masonry_params['mas_db_tags_portrait'] : false;
-		$this->detailBoxHitsPortrait = $masonry_params['mas_db_hits_portrait'];
-		$this->detailBoxCountPortrait = $masonry_params['mas_db_count_portrait'];
-		$this->detailBoxReadmorePortrait = $masonry_params['mas_db_readmore_portrait'];
+		$this->detailBoxPortrait = $masonry_params->get('mas_db_portrait', 1);
+		$this->detailBoxTitlePortrait = $masonry_params->get('mas_db_title_portrait', 1);
+		$this->detailBoxIntrotextPortrait = $masonry_params->get('mas_db_introtext_portrait', 1);
+		$this->detailBoxDatePortrait = $masonry_params->get('mas_db_date_portrait', 1);
+		$this->detailBoxCategoryPortrait = $masonry_params->get('mas_db_category_portrait', 1);
+		$this->detailBoxAuthorPortrait = $masonry_params->get('mas_db_author_portrait', 1);
+		$this->detailBoxTagsPortrait = $masonry_params->get('mas_db_tags_portrait', 0);
+		$this->detailBoxHitsPortrait = $masonry_params->get('mas_db_hits_portrait', 0);
+		$this->detailBoxCountPortrait = $masonry_params->get('mas_db_count_portrait', 0);
+		$this->detailBoxReadmorePortrait = $masonry_params->get('mas_db_readmore_portrait', 0);
 
 		// Small
-		$this->detailBoxSmall = $masonry_params['mas_db_small'];
-		$this->detailBoxTitleSmall = $masonry_params['mas_db_title_small'];
-		$this->detailBoxIntrotextSmall = $masonry_params['mas_db_introtext_small'];
-		$this->detailBoxDateSmall = $masonry_params['mas_db_date_small'];
-		$this->detailBoxCategorySmall = $masonry_params['mas_db_category_small'];
-		$this->detailBoxAuthorSmall = $masonry_params['mas_db_author_small'];
-		$this->detailBoxTagsSmall = isset($masonry_params['mas_db_tags_small']) ? $masonry_params['mas_db_tags_small'] : false;
-		$this->detailBoxHitsSmall = $masonry_params['mas_db_hits_small'];
-		$this->detailBoxCountSmall = $masonry_params['mas_db_count_small'];
-		$this->detailBoxReadmoreSmall = $masonry_params['mas_db_readmore_small'];
+		$this->detailBoxSmall = $masonry_params->get('mas_db_small', 1);
+		$this->detailBoxTitleSmall = $masonry_params->get('mas_db_title_small', 1);
+		$this->detailBoxIntrotextSmall = $masonry_params->get('mas_db_introtext_small', 1);
+		$this->detailBoxDateSmall = $masonry_params->get('mas_db_date_small', 1);
+		$this->detailBoxCategorySmall = $masonry_params->get('mas_db_category_small', 1);
+		$this->detailBoxAuthorSmall = $masonry_params->get('mas_db_author_small', 1);
+		$this->detailBoxTagsSmall = $masonry_params->get('mas_db_tags_small', 0);
+		$this->detailBoxHitsSmall = $masonry_params->get('mas_db_hits_small', 0);
+		$this->detailBoxCountSmall = $masonry_params->get('mas_db_count_small', 0);
+		$this->detailBoxReadmoreSmall = $masonry_params->get('mas_db_readmore_small', 0);
 
 		// Columns
-		$this->detailBoxColumns = $masonry_params['mas_db_columns'];
-		$this->detailBoxPositionColumns = $masonry_params['mas_db_position_columns'];
-		$this->detailBoxBackgroundColumns = $masonry_params['mas_db_bg_columns'];
-		$this->detailBoxBackgroundOpacityColumns = $masonry_params['mas_db_bg_opacity_columns'];
-		$this->detailBoxTitleColumns = $masonry_params['mas_db_title_columns'];
-		$this->detailBoxIntrotextColumns = $masonry_params['mas_db_introtext_columns'];
-		$this->detailBoxDateColumns = $masonry_params['mas_db_date_columns'];
-		$this->detailBoxCategoryColumns = $masonry_params['mas_db_category_columns'];
-		$this->detailBoxAuthorColumns = $masonry_params['mas_db_author_columns'];
-		$this->detailBoxTagsColumns = isset($masonry_params['mas_db_tags_columns']) ? $masonry_params['mas_db_tags_columns'] : false;
-		$this->detailBoxHitsColumns = $masonry_params['mas_db_hits_columns'];
-		$this->detailBoxCountColumns = $masonry_params['mas_db_count_columns'];
-		$this->detailBoxReadmoreColumns = $masonry_params['mas_db_readmore_columns'];
+		$this->detailBoxColumns = $masonry_params->get('mas_db_columns', 1);
+		$this->detailBoxPositionColumns = $masonry_params->get('mas_db_position_columns', 'below');
+		$this->detailBoxBackgroundColumns = $masonry_params->get('mas_db_bg_columns', '#1b98e0');
+		$this->detailBoxBackgroundOpacityColumns = $masonry_params->get('mas_db_bg_opacity_columns', 0.75);
+		$this->detailBoxTitleColumns = $masonry_params->get('mas_db_title_columns', 1);
+		$this->detailBoxIntrotextColumns = $masonry_params->get('mas_db_introtext_columns', 1);
+		$this->detailBoxDateColumns = $masonry_params->get('mas_db_date_columns', 1);
+		$this->detailBoxCategoryColumns = $masonry_params->get('mas_db_category_columns', 1);
+		$this->detailBoxAuthorColumns = $masonry_params->get('mas_db_author_columns', 1);
+		$this->detailBoxTagsColumns = $masonry_params->get('mas_db_tags_columns', 0);
+		$this->detailBoxHitsColumns = $masonry_params->get('mas_db_hits_columns', 0);
+		$this->detailBoxCountColumns = $masonry_params->get('mas_db_count_columns', 0);
+		$this->detailBoxReadmoreColumns = $masonry_params->get('mas_db_readmore_columns', 0);
 
 		// Detail box overall vars
 		$this->detailBoxAll = true;
@@ -322,30 +315,26 @@ class HtmlView extends BaseHtmlView
 		}
 
 		// Hover box
-		$this->hoverBox = $masonry_params['mas_hb'];
-		$this->hoverBoxBg = $masonry_params['mas_hb_bg'];
-		$this->hoverBoxBgOpacity = $masonry_params['mas_hb_bg_opacity'];
-		$this->hoverBoxEffect = $masonry_params['mas_hb_effect'];
-		$this->hoverBoxEffectSpeed = $masonry_params['mas_hb_effect_speed'];
-		$hoverBoxEffectEasing = $masonry_params['mas_hb_effect_easing'];
-		$this->hoverBoxTitle = $masonry_params['mas_hb_title'];
-		$hoverBoxTitleLimit = $masonry_params['mas_hb_title_limit'];
-		$this->hoverBoxIntrotext = $masonry_params['mas_hb_introtext'];
-		$hoverBoxIntrotextLimit = $masonry_params['mas_hb_introtext_limit'];
-		$hoverBoxStripTags = $masonry_params['mas_hb_strip_tags'];
-		$this->hoverBoxDate = $masonry_params['mas_hb_date'];
-		$hoverBoxDateFormat = $masonry_params['mas_hb_date_format'];
-		$this->hoverBoxCategory = $masonry_params['mas_hb_category'];
-		$this->hoverBoxAuthor = $masonry_params['mas_hb_author'];
-		$this->hoverBoxHits = $masonry_params['mas_hb_hits'];
-		$this->hoverBoxLinkButton = $masonry_params['mas_hb_link'];
+		$this->hoverBox = $masonry_params->get('mas_hb', 0);
+		$this->hoverBoxBg = $masonry_params->get('mas_hb_bg', '#eb885e');
+		$this->hoverBoxBgOpacity = $masonry_params->get('mas_hb_bg_opacity', 0.75);
+		$this->hoverBoxEffect = $masonry_params->get('mas_hb_effect', 1);
+		$this->hoverBoxEffectSpeed = $masonry_params->get('mas_hb_effect_speed', 0.4);
+		$hoverBoxEffectEasing = $masonry_params->get('mas_hb_effect_easing', 'cubic-bezier(0.445, 0.05, 0.55, 0.95)');
+		$this->hoverBoxTitle = $masonry_params->get('mas_hb_title', 1);
+		$hoverBoxTitleLimit = $masonry_params->get('mas_hb_title_limit', 15);
+		$this->hoverBoxIntrotext = $masonry_params->get('mas_hb_introtext', 0);
+		$hoverBoxIntrotextLimit = $masonry_params->get('mas_hb_introtext_limit', 15);
+		$hoverBoxStripTags = $masonry_params->get('mas_hb_strip_tags', 1);
+		$this->hoverBoxDate = $masonry_params->get('mas_hb_date', 0);
+		$hoverBoxDateFormat = $masonry_params->get('mas_hb_date_format', 'F d, Y');
+		$this->hoverBoxCategory = $masonry_params->get('mas_hb_category', 1);
+		$this->hoverBoxAuthor = $masonry_params->get('mas_hb_author', 0);
+		$this->hoverBoxHits = $masonry_params->get('mas_hb_hits', 0);
+		$this->hoverBoxLinkButton = $masonry_params->get('mas_hb_link', 1);
 		$this->hoverBoxZoomButton = false;
-		$this->modalTitle = isset($masonry_params['mas_modal_title']) ? $masonry_params['mas_modal_title'] : true;
-
-		if (isset($masonry_params['mas_hb_zoom']))
-		{
-			$this->hoverBoxZoomButton = $masonry_params['mas_hb_zoom'];
-		}
+		$this->modalTitle = $masonry_params->get('mas_modal_title', 1);
+		$this->hoverBoxZoomButton = $masonry_params->get('mas_hb_zoom', 1);
 
 		// Hover effects
 		$this->hoverOffset = '';
@@ -439,17 +428,13 @@ class HtmlView extends BaseHtmlView
 		$detailBoxParams['crop_images'] = $mas_crop_images;
 		$detailBoxParams['image_width'] = $mas_image_width;
 		$detailBoxParams['image_height'] = $mas_image_height;
-		$detailBoxParams['fallback_image'] = '';
-
-		if (array_key_exists('mas_fallback_image', $masonry_params))
-			$detailBoxParams['fallback_image'] = $masonry_params['mas_fallback_image'];
-
+		$detailBoxParams['fallback_image'] = $masonry_params->get('mas_fallback_image', '');
 		$detailBoxParams['detailBoxTitleLimit'] = $detailBoxTitleLimit;
 		$detailBoxParams['detailBoxIntrotextLimit'] = $detailBoxIntrotextLimit;
 		$detailBoxParams['detailBoxStripTags'] = $detailBoxStripTags;
 		$detailBoxParams['detailBoxDateFormat'] = $detailBoxDateFormat;
-		$detailBoxParams['detailBoxCategoryLink'] = isset($masonry_params['mas_db_category_link']) ? $masonry_params['mas_db_category_link'] : true;
-		$detailBoxParams['detailBoxAuthorLink'] = isset($masonry_params['mas_db_author_link']) ? $masonry_params['mas_db_author_link'] : true;
+		$detailBoxParams['detailBoxCategoryLink'] = $masonry_params->get('mas_db_category_link', 1);
+		$detailBoxParams['detailBoxAuthorLink'] = $masonry_params->get('mas_db_author_link', 1);
 
 		$hoverBoxParams = array();
 		$hoverBoxParams['hoverBox'] = $this->hoverBox;
@@ -515,12 +500,7 @@ class HtmlView extends BaseHtmlView
 			});
 			");
 
-			if (array_key_exists('mas_enable_responsive', $masonry_params))
-			{
-				if ($masonry_params['mas_enable_responsive'])
-					$this->model->responsive_masonry->loadResponsiveMasonry($masonry_params, $this->widgetID);
-			}
-			else
+			if ($masonry_params->get('mas_enable_responsive', 1))
 				$this->model->responsive_masonry->loadResponsiveMasonry($masonry_params, $this->widgetID);
 		}
 
@@ -555,9 +535,9 @@ class HtmlView extends BaseHtmlView
 				$this->active_direction = $this->model->getItemsDirection($this->source_params);
 
 				// Get Filters
-				if ($masonry_params['mas_category_filters'] ||
-					$masonry_params['mas_tag_filters'] ||
-					$masonry_params['mas_date_filters'])
+				if ($masonry_params->get('mas_category_filters', 1) ||
+					$masonry_params->get('mas_tag_filters', 1) ||
+					$masonry_params->get('mas_date_filters', 0))
 				{
 					$this->filters = true;
 				}
@@ -565,9 +545,9 @@ class HtmlView extends BaseHtmlView
 					$this->filters = NULL;
 
 				// Get Sortings
-				if ($masonry_params['mas_title_sorting'] ||
-					$masonry_params['mas_date_sorting'] ||
-					$masonry_params['mas_hits_sorting'])
+				if ($masonry_params->get('mas_title_sorting', 1) ||
+					$masonry_params->get('mas_date_sorting', 1) ||
+					$masonry_params->get('mas_hits_sorting', 0))
 				{
 					$this->sortings = true;
 				}
@@ -581,13 +561,13 @@ class HtmlView extends BaseHtmlView
 				}
 
 				// Reset button
-				$this->resetButton = $masonry_params['mas_reset_filters'];
+				$this->resetButton = $masonry_params->get('mas_reset_filters', 0);
 
 				// Set page meta data
 				$this->setPageMeta($masonry_params, $this->params);
 
 				// Set layout
-				$layout = $masonry_params['mas_layout'];
+				$layout = $masonry_params->get('mas_layout', '');
 
 				if ($layout)
 				{
@@ -611,7 +591,7 @@ class HtmlView extends BaseHtmlView
 
 		$this->mas_page_title = false;
 
-		if (array_key_exists('mas_page_title', $masonry_params) && $masonry_params['mas_page_title'])
+		if ($masonry_params->get('mas_page_title', 0))
 		{
 			$this->mas_page_title = true;
 

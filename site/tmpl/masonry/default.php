@@ -46,7 +46,7 @@ if (isset($this->suffix))
 }
 
 // Widget description
-$show_description = isset($this->masonry_params['mas_description']) && $this->masonry_params['mas_description'] ? true : false;
+$show_description = $this->masonry_params->get('mas_description', 0);
 
 if ($show_description && $this->item->description)
 {
