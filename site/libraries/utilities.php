@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\String\StringHelper;
-use Joomla\Image\Image;
+use Joomla\CMS\Image\Image;
 
 if (!defined('DS')) {
 	define('DS',DIRECTORY_SEPARATOR);
@@ -160,7 +160,7 @@ class MinitekWallLibUtilities
 				if (!self::makeDir($new_path))
 					return '';
 
-				$image = new \JImage();
+				$image = new Image();
 				$image->loadFile($img->url);
 				$thumbs = $image->generateThumbs($width.'x'.$height, 5);
 
