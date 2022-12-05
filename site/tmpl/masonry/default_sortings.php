@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\Registry\Registry;
+
 // Active sorting direction
 $asc_dir_active = '';
 $desc_dir_active = '';
@@ -43,14 +45,14 @@ switch ($this->active_ordering)
 		break;
 }
 
-if ($this->masonry_params['mas_sorting_type'] == 1)
+if ($this->masonry_params->get('mas_sorting_type', 1) == 1)
 {
 	// Inline sortings
 	?><div class="mwall-sortings-group sorting-group sorting-group-filters mwall-buttons">
 		<span><?php echo \JText::_('COM_MINITEKWALL_SORT_BY'); ?></span>
 		<ul><?php 
 
-			if ($this->masonry_params['mas_title_sorting'])
+			if ($this->masonry_params->get('mas_title_sorting', 1))
 			{
 				?><li>
 					<a href="#" data-sort-value="title" class="mwall-filter <?php echo $title_sort_active; ?>"><?php 
@@ -59,7 +61,7 @@ if ($this->masonry_params['mas_sorting_type'] == 1)
 				</li><?php 
 			}
 
-			if ($this->masonry_params['mas_date_sorting'])
+			if ($this->masonry_params->get('mas_date_sorting', 1))
 			{
 				$date_sort_value = in_array($this->active_ordering, ['modified', 'start', 'finish']) 
 					? $this->active_ordering
@@ -72,7 +74,7 @@ if ($this->masonry_params['mas_sorting_type'] == 1)
 				</li><?php 
 			}
 
-			if (isset($this->masonry_params['mas_hits_sorting']) && $this->masonry_params['mas_hits_sorting'])
+			if ($this->masonry_params->get('mas_hits_sorting', 0))
 			{
 				?><li>
 					<a href="#" data-sort-value="hits" class="mwall-filter <?php echo $hits_sort_active; ?>"><?php 
@@ -84,7 +86,7 @@ if ($this->masonry_params['mas_sorting_type'] == 1)
 		?></ul>
 	</div><?php 
 
-	if ($this->masonry_params['mas_sorting_direction'])
+	if ($this->masonry_params->get('mas_sorting_direction', 0))
 	{
 		// Inline Direction
 		?><div class="mwall-sortings-group sorting-group sorting-group-direction mwall-buttons">
@@ -105,7 +107,7 @@ if ($this->masonry_params['mas_sorting_type'] == 1)
 	}
 }
 
-if ($this->masonry_params['mas_sorting_type'] == 2)
+if ($this->masonry_params->get('mas_sorting_type', 1) == 2)
 {
 	// Dropdown sortings
 	?><div class="mwall-sortings-group">
@@ -119,7 +121,7 @@ if ($this->masonry_params['mas_sorting_type'] == 2)
 			</div>
 			<ul class="sorting-group sorting-group-filters"><?php 
 
-				if ($this->masonry_params['mas_title_sorting'])
+				if ($this->masonry_params->get('mas_title_sorting', 1))
 				{
 					?><li>
 						<a href="#" data-sort-value="title" class="mwall-filter <?php echo $title_sort_active; ?>"><?php 
@@ -128,7 +130,7 @@ if ($this->masonry_params['mas_sorting_type'] == 2)
 					</li><?php 
 				}
 
-				if ($this->masonry_params['mas_date_sorting'])
+				if ($this->masonry_params->get('mas_date_sorting', 1))
 				{
 					$date_sort_value = in_array($this->active_ordering, ['modified', 'start', 'finish']) 
 						? $this->active_ordering
@@ -141,7 +143,7 @@ if ($this->masonry_params['mas_sorting_type'] == 2)
 					</li><?php 
 				}
 
-				if (isset($this->masonry_params['mas_hits_sorting']) && $this->masonry_params['mas_hits_sorting'])
+				if ($this->masonry_params->get('mas_hits_sorting', 0))
 				{
 					?><li>
 						<a href="#" data-sort-value="hits" class="mwall-filter <?php echo $hits_sort_active; ?>"><?php 
@@ -153,7 +155,7 @@ if ($this->masonry_params['mas_sorting_type'] == 2)
 		</div>
 	</div><?php 
 
-	if ($this->masonry_params['mas_sorting_direction'])
+	if ($this->masonry_params->get('mas_sorting_direction', 0))
 	{
 		// Dropdown direction
 		?><div class="mwall-sortings-group">

@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -15,8 +15,8 @@ class MinitekWallLibFilters
 	{
 		$document = \JFactory::getDocument();
 		$mwall = 'mwall_container_'.$widgetID;
-		$background_color = $masonry_params['mas_filters_bg'];
-		$border_radius = (int)$masonry_params['mas_filters_border_radius'];
+		$background_color = $masonry_params->get('mas_filters_bg', '#dd5f5f');
+		$border_radius = (int) $masonry_params->get('mas_filters_border_radius', 3);
 
 		$css = '
 		#'.$mwall.' .mwall-buttons a {

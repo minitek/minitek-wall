@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -13,8 +13,8 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\Registry\Registry;
 
 /**
  * MinitekWall Component Masonry Model
@@ -137,8 +137,8 @@ class MasonryModel extends BaseDatabaseModel
 	{
 		$item = $this->getItem($widgetID);
 		$source_params = json_decode($item->source_params, true);
-		$masonry_params = json_decode($item->masonry_params, true);
-		$startLimit = (int)$masonry_params['mas_starting_limit'];
+		$masonry_params = new Registry($item->masonry_params);
+		$startLimit = (int)$masonry_params->get('mas_starting_limit', 7);
 
 		// Get items
 		$result = $this->source->getItems(false, $source_params, $startLimit, false, false, $filters);
