@@ -153,6 +153,7 @@
 				<option value="0">JNONE</option>
 				<option value="1">COM_MINITEKWALL_FIELD_OPTION_IMAGES</option>
 				<option value="2" disabled="disabled">COM_MINITEKWALL_FIELD_OPTION_VIDEOS</option>
+				<option value="3" disabled="disabled">COM_MINITEKWALL_FIELD_OPTION_VIDEOS_AND_IMAGES</option>
 			</field>
 
 			<field
