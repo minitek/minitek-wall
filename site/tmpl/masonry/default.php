@@ -21,10 +21,8 @@ if ($this->mas_page_title)
 		$menu = $app->getMenu();
 		$active = $menu->getActive();
 
-		if ($active->params->get('page_heading')) 
-		{
-			$page_heading = $active->params->get('page_heading');
-		} 
+		if ($active->getParams()->get('page_heading')) 
+			$page_heading = $active->getParams()->get('page_heading');
 		else 
 		{
 			$doc = \JFactory::getDocument();
@@ -41,9 +39,7 @@ if ($this->mas_page_title)
 $suffix = '';
 
 if (isset($this->suffix)) 
-{
 	$suffix = $this->suffix;
-}
 
 // Widget description
 $show_description = $this->masonry_params->get('mas_description', 0);
