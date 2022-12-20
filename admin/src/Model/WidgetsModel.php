@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2019 Minitek, All rights reserved.
+* @copyright	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license		GNU General Public License version 3 or later.
 * @author url	https://www.minitek.gr/
 * @developers	Minitek.gr
@@ -12,7 +12,6 @@ namespace Joomla\Component\MinitekWall\Administrator\Model;
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\MVC\Model\ListModel;
-use Joomla\Utilities\ArrayHelper;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 
 /**
