@@ -44,8 +44,6 @@
 			default="0"
 		/>
 
-		<field name="asset_id" type="hidden" filter="unset" />
-
 	</fieldset>
 
 	<fieldset name="hidden">

@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license		GNU General Public License version 3 or later.
 * @author url	https://www.minitek.gr/
 * @developers	Minitek.gr
@@ -11,11 +11,7 @@ namespace Joomla\Component\MinitekWall\Administrator\Table;
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Application\ApplicationHelper;
-use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Table\Table;
-use Joomla\Registry\Registry;
-use Joomla\Utilities\ArrayHelper;
 use Joomla\String\StringHelper;
 
 /**
@@ -39,18 +35,6 @@ class WidgetTable extends Table
 		parent::__construct('#__minitek_wall_widgets', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
-	}
-
-	protected function _getAssetName()
-	{
-		$k = $this->_tbl_key;
-
-		return 'com_minitekwall.widget.' . (int) $this->$k;
-	}
-
-	protected function _getAssetTitle()
-	{
-		return $this->name;
 	}
 
 	/**
