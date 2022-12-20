@@ -162,12 +162,26 @@ class MinitekWallLibUtilities
 
 				$image = new Image();
 				$image->loadFile($img->url);
-				$thumbs = $image->generateThumbs($width.'x'.$height, 5);
+				$properties = $image->getImageFileProperties($img->url);
 
-				foreach ($thumbs as $thumb)
-				{
-					$thumb->toFile($clean_cropped_path);
-				}
+				switch ($properties->mime) {
+                    case 'image/webp':
+                        $imageType = \IMAGETYPE_WEBP;
+                        break;
+                    case 'image/png':
+                        $imageType = \IMAGETYPE_PNG;
+                        break;
+                    case 'image/gif':
+                        $imageType = \IMAGETYPE_GIF;
+                        break;
+                    default:
+                        $imageType = \IMAGETYPE_JPEG;
+                }
+
+				// $image->crop($width, $height, null, null, false);
+				// $image->resize($width, $height, false);
+				$image->cropResize($width, $height, false);
+                $image->toFile($clean_cropped_path, $imageType);
 			}
 
 			$url = \JURI::base().'images'.DS.'mwall'.DS.$new_path;
