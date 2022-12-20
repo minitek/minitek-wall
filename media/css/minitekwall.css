@@ -696,9 +696,16 @@ h3.mwall-title a:focus {
 
 /* Modal images */
 
-.mwall-container .modal {
+.mwall-container .modal,
+body.modal-open .mwall-container .modal {
   text-align: center;
   padding: 0 !important;
+  bottom: auto;
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: inherit;
+  max-width: 95%;
 }
 
 .mwall-container .modal-dialog {
@@ -727,8 +734,12 @@ h3.mwall-title a:focus {
 }
 
 .mwall-container .modal img {
-  max-width: 100%;
-  max-height: 85vh;
+  max-width: inherit;
+  /* max-width: 100%; */
+  max-height: 80vh;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }
 
 /* Hover Box Effects - Animations */
