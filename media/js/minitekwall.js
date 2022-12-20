@@ -41,13 +41,28 @@
             };
 
             // Dynamic filters
-            if (this.filtersEnabled && this.filtersMode == "dynamic")
+            if (
+                this.container &&
+                this.filtersEnabled &&
+                this.filtersMode == "dynamic"
+            )
                 this.dynamicFilters();
 
             // Modal images
-            if (this.hoverBox) {
+            if (this.container && this.hoverBox) {
                 if (parseInt(this.options.mas_hb_zoom, 10))
                     this.initModalMessages();
+            }
+
+            // Check if we are inside an iframe
+            this.isIframe = window.frameElement ? true : false;
+
+            if (this.isIframe) {
+                if (document.querySelector(".mwall-results-empty-results"))
+                    document.querySelector(
+                        ".mwall-results-empty-results"
+                    ).style.padding = "20px";
+                else if (this.container) this.container.style.padding = "20px";
             }
         }
 

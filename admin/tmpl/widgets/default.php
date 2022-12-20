@@ -2,7 +2,7 @@
 
 /**
  * @title        Minitek Wall
- * @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+ * @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
  * @license      GNU General Public License version 3 or later.
  * @author url   https://www.minitek.gr/
  * @developers   Minitek.gr
@@ -16,6 +16,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Button\PublishedButton;
+use Joomla\CMS\URI\URI;
 
 HTMLHelper::_('behavior.multiselect');
 
@@ -80,8 +81,11 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 										<div class="break-word">
 											<?php if ($item->checked_out) : ?>
 												<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'widgets.', $canCheckin); ?>
-											<?php endif; ?>
-											<?php if ($canEdit) : ?>
+											<?php endif;
+											?><a type="button" class="btn-link hasTooltip" title="<?php echo Text::_('JGLOBAL_PREVIEW'); ?>" data-bs-toggle="modal" data-bs-target="#mwall-preview-<?php echo $item->id; ?>">
+												<i class="fas fa-eye"></i>
+											</a>&nbsp;&nbsp;<?php 
+											if ($canEdit) : ?>
 												<a class="hasTooltip" href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.edit&id=' . (int) $item->id); ?>" title="<?php echo Text::_('JACTION_EDIT'); ?> <?php echo $this->escape(addslashes($item->name)); ?>">
 													<?php echo $this->escape($item->name); ?></a>
 												</a>
@@ -95,8 +99,21 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 													</span>
 												</div>
 											<?php } ?>
-										</div>
-									</th>
+										</div><?php 
+
+										$url = 'index.php?option=com_minitekwall&view=masonry&widget_id='.$item->id.'&tmpl=component';
+
+										echo HTMLHelper::_(
+											'bootstrap.renderModal',
+											'mwall-preview-'.$item->id,
+											[
+												'title'       => Text::_('JGLOBAL_PREVIEW'),
+												'bodyHeight'  => 80,
+												'modalWidth'  => 90,
+												'url'		  => URI::root().$url
+											]
+										); 
+									?></th>
 
 									<td class="small d-none d-md-table-cell">
 										<span class="badge bg-info" style="text-transform: uppercase;">
