@@ -59,6 +59,93 @@ class com_minitekwallInstallerScript
 			{
 				self::update429($parent);
 			}
+
+			// v4.3.2 - Run update script if installed version is older than 4.3.2
+			if (isset($this->installed_version) && $this->installed_version && version_compare($this->installed_version, '4.3.2', '<'))
+			{
+				self::update432($parent);
+			}
+		}
+	}
+
+	/*
+	 * $parent is the class calling this method.
+	 * update runs if old version is < 4.3.2
+	 */
+	function update432($parent)
+	{
+		$db = Factory::getDbo();
+
+		#__minitek_wall_widgets
+		$widgets_columns = $db->getTableColumns('#__minitek_wall_widgets');
+
+		// Delete column 'asset_id'
+		if (isset($widgets_columns['asset_id']))
+		{
+			$query = $db->getQuery(true);
+			$query = " ALTER TABLE `#__minitek_wall_widgets` ";
+			$query .= " DROP COLUMN `asset_id` ";
+			$db->setQuery($query);
+
+			if (!$result = $db->execute())
+			{
+				throw new GenericDataException('Error 4.3.2-1: Could not delete column asset_id.', 500);
+				return false;
+			}
+		}
+
+		#__minitek_source_groups
+		$source_groups_columns = $db->getTableColumns('#__minitek_source_groups');
+
+		// Delete column 'asset_id'
+		if (isset($source_groups_columns['asset_id']))
+		{
+			$query = $db->getQuery(true);
+			$query = " ALTER TABLE `#__minitek_source_groups` ";
+			$query .= " DROP COLUMN `asset_id` ";
+			$db->setQuery($query);
+
+			if (!$result = $db->execute())
+			{
+				throw new GenericDataException('Error 4.3.2-2: Could not delete column asset_id.', 500);
+				return false;
+			}
+		}
+
+		#__minitek_source_items
+		$source_items_columns = $db->getTableColumns('#__minitek_source_items');
+
+		// Delete column 'asset_id'
+		if (isset($source_items_columns['asset_id']))
+		{
+			$query = $db->getQuery(true);
+			$query = " ALTER TABLE `#__minitek_source_items` ";
+			$query .= " DROP COLUMN `asset_id` ";
+			$db->setQuery($query);
+
+			if (!$result = $db->execute())
+			{
+				throw new GenericDataException('Error 4.3.2-3: Could not delete column asset_id.', 500);
+				return false;
+			}
+		}
+
+		#__minitek_wall_grids
+		$grids_columns = $db->getTableColumns('#__minitek_wall_grids');
+
+		// Delete column 'asset_id'
+		if (isset($grids_columns['asset_id']))
+		{
+			$query = $db->getQuery(true);
+			$query = " ALTER TABLE `#__minitek_wall_grids` ";
+			$query .= " DROP COLUMN `asset_id` ";
+			$db->setQuery($query);
+
+			if (!$result = $db->execute())
+			{
+				throw new GenericDataException('Error 4.3.2-4: Could not delete column asset_id.', 500);
+				return false;
+			}
 		}
 	}
 
