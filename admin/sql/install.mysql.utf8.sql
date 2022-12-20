@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `#__minitek_wall_widgets` (
  `description` text NOT NULL,
  `masonry_params` text DEFAULT NULL,
  `state` tinyint(1) NOT NULL DEFAULT '0',
- `checked_out` int(10) unsigned DEFAULT NULL,
+ `checked_out` int unsigned NOT NULL DEFAULT 0,
  `checked_out_time` datetime DEFAULT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `#__minitek_source_groups` (
  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
  `state` tinyint(3) NOT NULL DEFAULT '0',
- `checked_out` int(10) unsigned DEFAULT NULL,
+ `checked_out` int unsigned NOT NULL DEFAULT 0,
  `checked_out_time` datetime DEFAULT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `#__minitek_source_items` (
  `created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
  `modified` datetime NOT NULL,
  `modified_by` int(10) unsigned NOT NULL DEFAULT '0',
- `checked_out` int(10) unsigned DEFAULT NULL,
+ `checked_out` int unsigned NOT NULL DEFAULT 0,
  `checked_out_time` datetime DEFAULT NULL,
  `publish_up` datetime DEFAULT NULL,
  `publish_down` datetime DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `#__minitek_wall_grids` (
  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
  `columns` tinyint(3) unsigned NOT NULL,
  `state` tinyint(3) NOT NULL DEFAULT '0',
- `checked_out` int(10) unsigned DEFAULT NULL,
+ `checked_out` int unsigned NOT NULL DEFAULT 0,
  `checked_out_time` datetime DEFAULT NULL,
  `elements` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
  PRIMARY KEY (`id`)

@@ -94,6 +94,31 @@ class com_minitekwallInstallerScript
 			}
 		}
 
+		// Update column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " UPDATE `#__minitek_wall_widgets` ";
+		$query .= " SET `checked_out` = 0 ";
+		$query .= " WHERE `checked_out` IS NULL ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-1b: Could not update __minitek_wall_widgets table, column checked_out.', 500);
+			return false;
+		}
+
+		// Modify column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " ALTER TABLE `#__minitek_wall_widgets` ";
+		$query .= " MODIFY COLUMN `checked_out` int unsigned NOT NULL DEFAULT 0 ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-1c: Could not update __minitek_wall_widgets table, column checked_out.', 500);
+			return false;
+		}
+
 		#__minitek_source_groups
 		$source_groups_columns = $db->getTableColumns('#__minitek_source_groups');
 
@@ -110,6 +135,31 @@ class com_minitekwallInstallerScript
 				throw new GenericDataException('Error 4.3.2-2: Could not delete column asset_id.', 500);
 				return false;
 			}
+		}
+
+		// Update column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " UPDATE `#__minitek_source_groups` ";
+		$query .= " SET `checked_out` = 0 ";
+		$query .= " WHERE `checked_out` IS NULL ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-2b: Could not update __minitek_source_groups table, column checked_out.', 500);
+			return false;
+		}
+
+		// Modify column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " ALTER TABLE `#__minitek_source_groups` ";
+		$query .= " MODIFY COLUMN `checked_out` int unsigned NOT NULL DEFAULT 0 ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-2c: Could not update __minitek_source_groups table, column checked_out.', 500);
+			return false;
 		}
 
 		#__minitek_source_items
@@ -130,6 +180,31 @@ class com_minitekwallInstallerScript
 			}
 		}
 
+		// Update column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " UPDATE `#__minitek_source_items` ";
+		$query .= " SET `checked_out` = 0 ";
+		$query .= " WHERE `checked_out` IS NULL ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-3b: Could not update __minitek_source_items table, column checked_out.', 500);
+			return false;
+		}
+
+		// Modify column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " ALTER TABLE `#__minitek_source_items` ";
+		$query .= " MODIFY COLUMN `checked_out` int unsigned NOT NULL DEFAULT 0 ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-3c: Could not update __minitek_source_items table, column checked_out.', 500);
+			return false;
+		}
+
 		#__minitek_wall_grids
 		$grids_columns = $db->getTableColumns('#__minitek_wall_grids');
 
@@ -146,6 +221,31 @@ class com_minitekwallInstallerScript
 				throw new GenericDataException('Error 4.3.2-4: Could not delete column asset_id.', 500);
 				return false;
 			}
+		}
+
+		// Update column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " UPDATE `#__minitek_wall_grids` ";
+		$query .= " SET `checked_out` = 0 ";
+		$query .= " WHERE `checked_out` IS NULL ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-4b: Could not update __minitek_wall_grids table, column checked_out.', 500);
+			return false;
+		}
+
+		// Modify column 'checked_out'
+		$query = $db->getQuery(true);
+		$query = " ALTER TABLE `#__minitek_wall_grids` ";
+		$query .= " MODIFY COLUMN `checked_out` int unsigned NOT NULL DEFAULT 0 ";
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if (!$result) {
+			throw new GenericDataException('Error 4.3.2-4c: Could not update __minitek_wall_grids table, column checked_out.', 500);
+			return false;
 		}
 	}
 
