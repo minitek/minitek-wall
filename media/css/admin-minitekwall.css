@@ -80,6 +80,12 @@ label[id^="jform_masonry_params_separator_"] {
   margin: 0;
 }
 
+/* Widgets */
+
+.com_minitekwall.view-widgets a.btn-link {
+  text-decoration: none !important;
+}
+
 /* Masonry Layout Params */
 
 #masonry_layout .alert hr {

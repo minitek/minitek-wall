@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -20,6 +20,7 @@ use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 use Joomla\CMS\MVC\View\GenericDataException;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Router\Route;
 
 /**
  * Widget view class for Minitek Wall.
@@ -244,6 +245,15 @@ class HtmlView extends BaseHtmlView
 				->text('COM_MINITEKWALL_WIDGET_TOOLBAR_PUBLISH_IN_MODULE')
 				->icon('icon-ok')
 				->selector('createModule');
+		}
+
+		if (!$isNew)
+		{
+			$url = 'index.php?option=com_minitekwall&view=masonry&widget_id='.$this->item->id.'&tmpl=component';
+
+			$toolbar->preview(URI::root().$url, 'JGLOBAL_PREVIEW')
+				->bodyHeight(80)
+				->modalWidth(90);
 		}
 	}
 }
