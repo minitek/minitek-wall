@@ -1,7 +1,7 @@
 <?php
 /**
 * @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -11,11 +11,10 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
-?>
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_layout', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_LAYOUT')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_layout', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_LAYOUT'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_layout" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -23,13 +22,13 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php 
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+echo HTMLHelper::_('uitab.endTab');
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_image_settings', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_IMAGES_AND_VIDEOS')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_image_settings', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_IMAGES_AND_VIDEOS'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_image_settings" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -37,13 +36,13 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+ echo HTMLHelper::_('uitab.endTab');
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_detailbox', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_DETAIL_BOX')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_detailbox', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_DETAIL_BOX'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_detailbox_general" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -53,87 +52,87 @@ use Joomla\CMS\Language\Text;
 		</div>
 	</div>
 
-	<br>
-
-	<?php echo HTMLHelper::_('uitab.startTabSet', 'detailBoxTabs', array('active' => 'big')); ?>
-
-		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'big', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_BIG')); ?>
-
-		<div class="row">
-			<div class="col-12">
-				<fieldset id="fieldset-masonry_detailbox_big" class="options-grid-form options-grid-form-full">
-					<div><?php 
-						echo $this->masonryform->renderFieldset('masonry_detailbox_big'); 
-					?></div>
-				</fieldset>
-			</div>
-		</div>
-
-		<?php echo HTMLHelper::_('uitab.endTab'); ?>
-
-		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'landscape', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_LANDSCAPE')); ?>
-
-		<div class="row">
-			<div class="col-12">
-				<fieldset id="fieldset-masonry_detailbox_landscape" class="options-grid-form options-grid-form-full">
-					<div><?php 
-						echo $this->masonryform->renderFieldset('masonry_detailbox_landscape'); 
-					?></div>
-				</fieldset>
-			</div>
-		</div>
-
-		<?php echo HTMLHelper::_('uitab.endTab'); ?>
-
-		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'portrait', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_PORTRAIT')); ?>
-
-		<div class="row">
-			<div class="col-12">
-				<fieldset id="fieldset-masonry_detailbox_portrait" class="options-grid-form options-grid-form-full">
-					<div><?php 
-						echo $this->masonryform->renderFieldset('masonry_detailbox_portrait'); 
-					?></div>
-				</fieldset>
-			</div>
-		</div>
-
-		<?php echo HTMLHelper::_('uitab.endTab'); ?>
-
-		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'small', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_SMALL')); ?>
-
-		<div class="row">
-			<div class="col-12">
-				<fieldset id="fieldset-masonry_detailbox_small" class="options-grid-form options-grid-form-full">
-					<div><?php 
-						echo $this->masonryform->renderFieldset('masonry_detailbox_small'); 
-					?></div>
-				</fieldset>
-			</div>
-		</div>
-
-		<?php echo HTMLHelper::_('uitab.endTab'); ?>
-
-		<?php echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'column', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_COLUMN')); ?>
-
-		<div class="row">
-			<div class="col-12">
-				<fieldset id="fieldset-masonry_detailbox_column" class="options-grid-form options-grid-form-full">
-					<div><?php 
-						echo $this->masonryform->renderFieldset('masonry_detailbox_column'); 
-					?></div>
-				</fieldset>
-			</div>
-		</div>
-
-		<?php echo HTMLHelper::_('uitab.endTab'); ?>
+	<br><?php 
 	
-	<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
+	echo HTMLHelper::_('uitab.startTabSet', 'detailBoxTabs', array('active' => 'big'));
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+		echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'big', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_BIG'));
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_hoverbox', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_HOVER_BOX')); ?>
+			?><div class="row">
+				<div class="col-12">
+					<fieldset id="fieldset-masonry_detailbox_big" class="options-grid-form options-grid-form-full">
+						<div><?php 
+							echo $this->masonryform->renderFieldset('masonry_detailbox_big'); 
+						?></div>
+					</fieldset>
+				</div>
+			</div><?php
 
-	<div class="row">
+		echo HTMLHelper::_('uitab.endTab');
+
+		echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'landscape', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_LANDSCAPE'));
+
+			?><div class="row">
+				<div class="col-12">
+					<fieldset id="fieldset-masonry_detailbox_landscape" class="options-grid-form options-grid-form-full">
+						<div><?php 
+							echo $this->masonryform->renderFieldset('masonry_detailbox_landscape'); 
+						?></div>
+					</fieldset>
+				</div>
+			</div><?php
+
+		echo HTMLHelper::_('uitab.endTab');
+
+		echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'portrait', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_PORTRAIT'));
+
+			?><div class="row">
+				<div class="col-12">
+					<fieldset id="fieldset-masonry_detailbox_portrait" class="options-grid-form options-grid-form-full">
+						<div><?php 
+							echo $this->masonryform->renderFieldset('masonry_detailbox_portrait'); 
+						?></div>
+					</fieldset>
+				</div>
+			</div><?php
+
+		echo HTMLHelper::_('uitab.endTab');
+
+		echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'small', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_SMALL'));
+
+			?><div class="row">
+				<div class="col-12">
+					<fieldset id="fieldset-masonry_detailbox_small" class="options-grid-form options-grid-form-full">
+						<div><?php 
+							echo $this->masonryform->renderFieldset('masonry_detailbox_small'); 
+						?></div>
+					</fieldset>
+				</div>
+			</div><?php
+
+		echo HTMLHelper::_('uitab.endTab');
+
+		echo HTMLHelper::_('uitab.addTab', 'detailBoxTabs', 'column', Text::_('COM_MINITEKWALL_FIELD_TAB_WIDGET_DETAILBOX_COLUMN'));
+
+			?><div class="row">
+				<div class="col-12">
+					<fieldset id="fieldset-masonry_detailbox_column" class="options-grid-form options-grid-form-full">
+						<div><?php 
+							echo $this->masonryform->renderFieldset('masonry_detailbox_column'); 
+						?></div>
+					</fieldset>
+				</div>
+			</div><?php
+
+		echo HTMLHelper::_('uitab.endTab');
+	
+	echo HTMLHelper::_('uitab.endTabSet');
+
+echo HTMLHelper::_('uitab.endTab');
+
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_hoverbox', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_HOVER_BOX'));
+
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_hoverbox" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -141,13 +140,13 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+echo HTMLHelper::_('uitab.endTab');
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_pagination', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_PAGINATION')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_pagination', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_PAGINATION'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_pagination" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -155,13 +154,13 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php 
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+echo HTMLHelper::_('uitab.endTab');
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_filters', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_FILTERS_AND_SORTINGS')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_filters', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_FILTERS_AND_SORTINGS'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_filters" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -169,13 +168,13 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+echo HTMLHelper::_('uitab.endTab');
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_effects', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_EFFECTS')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_effects', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_EFFECTS'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_effects" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -183,13 +182,13 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php 
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+echo HTMLHelper::_('uitab.endTab');
 
-<?php echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_responsive_settings', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_RESPONSIVE')); ?>
+echo HTMLHelper::_('uitab.addTab', 'myTab', 'masonry_responsive_settings', Text::_('COM_MINITEKWALL_WIDGET_FIELDSET_RESPONSIVE'));
 
-	<div class="row">
+	?><div class="row">
 		<div class="col-12">
 			<fieldset id="fieldset-masonry_responsive_settings" class="options-grid-form options-grid-form-full">
 				<div><?php 
@@ -197,6 +196,6 @@ use Joomla\CMS\Language\Text;
 				?></div>
 			</fieldset>
 		</div>
-	</div>
+	</div><?php
 
-<?php echo HTMLHelper::_('uitab.endTab'); ?>
+echo HTMLHelper::_('uitab.endTab');

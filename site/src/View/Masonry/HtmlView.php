@@ -43,7 +43,7 @@ class HtmlView extends BaseHtmlView
 		$input = Factory::getApplication()->input;
 		$this->widgetID = $input->get('widget_id', '', 'INT');
 		$this->item  = $this->model->getItem($this->widgetID);
-		$source_id = $this->item->source_id;
+		$this->source_id = $this->item->source_id;
 		$page = $input->get('page', 1, 'INT');
 
 		// Get filter data

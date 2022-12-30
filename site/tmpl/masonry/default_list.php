@@ -51,7 +51,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			$datefilter .= ' date-'.\JHTML::_('date', $item->itemDateRaw, 'Y-m');
 		}
 
-		$empty_media = !$this->mas_images || ($this->mas_images == '1' && empty($item->itemImage));
+		$empty_media = empty($item->itemImage) && empty($item->itemVideo);
 		
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
@@ -122,7 +122,12 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 				?><div class="mwall-item-inner-cont" style="background-color: rgba(<?php echo $options['db_bg_class']; ?>,<?php echo $options['db_bg_opacity_class']; ?>);"><?php 
 					if (!$empty_media)
 					{
-						?><div class="mwall-cover <?php echo $this->hoverOffset; ?> <?php echo $this->perspective; ?>">
+						?><div class="mwall-cover <?php echo $this->hoverOffset; ?> <?php echo $this->perspective; 
+							if (!$this->detailBoxColumns)
+							{
+								echo ' no-detail-box';
+							}
+							?>">
 							<div class="mwall-img-div <?php echo $this->flipBase; ?> <?php echo $this->flipClass; ?>" style="<?php echo $this->animated_flip; ?>">
 								<div class="mwall-item-img"><?php 
 									if (isset($item->itemLink) && $this->mas_image_link) 

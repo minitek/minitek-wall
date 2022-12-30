@@ -101,6 +101,7 @@ website: 	https://www.minitek.gr
 .mwall-sortings-group .mwall-filters-loader {
   position: absolute;
   right: 0;
+  top: 0;
 }
 
 .mwall-filters-sortings {
@@ -1336,6 +1337,11 @@ body.modal-open .mwall-container .modal {
   float: left;
   margin: 0;
   max-width: 50%;
+  width: 100%;
+}
+
+.mwall-list .mwall-cover.no-detail-box {
+  max-width: 100%;
 }
 
 .mwall-list .mwall-img-div img {

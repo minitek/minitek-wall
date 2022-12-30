@@ -50,7 +50,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 		$item_size = $this->masonry_options->getMasonryItemSize($this->gridType, $item_index, $this->custom_grid_id);
 		$class = 'mwall-item'.$item_index.' '.$item_size;
 
-		$empty_media = !$this->mas_images || ($this->mas_images == '1' && empty($item->itemImage));
+		$empty_media = empty($item->itemImage) && empty($item->itemVideo);
 		
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
@@ -119,7 +119,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 				?>"><?php 
 
 				?><div class="mwall-item-inner-cont"><?php 
-					if (!$empty_media)
+					if (!empty($item->itemImage))
 					{
 						if (isset($item->itemLink) && $this->mas_image_link) 
 						{

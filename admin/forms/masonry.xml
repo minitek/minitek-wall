@@ -1783,7 +1783,7 @@
 				showon="mas_category_filters:1"
 			/>
 
-			<field type="separator" text="COM_MINITEKWALL_FIELD_TAG_FILTERS_SEPARATOR" />
+			<field type="separator" name="tag_filters_separator" text="COM_MINITEKWALL_FIELD_TAG_FILTERS_SEPARATOR" />
 
 			<field
 				name="mas_tag_filters"
