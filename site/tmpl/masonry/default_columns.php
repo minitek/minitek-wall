@@ -51,7 +51,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			$datefilter .= ' date-'.\JHTML::_('date', $item->itemDateRaw, 'Y-m');
 		}
 
-		$empty_media = !$this->mas_images || ($this->mas_images == '1' && empty($item->itemImage));
+		$empty_media = empty($item->itemImage) && empty($item->itemVideo);
 
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
@@ -141,17 +141,20 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 								?>"><?php
 
 								?><div class="mwall-item-img"><?php 
-									if (isset($item->itemLink) && $this->mas_image_link) 
+									if (!empty($item->itemImage))
 									{
-										?><a href="<?php echo $item->itemLink; ?>" class="mwall-photo-link">
-											<img src="<?php echo $item->itemImage; ?>" alt="<?php echo $item->itemTitleRaw; ?>" />
-										</a><?php 
-									} 
-									else 
-									{
-										?><div class="mwall-photo-link">
-											<img src="<?php echo $item->itemImage; ?>" alt="<?php echo $item->itemTitleRaw; ?>" />
-										</div><?php 
+										if (isset($item->itemLink) && $this->mas_image_link) 
+										{
+											?><a href="<?php echo $item->itemLink; ?>" class="mwall-photo-link">
+												<img src="<?php echo $item->itemImage; ?>" alt="<?php echo $item->itemTitleRaw; ?>" />
+											</a><?php 
+										} 
+										else 
+										{
+											?><div class="mwall-photo-link">
+												<img src="<?php echo $item->itemImage; ?>" alt="<?php echo $item->itemTitleRaw; ?>" />
+											</div><?php 
+										}
 									}
 								?></div><?php
 

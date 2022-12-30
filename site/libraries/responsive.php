@@ -11,6 +11,13 @@ defined('_JEXEC') or die('Restricted access');
 
 class MinitekWallLibResponsive
 {
+	function __construct($utilitiesLib)
+	{
+		$this->utilitiesLib = $utilitiesLib;
+
+		return;
+	}
+	
 	public function masonryItemCss($masonry_params, $widgetID)
 	{
 		$utilities = new \MinitekWallLibUtilities;
@@ -2823,6 +2830,15 @@ class MinitekWallLibResponsive
 			{
 				.mwall-list #'.$mwall.' .mwall-cover {
 					display: none;
+				}
+				.mwall-list #'.$mwall.' .mwall-cover.with-video,
+				.mwall-list #'.$mwall.' .mwall-cover.with-audio
+				{
+					display: block;
+				}
+				.mwall-list #'.$mwall.' .mwall-cover.with-video
+				{
+					max-width: 100%;
 				}
 			}';
 		}

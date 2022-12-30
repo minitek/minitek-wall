@@ -103,7 +103,7 @@ class HtmlView extends BaseHtmlView
 			[
 				'type' => 'folder',
 				'title' => Text::_('PLG_CONTENT_MSOURCEFOLDER_SOURCE_TITLE'),
-				'image' => URI::root(true).'/media/com_minitekwall/images/source/folder.png',
+				'image' => URI::root(true).'/media/com_minitekwall/images/source/images.png',
 				'downloadurl' => 'https://www.minitek.gr/joomla/extensions/minitek-wall#subscriptionPlans'
 			],
 			[
@@ -125,10 +125,15 @@ class HtmlView extends BaseHtmlView
 		
 		foreach ($this->sources as $key => $source)
 		{
-			if ($this->source_id == $source['type'])
+			if ($this->source_id != $source['type'])
 			{
-				$this->source_icon = $source['image'];
-				$this->source_name = $source['title'];
+				continue;
+			}
+			else
+			{
+				$this->source = $source;
+				$this->source['key'] = $key;
+				$this->source['name'] = $source['title'];
 			}
 		}
 

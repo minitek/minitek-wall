@@ -93,7 +93,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 												<span><?php echo $this->escape($item->name); ?></span>
 											<?php endif; ?>
 											<?php if ($item->description) { ?>
-												<div>
+												<div class="mt-2">
 													<span class="small break-word">
 														<?php echo $this->escape($item->description); ?>
 													</span>
