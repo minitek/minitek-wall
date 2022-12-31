@@ -17,21 +17,26 @@ class MinitekWallLibResponsive
 
 		return;
 	}
-	
-	public function masonryItemCss($masonry_params, $widgetID)
+
+	public function masonryItemCss($params, $id, $source_id)
 	{
-		$utilities = new \MinitekWallLibUtilities;
 		$document = \JFactory::getDocument();
-		$mwall = 'mwall_items_'.$widgetID;
+		$mwall = 'mwall_items_'.$id;
 		$css = '';
 
+		// Hover box
+		$hover_box = $params->get('mas_hb', 0);
+		$hover_box_effect = $params->get('mas_hb_effect', 1);
+		$hover_box_slide = $hover_box && in_array($hover_box_effect, [4, 5, 6, 7]) ? true : false;
+		$hover_box_flip = $hover_box && in_array($hover_box_effect, [2, 3]) ? true : false;
+
 		// Detail box text color - Columns/List
-		if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+		if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
 			$db_color = '255,255,255';
-		else if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+		else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
 			$db_color = '0,0,0';
 		else 
-			$db_color = $utilities->hex2RGB($masonry_params->get('mas_db_color_columns', '#ffffff'), true);
+			$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
 		$css .= '
 		#'.$mwall.' .mwall-detail-box h3.mwall-title a,
@@ -82,7 +87,7 @@ class MinitekWallLibResponsive
 		}';
 
 		// Detail box - Big
-		if (!$masonry_params->get('mas_db_title_big', 1))
+		if (!$params->get('mas_db_title_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-title {
@@ -90,7 +95,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_introtext_big', 1))
+		if (!$params->get('mas_db_introtext_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-desc {
@@ -98,7 +103,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_date_big', 1))
+		if (!$params->get('mas_db_date_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-date {
@@ -106,7 +111,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_category_big', 1))
+		if (!$params->get('mas_db_category_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-category {
@@ -114,7 +119,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_author_big', 1))
+		if (!$params->get('mas_db_author_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-author {
@@ -122,7 +127,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_tags_big', 0))
+		if (!$params->get('mas_db_tags_big', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-tags {
@@ -130,7 +135,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_hits_big', 0))
+		if (!$params->get('mas_db_hits_big', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-hits {
@@ -138,7 +143,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_count_big', 0))
+		if (!$params->get('mas_db_count_big', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-count {
@@ -146,7 +151,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_readmore_big', 0))
+		if (!$params->get('mas_db_readmore_big', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-readmore {
@@ -155,12 +160,12 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box text color - Big
-		if ($masonry_params->get('mas_db_color_big', '#ffffff') == 'light-text')
+		if ($params->get('mas_db_color_big', '#ffffff') == 'light-text')
 			$db_color_big = '255,255,255';
-		else if ($masonry_params->get('mas_db_color_big', '#ffffff') == 'dark-text')
+		else if ($params->get('mas_db_color_big', '#ffffff') == 'dark-text')
 			$db_color_big = '0,0,0';
 		else 
-			$db_color_big = $utilities->hex2RGB($masonry_params->get('mas_db_color_big', '#ffffff'), true);
+			$db_color_big = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_big', '#ffffff'), true);
 
 		$css .= '
 		#'.$mwall.' .mwall-big .mwall-detail-box h3.mwall-title a,
@@ -211,26 +216,28 @@ class MinitekWallLibResponsive
 		}';
 
 		// Images and dimensions - Big
-		$bg_big = $utilities->hex2RGB($masonry_params->get('mas_db_bg_big', '#dd5f5f'), true);
-		$bg_opacity_big = !$masonry_params->get('mas_full_width_image', 1) && $masonry_params->get('mas_db_position_big', 'left') != 'cover'
+		$bg_big = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_big', '#dd5f5f'), true);
+		$bg_opacity_big = !$params->get('mas_full_width_image', 1) 
+			&& $params->get('mas_db_position_big', 'left') != 'cover'
+			&& $source_id != 'audio'
 			? 1 
-			: number_format((float)$masonry_params->get('mas_db_bg_opacity_big', 0.75), 2, '.', '');
+			: number_format((float)$params->get('mas_db_bg_opacity_big', 0.75), 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-big .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_big.','.$bg_opacity_big.');
 		}';
 
-		if ($masonry_params->get('mas_db_big', 1))
+		if ($params->get('mas_db_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-item-inner {	
 				background-color: rgba('.$bg_big.','.$bg_opacity_big.');
 			}';
-
-			if ($masonry_params->get('mas_db_position_big', 'left') == 'left')
+			
+			if ($params->get('mas_db_position_big', 'left') == 'left')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-big .mwall-photo-link {	
@@ -250,9 +257,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_big', 'left') == 'right')
+			else if ($params->get('mas_db_position_big', 'left') == 'right')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-big .mwall-photo-link {	
@@ -272,9 +279,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_big', 'left') == 'top')
+			else if ($params->get('mas_db_position_big', 'left') == 'top')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-big .mwall-photo-link {	
@@ -294,9 +301,9 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_big', 'left') == 'bottom')
+			else if ($params->get('mas_db_position_big', 'left') == 'bottom')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-big .mwall-photo-link {	
@@ -318,7 +325,7 @@ class MinitekWallLibResponsive
 				}';
 			}
 		}
-		else if (!$masonry_params->get('mas_db_big', 1))
+		else if (!$params->get('mas_db_big', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-big .mwall-item-inner {
@@ -332,7 +339,7 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box - Landscape 
-		if (!$masonry_params->get('mas_db_title_lscape', 1))
+		if (!$params->get('mas_db_title_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-title {
@@ -340,7 +347,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_introtext_lscape', 1))
+		if (!$params->get('mas_db_introtext_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-desc {
@@ -348,7 +355,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_date_lscape', 1))
+		if (!$params->get('mas_db_date_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-date {
@@ -356,7 +363,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_category_lscape', 1))
+		if (!$params->get('mas_db_category_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-category {
@@ -364,7 +371,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_author_lscape', 1))
+		if (!$params->get('mas_db_author_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-author {
@@ -372,7 +379,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_tags_lscape', 0))
+		if (!$params->get('mas_db_tags_lscape', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-tags {
@@ -380,7 +387,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_hits_lscape', 0))
+		if (!$params->get('mas_db_hits_lscape', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-hits {
@@ -388,7 +395,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_count_lscape', 0))
+		if (!$params->get('mas_db_count_lscape', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-count {
@@ -396,7 +403,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_readmore_lscape', 0))
+		if (!$params->get('mas_db_readmore_lscape', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-readmore {
@@ -405,12 +412,12 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box text color - Landscape
-		if ($masonry_params->get('mas_db_color_lscape', '#ffffff') == 'light-text')
+		if ($params->get('mas_db_color_lscape', '#ffffff') == 'light-text')
 			$db_color_lscape = '255,255,255';
-		else if ($masonry_params->get('mas_db_color_lscape', '#ffffff') == 'dark-text')
+		else if ($params->get('mas_db_color_lscape', '#ffffff') == 'dark-text')
 			$db_color_lscape = '0,0,0';
 		else 
-			$db_color_lscape = $utilities->hex2RGB($masonry_params->get('mas_db_color_lscape', '#ffffff'), true);
+			$db_color_lscape = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_lscape', '#ffffff'), true);
 
 		$css .= '
 		#'.$mwall.' .mwall-horizontal .mwall-detail-box h3.mwall-title a,
@@ -461,26 +468,28 @@ class MinitekWallLibResponsive
 		}';
 		
 		// Images and dimensions - Landscape
-		$bg_lscape = $utilities->hex2RGB($masonry_params->get('mas_db_bg_lscape', '#1b98e0'), true);
-		$bg_opacity_lscape = !$masonry_params->get('mas_full_width_image', 1) && $masonry_params->get('mas_db_position_lscape', 'left') != 'cover'
+		$bg_lscape = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_lscape', '#1b98e0'), true);
+		$bg_opacity_lscape = !$params->get('mas_full_width_image', 1) 
+			&& $params->get('mas_db_position_lscape', 'left') != 'cover'
+			&& $source_id != 'audio'
 			? 1
-			: number_format((float)$masonry_params->get('mas_db_bg_opacity_lscape', 0.75), 2, '.', '');
+			: number_format((float)$params->get('mas_db_bg_opacity_lscape', 0.75), 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-horizontal .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
 		}';
 
-		if ($masonry_params->get('mas_db_lscape', 1))
+		if ($params->get('mas_db_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-item-inner {	
 				background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
 			}';
 
-			if ($masonry_params->get('mas_db_position_lscape', 'left') == 'left')
+			if ($params->get('mas_db_position_lscape', 'left') == 'left')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
@@ -500,9 +509,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_lscape', 'left') == 'right')
+			else if ($params->get('mas_db_position_lscape', 'left') == 'right')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
@@ -522,9 +531,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_lscape', 'left') == 'top')
+			else if ($params->get('mas_db_position_lscape', 'left') == 'top')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
@@ -544,9 +553,9 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_lscape', 'left') == 'bottom')
+			else if ($params->get('mas_db_position_lscape', 'left') == 'bottom')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
@@ -568,7 +577,7 @@ class MinitekWallLibResponsive
 				}';
 			}
 		}
-		else if (!$masonry_params->get('mas_db_lscape', 1))
+		else if (!$params->get('mas_db_lscape', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-horizontal .mwall-item-inner {
@@ -582,7 +591,7 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box - Portrait 
-		if (!$masonry_params->get('mas_db_title_portrait', 1))
+		if (!$params->get('mas_db_title_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-title {
@@ -590,7 +599,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_introtext_portrait', 1))
+		if (!$params->get('mas_db_introtext_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-desc {
@@ -598,7 +607,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_date_portrait', 1))
+		if (!$params->get('mas_db_date_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-date {
@@ -606,7 +615,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_category_portrait', 1))
+		if (!$params->get('mas_db_category_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-category {
@@ -614,7 +623,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_author_portrait', 1))
+		if (!$params->get('mas_db_author_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-author {
@@ -622,7 +631,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_tags_portrait', 0))
+		if (!$params->get('mas_db_tags_portrait', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-tags {
@@ -630,7 +639,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_hits_portrait', 0))
+		if (!$params->get('mas_db_hits_portrait', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-hits {
@@ -638,7 +647,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_count_portrait', 0))
+		if (!$params->get('mas_db_count_portrait', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-count {
@@ -646,7 +655,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_readmore_portrait', 0))
+		if (!$params->get('mas_db_readmore_portrait', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-readmore {
@@ -655,12 +664,12 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box text color - Portrait
-		if ($masonry_params->get('mas_db_color_portrait', '#ffffff') == 'light-text')
+		if ($params->get('mas_db_color_portrait', '#ffffff') == 'light-text')
 			$db_color_portrait = '255,255,255';
-		else if ($masonry_params->get('mas_db_color_portrait', '#ffffff') == 'dark-text')
+		else if ($params->get('mas_db_color_portrait', '#ffffff') == 'dark-text')
 			$db_color_portrait = '0,0,0';
 		else 
-			$db_color_portrait = $utilities->hex2RGB($masonry_params->get('mas_db_color_portrait', '#ffffff'), true);
+			$db_color_portrait = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_portrait', '#ffffff'), true);
 
 		$css .= '
 		#'.$mwall.' .mwall-vertical .mwall-detail-box h3.mwall-title a,
@@ -711,26 +720,28 @@ class MinitekWallLibResponsive
 		}';
 
 		// Images and dimensions - Portrait
-		$bg_portrait = $utilities->hex2RGB($masonry_params->get('mas_db_bg_portrait', '#e66eb8'), true);
-		$bg_opacity_portrait = !$masonry_params->get('mas_full_width_image', 1) && $masonry_params->get('mas_db_position_portrait', 'bottom') != 'cover'
+		$bg_portrait = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_portrait', '#e66eb8'), true);
+		$bg_opacity_portrait = !$params->get('mas_full_width_image', 1) 
+			&& $params->get('mas_db_position_portrait', 'bottom') != 'cover'
+			&& $source_id != 'audio'
 			? 1
-			: number_format((float)$masonry_params->get('mas_db_bg_opacity_portrait', 0.75), 2, '.', '');
+			: number_format((float)$params->get('mas_db_bg_opacity_portrait', 0.75), 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-vertical .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
 		}';
 
-		if ($masonry_params->get('mas_db_portrait', 1))
+		if ($params->get('mas_db_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-item-inner {	
 				background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
 			}';
 
-			if ($masonry_params->get('mas_db_position_portrait', 'bottom') == 'left')
+			if ($params->get('mas_db_position_portrait', 'bottom') == 'left')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
@@ -750,9 +761,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_portrait', 'bottom') == 'right')
+			else if ($params->get('mas_db_position_portrait', 'bottom') == 'right')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
@@ -772,9 +783,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_portrait', 'bottom') == 'top')
+			else if ($params->get('mas_db_position_portrait', 'bottom') == 'top')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
@@ -794,9 +805,9 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_portrait', 'bottom') == 'bottom')
+			else if ($params->get('mas_db_position_portrait', 'bottom') == 'bottom')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
@@ -818,7 +829,7 @@ class MinitekWallLibResponsive
 				}';
 			}
 		}
-		else if (!$masonry_params->get('mas_db_portrait', 1))
+		else if (!$params->get('mas_db_portrait', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-vertical .mwall-item-inner {
@@ -832,7 +843,7 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box - Small
-		if (!$masonry_params->get('mas_db_title_small', 1))
+		if (!$params->get('mas_db_title_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-title {
@@ -840,7 +851,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_introtext_small', 1))
+		if (!$params->get('mas_db_introtext_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-desc {
@@ -848,7 +859,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_date_small', 1))
+		if (!$params->get('mas_db_date_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-date {
@@ -856,7 +867,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_category_small', 1))
+		if (!$params->get('mas_db_category_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-category {
@@ -864,7 +875,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_author_small', 1))
+		if (!$params->get('mas_db_author_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-author {
@@ -872,7 +883,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_tags_small', 0))
+		if (!$params->get('mas_db_tags_small', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-tags {
@@ -880,7 +891,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_hits_small', 0))
+		if (!$params->get('mas_db_hits_small', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-hits {
@@ -888,7 +899,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_count_small', 0))
+		if (!$params->get('mas_db_count_small', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-count {
@@ -896,7 +907,7 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$masonry_params->get('mas_db_readmore_small', 0))
+		if (!$params->get('mas_db_readmore_small', 0))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-readmore {
@@ -905,12 +916,12 @@ class MinitekWallLibResponsive
 		}
 
 		// Detail box text color - Small
-		if ($masonry_params->get('mas_db_color_small', '#ffffff') == 'light-text')
+		if ($params->get('mas_db_color_small', '#ffffff') == 'light-text')
 			$db_color_small = '255,255,255';
-		else if ($masonry_params->get('mas_db_color_small', '#ffffff') == 'dark-text')
+		else if ($params->get('mas_db_color_small', '#ffffff') == 'dark-text')
 			$db_color_small = '0,0,0';
 		else 
-			$db_color_small = $utilities->hex2RGB($masonry_params->get('mas_db_color_small', '#ffffff'), true);
+			$db_color_small = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_small', '#ffffff'), true);
 
 		$css .= '
 		#'.$mwall.' .mwall-small .mwall-detail-box h3.mwall-title a,
@@ -961,26 +972,28 @@ class MinitekWallLibResponsive
 		}';
 		
 		// Images and dimensions - Small
-		$bg_small = $utilities->hex2RGB($masonry_params->get('mas_db_bg_small', '#24a9b7'), true);
-		$bg_opacity_small = !$masonry_params->get('mas_full_width_image', 1) && $masonry_params->get('mas_db_position_small', 'cover') != 'cover'
+		$bg_small = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_small', '#24a9b7'), true);
+		$bg_opacity_small = !$params->get('mas_full_width_image', 1) 
+			&& $params->get('mas_db_position_small', 'cover') != 'cover'
+			&& $source_id != 'audio'
 			? 1
-			: number_format((float)$masonry_params->get('mas_db_bg_opacity_small', 0.75), 2, '.', '');
+			: number_format((float)$params->get('mas_db_bg_opacity_small', 0.75), 2, '.', '');
 
 		$css .= '
 		#'.$mwall.' .mwall-small .mwall-item-inner-cont {	
 			background-color: rgba('.$bg_small.','.$bg_opacity_small.');
 		}';
 
-		if ($masonry_params->get('mas_db_small', 1))
+		if ($params->get('mas_db_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-item-inner {	
 				background-color: rgba('.$bg_small.','.$bg_opacity_small.');
 			}';
 
-			if ($masonry_params->get('mas_db_position_small', 'cover') == 'left')
+			if ($params->get('mas_db_position_small', 'cover') == 'left')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-small .mwall-photo-link {	
@@ -1000,9 +1013,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_small', 'cover') == 'right')
+			else if ($params->get('mas_db_position_small', 'cover') == 'right')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-small .mwall-photo-link {	
@@ -1022,9 +1035,9 @@ class MinitekWallLibResponsive
 					width: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_small', 'cover') == 'top')
+			else if ($params->get('mas_db_position_small', 'cover') == 'top')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-small .mwall-photo-link {	
@@ -1044,9 +1057,9 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-			else if ($masonry_params->get('mas_db_position_small', 'cover') == 'bottom')
+			else if ($params->get('mas_db_position_small', 'cover') == 'bottom')
 			{
-				if (!$masonry_params->get('mas_full_width_image', 1))
+				if (!$params->get('mas_full_width_image', 1))
 				{
 					$css .= '
 					#'.$mwall.' .mwall-small .mwall-photo-link {	
@@ -1068,7 +1081,7 @@ class MinitekWallLibResponsive
 				}';
 			}
 		}
-		else if (!$masonry_params->get('mas_db_small', 1))
+		else if (!$params->get('mas_db_small', 1))
 		{
 			$css .= '
 			#'.$mwall.' .mwall-small .mwall-item-inner {
@@ -1082,12 +1095,12 @@ class MinitekWallLibResponsive
 		}
 
 		// Hover box text color
-		if ($masonry_params->get('mas_hb_text_color', '#ffffff') == '2')
+		if ($params->get('mas_hb_text_color', '#ffffff') == '2')
 			$hb_color = '255,255,255';
-		else if ($masonry_params->get('mas_hb_text_color', '#ffffff') == '1')
+		else if ($params->get('mas_hb_text_color', '#ffffff') == '1')
 			$hb_color = '0,0,0';
 		else 
-			$hb_color = $utilities->hex2RGB($masonry_params->get('mas_hb_text_color', '#ffffff'), true);
+			$hb_color = $this->utilitiesLib->hex2RGB($params->get('mas_hb_text_color', '#ffffff'), true);
 
 		$css .= '
 		#'.$mwall.' .mwall-hover-box h3.mwall-title a,
@@ -1140,56 +1153,55 @@ class MinitekWallLibResponsive
 		$document->addStyleDeclaration($css);
 	}
 
-	public function loadResponsiveMasonry($masonry_params, $widgetID)
+	public function loadResponsiveMasonry($params, $id)
 	{
-		$utilities = new \MinitekWallLibUtilities;
 		$document = \JFactory::getDocument();
-		$mwall = 'mwall_items_'.$widgetID;
+		$mwall = 'mwall_items_'.$id;
 		$css = '';
 
 		// Responsive settings
-		$responsive_lg = (int)$masonry_params->get('mas_responsive_lg', 1139);
+		$responsive_lg = (int)$params->get('mas_responsive_lg', 1139);
 		$responsive_lg_min = $responsive_lg - 1;
 		$lg_cell_height = '240';
-		$lg_cell_height = (int)$masonry_params->get('mas_lg_cell_height', 240);
-		$md_type = $masonry_params->get('mas_md_type', 0);
-		$responsive_md_num = (int)$masonry_params->get('mas_responsive_md_num', 3);
-		$responsive_md = (int)$masonry_params->get('mas_responsive_md', 939);
+		$lg_cell_height = (int)$params->get('mas_lg_cell_height', 240);
+		$md_type = $params->get('mas_md_type', 0);
+		$responsive_md_num = (int)$params->get('mas_responsive_md_num', 3);
+		$responsive_md = (int)$params->get('mas_responsive_md', 939);
 		$responsive_md_min = $responsive_md - 1;
 		$md_cell_height = '240';
-		$md_hide_images = $masonry_params->get('mas_md_hide_images', 0);
-		$md_cell_height = (int)$masonry_params->get('mas_md_cell_height', 240);
-		$sm_type = $masonry_params->get('mas_sm_type', 1);
-		$responsive_sm_num = (int)$masonry_params->get('mas_responsive_sm_num', 2);
-		$responsive_sm = (int)$masonry_params->get('mas_responsive_sm', 719);
+		$md_hide_images = $params->get('mas_md_hide_images', 0);
+		$md_cell_height = (int)$params->get('mas_md_cell_height', 240);
+		$sm_type = $params->get('mas_sm_type', 1);
+		$responsive_sm_num = (int)$params->get('mas_responsive_sm_num', 2);
+		$responsive_sm = (int)$params->get('mas_responsive_sm', 719);
 		$responsive_sm_min = $responsive_sm - 1;
 		$sm_cell_height = '240';
-		$sm_hide_images = $masonry_params->get('mas_sm_hide_images', 0);
-		$sm_cell_height = (int)$masonry_params->get('mas_sm_cell_height', 240);
-		$xs_type = $masonry_params->get('mas_xs_type', 1);
-		$responsive_xs_num = (int)$masonry_params->get('mas_responsive_xs_num', 2);
-		$responsive_xs = (int)$masonry_params->get('mas_responsive_xs', 479);
+		$sm_hide_images = $params->get('mas_sm_hide_images', 0);
+		$sm_cell_height = (int)$params->get('mas_sm_cell_height', 240);
+		$xs_type = $params->get('mas_xs_type', 1);
+		$responsive_xs_num = (int)$params->get('mas_responsive_xs_num', 2);
+		$responsive_xs = (int)$params->get('mas_responsive_xs', 479);
 		$responsive_xs_min = $responsive_xs - 1;
 		$xs_cell_height = '240';
-		$xs_hide_images = $masonry_params->get('mas_xs_hide_images', 0);
-		$xs_cell_height = (int)$masonry_params->get('mas_xs_cell_height', 240);
-		$xxs_type = $masonry_params->get('mas_xxs_type', 1);
-		$responsive_xxs_num = (int)$masonry_params->get('mas_responsive_xxs_num', 1);
+		$xs_hide_images = $params->get('mas_xs_hide_images', 0);
+		$xs_cell_height = (int)$params->get('mas_xs_cell_height', 240);
+		$xxs_type = $params->get('mas_xxs_type', 1);
+		$responsive_xxs_num = (int)$params->get('mas_responsive_xxs_num', 1);
 		$xxs_cell_height = '240';
-		$xxs_hide_images = $masonry_params->get('mas_xxs_hide_images', 0);
-		$xxs_cell_height = (int)$masonry_params->get('mas_xxs_cell_height', 240);
-		$detail_box_column = $masonry_params->get('mas_db_columns', 1);
-		$show_title_column = $masonry_params->get('mas_db_title_columns', 1);
-		$show_introtext_column = $masonry_params->get('mas_db_introtext_columns', 1);
-		$show_date_column = $masonry_params->get('mas_db_date_columns', 1);
-		$show_category_column = $masonry_params->get('mas_db_category_columns', 1);
-		$show_author_column = $masonry_params->get('mas_db_author_columns', 1);
-		$show_tags_column = $masonry_params->get('mas_db_tags_columns', 0);
-		$show_hits_column = $masonry_params->get('mas_db_hits_columns', 0);
-		$show_count_column = $masonry_params->get('mas_db_count_columns', 0);
-		$show_readmore_column = $masonry_params->get('mas_db_readmore_columns', 0);
-		$bg_columns = $utilities->hex2RGB($masonry_params->get('mas_db_bg_columns', '#1b98e0'), true);
-		$bg_opacity_columns = number_format((float)$masonry_params->get('mas_db_bg_opacity_columns', 0.75), 2, '.', '');
+		$xxs_hide_images = $params->get('mas_xxs_hide_images', 0);
+		$xxs_cell_height = (int)$params->get('mas_xxs_cell_height', 240);
+		$detail_box_column = $params->get('mas_db_columns', 1);
+		$show_title_column = $params->get('mas_db_title_columns', 1);
+		$show_introtext_column = $params->get('mas_db_introtext_columns', 1);
+		$show_date_column = $params->get('mas_db_date_columns', 1);
+		$show_category_column = $params->get('mas_db_category_columns', 1);
+		$show_author_column = $params->get('mas_db_author_columns', 1);
+		$show_tags_column = $params->get('mas_db_tags_columns', 0);
+		$show_hits_column = $params->get('mas_db_hits_columns', 0);
+		$show_count_column = $params->get('mas_db_count_columns', 0);
+		$show_readmore_column = $params->get('mas_db_readmore_columns', 0);
+		$bg_columns = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_columns', '#1b98e0'), true);
+		$bg_opacity_columns = number_format((float)$params->get('mas_db_bg_opacity_columns', 0.75), 2, '.', '');
 
 		// Media CSS - Large
 		$css .= '@media only screen and (min-width:'.$responsive_lg.'px)
@@ -1208,7 +1220,7 @@ class MinitekWallLibResponsive
 				height: '.($lg_cell_height).'px;
 			}';
 			
-			if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+			if (!$params->get('mas_preserve_aspect_ratio', 0))
 			{
 				$css .= '
 				.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -1252,9 +1264,9 @@ class MinitekWallLibResponsive
 					line-height: 20px;
 				}';
 
-				if ($masonry_params->get('mas_grid', 7) == '98o')
+				if ($params->get('mas_grid', 7) == '98o')
 				{
-					if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+					if (!$params->get('mas_preserve_aspect_ratio', 0))
 					{
 						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -1273,7 +1285,7 @@ class MinitekWallLibResponsive
 			
 			$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 			{ ';
-				if ($masonry_params->get('mas_grid', 7) != '99v')
+				if ($params->get('mas_grid', 7) != '99v')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
@@ -1284,7 +1296,7 @@ class MinitekWallLibResponsive
 					}';
 				}
 
-				if ($masonry_params->get('mas_db_position_columns', 'below') == 'below')
+				if ($params->get('mas_db_position_columns', 'below') == 'below')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item {
@@ -1322,7 +1334,7 @@ class MinitekWallLibResponsive
 						height: 100%;
 					}';
 
-					if ($masonry_params->get('mas_db_position_columns', 'below') == 'bottom')
+					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
 					{
 						$css .= '
 						#'.$mwall.' .mwall-item-inner {
@@ -1341,7 +1353,7 @@ class MinitekWallLibResponsive
 					}
 				}
 
-				if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+				if (!$params->get('mas_preserve_aspect_ratio', 0))
 				{
 					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -1360,12 +1372,12 @@ class MinitekWallLibResponsive
 				}';
 
 				// Detail box text color
-				if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
 					$db_color = '255,255,255';
-				else if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
 					$db_color = '0,0,0';
 				else 
-					$db_color = $utilities->hex2RGB($masonry_params->get('mas_db_color_columns', '#ffffff'), true);
+					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
 				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
@@ -1652,9 +1664,9 @@ class MinitekWallLibResponsive
 					line-height: 20px;
 				}';
 
-				if ($masonry_params->get('mas_grid') == '98o')
+				if ($params->get('mas_grid') == '98o')
 				{
-					if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+					if (!$params->get('mas_preserve_aspect_ratio', 0))
 					{
 						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -1673,7 +1685,7 @@ class MinitekWallLibResponsive
 			
 			$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 			{ ';
-				if ($masonry_params->get('mas_grid', 7) != '99v')
+				if ($params->get('mas_grid', 7) != '99v')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
@@ -1684,7 +1696,7 @@ class MinitekWallLibResponsive
 					}';
 				}
 
-				if ($masonry_params->get('mas_db_position_columns', 'below') == 'below')
+				if ($params->get('mas_db_position_columns', 'below') == 'below')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item {
@@ -1722,7 +1734,7 @@ class MinitekWallLibResponsive
 						height: 100%;
 					}';
 
-					if ($masonry_params->get('mas_db_position_columns', 'below') == 'bottom')
+					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
 					{
 						$css .= '
 						#'.$mwall.' .mwall-item-inner {
@@ -1741,7 +1753,7 @@ class MinitekWallLibResponsive
 					}
 				}
 
-				if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+				if (!$params->get('mas_preserve_aspect_ratio', 0))
 				{
 					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -1760,12 +1772,12 @@ class MinitekWallLibResponsive
 				}';
 
 				// Detail box text color
-				if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
 					$db_color = '255,255,255';
-				else if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
 					$db_color = '0,0,0';
 				else 
-					$db_color = $utilities->hex2RGB($masonry_params->get('mas_db_color_columns', '#ffffff'), true);
+					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
 				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
@@ -2042,9 +2054,9 @@ class MinitekWallLibResponsive
 					height: 100% !important;
 				}';
 
-				if ($masonry_params->get('mas_grid') == '98o')
+				if ($params->get('mas_grid') == '98o')
 				{
-					if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+					if (!$params->get('mas_preserve_aspect_ratio', 0))
 					{
 						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -2063,7 +2075,7 @@ class MinitekWallLibResponsive
 			
 			$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 			{ ';
-				if ($masonry_params->get('mas_grid', 7) != '99v')
+				if ($params->get('mas_grid', 7) != '99v')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
@@ -2074,7 +2086,7 @@ class MinitekWallLibResponsive
 					}';
 				}
 
-				if ($masonry_params->get('mas_db_position_columns', 'below') == 'below')
+				if ($params->get('mas_db_position_columns', 'below') == 'below')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item {
@@ -2112,7 +2124,7 @@ class MinitekWallLibResponsive
 						height: 100%;
 					}';
 
-					if ($masonry_params->get('mas_db_position_columns', 'below') == 'bottom')
+					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
 					{
 						$css .= '
 						#'.$mwall.' .mwall-item-inner {
@@ -2131,7 +2143,7 @@ class MinitekWallLibResponsive
 					}
 				}
 
-				if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+				if (!$params->get('mas_preserve_aspect_ratio', 0))
 				{
 					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -2150,12 +2162,12 @@ class MinitekWallLibResponsive
 				}';
 
 				// Detail box text color
-				if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
 					$db_color = '255,255,255';
-				else if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
 					$db_color = '0,0,0';
 				else 
-					$db_color = $utilities->hex2RGB($masonry_params->get('mas_db_color_columns', '#ffffff'), true);
+					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
 				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
@@ -2432,9 +2444,9 @@ class MinitekWallLibResponsive
 					height: 100% !important;
 				}';
 
-				if ($masonry_params->get('mas_grid', 7) == '98o')
+				if ($params->get('mas_grid', 7) == '98o')
 				{
-					if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+					if (!$params->get('mas_preserve_aspect_ratio', 0))
 					{
 						$css .= '
 						.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -2453,7 +2465,7 @@ class MinitekWallLibResponsive
 			
 			$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 			{ ';
-				if ($masonry_params->get('mas_grid', 7) != '99v')
+				if ($params->get('mas_grid', 7) != '99v')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item-inner {	
@@ -2464,7 +2476,7 @@ class MinitekWallLibResponsive
 					}';
 				}
 
-				if ($masonry_params->get('mas_db_position_columns', 'below') == 'below')
+				if ($params->get('mas_db_position_columns', 'below') == 'below')
 				{
 					$css .= '
 					#'.$mwall.' .mwall-item {
@@ -2502,7 +2514,7 @@ class MinitekWallLibResponsive
 						height: 100%;
 					}';
 
-					if ($masonry_params->get('mas_db_position_columns', 'below') == 'bottom')
+					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
 					{
 						$css .= '
 						#'.$mwall.' .mwall-item-inner {
@@ -2521,7 +2533,7 @@ class MinitekWallLibResponsive
 					}
 				}
 
-				if (!$masonry_params->get('mas_preserve_aspect_ratio', 0))
+				if (!$params->get('mas_preserve_aspect_ratio', 0))
 				{
 					$css .= '
 					.mwall-columns #'.$mwall.' .mwall-photo-link {
@@ -2541,12 +2553,12 @@ class MinitekWallLibResponsive
 				}';
 
 				// Detail box text color
-				if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
 					$db_color = '255,255,255';
-				else if ($masonry_params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
 					$db_color = '0,0,0';
 				else 
-					$db_color = $utilities->hex2RGB($masonry_params->get('mas_db_color_columns', '#ffffff'), true);
+					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
 				$css .= '
 				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
@@ -2800,7 +2812,7 @@ class MinitekWallLibResponsive
 		}
 
 		// Columns/list photo-link background color
-		if ($masonry_params->get('mas_grid', 7) == '98o')
+		if ($params->get('mas_grid', 7) == '98o')
 		{
 			$css .= '
 			#'.$mwall.' .mwall-item-inner-cont {	
@@ -2809,7 +2821,7 @@ class MinitekWallLibResponsive
 		}
 
 		// List items - Responsive configuration
-		if ($masonry_params->get('mas_grid', 7) == '99v')
+		if ($params->get('mas_grid', 7) == '99v')
 		{
 			$css .= '
 			.mwall-list #'.$mwall.' .mwall-item {

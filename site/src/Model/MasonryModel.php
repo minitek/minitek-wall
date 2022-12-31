@@ -23,21 +23,19 @@ use Joomla\Registry\Registry;
  */
 class MasonryModel extends BaseDatabaseModel
 {
-	var $utilities = null;
-	var $source = null;
-	var $masonry_options = null;
-	var $masonry_filters = null;
-	var $responsive_masonry = null;
+	var $utilitiesLib = null;
+	var $sourceLib = null;
+	var $optionsLib = null;
+	var $filtersLib = null;
+	var $responsiveLib = null;
 
 	function __construct()
 	{
-		$jinput = Factory::getApplication()->input;
-		$widgetID = $jinput->get('widget_id');
-		$this->utilities = $this->getUtilitiesLib();
-		$this->source = $this->getSourceLib();
-		$this->masonry_options = $this->getMasonryOptionsLib();
-		$this->masonry_filters = $this->getMasonryFiltersLib();
-		$this->responsive_masonry = $this->getResponsiveMasonryLib();
+		$this->utilitiesLib = new \MinitekWallLibUtilities;
+		$this->sourceLib = new \MinitekWallLibSource;
+		$this->optionsLib = new \MinitekWallLibOptions($this->utilitiesLib);
+		$this->filtersLib = new \MinitekWallLibFilters;
+		$this->responsiveLib = new \MinitekWallLibResponsive($this->utilitiesLib);
 
 		parent::__construct();
 	}
@@ -98,63 +96,19 @@ class MasonryModel extends BaseDatabaseModel
 		return $this->_item[$pk];
 	}
 
-	public function getUtilitiesLib()
+	public function getItems($params, $filters)
 	{
-		$utilities = new \MinitekWallLibUtilities;
-
-		return $utilities;
-	}
-
-	public function getSourceLib()
-	{
-		$data_source = new \MinitekWallLibSource;
-
-		return $data_source;
-	}
-
-	public function getMasonryOptionsLib()
-	{
-		$options = new \MinitekWallLibOptions;
-
-		return $options;
-	}
-
-	public function getMasonryFiltersLib()
-	{
-		$options = new \MinitekWallLibFilters;
-
-		return $options;
-	}
-
-	public function getResponsiveMasonryLib()
-	{
-		$options = new \MinitekWallLibResponsive;
-
-		return $options;
-	}
-
-	public function getItems($widgetID, $filters)
-	{
-		$item = $this->getItem($widgetID);
-		$source_params = json_decode($item->source_params, true);
-		$masonry_params = new Registry($item->masonry_params);
-		$startLimit = (int)$masonry_params->get('mas_starting_limit', 7);
-
-		// Get items
-		$result = $this->source->getItems(false, $source_params, $startLimit, false, false, $filters);
+		$result = $this->sourceLib->getItems(false, $params, $filters);
 
 		if (isset($result))
-		{
 			return $result;
-		}
 
 		return false;
 	}
 
-	public function getDisplayOptions($widgetID, $items, $detailBoxParams, $hoverBoxParams)
+	public function getDisplayOptions($items, $params)
 	{
-		$item = $this->getItem($widgetID);
-		$source_type = $item->source_id;		
+		$source_type = $params->get('source_type');
 
 		// Register plugin source class
 		$class = 'MSource'.$source_type.'Options';
@@ -162,16 +116,15 @@ class MasonryModel extends BaseDatabaseModel
 		\JLoader::register($class, JPATH_SITE . '/plugins/content/' . $plugin . '/helpers/options.php');
 
 		$options = new $class;
-		$wall = $options->getDisplayOptions($widgetID, $items, $detailBoxParams, $hoverBoxParams, false, 'com_minitekwall');
+		$wall = $options->getDisplayOptions($items, $params, 'com_minitekwall');
 
 		return $wall;
 	}
 
 	// Get ordering from data source
-	public static function getItemsOrdering($source_params)
+	public static function getItemsOrdering($params)
 	{
-		// Get source type from content plugin
-		$source_type = $source_params['source_type'];
+		$source_type = $params->get('source_type');
 
 		// Register plugin source class
 		$class = 'MSource'.$source_type.'Source';
@@ -179,16 +132,15 @@ class MasonryModel extends BaseDatabaseModel
 		\JLoader::register($class, JPATH_SITE . '/plugins/content/' . $plugin . '/helpers/source.php');
 
 		$source = new $class;
-		$ordering = $source->getItemsOrdering($source_params);
+		$ordering = $source->getItemsOrdering($params);
 
 		return $ordering;
 	}
 
 	// Get ordering direction from data source
-	public static function getItemsDirection($source_params)
+	public static function getItemsDirection($params)
 	{
-		// Get source type from content plugin
-		$source_type = $source_params['source_type'];
+		$source_type = $params->get('source_type');
 
 		// Register plugin source class
 		$class = 'MSource'.$source_type.'Source';
@@ -196,7 +148,7 @@ class MasonryModel extends BaseDatabaseModel
 		\JLoader::register($class, JPATH_SITE . '/plugins/content/' . $plugin . '/helpers/source.php');
 
 		$source = new $class;
-		$direction = $source->getItemsDirection($source_params);
+		$direction = $source->getItemsDirection($params);
 
 		return $direction;
 	}

@@ -1,8 +1,8 @@
 <?php
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
+* @title        Minitek Wall
+* @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
+* @license      GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
 */
@@ -11,11 +11,9 @@ defined('_JEXEC') or die('Restricted access');
 
 class MinitekWallLibOptions
 {
-	var $utilities = null;
-
-	function __construct()
-	{
-		$this->utilities = new MinitekWallLibUtilities;
+	function __construct($utilitiesLib)
+	{		
+		$this->utilitiesLib = $utilitiesLib;
 
 		return;
 	}
@@ -27,7 +25,7 @@ class MinitekWallLibOptions
 			// Custom grids
 			case '999c':
 				// Get custom grid elements
-				$elements = json_decode($this->utilities->getCustomGrid($gridId)->elements, true);
+				$elements = json_decode($this->utilitiesLib->getCustomGrid($gridId)->elements, true);
 				switch ($elements[$item_index - 1]['size'])
 				{
 					case 'S':

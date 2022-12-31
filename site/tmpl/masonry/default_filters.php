@@ -13,7 +13,7 @@ use Joomla\CMS\Filter\OutputFilter;
 use Joomla\Registry\Registry;
 
 // Category Filters
-if ($this->masonry_params->get('mas_category_filters'))
+if ($this->params->get('mas_category_filters'))
 {
 	$cat_array = array();
 
@@ -55,9 +55,9 @@ if ($this->masonry_params->get('mas_category_filters'))
 	// Sort array
 	$column = array();
 	$id = array();
-	$field = $this->masonry_params->get('mas_filters_ordering', 'title');
+	$field = $this->params->get('mas_filters_ordering', 'title');
 	$field = $field === 'title' ? 'alias' : $field;
-	$direction = $this->masonry_params->get('mas_filters_ordering_dir', 'asc');
+	$direction = $this->params->get('mas_filters_ordering_dir', 'asc');
 	$direction = $direction == 'asc' ? SORT_ASC : SORT_DESC;
 	$keys = array_keys($cat_array); // Store original keys
 
@@ -78,13 +78,13 @@ if ($this->masonry_params->get('mas_category_filters'))
 	$cat_array = array_combine($keys, $cat_array);
 
 	// Inline filters
-	if ($cat_array && $this->masonry_params->get('mas_filter_type', 1) == '1')
+	if ($cat_array && $this->params->get('mas_filter_type', 1) == '1')
 	{
 		?><div class="mwall-filters-group button-group button-group-category mwall-buttons" data-filter-group="category"><?php
 		
-			if ($this->masonry_params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY'))
+			if ($this->params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY'))
 			{
-				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY')); ?></span><?php
+				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY')); ?></span><?php
 			}
 			
 			?><ul>
@@ -96,7 +96,7 @@ if ($this->masonry_params->get('mas_category_filters'))
 
 				foreach ($cat_array as $key => $category)
 				{
-					$class = $this->utilities->cleanName($category['title']);
+					$class = $this->utilitiesLib->cleanName($category['title']);
 					$title = htmlspecialchars($category['title']);
 
 					?><li>
@@ -110,14 +110,14 @@ if ($this->masonry_params->get('mas_category_filters'))
 	}
 
 	// Dropdown filters
-	if ($cat_array && $this->masonry_params->get('mas_filter_type', 1) == '2')
+	if ($cat_array && $this->params->get('mas_filter_type', 1) == '2')
 	{
 		?><div class="mwall-filters-group">
 			<div class="mwall-dropdown">
 				<div class="dropdown-label cat-label">
-					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY')); ?>">
+					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY')); ?>">
 						<i class="fa fa-angle-down"></i><span><?php 
-							echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY')); 
+							echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_category_filters_label', 'FILTER_BY_CATEGORY')); 
 						?></span>
 					</span>
 				</div>
@@ -130,7 +130,7 @@ if ($this->masonry_params->get('mas_category_filters'))
 
 					foreach ($cat_array as $key => $category)
 					{
-						$class = $this->utilities->cleanName($category['title']);
+						$class = $this->utilitiesLib->cleanName($category['title']);
 						$title = htmlspecialchars($category['title']);
 						
 						?><li>
@@ -146,7 +146,7 @@ if ($this->masonry_params->get('mas_category_filters'))
 }
 
 // Tag Filters
-if ($this->masonry_params->get('mas_tag_filters', 1))
+if ($this->params->get('mas_tag_filters', 1))
 {
 	$tag_array = array();
 
@@ -185,9 +185,9 @@ if ($this->masonry_params->get('mas_tag_filters', 1))
 	// Sort array
 	$column = array();
 	$id = array();
-	$field = $this->masonry_params->get('mas_filters_ordering', 'title');
+	$field = $this->params->get('mas_filters_ordering', 'title');
 	$field = $field === 'title' ? 'alias' : $field;
-	$direction = $this->masonry_params->get('mas_filters_ordering_dir', 'asc');
+	$direction = $this->params->get('mas_filters_ordering_dir', 'asc');
 	$direction = $direction == 'asc' ? SORT_ASC : SORT_DESC;
 	$keys = array_keys($tag_array); // Store original keys
 
@@ -208,13 +208,13 @@ if ($this->masonry_params->get('mas_tag_filters', 1))
 	$tag_array = array_combine($keys, $tag_array);
 
 	// Inline filters
-	if ($tag_array && $this->masonry_params->get('mas_filter_type', 1) == '1')
+	if ($tag_array && $this->params->get('mas_filter_type', 1) == '1')
 	{
 		?><div class="mwall-filters-group button-group button-group-tag mwall-buttons" data-filter-group="tag"><?php
 
-			if ($this->masonry_params->get('mas_tag_filters_label', 'FILTER_BY_TAG'))
+			if ($this->params->get('mas_tag_filters_label', 'FILTER_BY_TAG'))
 			{
-				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_tag_filters_label', 'FILTER_BY_TAG')); ?></span><?php
+				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_tag_filters_label', 'FILTER_BY_TAG')); ?></span><?php
 			}
 
 			?><ul>
@@ -226,7 +226,7 @@ if ($this->masonry_params->get('mas_tag_filters', 1))
 
 				foreach ($tag_array as $key => $tag)
 				{
-					$class = $this->utilities->cleanName($tag['title']);
+					$class = $this->utilitiesLib->cleanName($tag['title']);
 					$title = htmlspecialchars($tag['title']);
 					
 					?><li>
@@ -239,14 +239,14 @@ if ($this->masonry_params->get('mas_tag_filters', 1))
 		</div><?php 
 	}
 	// Dropdown filters
-	if ($tag_array && $this->masonry_params->get('mas_filter_type', 1) == '2')
+	if ($tag_array && $this->params->get('mas_filter_type', 1) == '2')
 	{
 		?><div class="mwall-filters-group">
 			<div class="mwall-dropdown">
 				<div class="dropdown-label tag-label">
-					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_tag_filters_label', 'FILTER_BY_TAG')); ?>">
+					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_tag_filters_label', 'FILTER_BY_TAG')); ?>">
 						<i class="fa fa-angle-down"></i><span><?php 
-							echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_tag_filters_label', 'FILTER_BY_TAG')); 
+							echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_tag_filters_label', 'FILTER_BY_TAG')); 
 						?></span>
 					</span>
 				</div>
@@ -259,7 +259,7 @@ if ($this->masonry_params->get('mas_tag_filters', 1))
 
 					foreach ($tag_array as $key => $tag)
 					{
-						$class = $this->utilities->cleanName($tag['title']);
+						$class = $this->utilitiesLib->cleanName($tag['title']);
 						$title = htmlspecialchars($tag['title']);
 						
 						?><li>
@@ -275,7 +275,7 @@ if ($this->masonry_params->get('mas_tag_filters', 1))
 }
 
 // Date Filters
-if ($this->masonry_params->get('mas_date_filters', 0))
+if ($this->params->get('mas_date_filters', 0))
 {
 	$date_array = array();
 
@@ -289,7 +289,7 @@ if ($this->masonry_params->get('mas_date_filters', 0))
 	$date_array = array_unique($date_array);
 
 	// Sort array
-	$direction = $this->masonry_params->get('mas_filters_ordering_dir', 'asc');
+	$direction = $this->params->get('mas_filters_ordering_dir', 'asc');
 
 	if ($direction == 'asc')
 		sort($date_array);
@@ -297,13 +297,13 @@ if ($this->masonry_params->get('mas_date_filters', 0))
 		rsort($date_array);
 
 	// Inline filters
-	if ($date_array && $this->masonry_params->get('mas_filter_type', 1) == '1')
+	if ($date_array && $this->params->get('mas_filter_type', 1) == '1')
 	{
 		?><div class="mwall-filters-group button-group button-group-date mwall-buttons" data-filter-group="date"><?php 
 
-			if ($this->masonry_params->get('mas_date_filters_label', 'FILTER_BY_DATE'))
+			if ($this->params->get('mas_date_filters_label', 'FILTER_BY_DATE'))
 			{
-				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_date_filters_label', 'FILTER_BY_DATE')); ?></span><?php 
+				?><span><?php echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_date_filters_label', 'FILTER_BY_DATE')); ?></span><?php 
 			}
 
 			?><ul>
@@ -315,7 +315,7 @@ if ($this->masonry_params->get('mas_date_filters', 0))
 
 				foreach ($date_array as $date)
 				{
-					$class = $this->utilities->cleanName($date);
+					$class = $this->utilitiesLib->cleanName($date);
 					$date = \JHTML::_('date', $date, 'M Y');
 					
 					?><li>
@@ -328,14 +328,14 @@ if ($this->masonry_params->get('mas_date_filters', 0))
 	}
 
 	// Dropdown filters
-	if ($date_array && $this->masonry_params->get('mas_filter_type', 1) == '2')
+	if ($date_array && $this->params->get('mas_filter_type', 1) == '2')
 	{
 		?><div class="mwall-filters-group">
 			<div class="mwall-dropdown">
 				<div class="dropdown-label date-label">
-					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_date_filters_label', 'FILTER_BY_DATE')); ?>">
+					<span data-label="<?php echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_date_filters_label', 'FILTER_BY_DATE')); ?>">
 						<i class="fa fa-angle-down"></i><span><?php 
-							echo \JText::_('COM_MINITEKWALL_'.$this->masonry_params->get('mas_date_filters_label', 'FILTER_BY_DATE')); 
+							echo \JText::_('COM_MINITEKWALL_'.$this->params->get('mas_date_filters_label', 'FILTER_BY_DATE')); 
 						?></span>
 					</span></div>
 				<ul class="button-group button-group-date" data-filter-group="date">
@@ -347,7 +347,7 @@ if ($this->masonry_params->get('mas_date_filters', 0))
 
 					foreach ($date_array as $date)
 					{
-						$class = $this->utilities->cleanName($date);
+						$class = $this->utilitiesLib->cleanName($date);
 						$date = \JHTML::_('date', $date, 'M Y');
 
 						?><li>

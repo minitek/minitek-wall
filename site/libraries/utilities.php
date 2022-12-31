@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
+* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license   	GNU General Public License version 3 or later.
 * @author url   https://www.minitek.gr/
 * @developers   Minitek.gr
@@ -37,19 +37,6 @@ class MinitekWallLibUtilities
 		return $params;
 	}
 
-	// Get source
-	public static function getSourceParams($widgetID)
-	{
-		$db = \JFactory::getDBO();
-		$query = ' SELECT * '
-			. ' FROM '. $db->quoteName('#__minitek_wall_widgets_source') . ' '
-			. ' WHERE '.$db->quoteName('widget_id').' = ' . $db->Quote($widgetID);
-		$db->setQuery($query);
-		$source_params = $db->loadObject()->source_params;
-
-		return json_decode($source_params, true);
-	}
-
 	public static function cleanName($name)
 	{
 		$name_fixed = preg_replace('/(?=\P{Nd})\P{L}/u', '-', $name);
@@ -72,7 +59,7 @@ class MinitekWallLibUtilities
 		return $item_index;
 	}
 
-	public static function hex2RGB($hexStr, $returnAsString = false, $seperator = ',')
+	public static function hex2RGB($hexStr, $returnAsString = false, $separator = ',')
 	{
 		$hexStr = preg_replace("/[^0-9A-Fa-f]/", '', $hexStr);
 		$rgbArray = array();
@@ -95,7 +82,7 @@ class MinitekWallLibUtilities
 			return false;
 		}
 
-		return $returnAsString ? implode($seperator, $rgbArray) : $rgbArray;
+		return $returnAsString ? implode($separator, $rgbArray) : $rgbArray;
 	}
 
 	public static function wordLimit($str, $limit = 100, $end_char = '&#8230;')
