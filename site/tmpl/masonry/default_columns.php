@@ -14,7 +14,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 	$options = $this->getColumnsItemOptions();
 
 	// Extra css
-	$this->model->responsive_masonry->masonryItemCss($this->masonry_params, $this->widgetID);
+	$this->model->responsiveLib->masonryItemCss($this->params, $this->item->id, $this->item->source_id);
 
 	foreach ($this->wall as $key => $item)
 	{
@@ -27,7 +27,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			{
 				if (is_array($category) && isset($category['title']))
 				{
-					$catfilter .= ' cat-'.$this->utilities->cleanName($category['title']);
+					$catfilter .= ' cat-'.$this->utilitiesLib->cleanName($category['title']);
 				}
 			}
 		}
@@ -39,7 +39,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 		{
 			foreach ($item->itemTags as $tag_name)
 			{
-				$tagfilter .= ' tag-'.$this->utilities->cleanName($tag_name->title);
+				$tagfilter .= ' tag-'.$this->utilitiesLib->cleanName($tag_name->title);
 			}
 		}
 
@@ -344,9 +344,9 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 														}
 													}
 
-													if ($this->hoverBoxZoomButton && $this->mas_images == '1' && !empty($item->itemImage)) 
+													if ($this->hoverBoxZoomButton && !empty($item->itemImage)) 
 													{
-														?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->widgetID; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-title="<?php echo $item->itemTitle; ?>">
+														?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->item->id; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-title="<?php echo $item->itemTitle; ?>">
 															<i class="fa fa-search"></i>
 														</a><?php 
 													}
@@ -547,9 +547,9 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 												}
 											}
 
-											if ($this->hoverBoxZoomButton && $this->mas_images == '1' && !empty($item->itemImage)) 
+											if ($this->hoverBoxZoomButton && !empty($item->itemImage)) 
 											{
-												?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->widgetID; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-title="<?php echo $item->itemTitle; ?>">
+												?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->item->id; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-title="<?php echo $item->itemTitle; ?>">
 													<i class="fa fa-search"></i>
 												</a><?php 
 											}

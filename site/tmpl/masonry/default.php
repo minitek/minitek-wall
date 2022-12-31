@@ -15,7 +15,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 // Page title
 if ($this->mas_page_title) 
 {
-	if ($this->params->get('show_page_heading', 1)) 
+	if ($this->componentParams->get('show_page_heading', 1)) 
 	{
 		$app = \JFactory::getApplication();
 		$menu = $app->getMenu();
@@ -42,7 +42,7 @@ if (isset($this->suffix))
 	$suffix = $this->suffix;
 
 // Widget description
-$show_description = $this->masonry_params->get('mas_description', 0);
+$show_description = $this->params->get('mas_description', 0);
 
 if ($show_description && $this->item->description)
 {
@@ -52,8 +52,8 @@ if ($show_description && $this->item->description)
 }
 
 // Wall container
-?><div class="mwall-container-loader mwall-loader" id="mwall_loader_<?php echo $this->widgetID; ?>"> </div>
-<div id="mwall_container_<?php echo $this->widgetID;
+?><div class="mwall-container-loader mwall-loader" id="mwall_loader_<?php echo $this->item->id; ?>"> </div>
+<div id="mwall_container_<?php echo $this->item->id;
 	?>" class="mwall-container mwall-<?php echo $this->mwall_layout;
 	?> <?php echo $this->mwall_grid;
 	?> <?php echo $suffix;
@@ -66,8 +66,8 @@ if ($show_description && $this->item->description)
 			// Filters
 			if (isset($this->filters)) 
 			{
-				?><div id="mwall_filters_container_<?php echo $this->widgetID; ?>" class="mwall-filters-container">
-					<div id="mwall_filters_<?php echo $this->widgetID; ?>" class="mwall-filters"><?php
+				?><div id="mwall_filters_container_<?php echo $this->item->id; ?>" class="mwall-filters-container">
+					<div id="mwall_filters_<?php echo $this->item->id; ?>" class="mwall-filters"><?php
 						echo $this->loadTemplate('filters');
 					?></div>
 				</div><?php
@@ -76,18 +76,19 @@ if ($show_description && $this->item->description)
 			// Sortings
 			if (isset($this->sortings)) 
 			{
-				?><div id="mwall_sortings_container_<?php echo $this->widgetID; ?>" class="mwall-sortings-container">
-					<div id="mwall_sortings_<?php echo $this->widgetID; ?>" class="mwall-sortings"><?php
+				?><div id="mwall_sortings_container_<?php echo $this->item->id; ?>" class="mwall-sortings-container">
+					<div id="mwall_sortings_<?php echo $this->item->id; ?>" class="mwall-sortings"><?php
 						echo $this->loadTemplate('sortings');
 					?></div>
 				</div><?php
 			}
 
 			// Reset button
-			if ($this->resetButton && (isset($this->filters) || isset($this->sortings))) {
+			if ($this->resetButton && ($this->filters || $this->sortings)) 
+			{
 				?><div class="mwall-reset-container">
 					<div class="mwall-reset">
-						<button class="btn-reset" id="mwall_reset_<?php echo $this->widgetID; ?>">
+						<button class="btn-reset" id="mwall_reset_<?php echo $this->item->id; ?>">
 							<i class="fas fa-undo-alt"></i>&nbsp;&nbsp;<?php 
 							echo \JText::_('COM_MINITEKWALL_RESET');
 						?></button><div class="mwall-filters-loader"> </div>
@@ -99,7 +100,7 @@ if ($show_description && $this->item->description)
 
 	// Items
 	?><div id="mwall_items_<?php
-		echo $this->widgetID; ?>" class="mwall-items" style="margin: -<?php
+		echo $this->item->id; ?>" class="mwall-items" style="margin: -<?php
 		echo (int)$this->gutter; ?>px;"><?php
 		echo $this->loadTemplate($this->mwall_layout);
 	?></div><?php
@@ -110,11 +111,11 @@ if ($show_description && $this->item->description)
 	?></div><?php
 
 	// Modal images
-	if ($this->hoverBox && $this->hoverBoxZoomButton && $this->mas_images == '1') 
+	if ($this->hoverBox && $this->hoverBoxZoomButton) 
 	{
 		echo HTMLHelper::_(
 			'bootstrap.renderModal',
-			'zoomWall_' . $this->widgetID,
+			'zoomWall_' . $this->item->id,
 			[
 				'title'       => $this->modalTitle ? '' : null,
 				'closeButton' => true,

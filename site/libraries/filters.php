@@ -11,12 +11,12 @@ defined('_JEXEC') or die('Restricted access');
 
 class MinitekWallLibFilters
 {
-	public function getFiltersCss($masonry_params, $widgetID)
+	public function getFiltersCss($params, $id)
 	{
 		$document = \JFactory::getDocument();
-		$mwall = 'mwall_container_'.$widgetID;
-		$background_color = $masonry_params->get('mas_filters_bg', '#dd5f5f');
-		$border_radius = (int) $masonry_params->get('mas_filters_border_radius', 3);
+		$mwall = 'mwall_container_'.$id;
+		$background_color = $params->get('mas_filters_bg', '#dd5f5f');
+		$border_radius = (int) $params->get('mas_filters_border_radius', 3);
 
 		$css = '
 		#'.$mwall.' .mwall-buttons a {
