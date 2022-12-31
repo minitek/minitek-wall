@@ -1337,7 +1337,7 @@ body.modal-open .mwall-container .modal {
   float: left;
   margin: 0;
   max-width: 50%;
-  width: 100%;
+  width: auto;
 }
 
 .mwall-list .mwall-cover.no-detail-box {
