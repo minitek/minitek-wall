@@ -58,6 +58,10 @@
             this.isIframe = window.frameElement ? true : false;
 
             if (this.isIframe) {
+                if (document.querySelector(".mwall-description"))
+                    document.querySelector(".mwall-description").style.padding =
+                        "20px";
+
                 if (document.querySelector(".mwall-results-empty-results"))
                     document.querySelector(
                         ".mwall-results-empty-results"
