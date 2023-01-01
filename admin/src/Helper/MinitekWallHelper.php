@@ -1,7 +1,7 @@
 <?php
 /**
 * @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2020 Minitek, All rights reserved.
+* @copyright	Copyright (C) 2011-2022 Minitek, All rights reserved.
 * @license		GNU General Public License version 3 or later.
 * @author url	https://www.minitek.gr/
 * @developers	Minitek.gr
@@ -12,7 +12,6 @@ namespace Joomla\Component\MinitekWall\Administrator\Helper;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\URI\URI;
 
 class MinitekWallHelper
 {
@@ -62,6 +61,74 @@ class MinitekWallHelper
  	{
 		$xml = simplexml_load_file(JPATH_ADMINISTRATOR .'/components/com_minitekwall/minitekwall.xml');
 		$version = (string)$xml->version;
+
+		return $version;
+	}
+
+	/**
+	 * Get update message.
+	 *
+	 * @return  Version number
+	 *
+	 * @since   4.4.0
+	 */
+	public static function updateMessage()
+	{
+		$params = \JComponentHelper::getParams('com_minitekwall');
+		$message = 0;
+
+		$xml_file = @file_get_contents('https://update.minitek.gr/joomla-extensions/minitek_wall.xml');
+
+		if ($xml_file)
+		{
+			$updates = new \SimpleXMLElement($xml_file);
+
+			foreach ($updates as $key => $update)
+			{
+				$platform = (array)$update->targetplatform->attributes()->version;
+
+				if ($platform[0] == '4.*')
+				{
+					$message = (string)$update->message;
+
+					break;
+				}
+			}
+		}
+
+		return $message;
+	}
+
+	/**
+	 * Get update message version.
+	 *
+	 * @return  Version number
+	 *
+	 * @since   4.4.0
+	 */
+	public static function updateMessageVersion()
+	{
+		$params = \JComponentHelper::getParams('com_minitekwall');
+		$version = 0;
+
+		$xml_file = @file_get_contents('https://update.minitek.gr/joomla-extensions/minitek_wall.xml');
+
+		if ($xml_file)
+		{
+			$updates = new \SimpleXMLElement($xml_file);
+
+			foreach ($updates as $key => $update)
+			{
+				$platform = (array)$update->targetplatform->attributes()->version;
+
+				if ($platform[0] == '4.*')
+				{
+					$version = (string)$update->showmessage;
+
+					break;
+				}
+			}
+		}
 
 		return $version;
 	}
