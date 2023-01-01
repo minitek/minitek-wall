@@ -67,12 +67,12 @@
 
 			<field
 				name="mas_cols"
-				type="integer"
+				type="number"
 				default="4"
 				label="COM_MINITEKWALL_FIELD_COLUMNS_LABEL"
 				description="COM_MINITEKWALL_FIELD_COLUMNS_DESC"
-				first="1"
-				last="10"
+				min="1"
+				max="10"
 				step="1"
 				showon="mas_grid:98o"
 			/>
@@ -188,7 +188,7 @@
 				label="COM_MINITEKWALL_FIELD_CROP_WIDTH_LABEL"
 				description="COM_MINITEKWALL_FIELD_CROP_WIDTH_DESC"
 				default="400"
-				min="0"
+				min="1"
 				step="1"
 				showon="mas_images:1[AND]mas_crop_images:1"
 			/>
@@ -199,7 +199,7 @@
 				label="COM_MINITEKWALL_FIELD_CROP_HEIGHT_LABEL"
 				description="COM_MINITEKWALL_FIELD_CROP_HEIGHT_DESC"
 				default="300"
-				min="0"
+				min="1"
 				step="1"
 				showon="mas_images:1[AND]mas_crop_images:1"
 			/>
@@ -291,7 +291,7 @@
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_TITLE_LIMIT_DESC"
 				default="15"
-				min="0"
+				min="1"
 				step="1"
 			/>
 
@@ -313,7 +313,7 @@
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_INTROTEXT_LIMIT_DESC"
 				default="15"
-				min="0"
+				min="1"
 				step="1"
 			/>
 
@@ -1421,7 +1421,7 @@
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_TITLE_LIMIT_DESC"
 				default="15"
-				min="0"
+				min="1"
 				step="1"
 				showon="mas_hb:1[AND]mas_hb_title:1"
 			/>
@@ -1445,7 +1445,7 @@
 				label="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LIMIT_LABEL"
 				description="COM_MINITEKWALL_FIELD_HOVER_BOX_INTROTEXT_LIMIT_DESC"
 				default="15"
-				min="0"
+				min="1"
 				step="1"
 				showon="mas_hb:1[AND]mas_hb_introtext:1"
 			/>
@@ -2022,12 +2022,12 @@
 
 			<field
 				name="mas_responsive_md_num"
-				type="integer"
+				type="number"
 				default="3"
 				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
 				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
-				first="1"
-				last="10"
+				min="1"
+				max="10"
 				step="1"
 				showon="mas_enable_responsive:1[AND]mas_md_type:1"
 			/>
@@ -2083,12 +2083,12 @@
 
 			<field
 				name="mas_responsive_sm_num"
-				type="integer"
+				type="number"
 				default="2"
 				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
 				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
-				first="1"
-				last="10"
+				min="1"
+				max="10"
 				step="1"
 				showon="mas_enable_responsive:1[AND]mas_sm_type:1"
 			/>
@@ -2144,12 +2144,12 @@
 
 			<field
 				name="mas_responsive_xs_num"
-				type="integer"
+				type="number"
 				default="2"
 				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
 				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
-				first="1"
-				last="10"
+				min="1"
+				max="10"
 				step="1"
 				showon="mas_enable_responsive:1[AND]mas_xs_type:1"
 			/>
@@ -2194,12 +2194,12 @@
 
 			<field
 				name="mas_responsive_xxs_num"
-				type="integer"
+				type="number"
 				default="1"
 				label="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_LABEL"
 				description="COM_MINITEKWALL_FIELD_ITEMS_PER_ROW_DESC"
-				first="1"
-				last="10"
+				min="1"
+				max="10"
 				step="1"
 				showon="mas_enable_responsive:1[AND]mas_xxs_type:1"
 			/>
