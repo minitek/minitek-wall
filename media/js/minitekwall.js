@@ -1001,7 +1001,7 @@
 
                 // Update the title
                 if (zoomWall.querySelector(".modal-title")) {
-                    var title = button.getAttribute("data-title");
+                    var title = button.getAttribute("data-mw-title");
                     zoomWall.querySelector(".modal-title").textContent = title;
                 }
 
