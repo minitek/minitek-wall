@@ -1013,6 +1013,10 @@
                 var image = button.getAttribute("data-src");
                 zoomWall.querySelector("img").setAttribute("src", image);
             });
+
+            zoomWall.addEventListener("hidden.bs.modal", function (e) {
+                zoomWall.querySelector("img").setAttribute("src", "");
+            });
         }
     }
 
