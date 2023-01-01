@@ -171,7 +171,14 @@
                             ordering: "[data-ordering] parseInt",
                             fordering: "[data-fordering] parseInt",
                             hits: "[data-hits] parseInt",
-                            title: "[data-mw-title]",
+                            title: function (itemElem) {
+                                let title =
+                                    itemElem.querySelector(
+                                        ".mwall-title"
+                                    ).textContent;
+
+                                return self.removeAccents(title);
+                            },
                             id: "[data-id] parseInt",
                             alias: "[data-alias]",
                             date: "[data-date]",
@@ -214,6 +221,18 @@
                     self.doneBrowserResizing(self);
                 }, 500);
             });
+        }
+
+        removeAccents(string) {
+            return string
+                .toLowerCase()
+                .replace(/[áàãâä]/gi, "a")
+                .replace(/[éèëê]/gi, "e")
+                .replace(/[íìïî]/gi, "i")
+                .replace(/[óòöôõø]/gi, "o")
+                .replace(/[úùüû]/gi, "u")
+                .replace(/[ç]/gi, "c")
+                .replace(/[ñ]/gi, "n");
         }
 
         resultsMessage(self, items) {
