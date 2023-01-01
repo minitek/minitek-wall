@@ -346,7 +346,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 													if ($this->hoverBoxZoomButton && !empty($item->itemImage)) 
 													{
-														?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->item->id; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-title="<?php echo $item->itemTitle; ?>">
+														?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->item->id; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-mw-title="<?php echo $item->itemTitle; ?>">
 															<i class="fa fa-search"></i>
 														</a><?php 
 													}
@@ -549,7 +549,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 
 											if ($this->hoverBoxZoomButton && !empty($item->itemImage)) 
 											{
-												?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->item->id; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-title="<?php echo $item->itemTitle; ?>">
+												?><a data-bs-toggle="modal" data-bs-target="#zoomWall_<?php echo $this->item->id; ?>" class="mwall-zoom mwall-item-zoom-icon" data-src="<?php echo JURI::root().''.$item->itemImageRaw; ?>" data-mw-title="<?php echo $item->itemTitle; ?>">
 													<i class="fa fa-search"></i>
 												</a><?php 
 											}
