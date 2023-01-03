@@ -50,7 +50,7 @@ if (!empty($this->wall) || $this->wall!== 0)
 		$item_size = $this->optionsLib->getMasonryItemSize($this->gridType, $item_index, $this->custom_grid_id);
 		$class = 'mwall-item'.$item_index.' '.$item_size;
 
-		$empty_media = empty($item->itemImage) && empty($item->itemVideo);
+		$empty_media = empty($item->itemImage);
 		
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
