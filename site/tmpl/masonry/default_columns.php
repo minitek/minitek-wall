@@ -51,7 +51,7 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 			$datefilter .= ' date-'.\JHTML::_('date', $item->itemDateRaw, 'Y-m');
 		}
 
-		$empty_media = empty($item->itemImage) && empty($item->itemVideo);
+		$empty_media = empty($item->itemImage);
 
 		?><div class="mwall-item <?php 
 			echo $catfilter; ?> <?php 
