@@ -66,8 +66,7 @@ class MinitekWallLibResponsive
 		#'.$mwall.' .mwall-detail-box .mwall-s-desc,
 		#'.$mwall.' .mwall-detail-box .mwall-desc,
 		#'.$mwall.' .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-detail-box .mwall-hits,
-		#'.$mwall.' .mwall-detail-box .mwall-count {
+		#'.$mwall.' .mwall-detail-box .mwall-hits {
 			color: rgba('.$db_color.', 0.8);
 		}
 
@@ -143,14 +142,6 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$params->get('mas_db_count_big', 0))
-		{
-			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-count {
-				display: none;
-			}';
-		}
-
 		if (!$params->get('mas_db_readmore_big', 0))
 		{
 			$css .= '
@@ -195,8 +186,7 @@ class MinitekWallLibResponsive
 		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-s-desc,
 		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-desc,
 		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-hits,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-count {
+		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-hits {
 			color: rgba('.$db_color_big.', 0.8);
 		}
 
@@ -395,14 +385,6 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$params->get('mas_db_count_lscape', 0))
-		{
-			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-count {
-				display: none;
-			}';
-		}
-
 		if (!$params->get('mas_db_readmore_lscape', 0))
 		{
 			$css .= '
@@ -447,8 +429,7 @@ class MinitekWallLibResponsive
 		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-s-desc,
 		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-desc,
 		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-hits,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-count {
+		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-hits {
 			color: rgba('.$db_color_lscape.', 0.8);
 		}
 
@@ -647,14 +628,6 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$params->get('mas_db_count_portrait', 0))
-		{
-			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-count {
-				display: none;
-			}';
-		}
-
 		if (!$params->get('mas_db_readmore_portrait', 0))
 		{
 			$css .= '
@@ -699,8 +672,7 @@ class MinitekWallLibResponsive
 		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-s-desc,
 		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-desc,
 		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-hits,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-count {
+		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-hits {
 			color: rgba('.$db_color_portrait.', 0.8);
 		}
 
@@ -899,14 +871,6 @@ class MinitekWallLibResponsive
 			}';
 		}
 
-		if (!$params->get('mas_db_count_small', 0))
-		{
-			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-count {
-				display: none;
-			}';
-		}
-
 		if (!$params->get('mas_db_readmore_small', 0))
 		{
 			$css .= '
@@ -951,8 +915,7 @@ class MinitekWallLibResponsive
 		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-s-desc,
 		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-desc,
 		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-hits,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-count {
+		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-hits {
 			color: rgba('.$db_color_small.', 0.8);
 		}
 
@@ -1130,8 +1093,7 @@ class MinitekWallLibResponsive
 		#'.$mwall.' .mwall-hover-box .mwall-s-desc,
 		#'.$mwall.' .mwall-hover-box .mwall-desc,
 		#'.$mwall.' .mwall-hover-box .mwall-price,
-		#'.$mwall.' .mwall-hover-box .mwall-hits,
-		#'.$mwall.' .mwall-hover-box .mwall-count {
+		#'.$mwall.' .mwall-hover-box .mwall-hits {
 			color: rgba('.$hb_color.', 0.8);
 		}
 
@@ -1198,7 +1160,6 @@ class MinitekWallLibResponsive
 		$show_author_column = $params->get('mas_db_author_columns', 1);
 		$show_tags_column = $params->get('mas_db_tags_columns', 0);
 		$show_hits_column = $params->get('mas_db_hits_columns', 0);
-		$show_count_column = $params->get('mas_db_count_columns', 0);
 		$show_readmore_column = $params->get('mas_db_readmore_columns', 0);
 		$bg_columns = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_columns', '#1b98e0'), true);
 		$bg_opacity_columns = number_format((float)$params->get('mas_db_bg_opacity_columns', 0.75), 2, '.', '');
@@ -1407,8 +1368,7 @@ class MinitekWallLibResponsive
 				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits,
-				#'.$mwall.' .mwall-detail-box .mwall-count {
+				#'.$mwall.' .mwall-detail-box .mwall-hits {
 					color: rgba('.$db_color.', 0.8) !important;
 				}
 
@@ -1586,25 +1546,6 @@ class MinitekWallLibResponsive
 				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
-						display: none !important;
-					}
-				}';
-			}
-
-			if ($show_count_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
-						display: block !important;
-					}
-				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -1807,8 +1748,7 @@ class MinitekWallLibResponsive
 				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits,
-				#'.$mwall.' .mwall-detail-box .mwall-count {
+				#'.$mwall.' .mwall-detail-box .mwall-hits {
 					color: rgba('.$db_color.', 0.8) !important;
 				}
 
@@ -1986,25 +1926,6 @@ class MinitekWallLibResponsive
 				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
-						display: none !important;
-					}
-				}';
-			}
-
-			if ($show_count_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
-						display: block !important;
-					}
-				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -2197,8 +2118,7 @@ class MinitekWallLibResponsive
 				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits,
-				#'.$mwall.' .mwall-detail-box .mwall-count {
+				#'.$mwall.' .mwall-detail-box .mwall-hits {
 					color: rgba('.$db_color.', 0.8) !important;
 				}
 
@@ -2376,25 +2296,6 @@ class MinitekWallLibResponsive
 				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
-						display: none !important;
-					}
-				}';
-			}
-
-			if ($show_count_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
-						display: block !important;
-					}
-				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';
@@ -2588,8 +2489,7 @@ class MinitekWallLibResponsive
 				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-desc,
 				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits,
-				#'.$mwall.' .mwall-detail-box .mwall-count {
+				#'.$mwall.' .mwall-detail-box .mwall-hits {
 					color: rgba('.$db_color.', 0.8) !important;
 				}
 
@@ -2767,25 +2667,6 @@ class MinitekWallLibResponsive
 				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
 				{
 					#'.$mwall.' .mwall-detail-box .mwall-hits {
-						display: none !important;
-					}
-				}';
-			}
-
-			if ($show_count_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
-						display: block !important;
-					}
-				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-count {
 						display: none !important;
 					}
 				}';

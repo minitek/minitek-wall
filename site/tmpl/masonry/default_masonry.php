@@ -207,13 +207,6 @@ if (!empty($this->wall) || $this->wall!== 0)
 								</div><?php 
 							}
 
-							if ($this->detailBoxCountAll && isset($item->itemCount)) 
-							{
-								?><div class="mwall-count">
-									<p><?php echo $item->itemCount; ?></p>
-								</div><?php 
-							}
-
 							if ($this->detailBoxReadmoreAll) 
 							{
 								if (isset($item->itemLink)) 

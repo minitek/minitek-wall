@@ -543,19 +543,6 @@
 			</field>
 
 			<field
-				name="mas_db_count_big"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
-				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
-				showon="mas_db_big:1"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
 				name="mas_db_readmore_big"
 				type="radio"
 				layout="joomla.form.field.radio.switcher"
@@ -717,19 +704,6 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
-				showon="mas_db_lscape:1"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
-				name="mas_db_count_lscape"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
-				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
 				showon="mas_db_lscape:1"
 			>
 				<option value="0">JHIDE</option>
@@ -905,19 +879,6 @@
 			</field>
 
 			<field
-				name="mas_db_count_portrait"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
-				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
-				showon="mas_db_portrait:1"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
 				name="mas_db_readmore_portrait"
 				type="radio"
 				layout="joomla.form.field.radio.switcher"
@@ -1086,19 +1047,6 @@
 			</field>
 
 			<field
-				name="mas_db_count_small"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
-				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
-				showon="mas_db_small:1"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
 				name="mas_db_readmore_small"
 				type="radio"
 				layout="joomla.form.field.radio.switcher"
@@ -1258,19 +1206,6 @@
 				default="0"
 				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_LABEL"
 				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_HITS_DESC"
-				showon="mas_db_columns:1"
-			>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
-			</field>
-
-			<field
-				name="mas_db_count_columns"
-				type="radio"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				label="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_LABEL"
-				description="COM_MINITEKWALL_FIELD_DETAIL_BOX_COUNT_DESC"
 				showon="mas_db_columns:1"
 			>
 				<option value="0">JHIDE</option>
