@@ -168,7 +168,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										echo $options['author_class']; ?> <?php 
 										echo $options['tags_class']; ?> <?php 
 										echo $options['hits_class']; ?> <?php 
-										echo $options['count_class']; ?> <?php 
 										echo $options['readmore_class']; ?> <?php 
 
 										if ($empty_media)
@@ -241,13 +240,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 										{
 											?><div class="mwall-hits">
 												<p><?php echo $item->itemHits; ?>&nbsp;<?php echo \JText::_('COM_MINITEKWALL_HITS'); ?></p>
-											</div><?php 
-										}
-
-										if ($this->detailBoxCountAll && isset($item->itemCount)) 
-										{
-											?><div class="mwall-count">
-												<p><?php echo $item->itemCount; ?></p>
 											</div><?php 
 										}
 
@@ -369,7 +361,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							echo $options['author_class']; ?> <?php 
 							echo $options['tags_class']; ?> <?php 
 							echo $options['hits_class']; ?> <?php 
-							echo $options['count_class']; ?> <?php 
 							echo $options['readmore_class']; ?> <?php 
 
 							if ($empty_media)
@@ -442,13 +433,6 @@ if (!empty($this->wall) ||  $this->wall!== 0)
 							{
 								?><div class="mwall-hits">
 									<p><?php echo $item->itemHits; ?>&nbsp;<?php echo \JText::_('COM_MINITEKWALL_HITS'); ?></p>
-								</div><?php 
-							}
-
-							if ($this->detailBoxCountAll && isset($item->itemCount)) 
-							{
-								?><div class="mwall-count">
-									<p><?php echo $item->itemCount; ?></p>
 								</div><?php 
 							}
 

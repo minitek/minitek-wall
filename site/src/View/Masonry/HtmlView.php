@@ -119,7 +119,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxAuthorColumns = $params->get('mas_db_author_columns', 1);
 		$this->detailBoxTagsColumns = $params->get('mas_db_tags_columns', 0);
 		$this->detailBoxHitsColumns = $params->get('mas_db_hits_columns', 0);
-		$this->detailBoxCountColumns = $params->get('mas_db_count_columns', 0);
 		$this->detailBoxReadmoreColumns = $params->get('mas_db_readmore_columns', 0);
 
 		// Detail box overall vars
@@ -131,7 +130,6 @@ class HtmlView extends BaseHtmlView
 		$this->detailBoxAuthorAll = true;
 		$this->detailBoxTagsAll = true;
 		$this->detailBoxHitsAll = true;
-		$this->detailBoxCountAll = true;
 		$this->detailBoxReadmoreAll = true;
 		
 		if ((int)$this->gridType != '98' && (int)$this->gridType != '99')
@@ -208,15 +206,6 @@ class HtmlView extends BaseHtmlView
 				$this->detailBoxHitsAll = false;
 			}
 
-			if (!$params->get('mas_db_count_big', 0) &&
-				!$params->get('mas_db_count_lscape', 0) &&
-				!$params->get('mas_db_count_portrait', 0) &&
-				!$params->get('mas_db_count_small', 0) &&
-				!$this->detailBoxCountColumns)
-			{
-				$this->detailBoxCountAll = false;
-			}
-
 			if (!$params->get('mas_db_readmore_big', 0) &&
 				!$params->get('mas_db_readmore_lscape', 0) &&
 				!$params->get('mas_db_readmore_portrait', 0) &&
@@ -251,9 +240,6 @@ class HtmlView extends BaseHtmlView
 
 			if (!$this->detailBoxHitsColumns)
 				$this->detailBoxHitsAll = false;
-
-			if (!$this->detailBoxCountColumns)
-				$this->detailBoxCountAll = false;
 			
 			if (!$this->detailBoxReadmoreColumns)
 				$this->detailBoxReadmoreAll = false;
@@ -559,7 +545,6 @@ class HtmlView extends BaseHtmlView
 		"author_class" => "",
 		"tags_class" => "",
 		"hits_class" => "",
-		"count_class" => "",
 		"readmore_class" => "",
 		"db_bg_class" => "",
 		"db_bg_opacity_class" => "",
@@ -590,9 +575,6 @@ class HtmlView extends BaseHtmlView
 
 		if (!$this->detailBoxHitsColumns)
 			$options['hits_class'] = 'hits-hidden';
-
-		if (!$this->detailBoxCountColumns)
-			$options['count_class'] = 'count-hidden';
 
 		if (!$this->detailBoxReadmoreColumns)
 			$options['readmore_class'] = 'readmore-hidden';

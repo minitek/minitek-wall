@@ -427,10 +427,6 @@ website: 	https://www.minitek.gr
   display: none;
 }
 
-.mwall-item .count-hidden .mwall-count {
-  display: none;
-}
-
 .mwall-item .readmore-hidden .mwall-readmore {
   display: none;
 }
@@ -543,14 +539,12 @@ h3.mwall-title a:focus {
   text-decoration: none;
 }
 
-.mwall-hits,
-.mwall-count {
+.mwall-hits {
   font-size: 12px;
   padding: 0 15px;
 }
 
-.mwall-hits p,
-.mwall-count p {
+.mwall-hits p {
   margin: 0 0 2px;
 }
 
