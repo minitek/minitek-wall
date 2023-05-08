@@ -176,12 +176,14 @@
                             fordering: "[data-fordering] parseInt",
                             hits: "[data-hits] parseInt",
                             title: function (itemElem) {
-                                let title =
-                                    itemElem.querySelector(
-                                        ".mwall-title"
-                                    ).textContent;
+                                if (itemElem.querySelector(".mwall-title")) {
+                                    let title =
+                                        itemElem.querySelector(
+                                            ".mwall-title"
+                                        ).textContent;
 
-                                return self.removeAccents(title);
+                                    return self.removeAccents(title);
+                                }
                             },
                             id: "[data-id] parseInt",
                             alias: "[data-alias]",
