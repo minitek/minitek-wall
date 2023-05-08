@@ -70,7 +70,7 @@ class Router extends RouterView
 
 		if (count($segments))
 		{
-			\JError::raiseError(404, JText::_('COM_MINITEKWALL_ERROR_PAGE_NOT_FOUND'));
+			throw new \RuntimeException(\JText::_('COM_MINITEKWALL_ERROR_PAGE_NOT_FOUND'), 404);
 		}
 
 		return $vars;
