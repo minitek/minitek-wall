@@ -1,16 +1,18 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2022 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
-*/
+ * @title		Minitek Wall
+ * @copyright	Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license		GNU General Public License version 3 or later.
+ * @author url	https://www.minitek.gr/
+ * @developers	Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\Model;
 
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Component\MinitekWall\Administrator\Helper\MinitekWallHelper;
 
@@ -31,8 +33,7 @@ class WidgetsModel extends ListModel
 	 */
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields']))
-		{
+		if (empty($config['filter_fields'])) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
 				'name', 'a.name',
@@ -103,7 +104,7 @@ class WidgetsModel extends ListModel
 	/**
 	 * Build an SQL query to load the list data.
 	 *
-	 * @return  \JDatabaseQuery
+	 * @return  \Joomla\Database\DatabaseQuery
 	 *
 	 * @since   4.0.0
 	 */
@@ -112,8 +113,8 @@ class WidgetsModel extends ListModel
 		// Create a new query object.
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		$user = \JFactory::getUser();
-		$app = \JFactory::getApplication();
+		$user = Factory::getUser();
+		$app = Factory::getApplication();
 
 		// Select the required fields from the table.
 		$query->select(
@@ -136,32 +137,24 @@ class WidgetsModel extends ListModel
 
 		// Filter by published state
 		$published = $this->getState('filter.published');
-		if (is_numeric($published))
-		{
+		if (is_numeric($published)) {
 			$query->where('a.state = ' . (int) $published);
-		}
-		elseif ($published === '')
-		{
+		} elseif ($published === '') {
 			$query->where('(a.state = 0 OR a.state = 1)');
 		}
 
 		// Filter by source id
 		$source_id = $this->getState('filter.source_id');
-		if ($source_id)
-		{
-			$query->where('a.source_id = "' . $source_id.'"');
+		if ($source_id) {
+			$query->where('a.source_id = "' . $source_id . '"');
 		}
 
 		// Filter by search in name.
 		$search = $this->getState('filter.search');
-		if (!empty($search))
-		{
-			if (stripos($search, 'id:') === 0)
-			{
+		if (!empty($search)) {
+			if (stripos($search, 'id:') === 0) {
 				$query->where('a.id = ' . (int) substr($search, 3));
-			}
-			else
-			{
+			} else {
 				$search = $db->quote('%' . $db->escape($search, true) . '%');
 				$query->where('(a.name LIKE ' . $search . ')');
 			}
@@ -188,15 +181,12 @@ class WidgetsModel extends ListModel
 	{
 		$items = parent::getItems();
 
-		if (\JFactory::getApplication()->isClient('site'))
-		{
-			$groups = \JFactory::getUser()->getAuthorisedViewLevels();
+		if (Factory::getApplication()->isClient('site')) {
+			$groups = Factory::getUser()->getAuthorisedViewLevels();
 
-			foreach (array_keys($items) as $x)
-			{
+			foreach (array_keys($items) as $x) {
 				// Check the access level. Remove sections the user shouldn't see
-				if (!in_array($items[$x]->access, $groups))
-				{
+				if (!in_array($items[$x]->access, $groups)) {
 					unset($items[$x]);
 				}
 			}

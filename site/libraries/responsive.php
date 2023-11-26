@@ -1,13 +1,16 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 defined('_JEXEC') or die('Restricted access');
+
+use Joomla\CMS\Factory;
 
 class MinitekWallLibResponsive
 {
@@ -20,8 +23,8 @@ class MinitekWallLibResponsive
 
 	public function masonryItemCss($params, $id, $source_id)
 	{
-		$document = \JFactory::getDocument();
-		$mwall = 'mwall_items_'.$id;
+		$document = Factory::getDocument();
+		$mwall = 'mwall_items_' . $id;
 		$css = '';
 
 		// Hover box
@@ -35,117 +38,109 @@ class MinitekWallLibResponsive
 			$db_color = '255,255,255';
 		else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
 			$db_color = '0,0,0';
-		else 
+		else
 			$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
 		$css .= '
-		#'.$mwall.' .mwall-detail-box h3.mwall-title a,
-		#'.$mwall.' .mwall-detail-box h3.mwall-title span {
-			color: rgba('.$db_color.', 0.9);
+		#' . $mwall . ' .mwall-detail-box h3.mwall-title a,
+		#' . $mwall . ' .mwall-detail-box h3.mwall-title span {
+			color: rgba(' . $db_color . ', 0.9);
 		}
 
-		#'.$mwall.' .mwall-detail-box h3.mwall-title a:hover,
-		#'.$mwall.' .mwall-detail-box h3.mwall-title a:focus {
-			color: rgba('.$db_color.', 1);
+		#' . $mwall . ' .mwall-detail-box h3.mwall-title a:hover,
+		#' . $mwall . ' .mwall-detail-box h3.mwall-title a:focus {
+			color: rgba(' . $db_color . ', 1);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-item-info {
-			color: rgba('.$db_color.', 0.7);
+		#' . $mwall . ' .mwall-detail-box .mwall-item-info {
+			color: rgba(' . $db_color . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-item-info a {
-			color: rgba('.$db_color.', 0.8);
+		#' . $mwall . ' .mwall-detail-box .mwall-item-info a {
+			color: rgba(' . $db_color . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-item-info a:hover,
-		#'.$mwall.' .mwall-detail-box .mwall-item-info a:focus {
-			color: rgba('.$db_color.', 1);
-			border-bottom: 1px dotted rgba('.$db_color.', 0.8);
+		#' . $mwall . ' .mwall-detail-box .mwall-item-info a:hover,
+		#' . $mwall . ' .mwall-detail-box .mwall-item-info a:focus {
+			color: rgba(' . $db_color . ', 1);
+			border-bottom: 1px dotted rgba(' . $db_color . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-s-desc,
-		#'.$mwall.' .mwall-detail-box .mwall-desc,
-		#'.$mwall.' .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-detail-box .mwall-hits {
-			color: rgba('.$db_color.', 0.8);
+		#' . $mwall . ' .mwall-detail-box .mwall-s-desc,
+		#' . $mwall . ' .mwall-detail-box .mwall-desc,
+		#' . $mwall . ' .mwall-detail-box .mwall-price,
+		#' . $mwall . ' .mwall-detail-box .mwall-hits {
+			color: rgba(' . $db_color . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-date {
-			color: rgba('.$db_color.', 0.7);
+		#' . $mwall . ' .mwall-detail-box .mwall-date {
+			color: rgba(' . $db_color . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-readmore a {
-			color: rgba('.$db_color.', 0.7);
-			border: 1px solid rgba('.$db_color.', 0.7);
+		#' . $mwall . ' .mwall-detail-box .mwall-readmore a {
+			color: rgba(' . $db_color . ', 0.7);
+			border: 1px solid rgba(' . $db_color . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-detail-box .mwall-readmore a:hover,
-		#'.$mwall.' .mwall-detail-box .mwall-readmore a:focus {
-			color: rgba('.$db_color.', 1);
-			border: 1px solid rgba('.$db_color.', 1);
+		#' . $mwall . ' .mwall-detail-box .mwall-readmore a:hover,
+		#' . $mwall . ' .mwall-detail-box .mwall-readmore a:focus {
+			color: rgba(' . $db_color . ', 1);
+			border: 1px solid rgba(' . $db_color . ', 1);
 		}';
 
 		// Detail box - Big
-		if (!$params->get('mas_db_title_big', 1))
-		{
+		if (!$params->get('mas_db_title_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-title {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-title {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_introtext_big', 1))
-		{
+		if (!$params->get('mas_db_introtext_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-desc {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-desc {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_date_big', 1))
-		{
+		if (!$params->get('mas_db_date_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-date {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-date {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_category_big', 1))
-		{
+		if (!$params->get('mas_db_category_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-category {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-category {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_author_big', 1))
-		{
+		if (!$params->get('mas_db_author_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-author {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-author {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_tags_big', 0))
-		{
+		if (!$params->get('mas_db_tags_big', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-tags {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-tags {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_hits_big', 0))
-		{
+		if (!$params->get('mas_db_hits_big', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-hits {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-hits {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_readmore_big', 0))
-		{
+		if (!$params->get('mas_db_readmore_big', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-detail-box .mwall-readmore {
+			#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-readmore {
 				display: none;
 			}';
 		}
@@ -155,82 +150,79 @@ class MinitekWallLibResponsive
 			$db_color_big = '255,255,255';
 		else if ($params->get('mas_db_color_big', '#ffffff') == 'dark-text')
 			$db_color_big = '0,0,0';
-		else 
+		else
 			$db_color_big = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_big', '#ffffff'), true);
 
 		$css .= '
-		#'.$mwall.' .mwall-big .mwall-detail-box h3.mwall-title a,
-		#'.$mwall.' .mwall-big .mwall-detail-box h3.mwall-title span {
-			color: rgba('.$db_color_big.', 0.9);
+		#' . $mwall . ' .mwall-big .mwall-detail-box h3.mwall-title a,
+		#' . $mwall . ' .mwall-big .mwall-detail-box h3.mwall-title span {
+			color: rgba(' . $db_color_big . ', 0.9);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box h3.mwall-title a:hover,
-		#'.$mwall.' .mwall-big .mwall-detail-box h3.mwall-title a:focus {
-			color: rgba('.$db_color_big.', 1);
+		#' . $mwall . ' .mwall-big .mwall-detail-box h3.mwall-title a:hover,
+		#' . $mwall . ' .mwall-big .mwall-detail-box h3.mwall-title a:focus {
+			color: rgba(' . $db_color_big . ', 1);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-info {
-			color: rgba('.$db_color_big.', 0.7);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-info {
+			color: rgba(' . $db_color_big . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-info a {
-			color: rgba('.$db_color_big.', 0.8);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-info a {
+			color: rgba(' . $db_color_big . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-info a:hover,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-item-info a:focus {
-			color: rgba('.$db_color_big.', 1);
-			border-bottom: 1px dotted rgba('.$db_color_big.', 0.8);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-info a:hover,
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-item-info a:focus {
+			color: rgba(' . $db_color_big . ', 1);
+			border-bottom: 1px dotted rgba(' . $db_color_big . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-s-desc,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-desc,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-hits {
-			color: rgba('.$db_color_big.', 0.8);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-s-desc,
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-desc,
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-price,
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-hits {
+			color: rgba(' . $db_color_big . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-date {
-			color: rgba('.$db_color_big.', 0.7);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-date {
+			color: rgba(' . $db_color_big . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-readmore a {
-			color: rgba('.$db_color_big.', 0.7);
-			border: 1px solid rgba('.$db_color_big.', 0.7);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-readmore a {
+			color: rgba(' . $db_color_big . ', 0.7);
+			border: 1px solid rgba(' . $db_color_big . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-readmore a:hover,
-		#'.$mwall.' .mwall-big .mwall-detail-box .mwall-readmore a:focus {
-			color: rgba('.$db_color_big.', 1);
-			border: 1px solid rgba('.$db_color_big.', 1);
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-readmore a:hover,
+		#' . $mwall . ' .mwall-big .mwall-detail-box .mwall-readmore a:focus {
+			color: rgba(' . $db_color_big . ', 1);
+			border: 1px solid rgba(' . $db_color_big . ', 1);
 		}';
 
 		// Images and dimensions - Big
 		$bg_big = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_big', '#dd5f5f'), true);
-		$bg_opacity_big = !$params->get('mas_full_width_image', 1) 
+		$bg_opacity_big = !$params->get('mas_full_width_image', 1)
 			&& $params->get('mas_db_position_big', 'left') != 'cover'
 			&& $source_id != 'audio'
-			? 1 
+			? 1
 			: number_format((float)$params->get('mas_db_bg_opacity_big', 0.75), 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-big .mwall-item-inner-cont {	
-			background-color: rgba('.$bg_big.','.$bg_opacity_big.');
+		#' . $mwall . ' .mwall-big .mwall-item-inner-cont {
+			background-color: rgba(' . $bg_big . ',' . $bg_opacity_big . ');
 		}';
 
-		if ($params->get('mas_db_big', 1))
-		{
+		if ($params->get('mas_db_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-item-inner {	
-				background-color: rgba('.$bg_big.','.$bg_opacity_big.');
+			#' . $mwall . ' .mwall-big .mwall-item-inner {
+				background-color: rgba(' . $bg_big . ',' . $bg_opacity_big . ');
 			}';
-			
-			if ($params->get('mas_db_position_big', 'left') == 'left')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+
+			if ($params->get('mas_db_position_big', 'left') == 'left') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-big .mwall-photo-link {	
+					#' . $mwall . ' .mwall-big .mwall-photo-link {
 						right: 0;
 						left: auto;
 						top: 0;
@@ -238,21 +230,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					left: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_big', 'left') == 'right')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_big', 'left') == 'right') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-big .mwall-photo-link {	
+					#' . $mwall . ' .mwall-big .mwall-photo-link {
 						left: 0;
 						right: auto;
 						top: 0;
@@ -260,21 +249,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					right: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_big', 'left') == 'top')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_big', 'left') == 'top') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-big .mwall-photo-link {	
+					#' . $mwall . ' .mwall-big .mwall-photo-link {
 						right: 0;
 						left: 0;
 						top: auto;
@@ -282,21 +268,18 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					top: 0;
 					height: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_big', 'left') == 'bottom')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_big', 'left') == 'bottom') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-big .mwall-photo-link {	
+					#' . $mwall . ' .mwall-big .mwall-photo-link {
 						right: 0;
 						left: 0;
 						bottom: auto;
@@ -306,7 +289,7 @@ class MinitekWallLibResponsive
 				}
 
 				$css .= '
-				#'.$mwall.' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-big .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					bottom: 0;
@@ -314,81 +297,71 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-		}
-		else if (!$params->get('mas_db_big', 1))
-		{
+		} else if (!$params->get('mas_db_big', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-big .mwall-item-inner {
+			#' . $mwall . ' .mwall-big .mwall-item-inner {
 				display: none;
 			}
 
-			#'.$mwall.' .mwall-big .mwall-item-inner.mwall-no-image {
+			#' . $mwall . ' .mwall-big .mwall-item-inner.mwall-no-image {
 				display: block;
-				background-color: rgba('.$bg_big.','.$bg_opacity_big.');
+				background-color: rgba(' . $bg_big . ',' . $bg_opacity_big . ');
 			}';
 		}
 
-		// Detail box - Landscape 
-		if (!$params->get('mas_db_title_lscape', 1))
-		{
+		// Detail box - Landscape
+		if (!$params->get('mas_db_title_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-title {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-title {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_introtext_lscape', 1))
-		{
+		if (!$params->get('mas_db_introtext_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-desc {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-desc {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_date_lscape', 1))
-		{
+		if (!$params->get('mas_db_date_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-date {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-date {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_category_lscape', 1))
-		{
+		if (!$params->get('mas_db_category_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-category {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-category {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_author_lscape', 1))
-		{
+		if (!$params->get('mas_db_author_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-author {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-author {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_tags_lscape', 0))
-		{
+		if (!$params->get('mas_db_tags_lscape', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-tags {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-tags {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_hits_lscape', 0))
-		{
+		if (!$params->get('mas_db_hits_lscape', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-hits {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-hits {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_readmore_lscape', 0))
-		{
+		if (!$params->get('mas_db_readmore_lscape', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-readmore {
+			#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-readmore {
 				display: none;
 			}';
 		}
@@ -398,82 +371,79 @@ class MinitekWallLibResponsive
 			$db_color_lscape = '255,255,255';
 		else if ($params->get('mas_db_color_lscape', '#ffffff') == 'dark-text')
 			$db_color_lscape = '0,0,0';
-		else 
+		else
 			$db_color_lscape = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_lscape', '#ffffff'), true);
 
 		$css .= '
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box h3.mwall-title a,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box h3.mwall-title span {
-			color: rgba('.$db_color_lscape.', 0.9);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box h3.mwall-title a,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box h3.mwall-title span {
+			color: rgba(' . $db_color_lscape . ', 0.9);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box h3.mwall-title a:hover,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box h3.mwall-title a:focus {
-			color: rgba('.$db_color_lscape.', 1);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box h3.mwall-title a:hover,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box h3.mwall-title a:focus {
+			color: rgba(' . $db_color_lscape . ', 1);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-info {
-			color: rgba('.$db_color_lscape.', 0.7);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-info {
+			color: rgba(' . $db_color_lscape . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-info a {
-			color: rgba('.$db_color_lscape.', 0.8);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-info a {
+			color: rgba(' . $db_color_lscape . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-info a:hover,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-item-info a:focus {
-			color: rgba('.$db_color_lscape.', 1);
-			border-bottom: 1px dotted rgba('.$db_color_lscape.', 0.8);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-info a:hover,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-item-info a:focus {
+			color: rgba(' . $db_color_lscape . ', 1);
+			border-bottom: 1px dotted rgba(' . $db_color_lscape . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-s-desc,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-desc,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-hits {
-			color: rgba('.$db_color_lscape.', 0.8);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-s-desc,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-desc,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-price,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-hits {
+			color: rgba(' . $db_color_lscape . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-date {
-			color: rgba('.$db_color_lscape.', 0.7);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-date {
+			color: rgba(' . $db_color_lscape . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-readmore a {
-			color: rgba('.$db_color_lscape.', 0.7);
-			border: 1px solid rgba('.$db_color_lscape.', 0.7);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-readmore a {
+			color: rgba(' . $db_color_lscape . ', 0.7);
+			border: 1px solid rgba(' . $db_color_lscape . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-readmore a:hover,
-		#'.$mwall.' .mwall-horizontal .mwall-detail-box .mwall-readmore a:focus {
-			color: rgba('.$db_color_lscape.', 1);
-			border: 1px solid rgba('.$db_color_lscape.', 1);
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-readmore a:hover,
+		#' . $mwall . ' .mwall-horizontal .mwall-detail-box .mwall-readmore a:focus {
+			color: rgba(' . $db_color_lscape . ', 1);
+			border: 1px solid rgba(' . $db_color_lscape . ', 1);
 		}';
-		
+
 		// Images and dimensions - Landscape
 		$bg_lscape = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_lscape', '#1b98e0'), true);
-		$bg_opacity_lscape = !$params->get('mas_full_width_image', 1) 
+		$bg_opacity_lscape = !$params->get('mas_full_width_image', 1)
 			&& $params->get('mas_db_position_lscape', 'left') != 'cover'
 			&& $source_id != 'audio'
 			? 1
 			: number_format((float)$params->get('mas_db_bg_opacity_lscape', 0.75), 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-horizontal .mwall-item-inner-cont {	
-			background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
+		#' . $mwall . ' .mwall-horizontal .mwall-item-inner-cont {
+			background-color: rgba(' . $bg_lscape . ',' . $bg_opacity_lscape . ');
 		}';
 
-		if ($params->get('mas_db_lscape', 1))
-		{
+		if ($params->get('mas_db_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-item-inner {	
-				background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
+			#' . $mwall . ' .mwall-horizontal .mwall-item-inner {
+				background-color: rgba(' . $bg_lscape . ',' . $bg_opacity_lscape . ');
 			}';
 
-			if ($params->get('mas_db_position_lscape', 'left') == 'left')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			if ($params->get('mas_db_position_lscape', 'left') == 'left') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
+					#' . $mwall . ' .mwall-horizontal .mwall-photo-link {
 						right: 0;
 						left: auto;
 						top: 0;
@@ -481,21 +451,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					left: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_lscape', 'left') == 'right')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_lscape', 'left') == 'right') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
+					#' . $mwall . ' .mwall-horizontal .mwall-photo-link {
 						left: 0;
 						right: auto;
 						top: 0;
@@ -503,21 +470,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					right: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_lscape', 'left') == 'top')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_lscape', 'left') == 'top') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
+					#' . $mwall . ' .mwall-horizontal .mwall-photo-link {
 						right: 0;
 						left: 0;
 						top: auto;
@@ -525,21 +489,18 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					top: 0;
 					height: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_lscape', 'left') == 'bottom')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_lscape', 'left') == 'bottom') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-horizontal .mwall-photo-link {	
+					#' . $mwall . ' .mwall-horizontal .mwall-photo-link {
 						right: 0;
 						left: 0;
 						bottom: auto;
@@ -547,9 +508,9 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-horizontal .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					bottom: 0;
@@ -557,81 +518,71 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-		}
-		else if (!$params->get('mas_db_lscape', 1))
-		{
+		} else if (!$params->get('mas_db_lscape', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-horizontal .mwall-item-inner {
+			#' . $mwall . ' .mwall-horizontal .mwall-item-inner {
 				display: none;
 			}
 
-			#'.$mwall.' .mwall-horizontal .mwall-item-inner.mwall-no-image {
+			#' . $mwall . ' .mwall-horizontal .mwall-item-inner.mwall-no-image {
 				display: block;
-				background-color: rgba('.$bg_lscape.','.$bg_opacity_lscape.');
+				background-color: rgba(' . $bg_lscape . ',' . $bg_opacity_lscape . ');
 			}';
 		}
 
-		// Detail box - Portrait 
-		if (!$params->get('mas_db_title_portrait', 1))
-		{
+		// Detail box - Portrait
+		if (!$params->get('mas_db_title_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-title {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-title {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_introtext_portrait', 1))
-		{
+		if (!$params->get('mas_db_introtext_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-desc {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-desc {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_date_portrait', 1))
-		{
+		if (!$params->get('mas_db_date_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-date {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-date {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_category_portrait', 1))
-		{
+		if (!$params->get('mas_db_category_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-category {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-category {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_author_portrait', 1))
-		{
+		if (!$params->get('mas_db_author_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-author {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-author {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_tags_portrait', 0))
-		{
+		if (!$params->get('mas_db_tags_portrait', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-tags {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-tags {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_hits_portrait', 0))
-		{
+		if (!$params->get('mas_db_hits_portrait', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-hits {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-hits {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_readmore_portrait', 0))
-		{
+		if (!$params->get('mas_db_readmore_portrait', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-readmore {
+			#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-readmore {
 				display: none;
 			}';
 		}
@@ -641,82 +592,79 @@ class MinitekWallLibResponsive
 			$db_color_portrait = '255,255,255';
 		else if ($params->get('mas_db_color_portrait', '#ffffff') == 'dark-text')
 			$db_color_portrait = '0,0,0';
-		else 
+		else
 			$db_color_portrait = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_portrait', '#ffffff'), true);
 
 		$css .= '
-		#'.$mwall.' .mwall-vertical .mwall-detail-box h3.mwall-title a,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box h3.mwall-title span {
-			color: rgba('.$db_color_portrait.', 0.9);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box h3.mwall-title a,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box h3.mwall-title span {
+			color: rgba(' . $db_color_portrait . ', 0.9);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box h3.mwall-title a:hover,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box h3.mwall-title a:focus {
-			color: rgba('.$db_color_portrait.', 1);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box h3.mwall-title a:hover,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box h3.mwall-title a:focus {
+			color: rgba(' . $db_color_portrait . ', 1);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-info {
-			color: rgba('.$db_color_portrait.', 0.7);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-info {
+			color: rgba(' . $db_color_portrait . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-info a {
-			color: rgba('.$db_color_portrait.', 0.8);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-info a {
+			color: rgba(' . $db_color_portrait . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-info a:hover,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-item-info a:focus {
-			color: rgba('.$db_color_portrait.', 1);
-			border-bottom: 1px dotted rgba('.$db_color_portrait.', 0.8);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-info a:hover,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-item-info a:focus {
+			color: rgba(' . $db_color_portrait . ', 1);
+			border-bottom: 1px dotted rgba(' . $db_color_portrait . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-s-desc,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-desc,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-hits {
-			color: rgba('.$db_color_portrait.', 0.8);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-s-desc,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-desc,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-price,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-hits {
+			color: rgba(' . $db_color_portrait . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-date {
-			color: rgba('.$db_color_portrait.', 0.7);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-date {
+			color: rgba(' . $db_color_portrait . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-readmore a {
-			color: rgba('.$db_color_portrait.', 0.7);
-			border: 1px solid rgba('.$db_color_portrait.', 0.7);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-readmore a {
+			color: rgba(' . $db_color_portrait . ', 0.7);
+			border: 1px solid rgba(' . $db_color_portrait . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-readmore a:hover,
-		#'.$mwall.' .mwall-vertical .mwall-detail-box .mwall-readmore a:focus {
-			color: rgba('.$db_color_portrait.', 1);
-			border: 1px solid rgba('.$db_color_portrait.', 1);
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-readmore a:hover,
+		#' . $mwall . ' .mwall-vertical .mwall-detail-box .mwall-readmore a:focus {
+			color: rgba(' . $db_color_portrait . ', 1);
+			border: 1px solid rgba(' . $db_color_portrait . ', 1);
 		}';
 
 		// Images and dimensions - Portrait
 		$bg_portrait = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_portrait', '#e66eb8'), true);
-		$bg_opacity_portrait = !$params->get('mas_full_width_image', 1) 
+		$bg_opacity_portrait = !$params->get('mas_full_width_image', 1)
 			&& $params->get('mas_db_position_portrait', 'bottom') != 'cover'
 			&& $source_id != 'audio'
 			? 1
 			: number_format((float)$params->get('mas_db_bg_opacity_portrait', 0.75), 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-vertical .mwall-item-inner-cont {	
-			background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
+		#' . $mwall . ' .mwall-vertical .mwall-item-inner-cont {
+			background-color: rgba(' . $bg_portrait . ',' . $bg_opacity_portrait . ');
 		}';
 
-		if ($params->get('mas_db_portrait', 1))
-		{
+		if ($params->get('mas_db_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-item-inner {	
-				background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
+			#' . $mwall . ' .mwall-vertical .mwall-item-inner {
+				background-color: rgba(' . $bg_portrait . ',' . $bg_opacity_portrait . ');
 			}';
 
-			if ($params->get('mas_db_position_portrait', 'bottom') == 'left')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			if ($params->get('mas_db_position_portrait', 'bottom') == 'left') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
+					#' . $mwall . ' .mwall-vertical .mwall-photo-link {
 						right: 0;
 						left: auto;
 						top: 0;
@@ -724,21 +672,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					left: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_portrait', 'bottom') == 'right')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_portrait', 'bottom') == 'right') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
+					#' . $mwall . ' .mwall-vertical .mwall-photo-link {
 						left: 0;
 						right: auto;
 						top: 0;
@@ -746,21 +691,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					right: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_portrait', 'bottom') == 'top')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_portrait', 'bottom') == 'top') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
+					#' . $mwall . ' .mwall-vertical .mwall-photo-link {
 						right: 0;
 						left: 0;
 						top: auto;
@@ -768,21 +710,18 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					top: 0;
 					height: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_portrait', 'bottom') == 'bottom')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_portrait', 'bottom') == 'bottom') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-vertical .mwall-photo-link {	
+					#' . $mwall . ' .mwall-vertical .mwall-photo-link {
 						right: 0;
 						left: 0;
 						bottom: auto;
@@ -790,9 +729,9 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-vertical .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					bottom: 0;
@@ -800,81 +739,71 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-		}
-		else if (!$params->get('mas_db_portrait', 1))
-		{
+		} else if (!$params->get('mas_db_portrait', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-vertical .mwall-item-inner {
+			#' . $mwall . ' .mwall-vertical .mwall-item-inner {
 				display: none;
 			}
 
-			#'.$mwall.' .mwall-vertical .mwall-item-inner.mwall-no-image {
+			#' . $mwall . ' .mwall-vertical .mwall-item-inner.mwall-no-image {
 				display: block;
-				background-color: rgba('.$bg_portrait.','.$bg_opacity_portrait.');
+				background-color: rgba(' . $bg_portrait . ',' . $bg_opacity_portrait . ');
 			}';
 		}
 
 		// Detail box - Small
-		if (!$params->get('mas_db_title_small', 1))
-		{
+		if (!$params->get('mas_db_title_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-title {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-title {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_introtext_small', 1))
-		{
+		if (!$params->get('mas_db_introtext_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-desc {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-desc {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_date_small', 1))
-		{
+		if (!$params->get('mas_db_date_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-date {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-date {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_category_small', 1))
-		{
+		if (!$params->get('mas_db_category_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-category {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-category {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_author_small', 1))
-		{
+		if (!$params->get('mas_db_author_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-author {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-author {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_tags_small', 0))
-		{
+		if (!$params->get('mas_db_tags_small', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-tags {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-tags {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_hits_small', 0))
-		{
+		if (!$params->get('mas_db_hits_small', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-hits {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-hits {
 				display: none;
 			}';
 		}
 
-		if (!$params->get('mas_db_readmore_small', 0))
-		{
+		if (!$params->get('mas_db_readmore_small', 0)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-detail-box .mwall-readmore {
+			#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-readmore {
 				display: none;
 			}';
 		}
@@ -884,82 +813,79 @@ class MinitekWallLibResponsive
 			$db_color_small = '255,255,255';
 		else if ($params->get('mas_db_color_small', '#ffffff') == 'dark-text')
 			$db_color_small = '0,0,0';
-		else 
+		else
 			$db_color_small = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_small', '#ffffff'), true);
 
 		$css .= '
-		#'.$mwall.' .mwall-small .mwall-detail-box h3.mwall-title a,
-		#'.$mwall.' .mwall-small .mwall-detail-box h3.mwall-title span {
-			color: rgba('.$db_color_small.', 0.9);
+		#' . $mwall . ' .mwall-small .mwall-detail-box h3.mwall-title a,
+		#' . $mwall . ' .mwall-small .mwall-detail-box h3.mwall-title span {
+			color: rgba(' . $db_color_small . ', 0.9);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box h3.mwall-title a:hover,
-		#'.$mwall.' .mwall-small .mwall-detail-box h3.mwall-title a:focus {
-			color: rgba('.$db_color_small.', 1);
+		#' . $mwall . ' .mwall-small .mwall-detail-box h3.mwall-title a:hover,
+		#' . $mwall . ' .mwall-small .mwall-detail-box h3.mwall-title a:focus {
+			color: rgba(' . $db_color_small . ', 1);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-info {
-			color: rgba('.$db_color_small.', 0.7);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-info {
+			color: rgba(' . $db_color_small . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-info a {
-			color: rgba('.$db_color_small.', 0.8);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-info a {
+			color: rgba(' . $db_color_small . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-info a:hover,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-item-info a:focus {
-			color: rgba('.$db_color_small.', 1);
-			border-bottom: 1px dotted rgba('.$db_color_small.', 0.8);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-info a:hover,
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-item-info a:focus {
+			color: rgba(' . $db_color_small . ', 1);
+			border-bottom: 1px dotted rgba(' . $db_color_small . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-s-desc,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-desc,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-price,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-hits {
-			color: rgba('.$db_color_small.', 0.8);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-s-desc,
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-desc,
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-price,
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-hits {
+			color: rgba(' . $db_color_small . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-date {
-			color: rgba('.$db_color_small.', 0.7);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-date {
+			color: rgba(' . $db_color_small . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-readmore a {
-			color: rgba('.$db_color_small.', 0.7);
-			border: 1px solid rgba('.$db_color_small.', 0.7);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-readmore a {
+			color: rgba(' . $db_color_small . ', 0.7);
+			border: 1px solid rgba(' . $db_color_small . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-readmore a:hover,
-		#'.$mwall.' .mwall-small .mwall-detail-box .mwall-readmore a:focus {
-			color: rgba('.$db_color_small.', 1);
-			border: 1px solid rgba('.$db_color_small.', 1);
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-readmore a:hover,
+		#' . $mwall . ' .mwall-small .mwall-detail-box .mwall-readmore a:focus {
+			color: rgba(' . $db_color_small . ', 1);
+			border: 1px solid rgba(' . $db_color_small . ', 1);
 		}';
-		
+
 		// Images and dimensions - Small
 		$bg_small = $this->utilitiesLib->hex2RGB($params->get('mas_db_bg_small', '#24a9b7'), true);
-		$bg_opacity_small = !$params->get('mas_full_width_image', 1) 
+		$bg_opacity_small = !$params->get('mas_full_width_image', 1)
 			&& $params->get('mas_db_position_small', 'cover') != 'cover'
 			&& $source_id != 'audio'
 			? 1
 			: number_format((float)$params->get('mas_db_bg_opacity_small', 0.75), 2, '.', '');
 
 		$css .= '
-		#'.$mwall.' .mwall-small .mwall-item-inner-cont {	
-			background-color: rgba('.$bg_small.','.$bg_opacity_small.');
+		#' . $mwall . ' .mwall-small .mwall-item-inner-cont {
+			background-color: rgba(' . $bg_small . ',' . $bg_opacity_small . ');
 		}';
 
-		if ($params->get('mas_db_small', 1))
-		{
+		if ($params->get('mas_db_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-item-inner {	
-				background-color: rgba('.$bg_small.','.$bg_opacity_small.');
+			#' . $mwall . ' .mwall-small .mwall-item-inner {
+				background-color: rgba(' . $bg_small . ',' . $bg_opacity_small . ');
 			}';
 
-			if ($params->get('mas_db_position_small', 'cover') == 'left')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			if ($params->get('mas_db_position_small', 'cover') == 'left') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-small .mwall-photo-link {	
+					#' . $mwall . ' .mwall-small .mwall-photo-link {
 						right: 0;
 						left: auto;
 						top: 0;
@@ -967,21 +893,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					left: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_small', 'cover') == 'right')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_small', 'cover') == 'right') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-small .mwall-photo-link {	
+					#' . $mwall . ' .mwall-small .mwall-photo-link {
 						left: 0;
 						right: auto;
 						top: 0;
@@ -989,21 +912,18 @@ class MinitekWallLibResponsive
 						width: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
 					bottom: 0;
 					right: 0;
 					top: 0;
 					width: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_small', 'cover') == 'top')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_small', 'cover') == 'top') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-small .mwall-photo-link {	
+					#' . $mwall . ' .mwall-small .mwall-photo-link {
 						right: 0;
 						left: 0;
 						top: auto;
@@ -1011,21 +931,18 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					top: 0;
 					height: 50%;
 				}';
-			}
-			else if ($params->get('mas_db_position_small', 'cover') == 'bottom')
-			{
-				if (!$params->get('mas_full_width_image', 1))
-				{
+			} else if ($params->get('mas_db_position_small', 'cover') == 'bottom') {
+				if (!$params->get('mas_full_width_image', 1)) {
 					$css .= '
-					#'.$mwall.' .mwall-small .mwall-photo-link {	
+					#' . $mwall . ' .mwall-small .mwall-photo-link {
 						right: 0;
 						left: 0;
 						bottom: auto;
@@ -1033,9 +950,9 @@ class MinitekWallLibResponsive
 						height: 50%;
 					}';
 				}
-				
+
 				$css .= '
-				#'.$mwall.' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
+				#' . $mwall . ' .mwall-small .mwall-item-outer-cont .mwall-item-inner {
 					right: 0;
 					left: 0;
 					bottom: 0;
@@ -1043,17 +960,15 @@ class MinitekWallLibResponsive
 					height: 50%;
 				}';
 			}
-		}
-		else if (!$params->get('mas_db_small', 1))
-		{
+		} else if (!$params->get('mas_db_small', 1)) {
 			$css .= '
-			#'.$mwall.' .mwall-small .mwall-item-inner {
+			#' . $mwall . ' .mwall-small .mwall-item-inner {
 				display: none;
 			}
 
-			#'.$mwall.' .mwall-small .mwall-item-inner.mwall-no-image {
+			#' . $mwall . ' .mwall-small .mwall-item-inner.mwall-no-image {
 				display: block !important;
-				background-color: rgba('.$bg_small.','.$bg_opacity_small.');
+				background-color: rgba(' . $bg_small . ',' . $bg_opacity_small . ');
 			}';
 		}
 
@@ -1062,54 +977,54 @@ class MinitekWallLibResponsive
 			$hb_color = '255,255,255';
 		else if ($params->get('mas_hb_text_color', '#ffffff') == '1')
 			$hb_color = '0,0,0';
-		else 
+		else
 			$hb_color = $this->utilitiesLib->hex2RGB($params->get('mas_hb_text_color', '#ffffff'), true);
 
 		$css .= '
-		#'.$mwall.' .mwall-hover-box h3.mwall-title a,
-		#'.$mwall.' .mwall-hover-box h3.mwall-title span {
-			color: rgba('.$hb_color.', 0.9);
+		#' . $mwall . ' .mwall-hover-box h3.mwall-title a,
+		#' . $mwall . ' .mwall-hover-box h3.mwall-title span {
+			color: rgba(' . $hb_color . ', 0.9);
 		}
 
-		#'.$mwall.' .mwall-hover-box h3.mwall-title a:hover,
-		#'.$mwall.' .mwall-hover-box h3.mwall-title a:focus {
-			color: rgba('.$hb_color.', 1);
+		#' . $mwall . ' .mwall-hover-box h3.mwall-title a:hover,
+		#' . $mwall . ' .mwall-hover-box h3.mwall-title a:focus {
+			color: rgba(' . $hb_color . ', 1);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-item-info {
-			color: rgba('.$hb_color.', 0.7);
+		#' . $mwall . ' .mwall-hover-box .mwall-item-info {
+			color: rgba(' . $hb_color . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-item-info a {
-			color: rgba('.$hb_color.', 0.8);
+		#' . $mwall . ' .mwall-hover-box .mwall-item-info a {
+			color: rgba(' . $hb_color . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-item-info a:hover,
-		#'.$mwall.' .mwall-hover-box .mwall-item-info a:focus {
-			color: rgba('.$hb_color.', 1);
-			border-bottom: 1px dotted rgba('.$hb_color.', 0.8);
+		#' . $mwall . ' .mwall-hover-box .mwall-item-info a:hover,
+		#' . $mwall . ' .mwall-hover-box .mwall-item-info a:focus {
+			color: rgba(' . $hb_color . ', 1);
+			border-bottom: 1px dotted rgba(' . $hb_color . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-s-desc,
-		#'.$mwall.' .mwall-hover-box .mwall-desc,
-		#'.$mwall.' .mwall-hover-box .mwall-price,
-		#'.$mwall.' .mwall-hover-box .mwall-hits {
-			color: rgba('.$hb_color.', 0.8);
+		#' . $mwall . ' .mwall-hover-box .mwall-s-desc,
+		#' . $mwall . ' .mwall-hover-box .mwall-desc,
+		#' . $mwall . ' .mwall-hover-box .mwall-price,
+		#' . $mwall . ' .mwall-hover-box .mwall-hits {
+			color: rgba(' . $hb_color . ', 0.8);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-date {
-			color: rgba('.$hb_color.', 0.7);
+		#' . $mwall . ' .mwall-hover-box .mwall-date {
+			color: rgba(' . $hb_color . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-readmore a {
-			color: rgba('.$hb_color.', 0.7);
-			border: 1px solid rgba('.$hb_color.', 0.7);
+		#' . $mwall . ' .mwall-hover-box .mwall-readmore a {
+			color: rgba(' . $hb_color . ', 0.7);
+			border: 1px solid rgba(' . $hb_color . ', 0.7);
 		}
 
-		#'.$mwall.' .mwall-hover-box .mwall-readmore a:hover,
-		#'.$mwall.' .mwall-hover-box .mwall-readmore a:focus {
-			color: rgba('.$hb_color.', 1);
-			border: 1px solid rgba('.$hb_color.', 1);
+		#' . $mwall . ' .mwall-hover-box .mwall-readmore a:hover,
+		#' . $mwall . ' .mwall-hover-box .mwall-readmore a:focus {
+			color: rgba(' . $hb_color . ', 1);
+			border: 1px solid rgba(' . $hb_color . ', 1);
 		}';
 
 		$document->addStyleDeclaration($css);
@@ -1117,8 +1032,8 @@ class MinitekWallLibResponsive
 
 	public function loadResponsiveMasonry($params, $id)
 	{
-		$document = \JFactory::getDocument();
-		$mwall = 'mwall_items_'.$id;
+		$document = Factory::getDocument();
+		$mwall = 'mwall_items_' . $id;
 		$css = '';
 
 		// Responsive settings
@@ -1165,109 +1080,102 @@ class MinitekWallLibResponsive
 		$bg_opacity_columns = number_format((float)$params->get('mas_db_bg_opacity_columns', 0.75), 2, '.', '');
 
 		// Media CSS - Large
-		$css .= '@media only screen and (min-width:'.$responsive_lg.'px)
+		$css .= '@media only screen and (min-width:' . $responsive_lg . 'px)
 		{';
-			$css .= '
-			#'.$mwall.' .mwall-big {
-				height: '.(2*$lg_cell_height).'px;
+		$css .= '
+			#' . $mwall . ' .mwall-big {
+				height: ' . (2 * $lg_cell_height) . 'px;
 			}
-			#'.$mwall.' .mwall-horizontal {
-				height: '.($lg_cell_height).'px;
+			#' . $mwall . ' .mwall-horizontal {
+				height: ' . ($lg_cell_height) . 'px;
 			}
-			#'.$mwall.' .mwall-vertical {
-				height: '.(2*$lg_cell_height).'px;
+			#' . $mwall . ' .mwall-vertical {
+				height: ' . (2 * $lg_cell_height) . 'px;
 			}
-			#'.$mwall.' .mwall-small {
-				height: '.($lg_cell_height).'px;
+			#' . $mwall . ' .mwall-small {
+				height: ' . ($lg_cell_height) . 'px;
 			}';
-			
-			if (!$params->get('mas_preserve_aspect_ratio', 0))
-			{
-				$css .= '
-				.mwall-columns #'.$mwall.' .mwall-photo-link {
-					height: '.$lg_cell_height.'px !important;
+
+		if (!$params->get('mas_preserve_aspect_ratio', 0)) {
+			$css .= '
+				.mwall-columns #' . $mwall . ' .mwall-photo-link {
+					height: ' . $lg_cell_height . 'px !important;
 				}';
-			}
+		}
 		$css .= '
 		}';
 
 		// Media CSS - Medium
-		if (!$md_type)
-		{
-			$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+		if (!$md_type) {
+			$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 			{';
-				$css .= '
-				#'.$mwall.' .mwall-big {
-					height: '.(2*$md_cell_height).'px;
+			$css .= '
+				#' . $mwall . ' .mwall-big {
+					height: ' . (2 * $md_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-horizontal {
-					height: '.($md_cell_height).'px;
+				#' . $mwall . ' .mwall-horizontal {
+					height: ' . ($md_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-vertical {
-					height: '.(2*$md_cell_height).'px;
+				#' . $mwall . ' .mwall-vertical {
+					height: ' . (2 * $md_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-small {
-					height: '.($md_cell_height).'px;
+				#' . $mwall . ' .mwall-small {
+					height: ' . ($md_cell_height) . 'px;
 				}
 
-				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-big .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-big .mwall-item-inner .mwall-title span {
 					font-size: 24px;
 					line-height: 28px;
 				}
-				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title span,
-				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title span,
-				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-horizontal .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-horizontal .mwall-item-inner .mwall-title span,
+				#' . $mwall . ' .mwall-vertical .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-vertical .mwall-item-inner .mwall-title span,
+				#' . $mwall . ' .mwall-small .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-small .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 20px;
 				}';
 
-				if ($params->get('mas_grid', 7) == '98o')
-				{
-					if (!$params->get('mas_preserve_aspect_ratio', 0))
-					{
-						$css .= '
-						.mwall-columns #'.$mwall.' .mwall-photo-link {
-							height: '.$md_cell_height.'px !important;
+			if ($params->get('mas_grid', 7) == '98o') {
+				if (!$params->get('mas_preserve_aspect_ratio', 0)) {
+					$css .= '
+						.mwall-columns #' . $mwall . ' .mwall-photo-link {
+							height: ' . $md_cell_height . 'px !important;
 						}';
-					}
 				}
+			}
 			$css .= '
 			}';
 		}
-		
-		// Media CSS - Medium - Equal columns
-		if ($md_type)
-		{
-			$items_width = number_format((float)(100 / $responsive_md_num), 2, '.', '');
-			
-			$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
-			{ ';
-				if ($params->get('mas_grid', 7) != '99v')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item-inner {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}
-					#'.$mwall.' .mwall-item-inner-cont {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}';
-				}
 
-				if ($params->get('mas_db_position_columns', 'below') == 'below')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item {
+		// Media CSS - Medium - Equal columns
+		if ($md_type) {
+			$items_width = number_format((float)(100 / $responsive_md_num), 2, '.', '');
+
+			$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
+			{ ';
+			if ($params->get('mas_grid', 7) != '99v') {
+				$css .= '
+					#' . $mwall . ' .mwall-item-inner {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}
+					#' . $mwall . ' .mwall-item-inner-cont {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}';
+			}
+
+			if ($params->get('mas_db_position_columns', 'below') == 'below') {
+				$css .= '
+					#' . $mwall . ' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -1275,296 +1183,262 @@ class MinitekWallLibResponsive
 						justify-content: center;
 						align-items: center;
 						overflow: hidden;
-						height: '.$md_cell_height.'px !important;
+						height: ' . $md_cell_height . 'px !important;
 					}';
-				} 
-				else 
-				{
-					$css .= '
-					.mwall-masonry #'.$mwall.' .mwall-item {
-						height: '.$md_cell_height.'px !important;
+			} else {
+				$css .= '
+					.mwall-masonry #' . $mwall . ' .mwall-item {
+						height: ' . $md_cell_height . 'px !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
 
-					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
+				if ($params->get('mas_db_position_columns', 'below') == 'bottom') {
+					$css .= '
+						#' . $mwall . ' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mwall.' .mwall-item-inner.mwall-no-image {
+						#' . $mwall . ' .mwall-item-inner.mwall-no-image {
 							height: 100% !important;
 						}';
-					} 
-					else 
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
-							height: 100% !important;
-						}';
-					}
-				}
-
-				if (!$params->get('mas_preserve_aspect_ratio', 0))
-				{
+				} else {
 					$css .= '
-					.mwall-columns #'.$mwall.' .mwall-photo-link {
-						height: '.$md_cell_height.'px !important;
-					}';
+						#' . $mwall . ' .mwall-item-inner {
+							height: 100% !important;
+						}';
 				}
+			}
 
+			if (!$params->get('mas_preserve_aspect_ratio', 0)) {
 				$css .= '
-				#'.$mwall.' .mwall-item {
-					width: '.$items_width.'% !important;
+					.mwall-columns #' . $mwall . ' .mwall-photo-link {
+						height: ' . $md_cell_height . 'px !important;
+					}';
+			}
+
+			$css .= '
+				#' . $mwall . ' .mwall-item {
+					width: ' . $items_width . '% !important;
 				}
-				#'.$mwall.' .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 24px;
 				}';
 
-				// Detail box text color
-				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
-					$db_color = '255,255,255';
-				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
-					$db_color = '0,0,0';
-				else 
-					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
+			// Detail box text color
+			if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				$db_color = '255,255,255';
+			else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				$db_color = '0,0,0';
+			else
+				$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
-				$css .= '
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
-					color: rgba('.$db_color.', 0.9) !important;
+			$css .= '
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title span {
+					color: rgba(' . $db_color . ', 0.9) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:hover,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:focus {
-					color: rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:hover,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border-bottom: 1px dotted rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border-bottom: 1px dotted rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-s-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-price,
+				#' . $mwall . ' .mwall-detail-box .mwall-hits {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-date {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-date {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a {
-					color: rgba('.$db_color.', 0.7) !important;
-					border: 1px solid rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a {
+					color: rgba(' . $db_color . ', 0.7) !important;
+					border: 1px solid rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border: 1px solid rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border: 1px solid rgba(' . $db_color . ', 1) !important;
 				}';
 
-				// Hide media
-				if ($md_hide_images) 
-				{
-					$css .= '
-					#'.$mwall.' .mwall-cover,
-					#'.$mwall.' .mwall-photo-link,
-					#'.$mwall.' .mwall-item-video {
+			// Hide media
+			if ($md_hide_images) {
+				$css .= '
+					#' . $mwall . ' .mwall-cover,
+					#' . $mwall . ' .mwall-photo-link,
+					#' . $mwall . ' .mwall-item-video {
 						display: none !important;
 					}';
-				}
+			}
 			$css .= '}';
 
-			if ($detail_box_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($detail_box_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_title_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_title_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_introtext_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_introtext_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_date_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_date_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_category_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_category_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_author_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_author_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_tags_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_tags_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_hits_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_hits_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_readmore_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			if ($show_readmore_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_md.'px) and (max-width:'.$responsive_lg_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_md . 'px) and (max-width:' . $responsive_lg_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -1572,82 +1446,76 @@ class MinitekWallLibResponsive
 		}
 
 		// Media CSS - Small
-		if (!$sm_type)
-		{
-			$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+		if (!$sm_type) {
+			$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 			{';
-				$css .= '
-				#'.$mwall.' .mwall-big {
-					height: '.(2*$sm_cell_height).'px;
+			$css .= '
+				#' . $mwall . ' .mwall-big {
+					height: ' . (2 * $sm_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-horizontal {
-					height: '.($sm_cell_height).'px;
+				#' . $mwall . ' .mwall-horizontal {
+					height: ' . ($sm_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-vertical {
-					height: '.(2*$sm_cell_height).'px;
+				#' . $mwall . ' .mwall-vertical {
+					height: ' . (2 * $sm_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-small {
-					height: '.($sm_cell_height).'px;
+				#' . $mwall . ' .mwall-small {
+					height: ' . ($sm_cell_height) . 'px;
 				}
 
-				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-big .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-big .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-big .mwall-item-inner .mwall-title span {
 					font-size: 22px;
 					line-height: 26px;
 				}
-				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-horizontal .mwall-item-inner .mwall-title span,
-				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-vertical .mwall-item-inner .mwall-title span,
-				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-small .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-horizontal .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-horizontal .mwall-item-inner .mwall-title span,
+				#' . $mwall . ' .mwall-vertical .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-vertical .mwall-item-inner .mwall-title span,
+				#' . $mwall . ' .mwall-small .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-small .mwall-item-inner .mwall-title span {
 					font-size: 17px;
 					line-height: 20px;
 				}';
 
-				if ($params->get('mas_grid') == '98o')
-				{
-					if (!$params->get('mas_preserve_aspect_ratio', 0))
-					{
-						$css .= '
-						.mwall-columns #'.$mwall.' .mwall-photo-link {
-							height: '.$sm_cell_height.'px !important;
+			if ($params->get('mas_grid') == '98o') {
+				if (!$params->get('mas_preserve_aspect_ratio', 0)) {
+					$css .= '
+						.mwall-columns #' . $mwall . ' .mwall-photo-link {
+							height: ' . $sm_cell_height . 'px !important;
 						}';
-					}
 				}
+			}
 			$css .= '
 			}';
 		}
 
 		// Media CSS - Small - Equal columns
-		if ($sm_type)
-		{
+		if ($sm_type) {
 			$items_width = number_format((float)(100 / $responsive_sm_num), 2, '.', '');
-			
-			$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
-			{ ';
-				if ($params->get('mas_grid', 7) != '99v')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item-inner {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}
-					#'.$mwall.' .mwall-item-inner-cont {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}';
-				}
 
-				if ($params->get('mas_db_position_columns', 'below') == 'below')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item {
+			$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
+			{ ';
+			if ($params->get('mas_grid', 7) != '99v') {
+				$css .= '
+					#' . $mwall . ' .mwall-item-inner {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}
+					#' . $mwall . ' .mwall-item-inner-cont {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}';
+			}
+
+			if ($params->get('mas_db_position_columns', 'below') == 'below') {
+				$css .= '
+					#' . $mwall . ' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -1655,296 +1523,262 @@ class MinitekWallLibResponsive
 						justify-content: center;
 						align-items: center;
 						overflow: hidden;
-						height: '.$sm_cell_height.'px !important;
+						height: ' . $sm_cell_height . 'px !important;
 					}';
-				} 
-				else 
-				{
-					$css .= '
-					.mwall-masonry #'.$mwall.' .mwall-item {
-						height: '.$sm_cell_height.'px !important;
+			} else {
+				$css .= '
+					.mwall-masonry #' . $mwall . ' .mwall-item {
+						height: ' . $sm_cell_height . 'px !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
 
-					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
+				if ($params->get('mas_db_position_columns', 'below') == 'bottom') {
+					$css .= '
+						#' . $mwall . ' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mwall.' .mwall-item-inner.mwall-no-image {
+						#' . $mwall . ' .mwall-item-inner.mwall-no-image {
 							height: 100% !important;
 						}';
-					} 
-					else 
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
-							height: 100% !important;
-						}';
-					}
-				}
-
-				if (!$params->get('mas_preserve_aspect_ratio', 0))
-				{
+				} else {
 					$css .= '
-					.mwall-columns #'.$mwall.' .mwall-photo-link {
-						height: '.$sm_cell_height.'px !important;
-					}';
+						#' . $mwall . ' .mwall-item-inner {
+							height: 100% !important;
+						}';
 				}
+			}
 
+			if (!$params->get('mas_preserve_aspect_ratio', 0)) {
 				$css .= '
-				#'.$mwall.' .mwall-item {
-					width: '.$items_width.'% !important;
+					.mwall-columns #' . $mwall . ' .mwall-photo-link {
+						height: ' . $sm_cell_height . 'px !important;
+					}';
+			}
+
+			$css .= '
+				#' . $mwall . ' .mwall-item {
+					width: ' . $items_width . '% !important;
 				}
-				#'.$mwall.' .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-item-inner .mwall-title span {
 					font-size: 18px !important;
 					line-height: 24px;
 				}';
 
-				// Detail box text color
-				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
-					$db_color = '255,255,255';
-				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
-					$db_color = '0,0,0';
-				else 
-					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
+			// Detail box text color
+			if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				$db_color = '255,255,255';
+			else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				$db_color = '0,0,0';
+			else
+				$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
-				$css .= '
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
-					color: rgba('.$db_color.', 0.9) !important;
+			$css .= '
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title span {
+					color: rgba(' . $db_color . ', 0.9) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:hover,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:focus {
-					color: rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:hover,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border-bottom: 1px dotted rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border-bottom: 1px dotted rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-s-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-price,
+				#' . $mwall . ' .mwall-detail-box .mwall-hits {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-date {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-date {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a {
-					color: rgba('.$db_color.', 0.7) !important;
-					border: 1px solid rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a {
+					color: rgba(' . $db_color . ', 0.7) !important;
+					border: 1px solid rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border: 1px solid rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border: 1px solid rgba(' . $db_color . ', 1) !important;
 				}';
 
-				// Hide media
-				if ($sm_hide_images) 
-				{
-					$css .= '
-					#'.$mwall.' .mwall-cover,
-					#'.$mwall.' .mwall-photo-link,
-					#'.$mwall.' .mwall-item-video {
+			// Hide media
+			if ($sm_hide_images) {
+				$css .= '
+					#' . $mwall . ' .mwall-cover,
+					#' . $mwall . ' .mwall-photo-link,
+					#' . $mwall . ' .mwall-item-video {
 						display: none !important;
 					}';
-				}
+			}
 			$css .= '}';
 
-			if ($detail_box_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($detail_box_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_title_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_title_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_introtext_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_introtext_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_date_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_date_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_category_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_category_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_author_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_author_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_tags_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_tags_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_hits_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_hits_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_readmore_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			if ($show_readmore_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_sm.'px) and (max-width:'.$responsive_md_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_sm . 'px) and (max-width:' . $responsive_md_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -1952,72 +1786,66 @@ class MinitekWallLibResponsive
 		}
 
 		// Media CSS - Extra small
-		if (!$xs_type)
-		{
-			$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+		if (!$xs_type) {
+			$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 			{';
-				$css .= '
-				#'.$mwall.' .mwall-big {
-					height: '.(2*$xs_cell_height).'px;
+			$css .= '
+				#' . $mwall . ' .mwall-big {
+					height: ' . (2 * $xs_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-horizontal {
-					height: '.($xs_cell_height).'px;
+				#' . $mwall . ' .mwall-horizontal {
+					height: ' . ($xs_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-vertical {
-					height: '.(2*$xs_cell_height).'px;
+				#' . $mwall . ' .mwall-vertical {
+					height: ' . (2 * $xs_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-small {
-					height: '.($xs_cell_height).'px;
+				#' . $mwall . ' .mwall-small {
+					height: ' . ($xs_cell_height) . 'px;
 				}
 
-				#'.$mwall.' .mwall-photo-link {
+				#' . $mwall . ' .mwall-photo-link {
 					width: 100% !important;
 					height: 100% !important;
 				}';
 
-				if ($params->get('mas_grid') == '98o')
-				{
-					if (!$params->get('mas_preserve_aspect_ratio', 0))
-					{
-						$css .= '
-						.mwall-columns #'.$mwall.' .mwall-photo-link {
-							height: '.$xs_cell_height.'px !important;
+			if ($params->get('mas_grid') == '98o') {
+				if (!$params->get('mas_preserve_aspect_ratio', 0)) {
+					$css .= '
+						.mwall-columns #' . $mwall . ' .mwall-photo-link {
+							height: ' . $xs_cell_height . 'px !important;
 						}';
-					}
 				}
+			}
 			$css .= '
 			}';
 		}
 
 		// Media CSS - Extra small - Equal columns
-		if ($xs_type)
-		{
+		if ($xs_type) {
 			$items_width = number_format((float)(100 / $responsive_xs_num), 2, '.', '');
-			
-			$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
-			{ ';
-				if ($params->get('mas_grid', 7) != '99v')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item-inner {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}
-					#'.$mwall.' .mwall-item-inner-cont {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}';
-				}
 
-				if ($params->get('mas_db_position_columns', 'below') == 'below')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item {
+			$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
+			{ ';
+			if ($params->get('mas_grid', 7) != '99v') {
+				$css .= '
+					#' . $mwall . ' .mwall-item-inner {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}
+					#' . $mwall . ' .mwall-item-inner-cont {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}';
+			}
+
+			if ($params->get('mas_db_position_columns', 'below') == 'below') {
+				$css .= '
+					#' . $mwall . ' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -2025,296 +1853,262 @@ class MinitekWallLibResponsive
 						justify-content: center;
 						align-items: center;
 						overflow: hidden;
-						height: '.$xs_cell_height.'px !important;
+						height: ' . $xs_cell_height . 'px !important;
 					}';
-				} 
-				else 
-				{
-					$css .= '
-					.mwall-masonry #'.$mwall.' .mwall-item {
-						height: '.$xs_cell_height.'px !important;
+			} else {
+				$css .= '
+					.mwall-masonry #' . $mwall . ' .mwall-item {
+						height: ' . $xs_cell_height . 'px !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
 
-					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
+				if ($params->get('mas_db_position_columns', 'below') == 'bottom') {
+					$css .= '
+						#' . $mwall . ' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mwall.' .mwall-item-inner.mwall-no-image {
+						#' . $mwall . ' .mwall-item-inner.mwall-no-image {
 							height: 100% !important;
 						}';
-					} 
-					else 
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
-							height: 100% !important;
-						}';
-					}
-				}
-
-				if (!$params->get('mas_preserve_aspect_ratio', 0))
-				{
+				} else {
 					$css .= '
-					.mwall-columns #'.$mwall.' .mwall-photo-link {
-						height: '.$xs_cell_height.'px !important;
-					}';
+						#' . $mwall . ' .mwall-item-inner {
+							height: 100% !important;
+						}';
 				}
+			}
 
+			if (!$params->get('mas_preserve_aspect_ratio', 0)) {
 				$css .= '
-				#'.$mwall.' .mwall-item {
-					width: '.$items_width.'% !important;
+					.mwall-columns #' . $mwall . ' .mwall-photo-link {
+						height: ' . $xs_cell_height . 'px !important;
+					}';
+			}
+
+			$css .= '
+				#' . $mwall . ' .mwall-item {
+					width: ' . $items_width . '% !important;
 				}
-				#'.$mwall.' .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 24px;
 				}';
 
-				// Detail box text color
-				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
-					$db_color = '255,255,255';
-				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
-					$db_color = '0,0,0';
-				else 
-					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
+			// Detail box text color
+			if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				$db_color = '255,255,255';
+			else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				$db_color = '0,0,0';
+			else
+				$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
-				$css .= '
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
-					color: rgba('.$db_color.', 0.9) !important;
+			$css .= '
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title span {
+					color: rgba(' . $db_color . ', 0.9) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:hover,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:focus {
-					color: rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:hover,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border-bottom: 1px dotted rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border-bottom: 1px dotted rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-s-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-price,
+				#' . $mwall . ' .mwall-detail-box .mwall-hits {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-date {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-date {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a {
-					color: rgba('.$db_color.', 0.7) !important;
-					border: 1px solid rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a {
+					color: rgba(' . $db_color . ', 0.7) !important;
+					border: 1px solid rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border: 1px solid rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border: 1px solid rgba(' . $db_color . ', 1) !important;
 				}';
 
-				// Hide media
-				if ($xs_hide_images) 
-				{
-					$css .= '
-					#'.$mwall.' .mwall-cover,
-					#'.$mwall.' .mwall-photo-link,
-					#'.$mwall.' .mwall-item-video {
+			// Hide media
+			if ($xs_hide_images) {
+				$css .= '
+					#' . $mwall . ' .mwall-cover,
+					#' . $mwall . ' .mwall-photo-link,
+					#' . $mwall . ' .mwall-item-video {
 						display: none !important;
 					}';
-				}
+			}
 			$css .= '}';
 
-			if ($detail_box_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($detail_box_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
-						display: none !important;
-					}
-				}';
-			}
-			
-			if ($show_title_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
-						display: block !important;
-					}
-				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
-				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_introtext_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_title_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_date_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_introtext_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_category_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_date_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_author_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_category_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_tags_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_author_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_hits_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_tags_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_readmore_column) 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			if ($show_hits_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (min-width:'.$responsive_xs.'px) and (max-width:'.$responsive_sm_min.'px)
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
+						display: none !important;
+					}
+				}';
+			}
+
+			if ($show_readmore_column) {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
+				{
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
+						display: block !important;
+					}
+				}';
+			} else {
+				$css .= '@media only screen and (min-width:' . $responsive_xs . 'px) and (max-width:' . $responsive_sm_min . 'px)
+				{
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -2322,72 +2116,66 @@ class MinitekWallLibResponsive
 		}
 
 		// Media CSS - Extra extra small
-		if (!$xxs_type)
-		{
-			$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+		if (!$xxs_type) {
+			$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 			{';
-				$css .= '
-				#'.$mwall.' .mwall-big {
-					height: '.(2*$xxs_cell_height).'px;
+			$css .= '
+				#' . $mwall . ' .mwall-big {
+					height: ' . (2 * $xxs_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-horizontal {
-					height: '.($xxs_cell_height).'px;
+				#' . $mwall . ' .mwall-horizontal {
+					height: ' . ($xxs_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-vertical {
-					height: '.(2*$xxs_cell_height).'px;
+				#' . $mwall . ' .mwall-vertical {
+					height: ' . (2 * $xxs_cell_height) . 'px;
 				}
-				#'.$mwall.' .mwall-small {
-					height: '.($xxs_cell_height).'px;
+				#' . $mwall . ' .mwall-small {
+					height: ' . ($xxs_cell_height) . 'px;
 				}
 
-				#'.$mwall.' .mwall-photo-link {
+				#' . $mwall . ' .mwall-photo-link {
 					width: 100% !important;
 					height: 100% !important;
 				}';
 
-				if ($params->get('mas_grid', 7) == '98o')
-				{
-					if (!$params->get('mas_preserve_aspect_ratio', 0))
-					{
-						$css .= '
-						.mwall-columns #'.$mwall.' .mwall-photo-link {
-							height: '.$xxs_cell_height.'px !important;
+			if ($params->get('mas_grid', 7) == '98o') {
+				if (!$params->get('mas_preserve_aspect_ratio', 0)) {
+					$css .= '
+						.mwall-columns #' . $mwall . ' .mwall-photo-link {
+							height: ' . $xxs_cell_height . 'px !important;
 						}';
-					}
 				}
+			}
 			$css .= '
 			}';
 		}
 
 		// Media CSS - Extra extra small - Equal columns
-		if ($xxs_type)
-		{
+		if ($xxs_type) {
 			$items_width = number_format((float)(100 / $responsive_xxs_num), 2, '.', '');
-			
-			$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
-			{ ';
-				if ($params->get('mas_grid', 7) != '99v')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item-inner {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}
-					#'.$mwall.' .mwall-item-inner-cont {	
-						background-color: rgba('.$bg_columns.','.$bg_opacity_columns.') !important;
-					}';
-				}
 
-				if ($params->get('mas_db_position_columns', 'below') == 'below')
-				{
-					$css .= '
-					#'.$mwall.' .mwall-item {
+			$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
+			{ ';
+			if ($params->get('mas_grid', 7) != '99v') {
+				$css .= '
+					#' . $mwall . ' .mwall-item-inner {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}
+					#' . $mwall . ' .mwall-item-inner-cont {
+						background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ') !important;
+					}';
+			}
+
+			if ($params->get('mas_db_position_columns', 'below') == 'below') {
+				$css .= '
+					#' . $mwall . ' .mwall-item {
 						height: auto !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						position: static;
 						width: 100% !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						z-index: 1;
 						width: 100%;
 						position: relative;
@@ -2395,297 +2183,263 @@ class MinitekWallLibResponsive
 						justify-content: center;
 						align-items: center;
 						overflow: hidden;
-						height: '.$xxs_cell_height.'px !important;
+						height: ' . $xxs_cell_height . 'px !important;
 					}';
-				} 
-				else 
-				{
-					$css .= '
-					.mwall-masonry #'.$mwall.' .mwall-item {
-						height: '.$xxs_cell_height.'px !important;
+			} else {
+				$css .= '
+					.mwall-masonry #' . $mwall . ' .mwall-item {
+						height: ' . $xxs_cell_height . 'px !important;
 					}
-					#'.$mwall.' .mwall-item-inner {
+					#' . $mwall . ' .mwall-item-inner {
 						width: 100% !important;
 						top: auto !important;
 						bottom: 0 !important;
 						left: 0 !important;
 					}
-					.mwall-masonry #'.$mwall.' .mwall-item-outer-cont .mwall-photo-link {
+					.mwall-masonry #' . $mwall . ' .mwall-item-outer-cont .mwall-photo-link {
 						width: 100%;
 						height: 100%;
 					}';
 
-					if ($params->get('mas_db_position_columns', 'below') == 'bottom')
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
+				if ($params->get('mas_db_position_columns', 'below') == 'bottom') {
+					$css .= '
+						#' . $mwall . ' .mwall-item-inner {
 							height: auto !important;
 						}
-						#'.$mwall.' .mwall-item-inner.mwall-no-image {
+						#' . $mwall . ' .mwall-item-inner.mwall-no-image {
 							height: 100% !important;
 						}';
-					} 
-					else 
-					{
-						$css .= '
-						#'.$mwall.' .mwall-item-inner {
-							height: 100% !important;
-						}';
-					}
-				}
-
-				if (!$params->get('mas_preserve_aspect_ratio', 0))
-				{
+				} else {
 					$css .= '
-					.mwall-columns #'.$mwall.' .mwall-photo-link {
-						height: '.$xxs_cell_height.'px !important;
+						#' . $mwall . ' .mwall-item-inner {
+							height: 100% !important;
+						}';
+				}
+			}
+
+			if (!$params->get('mas_preserve_aspect_ratio', 0)) {
+				$css .= '
+					.mwall-columns #' . $mwall . ' .mwall-photo-link {
+						height: ' . $xxs_cell_height . 'px !important;
 					}
 					';
-				}
+			}
 
-				$css .= '
-				#'.$mwall.' .mwall-item {
-					width: '.$items_width.'% !important;
+			$css .= '
+				#' . $mwall . ' .mwall-item {
+					width: ' . $items_width . '% !important;
 				}
-				#'.$mwall.' .mwall-item-inner .mwall-title a,
-				#'.$mwall.' .mwall-item-inner .mwall-title span {
+				#' . $mwall . ' .mwall-item-inner .mwall-title a,
+				#' . $mwall . ' .mwall-item-inner .mwall-title span {
 					font-size: 18px;
 					line-height: 24px;
 				}';
 
-				// Detail box text color
-				if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
-					$db_color = '255,255,255';
-				else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
-					$db_color = '0,0,0';
-				else 
-					$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
+			// Detail box text color
+			if ($params->get('mas_db_color_columns', '#ffffff') == 'light-text')
+				$db_color = '255,255,255';
+			else if ($params->get('mas_db_color_columns', '#ffffff') == 'dark-text')
+				$db_color = '0,0,0';
+			else
+				$db_color = $this->utilitiesLib->hex2RGB($params->get('mas_db_color_columns', '#ffffff'), true);
 
-				$css .= '
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title span {
-					color: rgba('.$db_color.', 0.9) !important;
+			$css .= '
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title span {
+					color: rgba(' . $db_color . ', 0.9) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:hover,
-				#'.$mwall.' .mwall-detail-box h3.mwall-title a:focus {
-					color: rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:hover,
+				#' . $mwall . ' .mwall-detail-box h3.mwall-title a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-item-info a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border-bottom: 1px dotted rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-item-info a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border-bottom: 1px dotted rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-s-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-desc,
-				#'.$mwall.' .mwall-detail-box .mwall-price,
-				#'.$mwall.' .mwall-detail-box .mwall-hits {
-					color: rgba('.$db_color.', 0.8) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-s-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-desc,
+				#' . $mwall . ' .mwall-detail-box .mwall-price,
+				#' . $mwall . ' .mwall-detail-box .mwall-hits {
+					color: rgba(' . $db_color . ', 0.8) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-date {
-					color: rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-date {
+					color: rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a {
-					color: rgba('.$db_color.', 0.7) !important;
-					border: 1px solid rgba('.$db_color.', 0.7) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a {
+					color: rgba(' . $db_color . ', 0.7) !important;
+					border: 1px solid rgba(' . $db_color . ', 0.7) !important;
 				}
 
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:hover,
-				#'.$mwall.' .mwall-detail-box .mwall-readmore a:focus {
-					color: rgba('.$db_color.', 1) !important;
-					border: 1px solid rgba('.$db_color.', 1) !important;
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:hover,
+				#' . $mwall . ' .mwall-detail-box .mwall-readmore a:focus {
+					color: rgba(' . $db_color . ', 1) !important;
+					border: 1px solid rgba(' . $db_color . ', 1) !important;
 				}';
 
-				// Hide media
-				if ($xxs_hide_images) 
-				{
-					$css .= '
-					#'.$mwall.' .mwall-cover,
-					#'.$mwall.' .mwall-photo-link,
-					#'.$mwall.' .mwall-item-video {
+			// Hide media
+			if ($xxs_hide_images) {
+				$css .= '
+					#' . $mwall . ' .mwall-cover,
+					#' . $mwall . ' .mwall-photo-link,
+					#' . $mwall . ' .mwall-item-video {
 						display: none !important;
 					}';
-				}
+			}
 			$css .= '}';
 
-			if ($detail_box_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($detail_box_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box {
+					#' . $mwall . ' .mwall-detail-box {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_title_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_title_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-title {
+					#' . $mwall . ' .mwall-detail-box .mwall-title {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_introtext_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_introtext_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-desc {
+					#' . $mwall . ' .mwall-detail-box .mwall-desc {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_date_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_date_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-date {
+					#' . $mwall . ' .mwall-detail-box .mwall-date {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_category_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_category_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-category {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-category {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_author_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_author_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-author {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-author {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_tags_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_tags_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-item-tags {
+					#' . $mwall . ' .mwall-detail-box .mwall-item-tags {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_hits_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_hits_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-hits {
+					#' . $mwall . ' .mwall-detail-box .mwall-hits {
 						display: none !important;
 					}
 				}';
 			}
 
-			if ($show_readmore_column) 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			if ($show_readmore_column) {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: block !important;
 					}
 				}';
-			} 
-			else 
-			{
-				$css .= '@media only screen and (max-width:'.$responsive_xs_min.'px)
+			} else {
+				$css .= '@media only screen and (max-width:' . $responsive_xs_min . 'px)
 				{
-					#'.$mwall.' .mwall-detail-box .mwall-readmore {
+					#' . $mwall . ' .mwall-detail-box .mwall-readmore {
 						display: none !important;
 					}
 				}';
@@ -2693,49 +2447,47 @@ class MinitekWallLibResponsive
 		}
 
 		// Columns/list photo-link background color
-		if ($params->get('mas_grid', 7) == '98o')
-		{
+		if ($params->get('mas_grid', 7) == '98o') {
 			$css .= '
-			#'.$mwall.' .mwall-item-inner-cont {	
-				background-color: rgba('.$bg_columns.','.$bg_opacity_columns.');
+			#' . $mwall . ' .mwall-item-inner-cont {
+				background-color: rgba(' . $bg_columns . ',' . $bg_opacity_columns . ');
 			}';
 		}
 
 		// List items - Responsive configuration
-		if ($params->get('mas_grid', 7) == '99v')
-		{
+		if ($params->get('mas_grid', 7) == '99v') {
 			$css .= '
-			.mwall-list #'.$mwall.' .mwall-item {
+			.mwall-list #' . $mwall . ' .mwall-item {
 				width: 100% !important;
 				height: auto !important;
 			}
-			.mwall-list #'.$mwall.' .mwall-item-inner {
+			.mwall-list #' . $mwall . ' .mwall-item-inner {
 				width: auto !important;
 			}
-			.mwall-list #'.$mwall.' .mwall-photo-link {
+			.mwall-list #' . $mwall . ' .mwall-photo-link {
 				height: auto !important;
 			}
-			.mwall-list #'.$mwall.' .mwall-item-inner .mwall-title a,
-			.mwall-list #'.$mwall.' .mwall-item-inner .mwall-title span {
+			.mwall-list #' . $mwall . ' .mwall-item-inner .mwall-title a,
+			.mwall-list #' . $mwall . ' .mwall-item-inner .mwall-title span {
 				font-size: 18px;
 			}
 			@media only screen and (max-width: 550px)
 			{
-				.mwall-list #'.$mwall.' .mwall-cover {
+				.mwall-list #' . $mwall . ' .mwall-cover {
 					display: none;
 				}
-				.mwall-list #'.$mwall.' .mwall-cover.with-video,
-				.mwall-list #'.$mwall.' .mwall-cover.with-audio
+				.mwall-list #' . $mwall . ' .mwall-cover.with-video,
+				.mwall-list #' . $mwall . ' .mwall-cover.with-audio
 				{
 					display: block;
 				}
-				.mwall-list #'.$mwall.' .mwall-cover.with-video
+				.mwall-list #' . $mwall . ' .mwall-cover.with-video
 				{
 					max-width: 100%;
 				}
 			}';
 		}
 
-		$document->addStyleDeclaration( $css );
+		$document->addStyleDeclaration($css);
 	}
 }

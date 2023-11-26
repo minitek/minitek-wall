@@ -1,21 +1,23 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2019 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
-*/
+ * @title		Minitek Wall
+ * @copyright	Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license		GNU General Public License version 3 or later.
+ * @author url	https://www.minitek.gr/
+ * @developers	Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\Field;
 
 defined('_JEXEC') or die;
 
 use Joomla\CMS\URI\URI;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Form\Field\RadioField;
+use Joomla\CMS\HTML\HTMLHelper;
 
-\JFormHelper::loadFieldClass('radio');
-
-class GridListField extends \JFormFieldRadio
+class GridListField extends RadioField
 {
 	public $type = 'GridList';
 
@@ -37,8 +39,7 @@ class GridListField extends \JFormFieldRadio
 		$options = $this->getOptions();
 
 		// Build the radio field output.
-		foreach ($options as $i => $option)
-		{
+		foreach ($options as $i => $option) {
 			// Initialize some option attributes.
 			$checked = ((string) $option->value == (string) $this->value) ? ' checked="checked"' : '';
 			$class = !empty($option->class) ? ' class="' . $option->class . '"' : '';
@@ -53,32 +54,29 @@ class GridListField extends \JFormFieldRadio
 
 			$html[] = '<div class="grid-radio">';
 
-				$html[] = '<label for="' . $this->id . $i . '"' . $class . ' >';
+			$html[] = '<label for="' . $this->id . $i . '"' . $class . ' >';
 
-					$html[] = '<p>';
-						$html[] = \JText::alt($option->text, preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname));
-					$html[] = '</p>';
+			$html[] = '<p>';
+			$html[] = Text::alt($option->text, preg_replace('/[^a-zA-Z0-9_\-]/', '_', $this->fieldname));
+			$html[] = '</p>';
 
-					$html[] = '<div class="grid-radio-demo-cont">';
-						$html[] = '<div class="grid-radio-demo">';
-							if ($option->image)
-							{
-								$html[] = '<img src="'.URI::root(true).'/media/com_minitekwall/images/grids/'.$option->image.'">';
-							}
-							else
-							{
-								$html[] = '<i class="icon icon-grid-2"></i>';
-							}
-						$html[] = '</div>';
-					$html[] = '</div>';
+			$html[] = '<div class="grid-radio-demo-cont">';
+			$html[] = '<div class="grid-radio-demo">';
+			if ($option->image) {
+				$html[] = '<img src="' . URI::root(true) . '/media/com_minitekwall/images/grids/' . $option->image . '">';
+			} else {
+				$html[] = '<i class="icon icon-grid-2"></i>';
+			}
+			$html[] = '</div>';
+			$html[] = '</div>';
 
-				$html[] = '</label>';
+			$html[] = '</label>';
 
-				$html[] = '<div>';
-					$html[] = '<input type="radio" id="' . $this->id . $i . '" name="' . $this->name . '" value="'
-					. htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8') . '"' . $checked . $class . $required . $onclick
-					. $onchange . $disabled . ' />';
-				$html[] = '</div>';
+			$html[] = '<div>';
+			$html[] = '<input type="radio" id="' . $this->id . $i . '" name="' . $this->name . '" value="'
+				. htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8') . '"' . $checked . $class . $required . $onclick
+				. $onchange . $disabled . ' />';
+			$html[] = '</div>';
 
 			$html[] = '</div>';
 
@@ -93,112 +91,115 @@ class GridListField extends \JFormFieldRadio
 
 	protected function getOptions()
 	{
-		$elements = Array(
-			Array(
+		$elements = array(
+			array(
 				'value' => '1',
 				'image' => 'grid1.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_1'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_1'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '3a',
 				'image' => 'grid3a.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_3A'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_3A'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '3b',
 				'image' => 'grid3b.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_3B'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_3B'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '3c',
 				'image' => 'grid3c.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_3C'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_3C'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '4',
 				'image' => 'grid4.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_4'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_4'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '5',
 				'image' => 'grid5a.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_5'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_5'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '5b',
 				'image' => 'grid5b.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_5B'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_5B'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '6',
 				'image' => 'grid6.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_6'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_6'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '7',
 				'image' => 'grid7.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_7'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_7'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '8',
 				'image' => 'grid8.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_8'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_8'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '9',
 				'image' => 'grid9.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_9'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_9'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '98o',
 				'image' => 'gridc.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_MASONRY_E'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_MASONRY_E'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '9r',
 				'image' => 'gridr9.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_ROWS_9'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_ROWS_9'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '12r',
 				'image' => 'gridr12.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_ROWS_12'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_ROWS_12'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '16r',
 				'image' => 'gridr16.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_ROWS_16'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_ROWS_16'),
 				'class' => 'grid-radio-input'
 			),
-			Array(
+			array(
 				'value' => '99v',
 				'image' => 'gridv.jpg',
-				'text' => \JText::_('COM_MINITEKWALL_FIELD_VERTICAL_LIST'),
+				'text' => Text::_('COM_MINITEKWALL_FIELD_VERTICAL_LIST'),
 				'class' => 'grid-radio-input'
 			)
 		);
 
-		foreach ($elements as $option)
-		{
+		foreach ($elements as $option) {
 			$disabled = false;
 
 			// Create a new option object based on the <option /> element.
-			$tmp = \JHtml::_(
-				'select.option', (string) $option['value'], trim((string) $option['text']), 'value', 'text',
+			$tmp = HTMLHelper::_(
+				'select.option',
+				(string) $option['value'],
+				trim((string) $option['text']),
+				'value',
+				'text',
 				$disabled
 			);
 

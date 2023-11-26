@@ -1,16 +1,18 @@
 <?php
+
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Site\Service;
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Application\SiteApplication;
 use Joomla\CMS\Component\Router\RouterView;
 use Joomla\CMS\Component\Router\RouterViewConfiguration;
@@ -18,6 +20,7 @@ use Joomla\CMS\Component\Router\Rules\MenuRules;
 use Joomla\CMS\Component\Router\Rules\NomenuRules;
 use Joomla\CMS\Component\Router\Rules\StandardRules;
 use Joomla\CMS\Menu\AbstractMenu;
+use Joomla\CMS\Language\Text;
 
 /**
  * Routing class of com_minitekwall
@@ -39,14 +42,12 @@ class Router extends RouterView
     {
         $segments = array();
 
-        if (isset($query['view']))
-        {
-	        unset($query['view']);
+        if (isset($query['view'])) {
+            unset($query['view']);
         }
 
-        if (isset($query['widget_id']))
-        {
-	        unset($query['widget_id']);
+        if (isset($query['widget_id'])) {
+            unset($query['widget_id']);
         }
 
         return $segments;
@@ -63,17 +64,16 @@ class Router extends RouterView
      */
     public function parse(&$segments)
     {
-		$lang = \JFactory::getLanguage();
-		$lang->load('com_minitekwall', JPATH_SITE, $lang->getTag(), true);
+        $lang = Factory::getLanguage();
+        $lang->load('com_minitekwall', JPATH_SITE, $lang->getTag(), true);
 
-		$vars = array();
+        $vars = array();
 
-		if (count($segments))
-		{
-			throw new \RuntimeException(\JText::_('COM_MINITEKWALL_ERROR_PAGE_NOT_FOUND'), 404);
-		}
+        if (count($segments)) {
+            throw new \RuntimeException(Text::_('COM_MINITEKWALL_ERROR_PAGE_NOT_FOUND'), 404);
+        }
 
-		return $vars;
+        return $vars;
     }
 }
 

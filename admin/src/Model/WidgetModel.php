@@ -1,16 +1,18 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2022 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
-*/
+ * @title		Minitek Wall
+ * @copyright	Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license		GNU General Public License version 3 or later.
+ * @author url	https://www.minitek.gr/
+ * @developers	Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\Model;
 
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
 use Joomla\Registry\Registry;
 use Joomla\CMS\MVC\Model\AdminModel;
 
@@ -48,14 +50,12 @@ class WidgetModel extends AdminModel
 	 */
 	protected function canDelete($record)
 	{
-		if (!empty($record->id))
-		{
-			if ($record->state != -2)
-			{
+		if (!empty($record->id)) {
+			if ($record->state != -2) {
 				return false;
 			}
 
-			return \JFactory::getUser()->authorise('core.delete', 'com_minitekwall');
+			return Factory::getUser()->authorise('core.delete', 'com_minitekwall');
 		}
 
 		return false;
@@ -72,11 +72,10 @@ class WidgetModel extends AdminModel
 	 */
 	protected function canEditState($record)
 	{
-		$user = \JFactory::getUser();
+		$user = Factory::getUser();
 
 		// Check for existing widget.
-		if (!empty($record->id))
-		{
+		if (!empty($record->id)) {
 			return $user->authorise('core.edit.state', 'com_minitekwall.widget.' . (int) $record->id);
 		}
 
@@ -91,7 +90,7 @@ class WidgetModel extends AdminModel
 	 * @param   string  $prefix  The class prefix. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  \Joomla\CMS\Table\Table  A JTable object
+	 * @return  \Joomla\CMS\Table\Table  A Table object
 	 *
 	 * @since   4.0.0
 	 */
@@ -109,17 +108,15 @@ class WidgetModel extends AdminModel
 	 */
 	public function getItem($pk = null)
 	{
-		if ($item = parent::getItem($pk))
-		{
-			$db = \JFactory::getDBO();
+		if ($item = parent::getItem($pk)) {
+			$db = Factory::getDBO();
 
 			// Convert the masonry_params to an array.
-			if ($item->id)
-			{
+			if ($item->id) {
 				$query = $db->getQuery(true);
 				$query->select('*')
 					->from('#__minitek_wall_widgets');
-				$query->where($db->quoteName('id').' = '.(int) $item->id);
+				$query->where($db->quoteName('id') . ' = ' . (int) $item->id);
 				$db->setQuery($query);
 				$masonry_params = $db->loadObject()->masonry_params;
 
@@ -133,10 +130,9 @@ class WidgetModel extends AdminModel
 			$query = $db->getQuery(true);
 			$query->select('*')
 				->from('#__minitek_wall_widgets_source');
-			$query->where($db->quoteName('widget_id').' = '.(int) $item->id);
+			$query->where($db->quoteName('widget_id') . ' = ' . (int) $item->id);
 			$db->setQuery($query);
-			if ($item->id)
-			{
+			if ($item->id) {
 				$source_params = $db->loadObject()->source_params;
 
 				// Check that selected widget source is relevant to saved source_params
@@ -157,7 +153,7 @@ class WidgetModel extends AdminModel
 	 * @param   array    $data      Data for the form.
 	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  \JForm|boolean  A \JForm object on success, false on failure
+	 * @return  \Joomla\CMS\Form\Form|boolean  A Form object on success, false on failure
 	 *
 	 * @since   4.0.0
 	 */
@@ -166,12 +162,11 @@ class WidgetModel extends AdminModel
 		// Get the form.
 		$form = $this->loadForm('com_minitekwall.widget', 'widget', array('control' => 'jform', 'load_data' => $loadData));
 
-		if (empty($form))
-		{
+		if (empty($form)) {
 			return false;
 		}
 
-		$jinput = \JFactory::getApplication()->input;
+		$jinput = Factory::getApplication()->input;
 
 		/*
 		 * The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
@@ -180,18 +175,18 @@ class WidgetModel extends AdminModel
 		$id = $jinput->get('a_id', $jinput->get('id', 0));
 
 		// Determine correct permissions to check.
-		if ($this->getState('widget.id'))
-		{
+		if ($this->getState('widget.id')) {
 			$id = $this->getState('widget.id');
 		}
 
-		$user = \JFactory::getUser();
+		$user = Factory::getUser();
 
 		// Check for existing widget.
 		// Modify the form based on Edit State access controls.
-		if ($id != 0 && (!$user->authorise('core.edit.state', 'com_minitekwall.widget.' . (int) $id))
-			|| ($id == 0 && !$user->authorise('core.edit.state', 'com_minitekwall')))
-		{
+		if (
+			$id != 0 && (!$user->authorise('core.edit.state', 'com_minitekwall.widget.' . (int) $id))
+			|| ($id == 0 && !$user->authorise('core.edit.state', 'com_minitekwall'))
+		) {
 			// Disable fields for display.
 			$form->setFieldAttribute('state', 'disabled', 'true');
 
@@ -215,8 +210,7 @@ class WidgetModel extends AdminModel
 		// Get the form.
 		$form = $this->loadForm('com_minitekwall.masonry', 'masonry', array('control' => 'jform', 'load_data' => $loadData));
 
-		if (empty($form))
-		{
+		if (empty($form)) {
 			return false;
 		}
 
@@ -233,10 +227,9 @@ class WidgetModel extends AdminModel
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = \JFactory::getApplication()->getUserState('com_minitekwall.edit.widget.data', array());
+		$data = Factory::getApplication()->getUserState('com_minitekwall.edit.widget.data', array());
 
-		if (empty($data))
-		{
+		if (empty($data)) {
 			$data = $this->getItem();
 		}
 
@@ -256,20 +249,18 @@ class WidgetModel extends AdminModel
 	 */
 	public function save($data)
 	{
-		$app = \JFactory::getApplication();
+		$app = Factory::getApplication();
 		$input = $app->input;
 		$formData = new Registry($input->get('jform', '', 'array'));
 
 		// Masonry params
 		$masonry_params = $formData->get('masonry_params', false);
-		if ($masonry_params && is_object($masonry_params))
-		{
+		if ($masonry_params && is_object($masonry_params)) {
 			$registry = new Registry($masonry_params);
 			$data['masonry_params'] = (string) $registry; // Saves to table
 		}
 
-		if (parent::save($data))
-		{
+		if (parent::save($data)) {
 			$table = $this->getTable();
 			$key = $table->getKeyName();
 			$pk = (!empty($data[$key])) ? $data[$key] : (int) $this->getState($this->getName() . '.id');
@@ -278,14 +269,12 @@ class WidgetModel extends AdminModel
 			$source_id = $data['source_id'];
 			$source_params = json_encode($data['source_params']);
 
-			$db = \JFactory::getDbo();
+			$db = Factory::getDbo();
 
 			// Widget is new - insert source params
 			// First check if source_id == source_type field in source_params
-			if (array_key_exists('source_type', $data['source_params']) && ($source_id == $data['source_params']['source_type']))
-			{
-				if (!$data['id'])
-				{
+			if (array_key_exists('source_type', $data['source_params']) && ($source_id == $data['source_params']['source_type'])) {
+				if (!$data['id']) {
 					$query = $db->getQuery(true);
 					$columns = array(
 						$db->quoteName('widget_id'),
@@ -301,8 +290,7 @@ class WidgetModel extends AdminModel
 						->values(implode(',', $values));
 					$db->setQuery($query);
 					$db->execute();
-				}
-				else // Existing widget - update source
+				} else // Existing widget - update source
 				{
 					$query = $db->getQuery(true);
 					$fields = array(
@@ -348,7 +336,7 @@ class WidgetModel extends AdminModel
 	 */
 	public function createModule($id, $position)
 	{
-		$db = \JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		// Get widget name
 		$query = $db->getQuery(true);
@@ -360,17 +348,14 @@ class WidgetModel extends AdminModel
 		$db->setQuery($query);
 
 		$widget = $db->loadObject();
-		if (!$widget)
-		{
+		if (!$widget) {
 			return false;
-		}
-		else
-		{
+		} else {
 			$widget_name = $widget->name;
 		}
 
 		// Create module
-		$widget_params = '{"widget_id":"'.$id.'"}';
+		$widget_params = '{"widget_id":"' . $id . '"}';
 		$query = $db->getQuery(true);
 		$columns = array('title', 'content', 'position', 'module', 'access', 'params', 'language');
 		$values = array($db->quote($widget_name), $db->quote(''), $db->quote($position), $db->quote('mod_minitekwall'), $db->quote('1'), $db->quote($widget_params), $db->quote('*'));
@@ -385,12 +370,9 @@ class WidgetModel extends AdminModel
 		$module_id = $db->insertid();
 
 		// Handle db error
-		if(!$module_id)
-		{
+		if (!$module_id) {
 			return false;
-		}
-		else
-		{
+		} else {
 			return $module_id;
 		}
 	}

@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2019 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
-*/
+ * @title		Minitek Wall
+ * @copyright	Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license		GNU General Public License version 3 or later.
+ * @author url	https://www.minitek.gr/
+ * @developers	Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\Controller;
 
@@ -13,6 +14,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Component\ComponentHelper;
 
 /**
  * Component Controller
@@ -33,7 +35,7 @@ class DisplayController extends BaseController
 	 * Method to display a view.
 	 *
 	 * @param   boolean  $cachable   If true, the view output will be cached
-	 * @param   array    $urlparams  An array of safe URL parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
+	 * @param   array    $urlparams  An array of safe URL parameters and their variable types, for valid values see {@link FilterInput::clean()}.
 	 *
 	 * @return  BaseController|bool  This object to support chaining.
 	 *
@@ -55,12 +57,11 @@ class DisplayController extends BaseController
 		$input = $app->input;
 
 		$type = $input->get('type', 'auto');
-		$params = \JComponentHelper::getParams('com_minitekwall');
+		$params = ComponentHelper::getParams('com_minitekwall');
 		$version_check = $params->get('version_check', 1);
 
 		// Don't allow auto if version checking is disabled
-		if ($type == 'auto' && !$version_check)
-		{
+		if ($type == 'auto' && !$version_check) {
 			$app->close();
 		}
 

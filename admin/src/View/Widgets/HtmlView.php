@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\View\Widgets;
 
@@ -56,7 +57,7 @@ class HtmlView extends BaseHtmlView
 	/**
 	 * Form object for search filters
 	 *
-	 * @var    \JForm
+	 * @var    \Joomla\CMS\Form\Form
 	 * @since  4.0.0
 	 */
 	public $filterForm;
@@ -85,8 +86,7 @@ class HtmlView extends BaseHtmlView
 		$this->activeFilters = $this->get('ActiveFilters');
 
 		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
+		if (count($errors = $this->get('Errors'))) {
 			throw new GenericDataException(implode("\n", $errors), 500);
 		}
 
@@ -112,13 +112,11 @@ class HtmlView extends BaseHtmlView
 
 		ToolbarHelper::title(Text::_('COM_MINITEKWALL_WIDGETS_TITLE'), 'grid');
 
-		if ($canDo->get('core.create'))
-		{
+		if ($canDo->get('core.create')) {
 			$toolbar->addNew('widget.add');
 		}
 
-		if ($canDo->get('core.edit.state'))
-		{
+		if ($canDo->get('core.edit.state')) {
 			$dropdown = $toolbar->dropdownButton('status-group')
 				->text('JTOOLBAR_CHANGE_STATUS')
 				->toggleSplit(false)
@@ -134,20 +132,16 @@ class HtmlView extends BaseHtmlView
 			$childBar->checkin('widgets.checkin')->listCheck(true);
 		}
 
-		if ($this->state->get('filter.published') == -2 && $canDo->get('core.delete'))
-		{
+		if ($this->state->get('filter.published') == -2 && $canDo->get('core.delete')) {
 			$toolbar->delete('widgets.delete')
 				->text('JTOOLBAR_EMPTY_TRASH')
 				->message('JGLOBAL_CONFIRM_DELETE')
 				->listCheck(true);
-		}
-		elseif ($canDo->get('core.edit.state'))
-		{
+		} elseif ($canDo->get('core.edit.state')) {
 			$childBar->trash('widgets.trash')->listCheck(true);
 		}
 
-		if ($canDo->get('core.edit.state'))
-		{
+		if ($canDo->get('core.edit.state')) {
 			ToolbarHelper::custom('widgets.deleteCroppedImages', 'trash.png', 'trash_f2.png', 'COM_MINITEKWALL_DELETE_CROPPED_IMAGES', false);
 		}
 
@@ -156,8 +150,7 @@ class HtmlView extends BaseHtmlView
 			->icon('fa fa-' . (Factory::getApplication()->getLanguage()->isRtl() ? 'arrow-right' : 'arrow-left'))
 			->url('index.php?option=com_minitekwall');
 
-		if ($user->authorise('core.admin', 'com_minitekwall') || $user->authorise('core.options', 'com_minitekwall'))
-		{
+		if ($user->authorise('core.admin', 'com_minitekwall') || $user->authorise('core.options', 'com_minitekwall')) {
 			$toolbar->preferences('com_minitekwall');
 		}
 	}

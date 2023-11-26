@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2021 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\View\Dashboard;
 
@@ -16,6 +17,7 @@ use Joomla\CMS\URI\URI;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Language\Text;
 
 class HtmlView extends BaseHtmlView
 {
@@ -29,8 +31,7 @@ class HtmlView extends BaseHtmlView
 	public function display($tpl = null)
 	{
 		// Skip if view == update
-		if (Factory::getApplication()->input->get('view') != 'update')
-		{
+		if (Factory::getApplication()->input->get('view') != 'update') {
 			$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 			$wa->useScript('com_minitekwall.admin-dashboard');
 
@@ -49,6 +50,6 @@ class HtmlView extends BaseHtmlView
 	 */
 	protected function addToolbar()
 	{
-		\JToolbarHelper::title(\JText::_('COM_MINITEKWALL_DASHBOARD_TITLE'), '');
+		ToolbarHelper::title(Text::_('COM_MINITEKWALL_DASHBOARD_TITLE'), '');
 	}
 }

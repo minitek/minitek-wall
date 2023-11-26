@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title				Minitek Wall
-* @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
-* @license   		GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title				Minitek Wall
+ * @copyright   	Copyright (C) 2011-2020 Minitek, All rights reserved.
+ * @license   		GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Site\Controller;
 
@@ -28,12 +29,12 @@ class DisplayController extends \Joomla\CMS\MVC\Controller\BaseController
 	/**
 	 * Constructor.
 	 *
-	 * @param   array                $config   An optional associative array of configuration settings.
+	 * @param   array                    $config   An optional associative array of configuration settings.
 	 * Recognized key values include 'name', 'default_task', 'model_path', and
 	 * 'view_path' (this list is not meant to be comprehensive).
-	 * @param   MVCFactoryInterface  $factory  The factory.
-	 * @param   CMSApplication       $app      The JApplication for the dispatcher
-	 * @param   \JInput              $input    Input
+	 * @param   MVCFactoryInterface      $factory  The factory.
+	 * @param   CMSApplication           $app      The Application for the dispatcher
+	 * @param   \Joomla\CMS\Input\Input  $input    Input
 	 *
 	 * @since   4.0.0
 	 */
@@ -70,11 +71,11 @@ class DisplayController extends \Joomla\CMS\MVC\Controller\BaseController
 		$safeurlparams = array(
 			'widget_id' => 'INT',
 			'lang' => 'CMD',
-			'Itemid' => 'INT');
+			'Itemid' => 'INT'
+		);
 
 		// Check for widget.
-		if ($vName === 'masonry' && !Factory::getApplication()->input->get('widget_id'))
-		{
+		if ($vName === 'masonry' && !Factory::getApplication()->input->get('widget_id')) {
 			// Widget does not exist.
 			throw new \Exception(Text::sprintf('COM_MINITEKWALL_WIDGET_NOT_FOUND', $id), 404);
 		}

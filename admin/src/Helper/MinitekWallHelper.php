@@ -2,7 +2,7 @@
 
 /**
  * @title		Minitek Wall
- * @copyright	Copyright (C) 2011-2022 Minitek, All rights reserved.
+ * @copyright	Copyright (C) 2011-2023 Minitek, All rights reserved.
  * @license		GNU General Public License version 3 or later.
  * @author url	https://www.minitek.gr/
  * @developers	Minitek.gr
@@ -13,6 +13,7 @@ namespace Joomla\Component\MinitekWall\Administrator\Helper;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Component\ComponentHelper;
 
 class MinitekWallHelper
 {
@@ -27,7 +28,7 @@ class MinitekWallHelper
 	 */
 	public static function latestVersion()
 	{
-		$params = \JComponentHelper::getParams('com_minitekwall');
+		$params = ComponentHelper::getParams('com_minitekwall');
 		$version = 0;
 
 		$xml_file = @file_get_contents('https://update.minitek.gr/joomla-extensions/minitek_wall.xml');
@@ -70,7 +71,7 @@ class MinitekWallHelper
 	 */
 	public static function updateMessage()
 	{
-		$params = \JComponentHelper::getParams('com_minitekwall');
+		$params = ComponentHelper::getParams('com_minitekwall');
 		$message = 0;
 
 		$xml_file = @file_get_contents('https://update.minitek.gr/joomla-extensions/minitek_wall.xml');
@@ -99,7 +100,7 @@ class MinitekWallHelper
 	 */
 	public static function updateMessageVersion()
 	{
-		$params = \JComponentHelper::getParams('com_minitekwall');
+		$params = ComponentHelper::getParams('com_minitekwall');
 		$version = 0;
 
 		$xml_file = @file_get_contents('https://update.minitek.gr/joomla-extensions/minitek_wall.xml');

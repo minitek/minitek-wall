@@ -1,19 +1,21 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright	Copyright (C) 2011-2019 Minitek, All rights reserved.
-* @license		GNU General Public License version 3 or later.
-* @author url	https://www.minitek.gr/
-* @developers	Minitek.gr
-*/
+ * @title		Minitek Wall
+ * @copyright	Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license		GNU General Public License version 3 or later.
+ * @author url	https://www.minitek.gr/
+ * @developers	Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Administrator\Field;
 
 defined('_JEXEC') or die;
 
-\JFormHelper::loadFieldClass('radio');
+use Joomla\CMS\Form\Field\RadioField;
+use Joomla\CMS\HTML\HTMLHelper;
 
-class ArrowsListField extends \JFormFieldRadio
+class ArrowsListField extends RadioField
 {
 	public $type = 'ArrowsList';
 
@@ -35,8 +37,7 @@ class ArrowsListField extends \JFormFieldRadio
 		$options = $this->getOptions();
 
 		// Build the radio field output.
-		foreach ($options as $i => $option)
-		{
+		foreach ($options as $i => $option) {
 			// Initialize some option attributes.
 			$checked = ((string) $option->value == (string) $this->value) ? ' checked="checked"' : '';
 			$class = 'class= "grid-radio-input"';
@@ -51,19 +52,19 @@ class ArrowsListField extends \JFormFieldRadio
 
 			$html[] = '<div class="grid-radio arrow-radio">';
 
-				$html[] = '<label for="' . $this->id . $i . '"' . $class . ' >';
+			$html[] = '<label for="' . $this->id . $i . '"' . $class . ' >';
 
-					$html[] = '<div class="grid-radio-demo-cont">';
-						$html[] = '<i class="fa fa-'.$option->value.'-left"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-'.$option->value.'-right"></i>';
-					$html[] = '</div>';
+			$html[] = '<div class="grid-radio-demo-cont">';
+			$html[] = '<i class="fa fa-' . $option->value . '-left"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-' . $option->value . '-right"></i>';
+			$html[] = '</div>';
 
-				$html[] = '</label>';
+			$html[] = '</label>';
 
-				$html[] = '<div>';
-					$html[] = '<input type="radio" id="' . $this->id . $i . '" name="' . $this->name . '" value="'
-					. htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8') . '"' . $checked . $class . $required . $onclick
-					. $onchange . $disabled . ' />';
-				$html[] = '</div>';
+			$html[] = '<div>';
+			$html[] = '<input type="radio" id="' . $this->id . $i . '" name="' . $this->name . '" value="'
+				. htmlspecialchars($option->value, ENT_COMPAT, 'UTF-8') . '"' . $checked . $class . $required . $onclick
+				. $onchange . $disabled . ' />';
+			$html[] = '</div>';
 
 			$html[] = '</div>';
 
@@ -78,49 +79,52 @@ class ArrowsListField extends \JFormFieldRadio
 
 	protected function getOptions()
 	{
-		$elements = Array(
-			Array(
+		$elements = array(
+			array(
 				'value' => 'angle-double'
 			),
-			Array(
+			array(
 				'value' => 'angle'
 			),
-			Array(
+			array(
 				'value' => 'arrow-circle'
 			),
-			Array(
+			array(
 				'value' => 'arrow-circle-o'
 			),
-			Array(
+			array(
 				'value' => 'arrow'
 			),
-			Array(
+			array(
 				'value' => 'caret'
 			),
-			Array(
+			array(
 				'value' => 'caret-square-o'
 			),
-			Array(
+			array(
 				'value' => 'chevron-circle'
 			),
-			Array(
+			array(
 				'value' => 'chevron'
 			),
-			Array(
+			array(
 				'value' => 'hand-o'
 			),
-			Array(
+			array(
 				'value' => 'long-arrow'
 			)
 		);
 
-		foreach ($elements as $option)
-		{
+		foreach ($elements as $option) {
 			$disabled = false;
 
 			// Create a new option object based on the <option /> element.
-			$tmp = \JHtml::_(
-				'select.option', (string) $option['value'], trim((string) $option['value']), 'value', 'text',
+			$tmp = HTMLHelper::_(
+				'select.option',
+				(string) $option['value'],
+				trim((string) $option['value']),
+				'value',
+				'text',
 				$disabled
 			);
 

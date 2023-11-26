@@ -1,11 +1,12 @@
 <?php
+
 /**
-* @title		Minitek Wall
-* @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
-* @license   	GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title		Minitek Wall
+ * @copyright   	Copyright (C) 2011-2022 Minitek, All rights reserved.
+ * @license   	GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 namespace Joomla\Component\MinitekWall\Site\Model;
 
@@ -45,16 +46,14 @@ class MasonryModel extends BaseDatabaseModel
 	 *
 	 * @param   integer  $pk  The id of the widget.
 	 *
-	 * @return  object|boolean|JException  Object on success, boolean false or JException instance on error
+	 * @return  object|boolean|Exception  Object on success, boolean false or JException instance on error
 	 */
 	public function getItem($pk = null)
 	{
 		$pk = (!empty($pk)) ? $pk : (int) $this->getState('widget.id');
 
-		if (!isset($this->_item[$pk]))
-		{
-			try
-			{
+		if (!isset($this->_item[$pk])) {
+			try {
 				$db = $this->getDbo();
 				$query = $db->getQuery(true)
 					->select('a.*, s.*');
@@ -80,13 +79,10 @@ class MasonryModel extends BaseDatabaseModel
 					throw new \Exception(Text::_('COM_MINITEKWALL_ERROR_WIDGET_NOT_FOUND'), 404);
 
 				$this->_item[$pk] = $data;
-			}
-			catch (\Exception $e)
-			{
+			} catch (\Exception $e) {
 				if ($e->getCode() == 404)
 					throw new \Exception($e->getMessage(), 404);
-				else
-				{
+				else {
 					$this->setError($e);
 					$this->_item[$pk] = false;
 				}
@@ -111,8 +107,8 @@ class MasonryModel extends BaseDatabaseModel
 		$source_type = $params->get('source_type');
 
 		// Register plugin source class
-		$class = 'MSource'.$source_type.'Options';
-		$plugin = 'msource'.$source_type;
+		$class = 'MSource' . $source_type . 'Options';
+		$plugin = 'msource' . $source_type;
 		\JLoader::register($class, JPATH_SITE . '/plugins/content/' . $plugin . '/helpers/options.php');
 
 		$options = new $class;
@@ -127,8 +123,8 @@ class MasonryModel extends BaseDatabaseModel
 		$source_type = $params->get('source_type');
 
 		// Register plugin source class
-		$class = 'MSource'.$source_type.'Source';
-		$plugin = 'msource'.$source_type;
+		$class = 'MSource' . $source_type . 'Source';
+		$plugin = 'msource' . $source_type;
 		\JLoader::register($class, JPATH_SITE . '/plugins/content/' . $plugin . '/helpers/source.php');
 
 		$source = new $class;
@@ -143,8 +139,8 @@ class MasonryModel extends BaseDatabaseModel
 		$source_type = $params->get('source_type');
 
 		// Register plugin source class
-		$class = 'MSource'.$source_type.'Source';
-		$plugin = 'msource'.$source_type;
+		$class = 'MSource' . $source_type . 'Source';
+		$plugin = 'msource' . $source_type;
 		\JLoader::register($class, JPATH_SITE . '/plugins/content/' . $plugin . '/helpers/source.php');
 
 		$source = new $class;
