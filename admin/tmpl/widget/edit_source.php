@@ -28,18 +28,21 @@ use Joomla\CMS\HTML\HTMLHelper;
 		</div>
 	</div>
 	<div class="card-body">
-		<form action="<?php echo Route::_('index.php?option=com_minitekwall&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="widget-form" class="form-validate"><?php
-																																																	// Core plugins
-																																																	?><h4 class="header mx-3 my-0 p-3"><?php echo Text::_('COM_MINITEKWALL_WIDGET_CORE_PLUGINS'); ?></h4>
-			<div class="row"><?php
-								foreach ($this->corePlugins as $corePlugin) {
-									$corePluginEnabled = false;
+		<form action="<?php echo Route::_('index.php?option=com_minitekwall&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="widget-form" class="form-validate">
+			<?php
+			// Core plugins
+			?>
+			<h4 class="header mx-3 my-0 p-3"><?php echo Text::_('COM_MINITEKWALL_WIDGET_CORE_PLUGINS'); ?></h4>
+			<div class="row">
+				<?php
+				foreach ($this->corePlugins as $corePlugin) {
+					$corePluginEnabled = false;
 
-									foreach ($this->sources as $source) {
-										// Is it a core plugin ?
-										if ($corePlugin['type'] == $source['type']) {
-											if ($source['type'] == 'content') {
-								?><div class="col-12 col-md-3">
+					foreach ($this->sources as $source) {
+						// Is it a core plugin ?
+						if ($corePlugin['type'] == $source['type']) {
+							if ($source['type'] == 'content') { ?>
+								<div class="col-12 col-md-3">
 									<div class="source-tile p-4 text-center">
 										<div class="source-icon mb-3">
 											<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -51,9 +54,9 @@ use Joomla\CMS\HTML\HTMLHelper;
 											<span class="fas fa-check" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_WIDGET_SELECT'); ?>
 										</button>
 									</div>
-								</div><?php
-											} else {
-										?><div class="col-12 col-md-3">
+								</div>
+							<?php } else { ?>
+								<div class="col-12 col-md-3">
 									<div class="source-tile p-4 text-center">
 										<div class="source-icon mb-3">
 											<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -65,31 +68,28 @@ use Joomla\CMS\HTML\HTMLHelper;
 											<span class="fas fa-lock" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPGRADE_TO_PRO'); ?>
 										</a>
 									</div>
-								</div><?php
-											}
+								</div>
+							<?php }
+							$corePluginEnabled = true;
+							break;
+						}
+					}
 
-											$corePluginEnabled = true;
-
-											break;
-										}
-									}
-
-									if (!$corePluginEnabled) {
-										if ($corePlugin['type'] == 'content') {
-											// Installed and disabled
-											if ($sourcePlugin = MinitekWallHelper::getSourcePlugin($corePlugin['type'])) {
-												$title = Text::_('COM_MINITEKWALL_WIDGET_PUBLISH');
-												$icon = 'check';
-												$url = Route::_('index.php?option=com_plugins&view=plugins&filter[search]=Minitek%20Source%20-%20' . $corePlugin['type'] . '&filter[folder]=content');
-											} else
-											// Not installed
-											{
-												$title = Text::_('COM_MINITEKWALL_WIDGET_INSTALL');
-												$icon = 'download';
-												$url = $corePlugin['downloadurl'];
-											}
-
-										?><div class="col-12 col-md-3">
+					if (!$corePluginEnabled) {
+						if ($corePlugin['type'] == 'content') {
+							// Installed and disabled
+							if ($sourcePlugin = MinitekWallHelper::getSourcePlugin($corePlugin['type'])) {
+								$title = Text::_('COM_MINITEKWALL_WIDGET_PUBLISH');
+								$icon = 'check';
+								$url = Route::_('index.php?option=com_plugins&view=plugins&filter[search]=Minitek%20Source%20-%20' . $corePlugin['type'] . '&filter[folder]=content');
+							} else
+							// Not installed
+							{
+								$title = Text::_('COM_MINITEKWALL_WIDGET_INSTALL');
+								$icon = 'download';
+								$url = $corePlugin['downloadurl'];
+							} ?>
+							<div class="col-12 col-md-3">
 								<div class="source-tile p-4 text-center">
 									<div class="source-icon mb-3">
 										<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -101,9 +101,9 @@ use Joomla\CMS\HTML\HTMLHelper;
 										<span class="fas fa-<?php echo $icon; ?>" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo $title; ?>
 									</a>
 								</div>
-							</div><?php
-										} else {
-									?><div class="col-12 col-md-3">
+							</div>
+						<?php } else { ?>
+							<div class="col-12 col-md-3">
 								<div class="source-tile p-4 text-center">
 									<div class="source-icon mb-3">
 										<img src="<?php echo $corePlugin['image']; ?>" alt="" />
@@ -115,11 +115,12 @@ use Joomla\CMS\HTML\HTMLHelper;
 										<span class="fas fa-lock" aria-hidden="true"></span>&nbsp;&nbsp;<?php echo Text::_('COM_MINITEKWALL_DASHBOARD_UPGRADE_TO_PRO'); ?>
 									</a>
 								</div>
-							</div><?php
-										}
-									}
-								}
-									?></div>
+							</div>
+				<?php
+						}
+					}
+				} ?>
+			</div>
 
 			<input type="hidden" name="source_type" value="" />
 			<input type="hidden" name="task" value="" />

@@ -37,12 +37,14 @@ if ($latestVersion && version_compare($latestVersion, $localVersion, '>')) { ?>
   </joomla-alert>
   <?php if ($message && version_compare($localVersion, $message_version, '<')) { ?>
     <joomla-alert type="danger" dismiss="true" class="p-3" style="animation-name: joomla-alert-fade-in;" role="alert">
-      <div class="alert-heading"><h4 class="text-danger mb-3">WARNING</h4></div>
+      <div class="alert-heading">
+        <h4 class="text-danger mb-3">WARNING</h4>
+      </div>
       <div class="alert-wrapper">
         <div class="alert-message">
           <div class="update-info">
-              <p class="mb-2"><?php echo $message; ?></p>
-              <p class="m-0"><small><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DISABLE_MESSAGE'); ?></small></p>
+            <p class="mb-2"><?php echo $message; ?></p>
+            <p class="m-0"><small><?php echo Text::_('COM_MINITEKWALL_DASHBOARD_DISABLE_MESSAGE'); ?></small></p>
           </div>
         </div>
       </div>

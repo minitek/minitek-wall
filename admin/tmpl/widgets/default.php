@@ -2,7 +2,7 @@
 
 /**
  * @title        Minitek Wall
- * @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
+ * @copyright    Copyright (C) 2011-2023 Minitek, All rights reserved.
  * @license      GNU General Public License version 3 or later.
  * @author url   https://www.minitek.gr/
  * @developers   Minitek.gr
@@ -32,13 +32,12 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 				<?php
 				// Search tools bar
 				echo LayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-				?>
-				<?php if (empty($this->items)) : ?>
+				if (empty($this->items)) { ?>
 					<div class="alert alert-info">
 						<span class="fas fa-info-circle" aria-hidden="true"></span><span class="sr-only"><?php echo Text::_('INFO'); ?></span>
 						<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 					</div>
-				<?php else : ?>
+				<?php } else { ?>
 					<table class="table" id="articleList">
 						<caption class="visually-hidden">
 							<?php echo Text::_('COM_MINITEKWALL_WIDGETS_TABLE_CAPTION'); ?>, <?php echo Text::_('JGLOBAL_SORTED_BY'); ?>
@@ -63,7 +62,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($this->items as $i => $item) :
+							<?php foreach ($this->items as $i => $item) {
 								$canEdit    = $user->authorise('core.edit',       'com_minitekwall');
 								$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
 								$canChange  = $user->authorise('core.edit.state', 'com_minitekwall.widget.' . $item->id) && $canCheckin;
@@ -79,19 +78,19 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 
 									<th scope="row" class="has-context">
 										<div class="break-word">
-											<?php if ($item->checked_out) : ?>
+											<?php if ($item->checked_out) { ?>
 												<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'widgets.', $canCheckin); ?>
-											<?php endif;
-											?><a type="button" class="btn-link hasTooltip" title="<?php echo Text::_('JGLOBAL_PREVIEW'); ?>" data-bs-toggle="modal" data-bs-target="#mwall-preview-<?php echo $item->id; ?>">
+											<?php } ?>
+											<a type="button" class="btn-link hasTooltip" title="<?php echo Text::_('JGLOBAL_PREVIEW'); ?>" data-bs-toggle="modal" data-bs-target="#mwall-preview-<?php echo $item->id; ?>">
 												<i class="fas fa-eye"></i>
-											</a>&nbsp;&nbsp;<?php 
-											if ($canEdit) : ?>
+											</a>&nbsp;&nbsp;
+											<?php if ($canEdit) { ?>
 												<a class="hasTooltip" href="<?php echo Route::_('index.php?option=com_minitekwall&task=widget.edit&id=' . (int) $item->id); ?>" title="<?php echo Text::_('JACTION_EDIT'); ?> <?php echo $this->escape(addslashes($item->name)); ?>">
 													<?php echo $this->escape($item->name); ?></a>
 												</a>
-											<?php else : ?>
+											<?php } else { ?>
 												<span><?php echo $this->escape($item->name); ?></span>
-											<?php endif; ?>
+											<?php } ?>
 											<?php if ($item->description) { ?>
 												<div class="mt-2">
 													<span class="small break-word">
@@ -99,21 +98,21 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 													</span>
 												</div>
 											<?php } ?>
-										</div><?php 
-
-										$url = 'index.php?option=com_minitekwall&view=masonry&widget_id='.$item->id.'&tmpl=component';
+										</div>
+										<?php
+										$url = 'index.php?option=com_minitekwall&view=masonry&widget_id=' . $item->id . '&tmpl=component';
 
 										echo HTMLHelper::_(
 											'bootstrap.renderModal',
-											'mwall-preview-'.$item->id,
+											'mwall-preview-' . $item->id,
 											[
 												'title'       => Text::_('JGLOBAL_PREVIEW'),
 												'bodyHeight'  => 80,
 												'modalWidth'  => 90,
-												'url'		  => URI::root().$url
+												'url'		  => URI::root() . $url
 											]
-										); 
-									?></th>
+										); ?>
+									</th>
 
 									<td class="small d-none d-md-table-cell">
 										<span class="badge bg-info" style="text-transform: uppercase;">
@@ -125,12 +124,12 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 										<?php echo (int) $item->id; ?>
 									</td>
 								</tr>
-							<?php endforeach; ?>
+							<?php } ?>
 						</tbody>
 					</table>
 
 					<?php echo $this->pagination->getListFooter(); ?>
-				<?php endif; ?>
+				<?php } ?>
 
 				<input type="hidden" name="task" value="" />
 				<input type="hidden" name="boxchecked" value="0" />
