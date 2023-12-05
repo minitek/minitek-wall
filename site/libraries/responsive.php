@@ -14,6 +14,8 @@ use Joomla\CMS\Factory;
 
 class MinitekWallLibResponsive
 {
+	var $utilitiesLib = null;
+
 	function __construct($utilitiesLib)
 	{
 		$this->utilitiesLib = $utilitiesLib;

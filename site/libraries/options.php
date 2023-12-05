@@ -1,18 +1,21 @@
 <?php
+
 /**
-* @title        Minitek Wall
-* @copyright    Copyright (C) 2011-2022 Minitek, All rights reserved.
-* @license      GNU General Public License version 3 or later.
-* @author url   https://www.minitek.gr/
-* @developers   Minitek.gr
-*/
+ * @title        Minitek Wall
+ * @copyright    Copyright (C) 2011-2023 Minitek, All rights reserved.
+ * @license      GNU General Public License version 3 or later.
+ * @author url   https://www.minitek.gr/
+ * @developers   Minitek.gr
+ */
 
 defined('_JEXEC') or die('Restricted access');
 
 class MinitekWallLibOptions
 {
+	var $utilitiesLib = null;
+
 	function __construct($utilitiesLib)
-	{		
+	{
 		$this->utilitiesLib = $utilitiesLib;
 
 		return;
@@ -20,14 +23,12 @@ class MinitekWallLibOptions
 
 	public function getMasonryItemSize($gridType, $item_index, $gridId = false)
 	{
-		switch ($gridType)
-		{
-			// Custom grids
+		switch ($gridType) {
+				// Custom grids
 			case '999c':
 				// Get custom grid elements
 				$elements = json_decode($this->utilitiesLib->getCustomGrid($gridId)->elements, true);
-				switch ($elements[$item_index - 1]['size'])
-				{
+				switch ($elements[$item_index - 1]['size']) {
 					case 'S':
 						$item_size = 'mwall-small';
 						break;
@@ -43,7 +44,7 @@ class MinitekWallLibOptions
 				}
 				break;
 
-			// Preset grids
+				// Preset grids
 			case '1':
 				$item_size = 'mwall-big';
 				break;
@@ -177,5 +178,4 @@ class MinitekWallLibOptions
 
 		return $item_size;
 	}
-
 }
