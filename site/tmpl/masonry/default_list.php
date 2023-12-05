@@ -97,7 +97,7 @@ if (!empty($this->wall) ||  $this->wall !== 0) {
 			$cover_classes .= ' no-detail-box';
 		} ?>
 
-		<div class="mwall-item <?php echo $item_classes; ?>" style="<?php echo $item_style; ?>" <?php echo $data_attributes; ?>>
+		<div class="mwall-item <?php echo $item_classes; ?>" style="<?php echo $item_style; ?>" <?php echo $item_data_attributes; ?>>
 			<div class="mwall-item-outer-cont <?php echo $position_class; ?>" style="<?php echo $outer_cont_style ?> <?php echo $this->animated_flip; ?>">
 				<div class="mwall-item-inner-cont" style="<?php echo $inner_cont_style; ?>">
 					<?php if (!$empty_media) { ?>

@@ -95,7 +95,7 @@ if (!empty($this->wall) || $this->wall !== 0) {
 		}
 		$outer_cont_style .= $this->animated_flip; ?>
 
-		<div class="mwall-item <?php echo $item_classes; ?>" style="<?php echo $item_style; ?>" <?php echo $data_attributes; ?>>
+		<div class="mwall-item <?php echo $item_classes; ?>" style="<?php echo $item_style; ?>" <?php echo $item_data_attributes; ?>>
 			<div class="mwall-item-outer-cont <?php echo $this->flipBase; ?> <?php echo $this->flipClass; ?>" style="<?php echo $outer_cont_style; ?>">
 				<div class="mwall-item-inner-cont">
 					<?php if (!empty($item->itemImage)) {
