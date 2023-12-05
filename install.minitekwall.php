@@ -20,6 +20,9 @@ if (!defined('DS'))
 
 class com_minitekwallInstallerScript
 {
+	var $new_version = null;
+	var $installed_version = null;
+
 	/*
 	 * $parent is the class calling this method.
 	 * $type is the type of change (install, update or discover_install, not uninstall).
